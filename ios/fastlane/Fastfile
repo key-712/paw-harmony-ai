@@ -1,0 +1,79 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Read and synchronize code signing assets"
+  lane :read_code_signing do |options|
+    match(
+      type: "appstore",
+      app_identifier: ENV["APP_IDENTIFIER"],
+      git_url: ENV["MATCH_GIT_URL"],
+      readonly: true
+    )
+  end
+
+  desc "Create App ID on Apple Developer Portal"
+  lane :create_app_id do
+    produce(
+      app_identifier: ENV["APP_IDENTIFIER"],
+      language: "ja",
+      app_name: ENV["APP_NAME"], 
+      skip_itc: true,
+      enable_services: { 
+        push_notification: true,
+        associated_domains: true
+      }
+    )
+  end
+
+  desc "Nuke existing match assets (certificates and profiles)"
+  lane :nuke_match_assets do
+    nuke(
+      type: "appstore",
+      app_identifier: ENV["APP_IDENTIFIER"],
+      force: true
+    )
+  end
+
+  desc "Force regenerate provisioning profile"
+  lane :force_regenerate_profile do
+    match(
+      type: "appstore",
+      app_identifier: ENV["APP_IDENTIFIER"],
+      git_url: ENV["MATCH_GIT_URL"],
+      force: true
+    )
+  end
+
+  desc "Release for Production iOS"
+  lane :release_ios_prod do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: ENV["APP_STORE_CONNECT_KEY_PATH"],
+      duration: 1200, # optional
+      is_key_content_base64: false # optional
+    )
+
+    gym(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      output_directory: "deploy/prod/",
+      output_name: "Runner-Release.ipa",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          ENV["APP_IDENTIFIER"] => "match AppStore #{ENV['APP_IDENTIFIER']}"
+        }
+      }
+    )
+
+    deliver(
+      api_key: api_key,
+      ipa: "deploy/prod/Runner-Release.ipa",
+      skip_screenshots: true,
+      skip_metadata: true,
+      precheck_include_in_app_purchases: false # Disabled due to API Key limitation
+    )
+  end
+end

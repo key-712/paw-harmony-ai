@@ -1,0 +1,81 @@
+name: "Update Version"
+
+on:
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  update-build-version:
+    if: ${{ github.event.label.name == 'Update Build Version' || github.event.label.name == 'Update Patch Version'|| github.event.label.name == 'Update Minor Version'|| github.event.label.name == 'Update Major Version' }}
+    runs-on: ubuntu-latest
+    env:
+      PREFIX: feature/
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract Before version from pubspec.yaml
+        id: extract_before_version
+        run: |
+          VERSION=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+          echo "EXTRACTED_BEFORE_VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "::set-output name=extract_before_version::${VERSION}"
+
+      - name: Set Branch Name with Version
+        run: |
+          echo "NEW_BRANCH=${{ env.PREFIX }}update-version-from-${{ env.EXTRACTED_BEFORE_VERSION }}" >> $GITHUB_ENV
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}"
+          channel: "stable"
+          cache: true
+          cache-key: flutter
+          cache-path: ${{ runner.tool_cache }}/flutter
+
+      - name: Update Version Based on Label
+        run: |
+          case "${{ github.event.label.name }}" in
+            'Update Build Version')
+              flutter pub run pub_version_plus:main build
+              ;;
+            'Update Patch Version')
+              flutter pub run pub_version_plus:main patch
+              ;;
+            'Update Minor Version')
+              flutter pub run pub_version_plus:main minor
+              ;;
+            'Update Major Version')
+              flutter pub run pub_version_plus:main major
+              ;;
+          esac
+
+      - name: Extract After version from pubspec.yaml
+        id: extract_after_version
+        run: |
+          VERSION=$(grep 'version: ' pubspec.yaml | sed 's/version: //')
+          echo "EXTRACTED_AFTER_VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "::set-output name=extract_after_version::${VERSION}"
+
+      - name: Commit and push
+        run: |
+          git config --local user.name "${{ github.repository_owner }}" 
+          git config --local user.email "${{ github.repository_owner_id }}-${{ github.repository_owner }}@users.noreply.github.com"
+          git fetch origin staging:staging
+          git checkout staging
+          git checkout -b ${{ env.NEW_BRANCH }}
+          git add pubspec.yaml
+          git commit -m "from ${{ env.EXTRACTED_BEFORE_VERSION }} to ${{ env.EXTRACTED_AFTER_VERSION }}"
+          git push origin ${{ env.NEW_BRANCH }}
+
+      - name: Create Pull Request
+        run: |
+          gh pr create \
+            -B staging \
+            -H ${{ env.NEW_BRANCH }} \
+            -t 'Update Version from ${{ env.EXTRACTED_BEFORE_VERSION }} to ${{ env.EXTRACTED_AFTER_VERSION }}' \
+            -b 'バージョンを更新しました。'

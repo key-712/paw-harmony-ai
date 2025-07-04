@@ -1,0 +1,91 @@
+name: "code-check"
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - staging
+      - develop
+      - feature/**
+      - fix/**
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  code-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: set up java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17.x"
+
+      - name: get fvm config
+        uses: kuhnroyal/flutter-fvm-config-action@v2
+        id: fvm-config-action
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}"
+          channel: "stable"
+          cache: true
+          cache-key: flutter
+          cache-path: ${{ runner.tool_cache }}/flutter
+
+      - name: Install FVM
+        run: |
+          dart pub global activate fvm
+          fvm install ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+          fvm use ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }} --force
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Setup Firebase CLI
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          dart pub global activate flutterfire_cli
+          flutterfire configure \
+            --yes \
+            --project=crelve-template-dev \
+            --platforms=android,ios \
+            --android-package-name=crelve.template.mobile.dev \
+            --ios-bundle-id=crelve.template.mobile.dev
+
+      - name: pub get
+        run: |
+          fvm flutter pub get && fvm flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Install matcher
+        run: echo "::add-matcher::.github/analyzer-problem-matcher.json"
+
+      - name: analyze
+        shell: bash
+        run: |
+          fvm flutter analyze | tee ./flutter_analyze_report.txt
+
+      - name: Remove matcher
+        if: always()
+        run: echo "::remove-matcher owner=dart-analyzer::"
+
+      - name: setup ruby
+        if: ${{ failure() }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: Update RubyGems
+        if: ${{ failure() }}
+        run: gem update --system 3.2.3

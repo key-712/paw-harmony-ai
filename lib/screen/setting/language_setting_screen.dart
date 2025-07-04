@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../import/component.dart';
+import '../../import/provider.dart';
+import '../../import/theme.dart';
+import '../../l10n/app_localizations.dart';
+
+/// 言語設定画面
+class LanguageSettingScreen extends HookConsumerWidget {
+  /// 言語設定画面
+  const LanguageSettingScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final localizations = AppLocalizations.of(context)!;
+    final theme = ref.watch(appThemeProvider);
+    final locale = ref.watch(localeProvider);
+    final localeNotifier = ref.watch(localeProvider.notifier);
+
+    return Scaffold(
+      appBar: BackIconHeader(title: localizations.languageSetting),
+      backgroundColor: theme.appColors.background,
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              children: [
+                ListTile(
+                  title: ThemeText(
+                    text: localizations.english,
+                    style: theme.textTheme.h40,
+                    color:
+                        locale == const Locale('en')
+                            ? theme.appColors.black
+                            : theme.appColors.grey,
+                  ),
+                  trailing:
+                      locale == const Locale('en')
+                          ? Icon(Icons.check, color: theme.appColors.primary)
+                          : null,
+                  onTap: () {
+                    localeNotifier.locale = const Locale('en');
+                    Navigator.pop(context);
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      if (context.mounted) {
+                        showSnackBar(
+                          context: context,
+                          theme: theme,
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.languageSettingSuccess,
+                        );
+                      }
+                    });
+                  },
+                ),
+                ListTile(
+                  title: ThemeText(
+                    text: localizations.japanese,
+                    style: theme.textTheme.h40,
+                    color:
+                        locale == const Locale('ja')
+                            ? theme.appColors.black
+                            : theme.appColors.grey,
+                  ),
+                  trailing:
+                      locale == const Locale('ja')
+                          ? Icon(Icons.check, color: theme.appColors.primary)
+                          : null,
+                  onTap: () {
+                    localeNotifier.locale = const Locale('ja');
+                    Navigator.pop(context);
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      if (context.mounted) {
+                        showSnackBar(
+                          context: context,
+                          theme: theme,
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.languageSettingSuccess,
+                        );
+                      }
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          const AdBanner(),
+        ],
+      ),
+    );
+  }
+}

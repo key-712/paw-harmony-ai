@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main">#3B5998</color>
+    <color name="primary">#4EADEA</color>
+    <color name="progress">#4EADEA</color>
+    <color name="blueGrey">#E9EEF4</color>
+    <color name="backGround">#EFEFEE</color>
+</resources>

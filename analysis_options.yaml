@@ -1,0 +1,14 @@
+# https://pub.dev/packages/pedantic_mono
+include: package:pedantic_mono/analysis_options.yaml
+linter:
+  rules:
+    always_put_control_body_on_new_line: false
+    prefer_relative_imports: true
+    public_member_api_docs: true
+analyzer:
+  exclude: # ignore generated files
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gen.dart"
+    - "**/firebase_options.dart"
+    - "test/coverage_test.dart"

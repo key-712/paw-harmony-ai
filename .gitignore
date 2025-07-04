@@ -1,0 +1,108 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+**/ios/firebase_app_id_file.json.zip
+dart_env/
+.dart_tool/
+.firebase/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+ios/fastlane/.env
+ios/fastlane/keys/
+
+# Security files
+*.key
+*.pem
+*.p12
+*.keystore
+*.jks
+*.mobileprovision
+AuthKey_*.p8
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# IDE specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Public directory
+public/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Custom
+**/**.freezed.dart
+**/**.g.dart
+**/**.gen.dart
+**/android/app/src/*/res/drawable*/ic_launcher_foreground.png
+**/android/app/src/*/res/mipmap*/
+**/android/app/src/*/res/values/colors.xml
+**/android/app/google-services.json
+**/ios/Runner/Assets.xcassets/AppIcon.appIconset/**.png
+**/ios/Runner/GoogleService-Info.plist
+**/ios/firebase_app_id_file.json
+**/ios/firebase_app_id_file_dev.json
+**/ios/firebase_app_id_file_prod.json
+**/lib/firebase_options.dart
+**/lib/l10n/app_localizations.dart
+**/lib/l10n/app_localizations_ja.dart
+**/lib/l10n/app_localizations_en.dart
+firebase.json
+previous_flavor.txt
+**/coverage/
+
+# FVM Version Cache
+.fvm/

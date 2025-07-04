@@ -1,0 +1,261 @@
+# name: "deploy-production"
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - main
+
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+#   cancel-in-progress: true
+
+# jobs:
+#   common-setup:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+#     steps:
+#       - name: checkout
+#         uses: actions/checkout@v4
+#       - name: get fvm config
+#         uses: kuhnroyal/flutter-fvm-config-action@v2
+#         id: fvm-config-action
+#       - name: Cache Flutter dependencies
+#         uses: actions/cache@v4
+#         with:
+#           path: |
+#             ~/.pub-cache
+#             ~/fvm
+#           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+
+#   # deploy-android-to-production:
+#   #   needs: common-setup
+#   #   runs-on: ubuntu-latest
+#   #   timeout-minutes: 60
+#   #   env:
+#   #     GOOGLE_APPLICATION_CREDENTIALS: fastlane/service_credentials_file/lt-scout-prod.json
+#   #   steps:
+#   #     - name: Use common setup
+#   #       uses: actions/checkout@v4
+#   #     - name: decode and copy secrets files
+#   #       run: |
+#   #         echo ${{secrets.ENCODED_ZIP_RELEASE_PROD}} | base64 -d > secrets-release-prod.zip
+#   #         unzip secrets-release-prod.zip
+#   #         make cp-secrets-release FLAVOR=prod
+#   #     - name: install fvm and flutter
+#   #       run: |
+#   #         sudo apt-get update
+#   #         sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa ruby-full build-essential
+#   #         curl -fsSL https://raw.githubusercontent.com/leoafarias/fvm/main/scripts/install.sh | bash
+#   #         fvm install
+#   #         echo 'export PATH="$HOME/fvm/versions/${{ needs.common-setup.outputs.flutter-version }}/bin:$HOME/fvm/versions/${{ needs.common-setup.outputs.flutter-version }}/bin/cache/dart-sdk/bin:$HOME/.pub-cache/bin:$PATH"' >> $GITHUB_ENV
+#   #         echo 'export PATH="$HOME/.gem/ruby/3.2.0/bin:$PATH"' >> $GITHUB_ENV
+#   #         echo 'export PATH="$HOME/.local/share/gem/ruby/3.2.0/bin:$PATH"' >> $GITHUB_ENV
+#   #         source $GITHUB_ENV
+#   #     - name: set up java
+#   #       uses: actions/setup-java@v4
+#   #       with:
+#   #         distribution: temurin
+#   #         java-version: "17.x"
+#   #     - name: Set up Node.js
+#   #       uses: actions/setup-node@v4
+#   #       with:
+#   #         node-version: "18.x"
+#   #     - name: Cache Ruby Gems
+#   #       uses: actions/cache@v4
+#   #       with:
+#   #         path: /Library/Ruby/Gems/3.2.0
+#   #         key: ruby-gems-${{ hashFiles('**/Gemfile.lock') }}
+#   #         restore-keys: |
+#   #           ruby-gems-
+#   #     - name: Get the Version
+#   #       run: |
+#   #         VERSION=$(grep -E '^version: ' pubspec.yaml | awk '{print $2}')
+#   #         CURRENT_BUILD_NUMBER=$(echo $VERSION | cut -d+ -f2)
+#   #         echo "CURRENT_BUILD_NUMBER=$CURRENT_BUILD_NUMBER" >> $GITHUB_ENV
+#   #     - name: install tools and release
+#   #       run: |
+#   #         gem install --user-install bundler
+#   #         export PATH="$HOME/.local/share/gem/ruby/3.2.0/bin:$PATH"
+#   #         bundle config set --local path 'vendor/bundle'
+#   #         bundle install
+#   #         make release-prod-android RUN_MODE=ci BUILD_NUMBER=${{ env.CURRENT_BUILD_NUMBER }}
+
+#   deploy-ios-to-production:
+#     needs: common-setup
+#     runs-on: macos-15
+#     timeout-minutes: 60
+#     env:
+#       MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
+#       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+#       FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+#       FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+#       APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+#       APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+#       APP_IDENTIFIER: ${{ secrets.APP_IDENTIFIER }}
+#       APP_NAME: ${{ secrets.APP_NAME }}
+#       MATCH_GIT_URL: ${{ secrets.MATCH_GIT_URL }}
+#     steps:
+#       - name: checkout
+#         uses: actions/checkout@v4
+#       - name: get fvm config
+#         uses: kuhnroyal/flutter-fvm-config-action@v2
+#         id: fvm-config-action
+#       - name: Cache Flutter dependencies
+#         uses: actions/cache@v4
+#         with:
+#           path: |
+#             ~/.pub-cache
+#             ~/fvm
+#           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+#       - name: install fvm and flutter
+#         run: |
+#           brew tap leoafarias/fvm
+#           brew install fvm
+#           fvm install
+#           echo 'export PATH="$PATH:$HOME/fvm/versions/${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}/bin/cache/dart-sdk/bin"' >> $HOME/.zshrc
+#           source $HOME/.zshrc
+#       - name: set up java
+#         uses: actions/setup-java@v4
+#         with:
+#           distribution: temurin
+#           java-version: "17.x"
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "18.x"
+#       - name: Set up Xcode
+#         uses: maxim-lobanov/setup-xcode@v1.6.0
+#         with:
+#           xcode-version: "16.2"
+#       - name: Cache CocoaPods dependencies
+#         uses: actions/cache@v4
+#         with:
+#           path: ios/Pods
+#           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+#       - name: Cache Ruby Gems
+#         uses: actions/cache@v4
+#         with:
+#           path: /Library/Ruby/Gems/3.2.0
+#           key: ruby-gems-${{ hashFiles('**/Gemfile.lock') }}
+#           restore-keys: |
+#             ruby-gems-
+#       - name: Get the Version
+#         run: |
+#           VERSION=$(grep -E '^version: ' pubspec.yaml | awk '{print $2}')
+#           CURRENT_BUILD_NUMBER=$(echo $VERSION | cut -d+ -f2)
+#           echo "CURRENT_BUILD_NUMBER=$CURRENT_BUILD_NUMBER" >> $GITHUB_ENV
+#       - name: Setup App Store Connect API Key
+#         run: |
+#           mkdir -p ios/fastlane/keys
+#           echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" > ios/fastlane/keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+#           chmod 600 ios/fastlane/keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+#           ls -la ios/fastlane/keys/
+#       - name: install tools and release
+#         run: |
+#           gem install bundler --user-install
+#           echo 'export PATH="$HOME/.local/share/gem/ruby/3.2.0/bin:$PATH"' >> $GITHUB_ENV
+#           source $GITHUB_ENV
+
+#           bundle config set --local path 'vendor/bundle'
+#           bundle install --gemfile=ios/Gemfile
+
+#           make release-prod-ios BUILD_NUMBER=${{ env.CURRENT_BUILD_NUMBER }}
+
+#   notify-slack:
+#     needs:
+#       - deploy-ios-to-production
+#     runs-on: ubuntu-latest
+#     if: always() && !cancelled()
+#     steps:
+#       - name: Notify success or failure to Slack
+#         uses: 8398a7/action-slack@v3
+#         with:
+#           status: ${{ needs.deploy-ios-to-production.result == 'success' && 'success' || 'failure' }}
+#         env:
+#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_PROD_DEPLOY }}
+
+#   publish-release-note:
+#     if: success()
+#     needs:
+#       - deploy-ios-to-production
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 5
+#     env:
+#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       COMMIT_ID: ${{ github.event.head_commit.id }}
+
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Set Release Tag Name
+#         run: |
+#           title=$(gh pr list -s merged -S ${{ env.COMMIT_ID}} --json title --jq ".[0].title")
+#           echo "TAG_NAME=${title}" >> $GITHUB_ENV
+#           echo "TITLE=${title}" >> $GITHUB_ENV
+#       - name: Publish Release Note
+#         run: |
+#           gh release create ${{ env.TAG_NAME }} --target main -t ${{ env.TITLE }} --generate-notes
+
+#   create-new-branch:
+#     if: success()
+#     needs:
+#       - deploy-ios-to-production
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 5
+#     env:
+#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Setup Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: "${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}"
+#           channel: "stable"
+#           cache: true
+#           cache-key: flutter
+#           cache-path: ${{ runner.tool_cache }}/flutter
+
+#       - name: Clean and Get Dependencies
+#         run: |
+#           flutter clean
+#           flutter pub get
+
+#       - name: Update Version
+#         run: |
+#           git config --local user.name "${{ github.repository_owner }}"
+#           git config --local user.email "${{ github.repository_owner_id }}-${{ github.repository_owner }}@users.noreply.github.com"
+#           git fetch origin staging:staging
+#           git checkout staging
+#           flutter pub run pub_version_plus:main patch
+#       - name: Get the New Version
+#         id: get_version
+#         run: |
+#           NEW_VERSION=$(grep -E '^version: ' pubspec.yaml | awk '{print $2}')
+#           BASE_VERSION=$(echo $NEW_VERSION | cut -d+ -f1)
+#           NEW_BUILD_NUMBER=$(echo $NEW_VERSION | cut -d+ -f2)
+#           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+#           echo "BASE_VERSION=$BASE_VERSION" >> $GITHUB_ENV
+#           echo "NEW_BUILD_NUMBER=$NEW_BUILD_NUMBER" >> $GITHUB_ENV
+#       - name: Create New Branch
+#         run: |
+#           NEW_BRANCH="feature/$BASE_VERSION-$NEW_BUILD_NUMBER"
+#           git checkout -b $NEW_BRANCH
+#       - name: Commit and push
+#         run: |
+#           NEW_VERSION=${{ env.NEW_VERSION }}
+#           NEW_BRANCH="feature/${{ env.BASE_VERSION }}-${{ env.NEW_BUILD_NUMBER }}"
+#           git add .
+#           git commit -m "Run build after version bump to $NEW_VERSION"
+#           git push --set-upstream origin $NEW_BRANCH
+#       - name: Create a pull request
+#         run: |
+#           NEW_BRANCH="feature/${{ env.BASE_VERSION }}-${{ env.NEW_BUILD_NUMBER }}"
+#           PR_TITLE="【合流】version $NEW_VERSION"
+#           PR_BODY="Version $NEW_VERSION の合流ブランチです。"
+#           gh pr create -B staging -H $NEW_BRANCH -t "$PR_TITLE" -b "$PR_BODY" -l "To Staging"
+#           MERGE_PR=$(gh pr list -s open -B staging -H $NEW_BRANCH --json number --jq ".[0].number")
+#           echo "MERGE_PR=${MERGE_PR}" >> $GITHUB_ENV
