@@ -15,10 +15,11 @@ class Loading extends ConsumerWidget {
     const indicatorSize = 56.0;
     const indicatorStrokeWidth = 6.0;
     final theme = ref.watch(appThemeProvider);
+    final screenSize = getScreenSize(ref);
 
     return Container(
-      width: getScreenSize(context).width,
-      height: getScreenSize(context).height,
+      width: screenSize.width,
+      height: screenSize.height,
       color: theme.appColors.black.withValues(alpha: 0.5),
       child: Center(
         child: SizedBox(

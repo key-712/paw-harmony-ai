@@ -24,8 +24,14 @@ class App extends HookConsumerWidget {
 
     return MaterialApp.router(
       builder: (context, child) {
+        final mediaQueryData = MediaQuery.of(context);
+        
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(mediaQueryStateProvider.notifier).updateSize(mediaQueryData.size);
+        });
+
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
+          data: mediaQueryData.copyWith(
             textScaler: TextScaler.noScaling,
             boldText: false,
           ),

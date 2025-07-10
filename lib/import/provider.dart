@@ -8,6 +8,7 @@ export '../provider/go_router_provider.dart';
 export '../provider/is_initial_home_provider.dart';
 export '../provider/loading_state_notifier.dart';
 export '../provider/locale_provider.dart';
+export '../provider/media_query_provider.dart';
 export '../provider/media_query_state_notifier.dart';
 export '../provider/network_connect_state_notifier.dart';
 export '../provider/notification_permission_status_state_notifier.dart';
