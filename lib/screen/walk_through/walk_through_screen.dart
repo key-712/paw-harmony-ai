@@ -19,10 +19,11 @@ class WalkThroughScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(walkThroughStateNotifierProvider);
-    final walkThroughNotifier =
-        ref.watch(walkThroughStateNotifierProvider.notifier);
+    final walkThroughNotifier = ref.watch(
+      walkThroughStateNotifierProvider.notifier,
+    );
     final controller = usePageController();
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
 
     useHandlePageController(controller: controller, ref: ref);
@@ -40,8 +41,8 @@ class WalkThroughScreen extends HookConsumerWidget {
                   controller: controller,
                   itemCount: walkThroughNotifier.stepLength,
                   itemBuilder: (_, index) {
-                    return walkThroughNotifier
-                        .contents[index % walkThroughNotifier.stepLength];
+                    return walkThroughNotifier.contents[index %
+                        walkThroughNotifier.stepLength];
                   },
                 ),
               ),
@@ -49,10 +50,11 @@ class WalkThroughScreen extends HookConsumerWidget {
               SmoothPageIndicator(
                 controller: controller,
                 count: walkThroughNotifier.stepLength,
-                onDotClicked: (index) => walkThroughNotifier.onDotClicked(
-                  index: index,
-                  controller: controller,
-                ),
+                onDotClicked:
+                    (index) => walkThroughNotifier.onDotClicked(
+                      index: index,
+                      controller: controller,
+                    ),
                 effect: ScrollingDotsEffect(
                   activeStrokeWidth: 2.6,
                   radius: 8,
@@ -66,27 +68,28 @@ class WalkThroughScreen extends HookConsumerWidget {
               hSpace(height: 40),
               PrimaryButton(
                 screen: ScreenLabel.walkThrough,
-                text: walkThroughNotifier.isLastStep
-                    ? localizations.signUp
-                    : localizations.next,
+                text: walkThroughNotifier.isLastStep ? l10n.signUp : l10n.next,
                 width: getScreenSize(context).width * 0.8,
                 isDisabled: false,
-                callback: () => walkThroughNotifier.handleNextButton(
-                  controller: controller,
-                  context: context,
-                ),
+                callback:
+                    () => walkThroughNotifier.handleNextButton(
+                      controller: controller,
+                      context: context,
+                    ),
               ),
               hSpace(height: 16),
               LinkText(
                 screen: ScreenLabel.walkThrough,
-                text: walkThroughNotifier.isLastStep
-                    ? localizations.skipWithoutRegister
-                    : localizations.skip,
-                onTap: () => walkThroughNotifier.handleSkipLinkText(
-                  controller: controller,
-                  ref: ref,
-                  context: context,
-                ),
+                text:
+                    walkThroughNotifier.isLastStep
+                        ? l10n.skipWithoutRegister
+                        : l10n.skip,
+                onTap:
+                    () => walkThroughNotifier.handleSkipLinkText(
+                      controller: controller,
+                      ref: ref,
+                      context: context,
+                    ),
               ),
             ],
           ),
@@ -97,10 +100,7 @@ class WalkThroughScreen extends HookConsumerWidget {
 }
 
 /// WalkThroughウィジェットのWidgetbookでの確認用メソッド
-@widgetbook.UseCase(
-  name: ScreenLabel.walkThrough,
-  type: WalkThroughScreen,
-)
+@widgetbook.UseCase(name: ScreenLabel.walkThrough, type: WalkThroughScreen)
 Widget walkThroughUseCase(BuildContext context) {
   return const WalkThroughScreen();
 }

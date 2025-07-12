@@ -25,16 +25,15 @@ class App extends HookConsumerWidget {
     return MaterialApp.router(
       builder: (context, child) {
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.noScaling,
-            boldText: false,
-          ),
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.noScaling, boldText: false),
           child: child!,
         );
       },
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
-      title: AppLocalizations.of(context)?.productName ?? 'Default Title',
+      title: AppLocalizations.of(context)!.productName,
       theme: theme.data,
       darkTheme: AppTheme.dark(mediaQuery).data,
       themeMode: themeMode,
@@ -45,10 +44,7 @@ class App extends HookConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('ja'),
-        Locale('en'),
-      ],
+      supportedLocales: const [Locale('ja'), Locale('en')],
     );
   }
 }

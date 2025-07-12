@@ -14,15 +14,13 @@ class RequestScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     final subjectController = TextEditingController();
     final contentController = TextEditingController();
 
     return Scaffold(
-      appBar: BackIconHeader(
-        title: localizations.request,
-      ),
+      appBar: BackIconHeader(title: localizations.request),
       backgroundColor: theme.appColors.background,
       body: Column(
         children: [

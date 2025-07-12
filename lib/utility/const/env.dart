@@ -36,4 +36,14 @@ class Env {
 
   /// SlackWebhookのURL
   static const slackWebhookUrl = String.fromEnvironment('slackWebhookUrl');
+
+  /// RevenueCat APIキー(Apple)
+  static const revenueCatAppleApiKey = String.fromEnvironment(
+    'revenueCatAppleApiKey',
+  );
+
+  /// RevenueCat APIキー(Google)
+  static const revenueCatGoogleApiKey = String.fromEnvironment(
+    'revenueCatGoogleApiKey',
+  );
 }

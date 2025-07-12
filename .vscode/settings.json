@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "absl",
+    "abuffer",
     "AKIRA",
     "allprojects",
     "androidx",
@@ -37,6 +38,7 @@
     "csslib",
     "cupertino",
     "cycleclock",
+    "dartdoc",
     "dartx",
     "dbus",
     "DCMAKE",
@@ -123,6 +125,7 @@
     "Mitsukoshi",
     "Mobilepasmo",
     "Mobilesuica",
+    "mocktail",
     "Mosburger",
     "MSGSEND",
     "mypage",
@@ -242,7 +245,7 @@
     "zhangao",
     "Zuno"
   ],
-  "dart.flutterSdkPath": ".fvm/versions/3.32.5",
+  "dart.flutterSdkPath": ".fvm/versions/stable",
   "search.exclude": {
     "**/.fvm": true
   },

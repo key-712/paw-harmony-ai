@@ -39,7 +39,7 @@ class RoundedList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     final actualTextColor = iconColor ?? theme.appColors.grey;
 
@@ -64,14 +64,15 @@ class RoundedList extends ConsumerWidget {
               size: 16,
             ),
             onTap: () async {
-              if (title == localizations.share(localizations.productName)) {
-                final appLink = Platform.isIOS
-                    ? ExternalPageList.iosAppLink
-                    : ExternalPageList.androidAppLink;
+              if (title == l10n.share(l10n.productName)) {
+                final appLink =
+                    Platform.isIOS
+                        ? ExternalPageList.iosAppLink
+                        : ExternalPageList.androidAppLink;
 
-                final shareMessage = localizations.shareMessage(
+                final shareMessage = l10n.shareMessage(
                   appLink,
-                  localizations.productName,
+                  l10n.productName,
                 );
                 await Share.share(shareMessage);
               } else {

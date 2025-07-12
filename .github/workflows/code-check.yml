@@ -59,10 +59,10 @@ jobs:
           dart pub global activate flutterfire_cli
           flutterfire configure \
             --yes \
-            --project=crelve-template-dev \
+            --project=crelve-paw-harmony-ai-dev \
             --platforms=android,ios \
-            --android-package-name=crelve.template.mobile.dev \
-            --ios-bundle-id=crelve.template.mobile.dev
+            --android-package-name=crelve.pawHarmonyAi.mobile.dev \
+            --ios-bundle-id=crelve.pawHarmonyAi.mobile.dev
 
       - name: pub get
         run: |

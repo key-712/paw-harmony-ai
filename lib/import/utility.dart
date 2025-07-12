@@ -7,6 +7,7 @@ export '../utility/const/label/screen_label.dart';
 export '../utility/const/media_type.dart';
 export '../utility/const/rating.dart';
 export '../utility/const/shared_preferences_keys.dart';
+export '../utility/const/space.dart';
 export '../utility/const/web_break_point.dart';
 export '../utility/date.dart';
 export '../utility/extension/go_router_location.dart';

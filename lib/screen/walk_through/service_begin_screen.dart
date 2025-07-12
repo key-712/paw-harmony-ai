@@ -13,7 +13,7 @@ class ServiceBeginScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     return Scaffold(
       backgroundColor: theme.appColors.background,
@@ -23,14 +23,14 @@ class ServiceBeginScreen extends HookConsumerWidget {
             children: <Widget>[
               Assets.image.walkThrough3.image(width: 300, height: 300),
               ThemeText(
-                text: localizations.serviceBeginScreen,
+                text: l10n.serviceBeginScreen,
                 color: theme.appColors.black,
                 style: theme.textTheme.h60.bold(),
                 align: TextAlign.center,
               ),
               hSpace(height: 16),
               ThemeText(
-                text: localizations.serviceBeginContent,
+                text: l10n.serviceBeginContent,
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
                 align: TextAlign.center,

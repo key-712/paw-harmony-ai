@@ -211,7 +211,7 @@
 				E4102833A5BDCE93B9E6D619 /* [firebase_crashlytics] Crashlytics Upload Symbols */,
 				13B9419F7DDA926D8C095D61 /* [CP] Embed Pods Frameworks */,
 				9F6384FF9FE3446C882D4E1A /* [CP] Copy Pods Resources */,
-				C7A5348D8FFE50E9709C636D /* FlutterFire: "flutterfire upload-crashlytics-symbols" */,
+				BC6835FA75271B4907DFEAE8 /* FlutterFire: "flutterfire upload-crashlytics-symbols" */,
 			);
 			buildRules = (
 			);
@@ -550,11 +550,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.template.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.pawHarmonyAi.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.template.mobile";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.template.mobile";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.pawHarmonyAi.mobile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.pawHarmonyAi.mobile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -575,7 +575,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.template.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.pawHarmonyAi.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
 				PROVISIONING_PROFILE_SPECIFIER = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
@@ -596,7 +596,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.template.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.pawHarmonyAi.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
 				PROVISIONING_PROFILE_SPECIFIER = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
@@ -615,7 +615,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.template.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.pawHarmonyAi.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
 				PROVISIONING_PROFILE_SPECIFIER = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
@@ -754,11 +754,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.template.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.pawHarmonyAi.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.template.mobile";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.template.mobile";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.pawHarmonyAi.mobile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.pawHarmonyAi.mobile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -791,11 +791,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.template.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.pawHarmonyAi.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.template.mobile";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.template.mobile";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.pawHarmonyAi.mobile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.pawHarmonyAi.mobile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

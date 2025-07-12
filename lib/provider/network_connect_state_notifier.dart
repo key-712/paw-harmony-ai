@@ -45,15 +45,15 @@ class NetworkConnectStateNotifier
     required BuildContext context,
     required String screen,
   }) async {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
 
     if (state.isEmpty) return false;
     if (state.last == ConnectivityResult.none && context.mounted) {
       await dialogStateNotifier.showActionDialog(
         screen: screen,
-        title: localizations.networkError,
-        content: localizations.networkErrorContent,
-        buttonLabel: localizations.checkConnection,
+        title: l10n.networkError,
+        content: l10n.networkErrorContent,
+        buttonLabel: l10n.checkConnection,
         barrierDismissible: false,
         callback: () async {
           await showNetworkError(context: context, screen: screen);

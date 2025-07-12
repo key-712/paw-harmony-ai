@@ -22,6 +22,7 @@ class AppColors {
     required this.activeDotColor,
     required this.loading,
     required this.progress,
+    required this.error,
   });
 
   /// ライトテーマ用の色情報を管理インスタンスを作成します
@@ -43,6 +44,7 @@ class AppColors {
       activeDotColor: Colors.white38,
       loading: Colors.white,
       progress: ColorName.progress,
+      error: Colors.red,
     );
   }
 
@@ -65,6 +67,7 @@ class AppColors {
       activeDotColor: Colors.white38,
       loading: Colors.white,
       progress: ColorName.progress,
+      error: Colors.red,
     );
   }
 
@@ -115,4 +118,7 @@ class AppColors {
 
   /// プログレスカラー
   final Color progress;
+
+  /// エラーカラー
+  final Color error;
 }

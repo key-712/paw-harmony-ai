@@ -43,31 +43,30 @@ class PrimaryButton extends ConsumerWidget {
       height: ButtonStyles.buttonHeight,
       width: width,
       child: OutlinedButton(
-        onPressed: isDisabled
-            ? null
-            : () async {
-                await ref.read(firebaseAnalyticsServiceProvider).tapButton(
-                      parameters: TapButtonLog(
-                        screen: screen,
-                        label: text,
-                      ),
-                    );
-                callback();
-              },
+        onPressed:
+            isDisabled
+                ? null
+                : () async {
+                  await ref
+                      .read(firebaseAnalyticsServiceProvider)
+                      .tapButton(
+                        parameters: TapButtonLog(screen: screen, label: text),
+                      );
+                  callback();
+                },
         style: OutlinedButton.styleFrom(
           backgroundColor: theme.appColors.main.withValues(alpha: 0.8),
           disabledBackgroundColor: theme.appColors.white.withValues(alpha: 0.7),
           shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(ButtonStyles.buttonBorderRadius),
+            borderRadius: BorderRadius.circular(
+              ButtonStyles.buttonBorderRadius,
+            ),
           ),
-          side: BorderSide(
-            color: theme.appColors.main,
-          ),
+          side: BorderSide(color: theme.appColors.main),
         ),
         child: ThemeText(
           text: text,
-          color: theme.appColors.white,
+          color: isDisabled ? theme.appColors.main : theme.appColors.white,
           style: theme.textTheme.h40.bold(),
         ),
       ),
@@ -76,13 +75,13 @@ class PrimaryButton extends ConsumerWidget {
 }
 
 /// PrimaryButtonウィジェットのWidgetbookでの確認用メソッド
-@widgetbook.UseCase(
-  name: 'PrimaryButton',
-  type: PrimaryButton,
-)
+@widgetbook.UseCase(name: 'PrimaryButton', type: PrimaryButton)
 Widget primaryButtonUseCase(BuildContext context) {
-  final text =
-      useStringKnob(context: context, label: 'Title', initialValue: 'ボタン');
+  final text = useStringKnob(
+    context: context,
+    label: 'Title',
+    initialValue: 'ボタン',
+  );
   const isDisabled = false;
   Future<void> callback() async {}
 

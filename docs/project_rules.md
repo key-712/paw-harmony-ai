@@ -149,6 +149,11 @@ lib/
 │   └── walk_through_contents.dart # オンボーディング内容
 ├── component/                # 再利用可能なUIコンポーネント
 │   ├── button/               # ボタンコンポーネント
+│   │   ├── primary_button.dart      # 主要なアクション用ボタン
+│   │   ├── secondary_button.dart    # 二次的なアクション用ボタン
+│   │   ├── cancel_button.dart       # キャンセルアクション用ボタン
+│   │   ├── dialog_primary_button.dart    # ダイアログ内の主要アクション用ボタン
+│   │   └── dialog_secondary_button.dart  # ダイアログ内の二次的アクション用ボタン
 │   ├── card/                 # カードコンポーネント
 │   ├── dialog/               # ダイアログコンポーネント
 │   ├── dropdown/             # ドロップダウンコンポーネント
@@ -157,6 +162,8 @@ lib/
 │   ├── layout/               # レイアウトコンポーネント
 │   ├── loading/              # ローディングコンポーネント
 │   ├── snackbar/             # スナックバーコンポーネント
+│   │   ├── snackbar.dart           # 成功メッセージ用スナックバー
+│   │   └── alert_snackbar.dart     # エラーメッセージ用スナックバー
 │   ├── switch/               # スイッチコンポーネント
 │   ├── text/                 # テキストコンポーネント
 │   └── widget/               # その他ウィジェット
@@ -182,7 +189,8 @@ lib/
 │   ├── use_push_notification_setting.dart # 通知設定
 │   └── use_push_notification_token.dart # 通知トークン
 ├── route/                    # ルーティング定義
-│   └── route.dart            # ルート定義
+│   ├── route.dart            # ルート定義
+│   └── route.g.dart          # 生成されたルートコード
 ├── l10n/                     # 国際化
 │   ├── app_en.arb            # 英語翻訳
 │   └── app_ja.arb            # 日本語翻訳
@@ -285,9 +293,9 @@ lib/
    - ネットワークエラーは`use_network_check.dart`を使用
 
 2. **ログ記録**:
-   - デバッグログには`utility/logger/logger.dart`を使用
-   - 開発環境では詳細なログを記録し、本番環境では最小限のログを記録
-   - ログパラメータは`utility/format_log_parameters.dart`でフォーマット
+   - `debugPrint`の使用は禁止します。ログ出力には必ず`utility/logger/logger.dart`で定義されている`logger`インスタンスを使用してください。
+   - 開発環境では詳細なログを記録し、本番環境では最小限のログを記録してください。
+   - ログパラメータは`utility/format_log_parameters.dart`でフォーマットしてください。
 
 ### テスト
 
@@ -454,3 +462,90 @@ lib/
 1. `lib/theme/app_colors.dart`でカラーパレットを定義
 2. `lib/theme/app_theme.dart`でテーマを調整
 3. `assets/color/colors.xml`で Android 用カラーを定義
+
+- コード追加、修正を加えたら`fvm flutter analyze`を実行して、エラーがないか確認する。エラーや info,warning があったら、エラーを修正すること。
+- `Missing documentation for a public member. Try adding documentation for the member.` の対策を必ず行うこと。
+- パブリックメンバーには必ず dartdoc 形式（///）で日本語のドキュメントコメントを記述すること。
+- catch 句では必ず例外の型（例: on Exception catch (e)）を明示すること。
+- ジェネリクスや型推論が必要な箇所では、型を明示して推論エラーを防ぐこと。
+- TODO コメントは必ず「// TODO(担当者名): ...」の Flutter スタイルで記述すること。
+- 非同期処理で BuildContext を使用する場合は、context.mounted 等で安全性を必ず確認すること。
+
+## Import ルール
+
+- プロジェクト内のインポートは必ず`import/`ディレクトリ経由で行うこと。
+- 相対パスでの直接インポート（例: `import '../model/dog_profile.dart'`）は禁止すること。
+- 正しい例: `import '../../import/component.dart';`
+- 間違った例: `import '../model/dog_profile.dart';`
+
+## Export ルール
+
+- 新規ファイルを追加した際は、対応する`lib/import/`ディレクトリ内のファイルに export 文を追加すること。
+- 例: `lib/component/button/cancel_button.dart`を追加した場合、`lib/import/component.dart`に`export '../component/button/cancel_button.dart';`を追加すること。
+- これにより、他のファイルから`import '../../import/component.dart';`でインポートできるようになる。
+
+## テキストウィジェットルール
+
+- テキスト表示には必ず`ThemeText`を使用すること。
+- 通常の`Text`ウィジェットの使用は禁止すること。
+- 正しい例: `ThemeText(text: '表示するテキスト')`
+- 間違った例: `Text('表示するテキスト')`
+
+## AppBar 使用ルール
+
+- 画面（screen）配下では直接`AppBar`を使用せず、`lib/component/header`配下のコンポーネントを使用すること。
+- 利用可能なヘッダーコンポーネント：
+  - `BaseHeader`: 基本的なヘッダー（戻るボタンなし）
+  - `BackIconHeader`: 戻るアイコンとタイトルがあるヘッダー
+  - `IconActionsHeader`: アクションボタンがあるヘッダー
+  - `TextActionsHeader`: テキストアクションボタンがあるヘッダー
+  - `OnlyBackIconHeader`: 戻るアイコンだけのヘッダー
+- 正しい例: `appBar: const BackIconHeader(title: '画面タイトル')`
+- 間違った例: `appBar: AppBar(title: Text('画面タイトル'))`
+
+## ボタン使用ルール
+
+- `TextButton`や`ElevatedButton`を直接使用せず、`lib/component/button`配下の専用ボタンコンポーネントを使用すること。
+- 利用可能なボタンコンポーネント：
+  - `PrimaryButton`: 主要なアクション用（例：ログイン、保存、確定）
+  - `SecondaryButton`: 二次的なアクション用（例：編集、詳細表示）
+  - `CancelButton`: キャンセルアクション用（例：キャンセル、戻る）
+  - `DialogPrimaryButton`: ダイアログ内の主要アクション用
+  - `DialogSecondaryButton`: ダイアログ内の二次的アクション用
+- 正しい例: `PrimaryButton(text: 'ログイン', onPressed: () {})`
+- 間違った例: `ElevatedButton(onPressed: () {}, child: Text('ログイン'))`
+- 新しいボタンコンポーネントが必要な場合は、既存のパターンに従って`lib/component/button`配下に作成すること。
+
+## スナックバー使用ルール
+
+- `ScaffoldMessenger.of(context).showSnackBar`を直接使用せず、`lib/component/snackbar`配下の専用スナックバーコンポーネントを使用すること。
+- 利用可能なスナックバーコンポーネント：
+  - `showSnackBar`: 成功メッセージ用（緑色の背景）
+  - `showAlertSnackBar`: エラーメッセージ用（赤色の背景）
+- 正しい例: `showSnackBar(context: context, theme: theme, text: '保存しました')`
+- 間違った例: `ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('保存しました')))`
+- 新しいスナックバーコンポーネントが必要な場合は、既存のパターンに従って`lib/component/snackbar`配下に作成すること。
+
+## 画面遷移使用ルール
+
+- `Navigator.of(context).push`や`Navigator.of(context).pushReplacement`を直接使用せず、`lib/route/route.dart`で定義された GoRouter ベースのルートクラスを使用すること。
+- 利用可能なルートクラス：
+  - `WalkThroughRoute`: ウォークスルー画面
+  - `BaseScreenRoute`: ベース画面
+  - `PushScreenRoute`: プッシュ通知設定画面
+  - `ContactScreenRoute`: お問い合わせ画面
+  - `RequestScreenRoute`: ご意見・ご要望画面
+  - `RecommendAppScreenRoute`: オススメアプリ画面
+  - `LanguageSettingScreenRoute`: 言語設定画面
+  - `SettingScreenRoute`: 設定画面
+  - `LoginRoute`: ログイン画面
+  - `SignUpRoute`: 新規登録画面
+  - `PasswordResetRoute`: パスワードリセット画面
+  - `HomeRoute`: ホーム画面
+  - `DogProfileRoute`: 犬プロフィール画面
+  - `MusicPlayerRoute`: 音楽再生画面（パラメータ付き）
+  - `MyPageRoute`: マイページ画面
+  - `SubscriptionRoute`: サブスクリプション画面
+- 正しい例: `const LoginRoute().go(context)` または `const MusicPlayerRoute(musicUrl: url).push<void>(context)`
+- 間違った例: `Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()))`
+- 新しい画面を追加する場合は、`lib/route/route.dart`にルートクラスを定義すること。

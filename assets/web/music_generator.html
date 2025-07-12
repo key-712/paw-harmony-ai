@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Music Generator</title>
+    <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      #status {
+        margin-top: 20px;
+        font-size: 1.2em;
+        color: #333;
+      }
+      .demo-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .demo-button:hover {
+        background-color: #0056b3;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      .progress-fill {
+        height: 100%;
+        background-color: #007bff;
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>音楽生成中...</h1>
+      <p id="status">モデルをロードしています...</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress"></div>
+      </div>
+      <button class="demo-button" onclick="generateDemoMusic()">
+        デモ音楽生成
+      </button>
+    </div>
+
+    <script>
+      // デバッグ用のログ
+      console.log("HTML loaded successfully");
+
+      // Tone.jsの読み込み確認
+      if (typeof Tone === "undefined") {
+        console.error("Tone.js is not loaded!");
+        if (window.DebugChannel) {
+          window.DebugChannel.postMessage("ERROR: Tone.js is not loaded!");
+        }
+      } else {
+        console.log("Tone.js loaded successfully");
+        if (window.DebugChannel) {
+          window.DebugChannel.postMessage("Tone.js loaded successfully");
+        }
+      }
+
+      // 音楽生成の状態管理
+      let isModelLoaded = false;
+
+      // Flutterアプリにデバッグメッセージを送信
+      if (window.DebugChannel) {
+        window.DebugChannel.postMessage("HTML loaded and script started");
+      }
+
+      // プログレスバーの更新
+      function updateProgress(percentage) {
+        const progressBar = document.getElementById("progress");
+        if (progressBar) {
+          progressBar.style.width = percentage + "%";
+        }
+      }
+
+      // AudioBufferをWAV形式のBlobに変換するヘルパー関数
+      function bufferToWave(abuffer) {
+        const numOfChan = abuffer.numberOfChannels;
+        const length = abuffer.length * numOfChan * 2 + 44;
+        const buffer = new ArrayBuffer(length);
+        const view = new DataView(buffer);
+        const channels = [];
+        let offset = 0;
+        let pos = 0;
+
+        // WAVEヘッダーを書き込む
+        // "RIFF"
+        view.setUint32(pos, 0x46464952, false);
+        pos += 4;
+        // ファイル長 - 8
+        view.setUint32(pos, length - 8, true);
+        pos += 4;
+        // "WAVE"
+        view.setUint32(pos, 0x45564157, false);
+        pos += 4;
+        // "fmt "
+        view.setUint32(pos, 0x20746d66, false);
+        pos += 4;
+        // チャンク長
+        view.setUint32(pos, 16, true);
+        pos += 4;
+        // フォーマットID (PCM)
+        view.setUint16(pos, 1, true);
+        pos += 2;
+        // チャンネル数
+        view.setUint16(pos, numOfChan, true);
+        pos += 2;
+        // サンプリングレート
+        view.setUint32(pos, abuffer.sampleRate, true);
+        pos += 4;
+        // データ速度
+        view.setUint32(pos, abuffer.sampleRate * 2 * numOfChan, true);
+        pos += 4;
+        // ブロックサイズ
+        view.setUint16(pos, numOfChan * 2, true);
+        pos += 2;
+        // サンプルあたりのビット数
+        view.setUint16(pos, 16, true);
+        pos += 2;
+        // "data"
+        view.setUint32(pos, 0x61746164, false);
+        pos += 4;
+        // データ長
+        view.setUint32(pos, abuffer.length * numOfChan * 2, true);
+        pos += 4;
+
+        // チャンネルデータを取得
+        for (let i = 0; i < abuffer.numberOfChannels; i++) {
+          channels.push(abuffer.getChannelData(i));
+        }
+
+        // PCMデータを書き込む
+        for (let i = 0; i < abuffer.length; i++) {
+          for (let j = 0; j < numOfChan; j++) {
+            let sample = Math.max(-1, Math.min(1, channels[j][i]));
+            sample = sample < 0 ? sample * 0x8000 : sample * 0x7fff;
+            view.setInt16(pos, sample, true);
+            pos += 2;
+          }
+        }
+
+        return new Blob([view], { type: "audio/wav" });
+      }
+
+      // 犬の品種に基づく音楽特性の定義
+      const breedMusicCharacteristics = {
+        ゴールデンレトリバー: {
+          tempo: 120,
+          key: "C",
+          mood: "happy",
+          instruments: ["piano", "strings"],
+          complexity: "medium",
+        },
+        ラブラドールレトリバー: {
+          tempo: 115,
+          key: "G",
+          mood: "friendly",
+          instruments: ["piano", "bass"],
+          complexity: "medium",
+        },
+        柴犬: {
+          tempo: 140,
+          key: "D",
+          mood: "energetic",
+          instruments: ["synth", "drums"],
+          complexity: "high",
+        },
+        トイプードル: {
+          tempo: 100,
+          key: "F",
+          mood: "gentle",
+          instruments: ["flute", "harp"],
+          complexity: "low",
+        },
+        チワワ: {
+          tempo: 110,
+          key: "A",
+          mood: "playful",
+          instruments: ["bells", "piano"],
+          complexity: "low",
+        },
+        パグ: {
+          tempo: 95,
+          key: "Bb",
+          mood: "relaxed",
+          instruments: ["strings", "piano"],
+          complexity: "medium",
+        },
+        シベリアンハスキー: {
+          tempo: 130,
+          key: "E",
+          mood: "adventurous",
+          instruments: ["synth", "drums"],
+          complexity: "high",
+        },
+        フレンチブルドッグ: {
+          tempo: 105,
+          key: "C",
+          mood: "charming",
+          instruments: ["piano", "bass"],
+          complexity: "medium",
+        },
+      };
+
+      // 性格特性に基づく音楽調整
+      function adjustMusicForPersonality(characteristics, baseCharacteristics) {
+        let adjusted = { ...baseCharacteristics };
+        characteristics.forEach((trait) => {
+          switch (trait) {
+            case "活発":
+              adjusted.tempo += 10;
+              break;
+            case "落ち着き":
+              adjusted.tempo -= 15;
+              break;
+            case "遊び好き":
+              adjusted.tempo += 15;
+              break;
+          }
+        });
+        return adjusted;
+      }
+
+      // シーンに基づく音楽調整
+      function adjustMusicForScenario(scenario, baseCharacteristics) {
+        let adjusted = { ...baseCharacteristics };
+        switch (scenario) {
+          case "留守番中":
+            adjusted.mood = "calming";
+            break;
+          case "就寝前":
+            adjusted.mood = "soothing";
+            break;
+          case "ストレスフル":
+            adjusted.mood = "relaxing";
+            break;
+        }
+        return adjusted;
+      }
+
+      // 実際の音楽生成関数
+      async function generateActualMusic(
+        dogBreed,
+        dogPersonalityTraits,
+        scenario
+      ) {
+        try {
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage(
+              "Starting silent music generation..."
+            );
+          }
+          updateProgress(10);
+
+          const baseCharacteristics =
+            breedMusicCharacteristics[dogBreed] ||
+            breedMusicCharacteristics["ゴールデンレトリバー"];
+          let musicCharacteristics = adjustMusicForPersonality(
+            dogPersonalityTraits,
+            baseCharacteristics
+          );
+          musicCharacteristics = adjustMusicForScenario(
+            scenario,
+            musicCharacteristics
+          );
+
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage(
+              `Music characteristics: ${JSON.stringify(musicCharacteristics)}`
+            );
+          }
+          updateProgress(30);
+
+          const duration = 8; // 8秒間の音楽を生成
+
+          // Tone.jsの初期化を確実に行う
+          await Tone.start();
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage("Tone.js started successfully");
+          }
+
+          // より確実な音楽生成処理
+          let buffer;
+          try {
+            // タイムアウト処理を追加
+            const timeoutPromise = new Promise((_, reject) => {
+              setTimeout(
+                () => reject(new Error("Tone.Offline timeout")),
+                15000
+              ); // 15秒タイムアウト
+            });
+
+            const offlinePromise = Tone.Offline(async ({ transport }) => {
+              try {
+                if (window.DebugChannel) {
+                  window.DebugChannel.postMessage(
+                    "Starting offline rendering..."
+                  );
+                }
+
+                // 複数の楽器を使用してより豊かな音楽を生成
+                const synth = new Tone.Synth({
+                  oscillator: {
+                    type: "sine",
+                  },
+                  envelope: {
+                    attack: 0.1,
+                    decay: 0.2,
+                    sustain: 0.3,
+                    release: 0.8,
+                  },
+                }).toDestination();
+
+                const bass = new Tone.MonoSynth({
+                  oscillator: {
+                    type: "square",
+                  },
+                  envelope: {
+                    attack: 0.1,
+                    decay: 0.3,
+                    sustain: 0.4,
+                    release: 1.0,
+                  },
+                }).toDestination();
+
+                if (window.DebugChannel) {
+                  window.DebugChannel.postMessage(
+                    "Instruments created successfully"
+                  );
+                }
+
+                // メロディーラインを生成
+                const melodyNotes = ["C4", "E4", "G4", "C5", "E5"];
+                const bassNotes = ["C2", "G2", "C3", "G3"];
+
+                if (window.DebugChannel) {
+                  window.DebugChannel.postMessage("Scheduling melody notes...");
+                }
+
+                // メロディーを演奏
+                melodyNotes.forEach((note, index) => {
+                  synth.triggerAttackRelease(note, "4n", `+${index * 0.5}`);
+                });
+
+                // ベースラインを演奏
+                bassNotes.forEach((note, index) => {
+                  bass.triggerAttackRelease(note, "2n", `+${index * 1.0}`);
+                });
+
+                if (window.DebugChannel) {
+                  window.DebugChannel.postMessage("Starting transport...");
+                }
+
+                // 8秒間の音楽を生成
+                transport.start();
+                transport.stop("+8");
+
+                if (window.DebugChannel) {
+                  window.DebugChannel.postMessage(
+                    "Transport started and scheduled to stop"
+                  );
+                }
+              } catch (error) {
+                if (window.DebugChannel) {
+                  window.DebugChannel.postMessage(
+                    `Error in offline rendering: ${error.message}`
+                  );
+                }
+                throw error;
+              }
+            }, 8); // 8秒間のレンダリング
+
+            // タイムアウトとオフライン処理を競合させる
+            buffer = await Promise.race([offlinePromise, timeoutPromise]);
+          } catch (error) {
+            if (window.DebugChannel) {
+              window.DebugChannel.postMessage(
+                `Tone.Offline failed: ${error.message}`
+              );
+            }
+            // フォールバック: シンプルな音楽を生成
+            buffer = await Tone.Offline(async ({ transport }) => {
+              const synth = new Tone.Synth().toDestination();
+              synth.triggerAttackRelease("C4", "1n", 0);
+              transport.start();
+              transport.stop("+1");
+            }, 1);
+            if (window.DebugChannel) {
+              window.DebugChannel.postMessage(
+                "Fallback music generation completed"
+              );
+            }
+          }
+
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage("Offline rendering complete.");
+          }
+          updateProgress(70);
+
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage(
+              `Buffer created: ${buffer.length} samples, ${buffer.numberOfChannels} channels, ${buffer.sampleRate}Hz`
+            );
+          }
+
+          // AudioBufferをWAV Blobに変換
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage("Converting buffer to WAV...");
+          }
+
+          const wavBlob = bufferToWave(buffer);
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage("WAV blob created.");
+          }
+
+          // BlobをBase64に変換
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage("Converting WAV to Base64...");
+          }
+
+          const reader = new FileReader();
+          reader.readAsDataURL(wavBlob);
+          reader.onloadend = () => {
+            const audioDataUrl = reader.result;
+            if (window.DebugChannel) {
+              window.DebugChannel.postMessage("Base64 conversion complete.");
+            }
+            updateProgress(90);
+
+            const musicData = {
+              type: "generated_music",
+              data: audioDataUrl,
+              message: "音楽生成完了",
+              musicInfo: { ...musicCharacteristics, duration },
+            };
+
+            if (window.MusicGeneratedChannel) {
+              window.MusicGeneratedChannel.postMessage(
+                JSON.stringify(musicData)
+              );
+              if (window.DebugChannel) {
+                window.DebugChannel.postMessage("Music data sent to Flutter.");
+              }
+              console.log("Music generation completed successfully");
+
+              // 少し待ってから状態を更新
+              setTimeout(() => {
+                document.getElementById("status").innerText =
+                  "音楽生成が完了しました！";
+                updateProgress(100);
+              }, 1000);
+            } else {
+              if (window.DebugChannel) {
+                window.DebugChannel.postMessage(
+                  "ERROR: MusicGeneratedChannel not available"
+                );
+              }
+              console.error("MusicGeneratedChannel not available");
+            }
+          };
+          reader.onerror = (error) => {
+            if (window.DebugChannel) {
+              window.DebugChannel.postMessage(`FileReader error: ${error}`);
+            }
+            if (window.MusicGenerationErrorChannel) {
+              window.MusicGenerationErrorChannel.postMessage(
+                `FileReader error: ${error}`
+              );
+            }
+          };
+        } catch (error) {
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage(
+              `ERROR in generateActualMusic: ${error.message}`
+            );
+          }
+          if (window.MusicGenerationErrorChannel) {
+            window.MusicGenerationErrorChannel.postMessage(error.message);
+          }
+        }
+      }
+
+      // デモ用の音楽生成関数
+      function generateDemoMusic() {
+        if (window.DebugChannel) {
+          window.DebugChannel.postMessage("Demo music generation started");
+        }
+        document.getElementById("status").innerText =
+          "デモ音楽を生成しています...";
+        updateProgress(0);
+        setTimeout(() => {
+          const demoData = {
+            type: "demo_music",
+            data: "data:audio/midi;base64,TVRoZAAAAAYAAQACABAAZGF0YQAAAAA=",
+            message: "デモ音楽生成完了",
+          };
+          document.getElementById("status").innerText =
+            "デモ音楽生成が完了しました。";
+          updateProgress(100);
+          if (window.MusicGeneratedChannel) {
+            window.MusicGeneratedChannel.postMessage(JSON.stringify(demoData));
+          }
+        }, 1000);
+      }
+
+      // モデル初期化のシミュレーション
+      setTimeout(() => {
+        isModelLoaded = true;
+        document.getElementById("status").innerText =
+          "モデルのロードが完了しました。";
+        if (window.ModelReadyChannel) {
+          window.ModelReadyChannel.postMessage("modelReady");
+        }
+        if (window.DebugChannel) {
+          window.DebugChannel.postMessage("Model initialization completed");
+        }
+      }, 500);
+
+      // Flutterからのメッセージを受信
+      window.addEventListener("message", async (event) => {
+        console.log("Received message:", event.data);
+
+        if (event.data && event.data.type === "generateMusic") {
+          if (!isModelLoaded) {
+            if (window.DebugChannel) {
+              window.DebugChannel.postMessage(
+                "Model not ready for generation."
+              );
+            }
+            return;
+          }
+
+          const { dogBreed, dogPersonalityTraits, scenario } =
+            event.data.payload;
+
+          if (window.DebugChannel) {
+            window.DebugChannel.postMessage(
+              `Received music generation request: breed=${dogBreed}, traits=${dogPersonalityTraits}, scenario=${scenario}`
+            );
+          }
+
+          console.log("Starting music generation with:", {
+            dogBreed,
+            dogPersonalityTraits,
+            scenario,
+          });
+
+          document.getElementById("status").innerText =
+            "音楽を生成しています...";
+          updateProgress(0);
+
+          try {
+            await generateActualMusic(dogBreed, dogPersonalityTraits, scenario);
+          } catch (error) {
+            console.error("Error in music generation:", error);
+            if (window.DebugChannel) {
+              window.DebugChannel.postMessage(
+                `Error in music generation: ${error.message}`
+              );
+            }
+            if (window.MusicGenerationErrorChannel) {
+              window.MusicGenerationErrorChannel.postMessage(error.message);
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

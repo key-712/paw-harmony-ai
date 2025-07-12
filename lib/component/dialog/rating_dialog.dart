@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../import/component.dart';
@@ -22,7 +23,7 @@ class RatingDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     final ratingState = ref.watch(ratingStateProvider);
     final ratingStateNotifier = ref.watch(ratingStateProvider.notifier);
@@ -44,7 +45,7 @@ class RatingDialog extends ConsumerWidget {
                     .tapButton(
                       parameters: TapButtonLog(screen: screen, label: text),
                     );
-                Navigator.of(context).pop();
+                GoRouter.of(context).pop();
               },
             ),
           ),
@@ -54,7 +55,7 @@ class RatingDialog extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: ThemeText(
-                  text: localizations.ratingContent,
+                  text: l10n.ratingContent,
                   color: theme.appColors.black,
                   style: theme.textTheme.h45,
                 ),
@@ -102,7 +103,7 @@ class RatingDialog extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: ThemeText(
-                  text: localizations.ratingContent2,
+                  text: l10n.ratingContent2,
                   color: theme.appColors.black,
                   style: theme.textTheme.h20,
                   align: TextAlign.center,
@@ -112,8 +113,14 @@ class RatingDialog extends ConsumerWidget {
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: <Widget>[
-                    TextButton(
-                      onPressed: () {
+                    DialogPrimaryButton(
+                      text:
+                          ratingState == RatingUtils.maxRating
+                              ? l10n.rate
+                              : l10n.writeReview,
+                      screen: screen,
+                      width: double.infinity,
+                      callback: () {
                         ref
                             .read(firebaseAnalyticsServiceProvider)
                             .tapButton(
@@ -128,17 +135,13 @@ class RatingDialog extends ConsumerWidget {
                           ratingState: ratingState,
                         );
                       },
-                      child: ThemeText(
-                        text:
-                            ratingState == RatingUtils.maxRating
-                                ? localizations.rate
-                                : localizations.writeReview,
-                        color: theme.appColors.black,
-                        style: theme.textTheme.h40,
-                      ),
                     ),
-                    TextButton(
-                      onPressed: () {
+                    hSpace(height: 8),
+                    DialogSecondaryButton(
+                      text: l10n.notRate,
+                      screen: screen,
+                      width: double.infinity,
+                      callback: () {
                         ref
                             .read(firebaseAnalyticsServiceProvider)
                             .tapButton(
@@ -149,11 +152,6 @@ class RatingDialog extends ConsumerWidget {
                             );
                         const BaseScreenRoute().go(context);
                       },
-                      child: ThemeText(
-                        text: localizations.notRate,
-                        color: theme.appColors.grey,
-                        style: theme.textTheme.h30,
-                      ),
                     ),
                   ],
                 ),

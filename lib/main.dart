@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,11 +33,13 @@ Future<void> main() async {
     cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
   );
 
+  // RevenueCatの初期化
+  await _initializePurchases();
+
   // その他のサービスの初期化
   await Future.wait([
     MobileAds.instance.initialize(),
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge),
-    Purchases.setLogLevel(LogLevel.info),
   ]);
 
   // アプリの起動
@@ -48,4 +52,17 @@ Future<void> main() async {
   FlutterNativeSplash.remove();
 
   runApp(UncontrolledProviderScope(container: container, child: const App()));
+}
+
+/// RevenueCatの初期化を行う
+Future<void> _initializePurchases() async {
+  await Purchases.setLogLevel(LogLevel.info);
+
+  late PurchasesConfiguration configuration;
+  if (Platform.isAndroid) {
+    configuration = PurchasesConfiguration(Env.revenueCatGoogleApiKey);
+  } else if (Platform.isIOS) {
+    configuration = PurchasesConfiguration(Env.revenueCatAppleApiKey);
+  }
+  await Purchases.configure(configuration);
 }

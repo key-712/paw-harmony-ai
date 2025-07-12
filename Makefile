@@ -6,8 +6,8 @@ FASTLANE_PASSWORD ?=
 MATCH_KEYCHAIN_PASSWORD ?= 
 MATCH_PASSWORD ?= 
 
-FIREBASE_PROJECT_ID=crelve-template
-APP_ID=crelve.template.mobile
+FIREBASE_PROJECT_ID=crelve-paw-harmony-ai
+APP_ID=crelve.pawHarmonyAi.mobile
 PREVIOUS_FLAVOR := $(shell cat previous_flavor.txt)
 
 test:

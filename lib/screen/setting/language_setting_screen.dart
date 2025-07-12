@@ -13,13 +13,13 @@ class LanguageSettingScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     final locale = ref.watch(localeProvider);
     final localeNotifier = ref.watch(localeProvider.notifier);
 
     return Scaffold(
-      appBar: BackIconHeader(title: localizations.languageSetting),
+      appBar: BackIconHeader(title: l10n.languageSetting),
       backgroundColor: theme.appColors.background,
       body: Column(
         children: [
@@ -28,7 +28,7 @@ class LanguageSettingScreen extends HookConsumerWidget {
               children: [
                 ListTile(
                   title: ThemeText(
-                    text: localizations.english,
+                    text: l10n.english,
                     style: theme.textTheme.h40,
                     color:
                         locale == const Locale('en')
@@ -58,7 +58,7 @@ class LanguageSettingScreen extends HookConsumerWidget {
                 ),
                 ListTile(
                   title: ThemeText(
-                    text: localizations.japanese,
+                    text: l10n.japanese,
                     style: theme.textTheme.h40,
                     color:
                         locale == const Locale('ja')

@@ -9,8 +9,9 @@ import '../import/theme.dart';
 import '../import/utility.dart';
 
 /// 評価状態の状態管理対象データの変更の通知を管理するプロバイダ
-final ratingStateProvider =
-    StateNotifierProvider<RatingStateNotifier, int>((ref) {
+final ratingStateProvider = StateNotifierProvider<RatingStateNotifier, int>((
+  ref,
+) {
   return RatingStateNotifier();
 });
 
@@ -33,23 +34,20 @@ class RatingStateNotifier extends StateNotifier<int> {
     required AppTheme theme,
     required int ratingState,
   }) async {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
 
     ratingState == RatingUtils.maxRating
         ? openReview()
-        : showSnackBar(
-            context: context,
-            theme: theme,
-            text: localizations.ratingSent,
-          );
+        : showSnackBar(context: context, theme: theme, text: l10n.ratingSent);
     const BaseScreenRoute().go(context);
   }
 
   /// 評価ダイアログを表示するかどうかを確認します
   Future<bool> shouldShowRatingDialog({required WidgetRef ref}) async {
     final prefs = ref.watch(sharedPreferencesProvider);
-    final savedDateStr =
-        prefs.getString(SharedPreferencesKeys.ratingDialogDate);
+    final savedDateStr = prefs.getString(
+      SharedPreferencesKeys.ratingDialogDate,
+    );
     if (savedDateStr == null) {
       return true;
     }
