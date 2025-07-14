@@ -33,7 +33,7 @@ class SettingScreen extends HookConsumerWidget {
         error:
             (err, stack) => Center(
               child: ThemeText(
-                text: 'エラー: $err',
+                text: l10n.errorOccurred(err.toString()),
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
               ),
@@ -42,7 +42,7 @@ class SettingScreen extends HookConsumerWidget {
           if (profile == null) {
             return Center(
               child: ThemeText(
-                text: 'プロフィールがありません',
+                text: l10n.noProfile,
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
               ),
@@ -74,7 +74,7 @@ class SettingScreen extends HookConsumerWidget {
                     ),
                   ),
                   subtitle: ThemeText(
-                    text: '${profile.breed} • ${profile.age}歳',
+                    text: l10n.dogAge(profile.breed, profile.age ?? 0),
                     color: theme.appColors.grey,
                     style: theme.textTheme.h30,
                   ),
@@ -89,12 +89,14 @@ class SettingScreen extends HookConsumerWidget {
                 child: ListTile(
                   leading: const Icon(Icons.star),
                   title: ThemeText(
-                    text: '現在のプラン',
+                    text: l10n.currentPlan,
                     color: theme.appColors.black,
                     style: theme.textTheme.h30,
                   ),
                   subtitle: ThemeText(
-                    text: purchaseState.isSubscribed ? 'プレミアムプラン' : '無料版',
+                    text: purchaseState.isSubscribed
+                        ? l10n.premiumPlan
+                        : l10n.freePlan,
                     color: theme.appColors.grey,
                     style: theme.textTheme.h30,
                   ),
@@ -102,7 +104,7 @@ class SettingScreen extends HookConsumerWidget {
                       purchaseState.isSubscribed
                           ? null
                           : SecondaryButton(
-                            text: 'アップグレード',
+                            text: l10n.upgrade,
                             screen: 'subscription_screen',
                             width: 180,
                             isDisabled: false,
@@ -198,7 +200,7 @@ class SettingScreen extends HookConsumerWidget {
                     ListTile(
                       leading: const Icon(Icons.logout),
                       title: ThemeText(
-                        text: 'ログアウト',
+                        text: l10n.logout,
                         color: theme.appColors.red,
                         style: theme.textTheme.h30,
                       ),

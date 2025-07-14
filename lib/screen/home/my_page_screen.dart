@@ -11,6 +11,7 @@ import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
+import '../../l10n/app_localizations.dart';
 
 /// マイページ画面のウィジェット
 class MyPageScreen extends HookConsumerWidget {
@@ -26,12 +27,13 @@ class MyPageScreen extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final dogProfile = ref.watch(dogProfileStateNotifierProvider);
     final musicHistory = ref.watch(musicHistoryStreamProvider); // 変更
     final theme = ref.watch(appThemeProvider);
 
     return Scaffold(
-      appBar: const BaseHeader(title: 'マイページ'),
+      appBar: BaseHeader(title: l10n.myPage),
       body: SingleChildScrollView(
         controller: scrollController,
         padding: const EdgeInsets.all(16),
@@ -44,7 +46,7 @@ class MyPageScreen extends HookConsumerWidget {
               error:
                   (err, stack) => Center(
                     child: ThemeText(
-                      text: 'エラー: $err',
+                      text: l10n.errorOccurred(err.toString()),
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
@@ -53,7 +55,7 @@ class MyPageScreen extends HookConsumerWidget {
                 if (profile == null) {
                   return Center(
                     child: ThemeText(
-                      text: '犬のプロフィールが登録されていません。',
+                      text: l10n.noDogProfileRegistered,
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
@@ -88,7 +90,7 @@ class MyPageScreen extends HookConsumerWidget {
                           ),
                         ),
                         PrimaryButton(
-                          text: '編集',
+                          text: l10n.edit,
                           screen: 'my_page_screen',
                           width: 120,
                           isDisabled: false,
@@ -109,7 +111,7 @@ class MyPageScreen extends HookConsumerWidget {
             Row(
               children: [
                 ThemeText(
-                  text: '音楽再生履歴',
+                  text: l10n.musicPlaybackHistory,
                   color: theme.appColors.black,
                   style: theme.textTheme.h30.copyWith(
                     fontSize: 20,
@@ -130,7 +132,7 @@ class MyPageScreen extends HookConsumerWidget {
               error:
                   (err, stack) => Center(
                     child: ThemeText(
-                      text: 'エラー: $err',
+                      text: l10n.errorOccurred(err.toString()),
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
@@ -141,7 +143,7 @@ class MyPageScreen extends HookConsumerWidget {
                   // nullチェックを削除
                   return Center(
                     child: ThemeText(
-                      text: '音楽再生履歴はありません。',
+                      text: l10n.noMusicPlaybackHistory,
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
@@ -168,8 +170,10 @@ class MyPageScreen extends HookConsumerWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       ThemeText(
-                                        text:
-                                            '生成日時: ${item.createdAt.toLocal().toString().split(' ')[0]}',
+                                        text: l10n.generatedAt(item.createdAt
+                                            .toLocal()
+                                            .toString()
+                                            .split(' ')[0]),
                                         color: theme.appColors.black,
                                         style: theme.textTheme.h30.copyWith(
                                           fontWeight: FontWeight.bold,
@@ -177,28 +181,28 @@ class MyPageScreen extends HookConsumerWidget {
                                       ),
                                       hSpace(height: 4),
                                       ThemeText(
-                                        text: 'シーン: ${item.scenario}',
+                                        text: l10n.scene(item.scenario),
                                         color: theme.appColors.grey,
                                         style: theme.textTheme.h30.copyWith(
                                           fontSize: 14,
                                         ),
                                       ),
                                       ThemeText(
-                                        text: '状態: ${item.dogCondition}',
+                                        text: l10n.condition(item.dogCondition),
                                         color: theme.appColors.grey,
                                         style: theme.textTheme.h30.copyWith(
                                           fontSize: 14,
                                         ),
                                       ),
                                       ThemeText(
-                                        text: '品種: ${item.dogBreed}',
+                                        text: l10n.breed(item.dogBreed),
                                         color: theme.appColors.grey,
                                         style: theme.textTheme.h30.copyWith(
                                           fontSize: 14,
                                         ),
                                       ),
                                       ThemeText(
-                                        text: '再生時間: ${item.duration}秒',
+                                        text: l10n.duration(item.duration),
                                         color: theme.appColors.grey,
                                         style: theme.textTheme.h30.copyWith(
                                           fontSize: 14,

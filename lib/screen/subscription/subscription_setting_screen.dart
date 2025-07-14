@@ -8,6 +8,7 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import '../../import/component.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
+import '../../l10n/app_localizations.dart';
 
 /// サブスクリプション設定画面のウィジェット
 class SubscriptionSettingScreen extends HookConsumerWidget {
@@ -20,6 +21,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     // final purchaseState = ref.watch(purchaseStateNotifierProvider);
     final theme = ref.watch(appThemeProvider);
     final offerings = useState<Offerings?>(null);
@@ -37,7 +39,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
     //         showAlertSnackBar(
     //           context: context,
     //           theme: theme,
-    //           text: 'プラン情報の取得に失敗しました。',
+    //           text: l10n.planInformationFetchFailed,
     //         );
     //       }
     //     } on Exception catch (e) {
@@ -47,18 +49,17 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
     //         showAlertSnackBar(
     //           context: context,
     //           theme: theme,
-    //           text: '予期せぬエラーが発生しました。',
+    //           text: l10n.unexpectedError,
     //         );
     //       }
     //     }
     //   }
-
     //   fetchOfferings();
     //   return null;
     // }, const []);
 
     return Scaffold(
-      appBar: const BackIconHeader(title: 'プレミアムプラン'),
+      appBar: BackIconHeader(title: l10n.subscriptionSettingTitle),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -68,9 +69,9 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
               child: ThemeText(
                 text:
                     // purchaseState.isSubscribed
-                    // ? '現在のプラン: プレミアムプラン'
-                    // : '現在のプラン: 無料版',
-                    '現在のプラン: プレミアムプラン',
+                    // ? l10n.currentPlanPremium
+                    // : l10n.currentPlanFree,
+                    l10n.currentPlanPremium,
                 color: theme.appColors.black,
                 style: theme.textTheme.h30.copyWith(
                   fontSize: 18,
@@ -80,7 +81,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
             ),
             hSpace(height: 24),
             ThemeText(
-              text: 'プレミアムプランのメリット',
+              text: l10n.premiumPlanBenefits,
               color: theme.appColors.black,
               style: theme.textTheme.h30.copyWith(
                 fontSize: 20,
@@ -88,20 +89,20 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
               ),
             ),
             hSpace(height: 8),
-            _buildBenefitItem('無制限の音楽生成', theme),
-            _buildBenefitItem('詳細な分析レポート', theme),
-            _buildBenefitItem('広告非表示', theme),
-            _buildBenefitItem('専門家監修コンテンツ', theme),
+            _buildBenefitItem(l10n.unlimitedMusicGeneration, theme),
+            _buildBenefitItem(l10n.detailedAnalysisReport, theme),
+            _buildBenefitItem(l10n.adFree, theme),
+            _buildBenefitItem(l10n.expertCuratedContent, theme),
             hSpace(height: 32),
             if (offerings.value == null)
               const Center(child: CircularProgressIndicator())
             else if (offerings.value!.current == null)
-              const Center(child: Text('利用可能なプランがありません。'))
+              Center(child: Text(l10n.noAvailablePlans))
             else
               Column(
                 children: [
                   ThemeText(
-                    text: 'プランを選択',
+                    text: l10n.selectPlan,
                     color: theme.appColors.black,
                     style: theme.textTheme.h30.copyWith(
                       fontSize: 18,
@@ -126,7 +127,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
               ),
             hSpace(height: 32),
             CancelButton(
-              text: '無料版を続ける',
+              text: l10n.continueWithFreePlan,
               screen: 'subscription_screen',
               width: double.infinity,
               isDisabled: false,
@@ -134,7 +135,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
             ),
             hSpace(height: 16),
             ThemeText(
-              text: '※ サブスクリプションはいつでもキャンセルできます',
+              text: l10n.subscriptionCancellationNote,
               color: theme.appColors.grey,
               style: theme.textTheme.h30.copyWith(fontSize: 12),
             ),

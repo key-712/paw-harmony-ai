@@ -8,6 +8,7 @@ import '../../import/component.dart';
 import '../../import/provider.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
+import '../../l10n/app_localizations.dart';
 
 /// 新規登録画面のウィジェット
 class SignUpScreen extends HookConsumerWidget {
@@ -20,6 +21,7 @@ class SignUpScreen extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final confirmPasswordController = useTextEditingController();
@@ -29,23 +31,25 @@ class SignUpScreen extends HookConsumerWidget {
 
     ref.listen<AsyncValue<void>>(authStateNotifierProvider, (_, state) {
       if (state is AsyncError) {
-        var errorMessage = 'アカウント作成に失敗しました。';
+        var errorMessage = l10n.accountCreationFailed;
 
         if (state.error is FirebaseAuthException) {
           final authException = state.error as FirebaseAuthException;
           switch (authException.code) {
             case 'email-already-in-use':
-              errorMessage = 'このメールアドレスは既に使用されています。\nログインをお試しください。';
+              errorMessage = l10n.emailAlreadyInUse;
             case 'weak-password':
-              errorMessage = 'パスワードが弱すぎます。より強力なパスワードを設定してください。';
+              errorMessage = l10n.weakPassword;
             case 'invalid-email':
-              errorMessage = '無効なメールアドレスです。';
+              errorMessage = l10n.invalidEmail;
             case 'operation-not-allowed':
-              errorMessage = 'メール/パスワード認証が有効になっていません。';
+              errorMessage = l10n.operationNotAllowed;
             case 'network-request-failed':
-              errorMessage = 'ネットワークエラーが発生しました。インターネット接続を確認してください。';
+              errorMessage = l10n.networkRequestFailed;
             default:
-              errorMessage = 'アカウント作成に失敗しました: ${authException.message}';
+              errorMessage = l10n.accountCreationFailedWithError(
+                authException.message ?? '',
+              );
           }
         }
 
@@ -54,7 +58,7 @@ class SignUpScreen extends HookConsumerWidget {
     });
 
     return Scaffold(
-      appBar: const BaseHeader(title: '新規アカウント作成'),
+      appBar: BaseHeader(title: l10n.signUpTitle),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -63,32 +67,32 @@ class SignUpScreen extends HookConsumerWidget {
             children: [
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'メールアドレス'),
+                decoration: InputDecoration(labelText: l10n.emailAddress),
                 validator: (value) {
                   if (value == null || !EmailValidator.validate(value)) {
-                    return '有効なメールアドレスを入力してください。';
+                    return l10n.emailInvalid;
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: passwordController,
-                decoration: const InputDecoration(labelText: 'パスワード'),
+                decoration: InputDecoration(labelText: l10n.password),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.length < 8) {
-                    return '8文字以上のパスワードを入力してください。';
+                    return l10n.passwordTooShortSignUp;
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: confirmPasswordController,
-                decoration: const InputDecoration(labelText: 'パスワード確認'),
+                decoration: InputDecoration(labelText: l10n.confirmPassword),
                 obscureText: true,
                 validator: (value) {
                   if (value != passwordController.text) {
-                    return 'パスワードが一致しません。';
+                    return l10n.passwordMismatch;
                   }
                   return null;
                 },
@@ -103,7 +107,7 @@ class SignUpScreen extends HookConsumerWidget {
                   ),
                   Flexible(
                     child: ThemeText(
-                      text: '利用規約とプライバシーポリシーに同意します。',
+                      text: l10n.agreeToTerms,
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
@@ -112,7 +116,7 @@ class SignUpScreen extends HookConsumerWidget {
               ),
               hSpace(height: 16),
               PrimaryButton(
-                text: 'アカウントを作成',
+                text: l10n.createAccount,
                 screen: 'sign_up_screen',
                 width: double.infinity,
                 isDisabled: false,
@@ -126,7 +130,7 @@ class SignUpScreen extends HookConsumerWidget {
               ),
               hSpace(height: 16),
               SecondaryButton(
-                text: 'ログインはこちら',
+                text: l10n.goToLogin,
                 screen: 'sign_up_screen',
                 width: double.infinity,
                 isDisabled: false,

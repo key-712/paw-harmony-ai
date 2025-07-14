@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../import/utility.dart';
 import '../l10n/app_localizations.dart';
 
 /// 多言語対応のユーティリティクラス
@@ -31,21 +32,37 @@ class L10nUtility {
 
   /// 言語名を取得
   static String getLanguageName(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) return 'Japanese';
 
     return isJapanese(context) ? l10n.japanese : l10n.english;
   }
 
   /// 言語設定の成功メッセージを取得
   static String getLanguageSettingSuccessMessage(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) return 'Language setting updated successfully';
 
     return l10n.languageSettingSuccess;
   }
 
   /// エラーメッセージを取得
   static String getErrorMessage(BuildContext context, String errorType) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      switch (errorType) {
+        case 'network':
+          return 'Network error';
+        case 'server':
+          return 'Server error';
+        case 'timeout':
+          return 'Timeout';
+        case 'unauthorized':
+          return 'Unauthorized';
+        default:
+          return 'Error';
+      }
+    }
 
     switch (errorType) {
       case 'network':
@@ -63,7 +80,15 @@ class L10nUtility {
 
   /// エラーコンテンツメッセージを取得
   static String getErrorContentMessage(BuildContext context, String errorType) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      switch (errorType) {
+        case 'network':
+          return 'Please check your network connection and try again.';
+        default:
+          return 'An error occurred. Please try again.';
+      }
+    }
 
     switch (errorType) {
       case 'network':
@@ -79,7 +104,37 @@ class L10nUtility {
     String field,
     String type,
   ) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      switch (field) {
+        case 'email':
+          switch (type) {
+            case 'required':
+              return 'Email is required';
+            case 'invalid':
+              return 'Invalid email format';
+            case 'tooLong':
+              return 'Email is too long';
+            default:
+              return 'Email is required';
+          }
+        case 'password':
+          switch (type) {
+            case 'required':
+              return 'Password is required';
+            case 'tooShort':
+              return 'Password is too short';
+            case 'tooLong':
+              return 'Password is too long';
+            case 'invalidCharacters':
+              return 'Password contains invalid characters';
+            default:
+              return 'Password is required';
+          }
+        default:
+          return 'Validation error';
+      }
+    }
 
     switch (field) {
       case 'email':
@@ -113,7 +168,20 @@ class L10nUtility {
 
   /// 時間フォーマットを取得
   static String formatTime(BuildContext context, int minutes) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      if (minutes < 60) {
+        return '$minutes minutes';
+      } else {
+        final hours = minutes ~/ 60;
+        final remainingMinutes = minutes % 60;
+        if (remainingMinutes == 0) {
+          return '$hours hours';
+        } else {
+          return '$hours hours $remainingMinutes minutes';
+        }
+      }
+    }
 
     if (minutes < 60) {
       return l10n.minutes(minutes.toString());
@@ -130,14 +198,37 @@ class L10nUtility {
 
   /// 日付フォーマットを取得
   static String formatDate(BuildContext context, int month, int date) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      return '$month/$date';
+    }
 
     return l10n.formattedDate(month.toString(), date.toString());
   }
 
   /// 曜日名を取得
   static String getDayOfWeek(BuildContext context, int dayIndex) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      switch (dayIndex) {
+        case 0:
+          return 'Sunday';
+        case 1:
+          return 'Monday';
+        case 2:
+          return 'Tuesday';
+        case 3:
+          return 'Wednesday';
+        case 4:
+          return 'Thursday';
+        case 5:
+          return 'Friday';
+        case 6:
+          return 'Saturday';
+        default:
+          return 'Unknown';
+      }
+    }
 
     switch (dayIndex) {
       case 0:
@@ -161,7 +252,29 @@ class L10nUtility {
 
   /// 推奨アプリ名を取得
   static String getRecommendAppName(BuildContext context, String appType) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      switch (appType) {
+        case 'minesweeper':
+          return 'Minesweeper';
+        case 'sudoku':
+          return 'Sudoku';
+        case 'science':
+          return 'Science';
+        case 'math':
+          return 'Math';
+        case 'english':
+          return 'English';
+        case 'socialStudies':
+          return 'Social Studies';
+        case 'kanji':
+          return 'Kanji';
+        case 'highSchoolSocialStudies':
+          return 'High School Social Studies';
+        default:
+          return 'Unknown App';
+      }
+    }
 
     switch (appType) {
       case 'minesweeper':
@@ -190,7 +303,29 @@ class L10nUtility {
     BuildContext context,
     String appType,
   ) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      switch (appType) {
+        case 'minesweeper':
+          return 'Classic minesweeper game';
+        case 'sudoku':
+          return 'Sudoku puzzle game';
+        case 'science':
+          return 'Science learning app';
+        case 'math':
+          return 'Math learning app';
+        case 'english':
+          return 'English learning app';
+        case 'socialStudies':
+          return 'Social studies learning app';
+        case 'kanji':
+          return 'Kanji learning app';
+        case 'highSchoolSocialStudies':
+          return 'High school social studies app';
+        default:
+          return 'Unknown App Description';
+      }
+    }
 
     switch (appType) {
       case 'minesweeper':
@@ -216,7 +351,15 @@ class L10nUtility {
 
   /// 愛犬の反応オプションを取得
   static List<String> getDogReactionOptions(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) {
+      return [
+        'Stopped barking',
+        'Calmed down and slept',
+        'Restless',
+        'Breathing became calm',
+      ];
+    }
 
     return [
       l10n.stoppedBarking,
@@ -228,13 +371,15 @@ class L10nUtility {
 
   /// 翻訳キーの存在確認
   static bool hasTranslationKey(BuildContext context, String key) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
+    if (l10n == null) return false;
 
     try {
       // リフレクションを使用してキーの存在を確認
       final mirror = l10n.runtimeType.toString();
       return mirror.contains(key);
-    } catch (e) {
+    } on Exception catch (e) {
+      logger.e(e);
       return false;
     }
   }
@@ -242,7 +387,6 @@ class L10nUtility {
   /// 翻訳品質チェック
   static List<String> checkTranslationQuality(BuildContext context) {
     final issues = <String>[];
-    final l10n = AppLocalizations.of(context)!;
 
     // 空文字列のチェック
     final emptyKeys = <String>[];

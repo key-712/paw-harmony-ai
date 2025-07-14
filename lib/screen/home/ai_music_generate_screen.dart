@@ -8,6 +8,7 @@ import '../../import/component.dart';
 import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../../utility/logger/logger.dart';
 
 /// AI音楽生成画面のウィジェット
@@ -24,6 +25,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final dogProfile = ref.watch(dogProfileStateNotifierProvider);
     final selectedScene = useState<String?>(null);
     final selectedCondition = useState<String?>(null);
@@ -65,30 +67,43 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
           showSnackBar(
             context: context,
             theme: theme,
-            text: '🎵 音楽の生成が完了しました！マイページの「音楽再生履歴」で再生できます。',
+            text: l10n.musicGenerationSuccess,
           );
         } else if (state is AsyncError) {
           logger.d('音楽生成エラー: ${state.error}');
           showAlertSnackBar(
             context: context,
             theme: theme,
-            text: '音楽の生成に失敗しました: ${state.error}',
+            text: l10n.musicGenerationFailed(state.error.toString()),
           );
         }
       },
     );
 
-    final scenes = ['留守番中', '就寝前', 'ストレスフル', '長距離移動中', '日常の癒し', '療養/高齢犬ケア'];
-    final conditions = ['落ち着かせたい', 'リラックスさせたい', '興奮を抑えたい', '安心させたい', '安眠させたい'];
+    final scenes = [
+      l10n.sceneLeavingHome,
+      l10n.sceneBedtime,
+      l10n.sceneStressful,
+      l10n.sceneLongDistanceTravel,
+      l10n.sceneDailyHealing,
+      l10n.sceneCare,
+    ];
+    final conditions = [
+      l10n.conditionCalmDown,
+      l10n.conditionRelax,
+      l10n.conditionSuppressExcitement,
+      l10n.conditionReassure,
+      l10n.conditionGoodSleep,
+    ];
 
     return Scaffold(
-      appBar: const BaseHeader(title: 'PawHarmony AI'),
+      appBar: BaseHeader(title: l10n.aiMusicGenerateTitle),
       body: dogProfile.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error:
             (err, stack) => Center(
               child: ThemeText(
-                text: 'エラー: $err',
+                text: l10n.errorOccurred(err.toString()),
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
               ),
@@ -97,7 +112,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
           if (profile == null) {
             return Center(
               child: ThemeText(
-                text: '犬のプロフィールが登録されていません。',
+                text: l10n.noDogProfileRegistered,
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
               ),
@@ -110,7 +125,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ThemeText(
-                  text: '利用シーンを選択',
+                  text: l10n.selectScene,
                   color: theme.appColors.black,
                   style: theme.textTheme.h30.copyWith(
                     fontSize: 18,
@@ -126,7 +141,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                 ),
                 hSpace(height: 24),
                 ThemeText(
-                  text: '犬の状態を選択',
+                  text: l10n.selectDogCondition,
                   color: theme.appColors.black,
                   style: theme.textTheme.h30.copyWith(
                     fontSize: 18,
@@ -143,10 +158,10 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                 hSpace(height: 24),
                 TextField(
                   controller: additionalInfoController,
-                  decoration: const InputDecoration(
-                    labelText: 'その他（任意）',
-                    hintText: '最近、夜泣きが多い、など',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: l10n.otherOptional,
+                    hintText: l10n.otherHint,
+                    border: const OutlineInputBorder(),
                   ),
                   maxLines: 3,
                 ),
@@ -154,21 +169,19 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: ThemeText(
-                    text:
-                        purchaseState.isSubscribed
-                            ? '生成回数: 無制限'
-                            : '残り生成回数: 3回 (無料版)', // 仮の回数
+                    text: purchaseState.isSubscribed
+                        ? l10n.generationsUnlimited
+                        : l10n.generationsLeft(3, l10n.freePlan), // 仮の回数
                     color: theme.appColors.grey,
                     style: theme.textTheme.h30.copyWith(fontSize: 14),
                   ),
                 ),
                 hSpace(height: 32),
                 PrimaryButton(
-                  text: '音楽を生成する',
+                  text: l10n.generateMusic,
                   screen: 'ai_music_generate_screen',
                   width: double.infinity,
-                  isDisabled:
-                      selectedScene.value == null ||
+                  isDisabled: selectedScene.value == null ||
                       selectedCondition.value == null ||
                       !(purchaseState.isSubscribed ||
                           // ignore: lines_longer_than_80_chars
@@ -178,7 +191,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                       showAlertSnackBar(
                         context: context,
                         theme: theme,
-                        text: '音楽生成に必要なファイルをロード中です。しばらくお待ちください。',
+                        text: l10n.loadingMusicGenerator,
                       );
                       return;
                     }

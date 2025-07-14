@@ -14,6 +14,7 @@ import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
+import '../../l10n/app_localizations.dart';
 
 /// 犬のプロフィール画面のウィジェット
 class DogProfileScreen extends HookConsumerWidget {
@@ -29,6 +30,7 @@ class DogProfileScreen extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final nameController = useTextEditingController();
     final breedController = useTextEditingController();
@@ -50,7 +52,10 @@ class DogProfileScreen extends HookConsumerWidget {
     ) {
       next.whenOrNull(
         error: (err, stack) {
-          showAlertSnackBar(context: context, theme: theme, text: 'エラー: $err');
+          showAlertSnackBar(
+              context: context,
+              theme: theme,
+              text: l10n.errorOccurred(err.toString()));
         },
       );
     });
@@ -77,33 +82,31 @@ class DogProfileScreen extends HookConsumerWidget {
     }, [dogProfileState.value]);
 
     final dogBreeds = <String>[
-      'トイプードル',
-      'チワワ',
-      '柴犬',
-      'ミニチュアダックスフンド',
-      'ポメラニアン',
-      'フレンチブルドッグ',
-      'ゴールデンレトリバー',
-      'ラブラドールレトリバー',
-      'ミックス',
-      'その他',
+      l10n.breedToyPoodle,
+      l10n.breedChihuahua,
+      l10n.breedShiba,
+      l10n.breedMiniatureDachshund,
+      l10n.breedPomeranian,
+      l10n.breedFrenchBulldog,
+      l10n.breedGoldenRetriever,
+      l10n.breedLabradorRetriever,
+      l10n.breedMix,
+      l10n.breedOther,
     ];
 
     return Scaffold(
-      appBar:
-          dogProfileState.value == null
-              ? const BaseHeader(title: '愛犬のプロフィールを登録')
-              : const BackIconHeader(title: '愛犬プロフィール編集'),
+      appBar: dogProfileState.value == null
+          ? BaseHeader(title: l10n.registerDogProfileTitle)
+          : BackIconHeader(title: l10n.editDogProfileTitle),
       body: dogProfileState.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error:
-            (err, stack) => Center(
-              child: ThemeText(
-                text: 'エラー: $err',
-                color: theme.appColors.black,
-                style: theme.textTheme.h30,
-              ),
-            ),
+        error: (err, stack) => Center(
+          child: ThemeText(
+            text: l10n.errorOccurred(err.toString()),
+            color: theme.appColors.black,
+            style: theme.textTheme.h30,
+          ),
+        ),
         data:
             (profile) => SingleChildScrollView(
               controller: scrollController,
@@ -191,44 +194,44 @@ class DogProfileScreen extends HookConsumerWidget {
                     hSpace(height: 16),
                     TextFormField(
                       controller: nameController,
-                      decoration: const InputDecoration(labelText: '愛犬の名前'),
-                      validator:
-                          (value) => value!.isEmpty ? '名前を入力してください' : null,
+                      decoration: InputDecoration(labelText: l10n.dogName),
+                      validator: (value) =>
+                          value!.isEmpty ? l10n.dogNameValidator : null,
                     ),
                     DropdownButtonFormField<String>(
-                      value:
-                          breedController.text.isEmpty
-                              ? null
-                              : breedController.text,
-                      decoration: const InputDecoration(labelText: '犬種'),
-                      items:
-                          dogBreeds
-                              .map(
-                                (b) => DropdownMenuItem(
-                                  value: b,
-                                  child: ThemeText(
-                                    text: b,
-                                    color: theme.appColors.black,
-                                    style: theme.textTheme.h30,
-                                  ),
-                                ),
-                              )
-                              .toList(),
+                      value: breedController.text.isEmpty
+                          ? null
+                          : breedController.text,
+                      decoration: InputDecoration(labelText: l10n.dogBreed),
+                      items: dogBreeds
+                          .map(
+                            (b) => DropdownMenuItem(
+                              value: b,
+                              child: ThemeText(
+                                text: b,
+                                color: theme.appColors.black,
+                                style: theme.textTheme.h30,
+                              ),
+                            ),
+                          )
+                          .toList(),
                       onChanged: (value) {
                         if (value != null) {
                           breedController.text = value;
                         }
                       },
-                      validator:
-                          (value) => value == null ? '犬種を選択してください' : null,
+                      validator: (value) =>
+                          value == null ? l10n.dogBreedValidator : null,
                     ),
                     hSpace(height: 16),
                     ListTile(
                       title: ThemeText(
-                        text:
-                            dateOfBirth.value == null
-                                ? '生年月日を選択'
-                                : '生年月日: ${dateOfBirth.value!.toLocal().toIso8601String().split('T')[0]}',
+                        text: dateOfBirth.value == null
+                            ? l10n.selectDateOfBirth
+                            : l10n.dateOfBirth(dateOfBirth.value!
+                                .toLocal()
+                                .toIso8601String()
+                                .split('T')[0]),
                         color: theme.appColors.black,
                         style: theme.textTheme.h30,
                       ),
@@ -261,7 +264,7 @@ class DogProfileScreen extends HookConsumerWidget {
                     /// 生年月日が選択されている場合は自動計算され、編集不可
                     TextFormField(
                       controller: ageController,
-                      decoration: const InputDecoration(labelText: '年齢'),
+                      decoration: InputDecoration(labelText: l10n.age),
                       keyboardType: TextInputType.number,
                       readOnly: true, // 年齢は常に編集不可
                       contextMenuBuilder: (context, editableTextState) {
@@ -274,7 +277,7 @@ class DogProfileScreen extends HookConsumerWidget {
                     ),
                     hSpace(height: 16),
                     ThemeText(
-                      text: '性別',
+                      text: l10n.gender,
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
@@ -289,7 +292,7 @@ class DogProfileScreen extends HookConsumerWidget {
                           },
                         ),
                         ThemeText(
-                          text: 'オス',
+                          text: l10n.male,
                           color: theme.appColors.black,
                           style: theme.textTheme.h30,
                         ),
@@ -302,7 +305,7 @@ class DogProfileScreen extends HookConsumerWidget {
                           },
                         ),
                         ThemeText(
-                          text: 'メス',
+                          text: l10n.female,
                           color: theme.appColors.black,
                           style: theme.textTheme.h30,
                         ),
@@ -316,18 +319,18 @@ class DogProfileScreen extends HookConsumerWidget {
                       ),
                     hSpace(height: 16),
                     ThemeText(
-                      text: '性格（複数選択可）',
+                      text: l10n.personality,
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
                     MultiSelectChip(
-                      choices: const [
-                        'おっとり',
-                        '活発',
-                        '臆病',
-                        '社交的',
-                        '甘えん坊',
-                        'マイペース',
+                      choices: [
+                        l10n.personalityEasygoing,
+                        l10n.personalityActive,
+                        l10n.personalityTimid,
+                        l10n.personalitySociable,
+                        l10n.personalityAffectionate,
+                        l10n.personalityMyPace,
                       ],
                       selectedChoices: personalities.value.toList(),
                       onSelectionChanged: (selectedList) {
@@ -336,14 +339,14 @@ class DogProfileScreen extends HookConsumerWidget {
                     ),
                     hSpace(height: 32),
                     PrimaryButton(
-                      text: profile == null ? '登録する' : '更新する',
+                      text: profile == null ? l10n.register : l10n.update,
                       screen: 'dog_profile_screen',
                       width: double.infinity,
                       isDisabled: false,
                       callback: () async {
                         if (formKey.currentState!.validate()) {
                           if (gender.value == null) {
-                            genderError.value = '性別を選択してください';
+                            genderError.value = l10n.genderValidator;
                             return;
                           }
                           if (userId != null) {
@@ -368,7 +371,7 @@ class DogProfileScreen extends HookConsumerWidget {
                               showSnackBar(
                                 context: context,
                                 theme: theme,
-                                text: 'プロフィールが保存されました',
+                                text: l10n.profileSaved,
                               );
                               // 新規登録の場合はホーム画面へ、編集の場合は前の画面に戻る
                               if (profile == null) {
@@ -383,7 +386,7 @@ class DogProfileScreen extends HookConsumerWidget {
                     ),
                     if (profile != null) // 編集画面の場合のみキャンセルボタンを表示
                       CancelButton(
-                        text: 'キャンセル',
+                        text: l10n.cancel,
                         screen: 'dog_profile_screen',
                         width: double.infinity,
                         isDisabled: false,

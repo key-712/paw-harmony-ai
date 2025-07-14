@@ -20,7 +20,7 @@ class RequestScreen extends HookConsumerWidget {
     final contentController = TextEditingController();
 
     return Scaffold(
-      appBar: BackIconHeader(title: localizations.request),
+      appBar: BackIconHeader(title: l10n.request),
       backgroundColor: theme.appColors.background,
       body: Column(
         children: [
@@ -30,25 +30,25 @@ class RequestScreen extends HookConsumerWidget {
               child: Column(
                 children: [
                   ThemeText(
-                    text: localizations.requestForm,
+                    text: l10n.requestForm,
                     color: theme.appColors.white,
                     style: theme.textTheme.h30,
                   ),
                   hSpace(height: 16),
                   CustomTextFormField(
                     controller: subjectController,
-                    labelText: localizations.subject,
+                    labelText: l10n.subject,
                   ),
                   hSpace(height: 16),
                   CustomTextFormField(
                     controller: contentController,
-                    labelText: localizations.content,
+                    labelText: l10n.content,
                     maxLines: 5,
                   ),
                   hSpace(height: 16),
                   PrimaryButton(
                     screen: ScreenLabel.request,
-                    text: localizations.send,
+                    text: l10n.send,
                     width: getScreenSize(context).width * 0.8,
                     isDisabled: false,
                     callback: () async {
@@ -61,7 +61,7 @@ class RequestScreen extends HookConsumerWidget {
                         showSnackBar(
                           context: context,
                           theme: theme,
-                          text: localizations.sendSuccessRequest,
+                          text: l10n.sendSuccessRequest,
                         );
                         const BaseScreenRoute().go(context);
                       }

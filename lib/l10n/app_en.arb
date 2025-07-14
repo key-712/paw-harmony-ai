@@ -543,5 +543,560 @@
   "timeout": "Timeout",
   "@timeout": {
     "description": "Timeout error message"
+  },
+  "errorOccurred": "Error: {err}",
+  "@errorOccurred": {
+    "description": "Message when an error occurs (includes error details)",
+    "placeholders": {
+      "err": {
+        "type": "Object"
+      }
+    }
+  },
+  "noProfile": "No profile found",
+  "@noProfile": {
+    "description": "Message when no profile is set"
+  },
+  "dogAge": "{breed} • {age} years old",
+  "@dogAge": {
+    "description": "Dog's breed and age",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "currentPlan": "Current Plan",
+  "@currentPlan": {
+    "description": "Current subscription plan"
+  },
+  "premiumPlan": "Premium Plan",
+  "@premiumPlan": {
+    "description": "Premium plan name"
+  },
+  "freePlan": "Free Plan",
+  "@freePlan": {
+    "description": "Free plan name"
+  },
+  "upgrade": "Upgrade",
+  "@upgrade": {
+    "description": "Upgrade button"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button"
+  },
+  "musicGenerationSuccess": "🎵 Music generation complete! You can play it in 'Music Playback History' on My Page.",
+  "@musicGenerationSuccess": {
+    "description": "Message on successful music generation"
+  },
+  "musicGenerationFailed": "Music generation failed: {error}",
+  "@musicGenerationFailed": {
+    "description": "Message on failed music generation",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "sceneLeavingHome": "While away",
+  "@sceneLeavingHome": {
+    "description": "Scene: While away"
+  },
+  "sceneBedtime": "Bedtime",
+  "@sceneBedtime": {
+    "description": "Scene: Bedtime"
+  },
+  "sceneStressful": "Stressful",
+  "@sceneStressful": {
+    "description": "Scene: Stressful"
+  },
+  "sceneLongDistanceTravel": "Long-distance travel",
+  "@sceneLongDistanceTravel": {
+    "description": "Scene: Long-distance travel"
+  },
+  "sceneDailyHealing": "Daily healing",
+  "@sceneDailyHealing": {
+    "description": "Scene: Daily healing"
+  },
+  "sceneCare": "Medical/Senior care",
+  "@sceneCare": {
+    "description": "Scene: Medical/Senior care"
+  },
+  "conditionCalmDown": "Want to calm down",
+  "@conditionCalmDown": {
+    "description": "Dog's condition: Want to calm down"
+  },
+  "conditionRelax": "Want to relax",
+  "@conditionRelax": {
+    "description": "Dog's condition: Want to relax"
+  },
+  "conditionSuppressExcitement": "Want to suppress excitement",
+  "@conditionSuppressExcitement": {
+    "description": "Dog's condition: Want to suppress excitement"
+  },
+  "conditionReassure": "Want to reassure",
+  "@conditionReassure": {
+    "description": "Dog's condition: Want to reassure"
+  },
+  "conditionGoodSleep": "Want to sleep well",
+  "@conditionGoodSleep": {
+    "description": "Dog's condition: Want to sleep well"
+  },
+  "aiMusicGenerateTitle": "PawHarmony AI",
+  "@aiMusicGenerateTitle": {
+    "description": "Title for AI Music Generation screen"
+  },
+  "noDogProfileRegistered": "Dog profile is not registered.",
+  "@noDogProfileRegistered": {
+    "description": "Message when dog profile is not registered"
+  },
+  "selectScene": "Select a scene",
+  "@selectScene": {
+    "description": "Title for scene selection"
+  },
+  "selectDogCondition": "Select dog's condition",
+  "@selectDogCondition": {
+    "description": "Title for dog's condition selection"
+  },
+  "otherOptional": "Other (optional)",
+  "@otherOptional": {
+    "description": "Label for optional input field"
+  },
+  "otherHint": "e.g., Cries often at night recently",
+  "@otherHint": {
+    "description": "Hint text for optional input field"
+  },
+  "generationsUnlimited": "Generations: Unlimited",
+  "@generationsUnlimited": {
+    "description": "Text for unlimited generations"
+  },
+  "generationsLeft": "Generations left: {count} ({plan})",
+  "@generationsLeft": {
+    "description": "Text for remaining generations",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "generateMusic": "Generate Music",
+  "@generateMusic": {
+    "description": "Button text to generate music"
+  },
+  "loadingMusicGenerator": "Loading files needed for music generation. Please wait.",
+  "@loadingMusicGenerator": {
+    "description": "Message while loading music generator"
+  },
+  "myPage": "My Page",
+  "@myPage": {
+    "description": "Title for My Page screen"
+  },
+  "musicPlaybackHistory": "Music Playback History",
+  "@musicPlaybackHistory": {
+    "description": "Title for Music Playback History section"
+  },
+  "noMusicPlaybackHistory": "No music playback history.",
+  "@noMusicPlaybackHistory": {
+    "description": "Message when there is no music playback history"
+  },
+  "generatedAt": "Generated at: {datetime}",
+  "@generatedAt": {
+    "description": "Timestamp of when the music was generated",
+    "placeholders": {
+      "datetime": {
+        "type": "String"
+      }
+    }
+  },
+  "scene": "Scene: {scene}",
+  "@scene": {
+    "description": "The scene for which the music was generated",
+    "placeholders": {
+      "scene": {
+        "type": "String"
+      }
+    }
+  },
+  "condition": "Condition: {condition}",
+  "@condition": {
+    "description": "The dog's condition for which the music was generated",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "breed": "Breed: {breed}",
+  "@breed": {
+    "description": "The dog's breed",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      }
+    }
+  },
+  "duration": "Duration: {duration}s",
+  "@duration": {
+    "description": "Duration of the music in seconds",
+    "placeholders": {
+      "duration": {
+        "type": "int"
+      }
+    }
+  },
+  "registerDogProfileTitle": "Register Your Dog's Profile",
+  "@registerDogProfileTitle": {
+    "description": "Title for the dog profile registration screen"
+  },
+  "editDogProfileTitle": "Edit Dog Profile",
+  "@editDogProfileTitle": {
+    "description": "Title for the dog profile editing screen"
+  },
+  "breedToyPoodle": "Toy Poodle",
+  "@breedToyPoodle": {
+    "description": "Breed: Toy Poodle"
+  },
+  "breedChihuahua": "Chihuahua",
+  "@breedChihuahua": {
+    "description": "Breed: Chihuahua"
+  },
+  "breedShiba": "Shiba Inu",
+  "@breedShiba": {
+    "description": "Breed: Shiba Inu"
+  },
+  "breedMiniatureDachshund": "Miniature Dachshund",
+  "@breedMiniatureDachshund": {
+    "description": "Breed: Miniature Dachshund"
+  },
+  "breedPomeranian": "Pomeranian",
+  "@breedPomeranian": {
+    "description": "Breed: Pomeranian"
+  },
+  "breedFrenchBulldog": "French Bulldog",
+  "@breedFrenchBulldog": {
+    "description": "Breed: French Bulldog"
+  },
+  "breedGoldenRetriever": "Golden Retriever",
+  "@breedGoldenRetriever": {
+    "description": "Breed: Golden Retriever"
+  },
+  "breedLabradorRetriever": "Labrador Retriever",
+  "@breedLabradorRetriever": {
+    "description": "Breed: Labrador Retriever"
+  },
+  "breedMix": "Mix",
+  "@breedMix": {
+    "description": "Breed: Mix"
+  },
+  "breedOther": "Other",
+  "@breedOther": {
+    "description": "Breed: Other"
+  },
+  "dogName": "Dog's Name",
+  "@dogName": {
+    "description": "Label for dog's name input field"
+  },
+  "dogNameValidator": "Please enter a name",
+  "@dogNameValidator": {
+    "description": "Validation message for dog's name"
+  },
+  "dogBreed": "Breed",
+  "@dogBreed": {
+    "description": "Label for breed selection field"
+  },
+  "dogBreedValidator": "Please select a breed",
+  "@dogBreedValidator": {
+    "description": "Validation message for breed"
+  },
+  "selectDateOfBirth": "Select Date of Birth",
+  "@selectDateOfBirth": {
+    "description": "Text for selecting date of birth"
+  },
+  "dateOfBirth": "Date of Birth: {date}",
+  "@dateOfBirth": {
+    "description": "Display text for date of birth",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "age": "Age",
+  "@age": {
+    "description": "Label for age input field"
+  },
+  "gender": "Gender",
+  "@gender": {
+    "description": "Title for gender selection"
+  },
+  "male": "Male",
+  "@male": {
+    "description": "Gender: Male"
+  },
+  "female": "Female",
+  "@female": {
+    "description": "Gender: Female"
+  },
+  "genderValidator": "Please select a gender",
+  "@genderValidator": {
+    "description": "Validation message for gender"
+  },
+  "personality": "Personality (multiple selections allowed)",
+  "@personality": {
+    "description": "Title for personality selection"
+  },
+  "personalityEasygoing": "Easygoing",
+  "@personalityEasygoing": {
+    "description": "Personality: Easygoing"
+  },
+  "personalityActive": "Active",
+  "@personalityActive": {
+    "description": "Personality: Active"
+  },
+  "personalityTimid": "Timid",
+  "@personalityTimid": {
+    "description": "Personality: Timid"
+  },
+  "personalitySociable": "Sociable",
+  "@personalitySociable": {
+    "description": "Personality: Sociable"
+  },
+  "personalityAffectionate": "Affectionate",
+  "@personalityAffectionate": {
+    "description": "Personality: Affectionate"
+  },
+  "personalityMyPace": "Easygoing",
+  "@personalityMyPace": {
+    "description": "Personality: Easygoing (My Pace)"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button text"
+  },
+  "profileSaved": "Profile saved successfully",
+  "@profileSaved": {
+    "description": "Success message when profile is saved"
+  },
+  "subscriptionSettingTitle": "Premium Plan",
+  "@subscriptionSettingTitle": {
+    "description": "Title for subscription setting screen"
+  },
+  "currentPlanPremium": "Current Plan: Premium Plan",
+  "@currentPlanPremium": {
+    "description": "Current plan display text for premium users"
+  },
+  "currentPlanFree": "Current Plan: Free Plan",
+  "@currentPlanFree": {
+    "description": "Current plan display text for free users"
+  },
+  "premiumPlanBenefits": "Premium Plan Benefits",
+  "@premiumPlanBenefits": {
+    "description": "Title for premium plan benefits section"
+  },
+  "unlimitedMusicGeneration": "Unlimited Music Generation",
+  "@unlimitedMusicGeneration": {
+    "description": "Benefit: Unlimited music generation"
+  },
+  "detailedAnalysisReport": "Detailed Analysis Report",
+  "@detailedAnalysisReport": {
+    "description": "Benefit: Detailed analysis report"
+  },
+  "adFree": "Ad-Free",
+  "@adFree": {
+    "description": "Benefit: No advertisements"
+  },
+  "expertCuratedContent": "Expert Curated Content",
+  "@expertCuratedContent": {
+    "description": "Benefit: Expert curated content"
+  },
+  "selectPlan": "Select Plan",
+  "@selectPlan": {
+    "description": "Title for plan selection section"
+  },
+  "continueWithFreePlan": "Continue with Free Plan",
+  "@continueWithFreePlan": {
+    "description": "Button text to continue with free plan"
+  },
+  "subscriptionCancellationNote": "※ Subscription can be cancelled at any time",
+  "@subscriptionCancellationNote": {
+    "description": "Note about subscription cancellation"
+  },
+  "noAvailablePlans": "No available plans.",
+  "@noAvailablePlans": {
+    "description": "Message when no plans are available"
+  },
+  "signUpTitle": "Create New Account",
+  "@signUpTitle": {
+    "description": "Title for sign up screen"
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": "Label for email address input field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Label for password input field"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Label for password confirmation input field"
+  },
+  "passwordTooShortSignUp": "Password must be at least 8 characters",
+  "@passwordTooShortSignUp": {
+    "description": "Password too short validation message for sign up"
+  },
+  "passwordMismatch": "Passwords do not match",
+  "@passwordMismatch": {
+    "description": "Password confirmation mismatch validation message"
+  },
+  "agreeToTerms": "I agree to the Terms of Service and Privacy Policy",
+  "@agreeToTerms": {
+    "description": "Terms and privacy policy agreement checkbox text"
+  },
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create account button text"
+  },
+  "goToLogin": "Go to Login",
+  "@goToLogin": {
+    "description": "Go to login button text"
+  },
+  "accountCreationFailed": "Account creation failed.",
+  "@accountCreationFailed": {
+    "description": "Generic account creation failure message"
+  },
+  "emailAlreadyInUse": "This email address is already in use.\nPlease try logging in.",
+  "@emailAlreadyInUse": {
+    "description": "Email already in use error message"
+  },
+  "weakPassword": "Password is too weak. Please set a stronger password.",
+  "@weakPassword": {
+    "description": "Weak password error message"
+  },
+  "invalidEmail": "Invalid email address.",
+  "@invalidEmail": {
+    "description": "Invalid email error message"
+  },
+  "operationNotAllowed": "Email/password authentication is not enabled.",
+  "@operationNotAllowed": {
+    "description": "Operation not allowed error message"
+  },
+  "networkRequestFailed": "Network error occurred. Please check your internet connection.",
+  "@networkRequestFailed": {
+    "description": "Network request failed error message"
+  },
+  "accountCreationFailedWithError": "Account creation failed: {error}",
+  "@accountCreationFailedWithError": {
+    "description": "Account creation failed with specific error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordResetTitle": "Password Reset",
+  "@passwordResetTitle": {
+    "description": "Title for password reset screen"
+  },
+  "sendPasswordResetEmail": "Send Password Reset Email",
+  "@sendPasswordResetEmail": {
+    "description": "Button text to send password reset email"
+  },
+  "passwordResetEmailSent": "Password reset email has been sent.",
+  "@passwordResetEmailSent": {
+    "description": "Success message when password reset email is sent"
+  },
+  "passwordResetFailed": "Failed to send password reset email.",
+  "@passwordResetFailed": {
+    "description": "Generic password reset failure message"
+  },
+  "userNotFound": "No user found with this email address.",
+  "@userNotFound": {
+    "description": "User not found error message"
+  },
+  "tooManyRequests": "Too many requests. Please try again later.",
+  "@tooManyRequests": {
+    "description": "Too many requests error message"
+  },
+  "passwordResetFailedWithError": "Failed to send password reset email: {error}",
+  "@passwordResetFailedWithError": {
+    "description": "Password reset failed with specific error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginTitle": "Login",
+  "@loginTitle": {
+    "description": "Title for login screen"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password button text"
+  },
+  "goToSignUp": "Go to Sign Up",
+  "@goToSignUp": {
+    "description": "Go to sign up button text"
+  },
+  "loginFailed": "Login failed.",
+  "@loginFailed": {
+    "description": "Generic login failure message"
+  },
+  "userNotFoundLogin": "No user found with this email address.\nPlease try signing up.",
+  "@userNotFoundLogin": {
+    "description": "User not found error message for login"
+  },
+  "wrongPassword": "Password is incorrect.",
+  "@wrongPassword": {
+    "description": "Wrong password error message"
+  },
+  "invalidCredential": "Email address or password is incorrect.",
+  "@invalidCredential": {
+    "description": "Invalid credential error message"
+  },
+  "userDisabled": "This account has been disabled.",
+  "@userDisabled": {
+    "description": "User disabled error message"
+  },
+  "tooManyLoginAttempts": "Too many login attempts. Please try again later.",
+  "@tooManyLoginAttempts": {
+    "description": "Too many login attempts error message"
+  },
+  "loginFailedWithError": "Login failed: {error}",
+  "@loginFailedWithError": {
+    "description": "Login failed with specific error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "musicGenerationInProgress": "Generating Music...",
+  "@musicGenerationInProgress": {
+    "description": "Title for music generation in progress dialog"
+  },
+  "aiGeneratingMusicForDog": "AI is generating music for your beloved dog.\nYou can play it on My Page after generation is complete.",
+  "@aiGeneratingMusicForDog": {
+    "description": "Description text in music generation dialog"
+  },
+  "planInformationFetchFailed": "Failed to fetch plan information.",
+  "@planInformationFetchFailed": {
+    "description": "Error message when plan information fetch fails"
   }
 }

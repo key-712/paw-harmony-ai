@@ -9,6 +9,7 @@ import '../../import/provider.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
 import '../../import/utility.dart'; // loggerのために追加
+import '../../l10n/app_localizations.dart';
 
 /// ログイン画面のウィジェット
 class LoginScreen extends HookConsumerWidget {
@@ -21,6 +22,7 @@ class LoginScreen extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final formKey = useMemoized(GlobalKey<FormState>.new);
@@ -36,25 +38,27 @@ class LoginScreen extends HookConsumerWidget {
           error: state.error,
           stackTrace: state.stackTrace,
         );
-        var errorMessage = 'ログインに失敗しました。';
+        var errorMessage = l10n.loginFailed;
 
         if (state.error is FirebaseAuthException) {
           final authException = state.error as FirebaseAuthException;
           switch (authException.code) {
             case 'user-not-found':
-              errorMessage = 'このメールアドレスで登録されたユーザーが見つかりません。\n新規登録をお試しください。';
+              errorMessage = l10n.userNotFoundLogin;
             case 'wrong-password':
-              errorMessage = 'パスワードが間違っています。';
+              errorMessage = l10n.wrongPassword;
             case 'invalid-credential':
-              errorMessage = 'メールアドレスまたはパスワードが正しくありません。';
+              errorMessage = l10n.invalidCredential;
             case 'user-disabled':
-              errorMessage = 'このアカウントは無効になっています。';
+              errorMessage = l10n.userDisabled;
             case 'too-many-requests':
-              errorMessage = 'ログイン試行回数が多すぎます。しばらく時間をおいてから再試行してください。';
+              errorMessage = l10n.tooManyLoginAttempts;
             case 'network-request-failed':
-              errorMessage = 'ネットワークエラーが発生しました。インターネット接続を確認してください。';
+              errorMessage = l10n.networkRequestFailed;
             default:
-              errorMessage = 'ログインに失敗しました: ${authException.message}';
+              errorMessage = l10n.loginFailedWithError(
+                authException.message ?? '',
+              );
           }
         }
 
@@ -63,7 +67,7 @@ class LoginScreen extends HookConsumerWidget {
     });
 
     return Scaffold(
-      appBar: const BaseHeader(title: 'ログイン'),
+      appBar: BaseHeader(title: l10n.loginTitle),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -72,28 +76,28 @@ class LoginScreen extends HookConsumerWidget {
             children: [
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'メールアドレス'),
+                decoration: InputDecoration(labelText: l10n.emailAddress),
                 validator: (value) {
                   if (value == null || !EmailValidator.validate(value)) {
-                    return '有効なメールアドレスを入力してください。';
+                    return l10n.emailInvalid;
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: passwordController,
-                decoration: const InputDecoration(labelText: 'パスワード'),
+                decoration: InputDecoration(labelText: l10n.password),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'パスワードを入力してください。';
+                    return l10n.passwordRequired;
                   }
                   return null;
                 },
               ),
               hSpace(height: 16),
               PrimaryButton(
-                text: 'ログイン',
+                text: l10n.login,
                 screen: 'login_screen',
                 width: double.infinity,
                 isDisabled: false,
@@ -110,7 +114,7 @@ class LoginScreen extends HookConsumerWidget {
               ),
               hSpace(height: 16),
               SecondaryButton(
-                text: 'パスワードをお忘れですか？',
+                text: l10n.forgotPassword,
                 screen: 'login_screen',
                 width: double.infinity,
                 isDisabled: false,
@@ -120,7 +124,7 @@ class LoginScreen extends HookConsumerWidget {
               ),
               hSpace(height: 16),
               SecondaryButton(
-                text: '新規登録はこちら',
+                text: l10n.goToSignUp,
                 screen: 'login_screen',
                 width: double.infinity,
                 isDisabled: false,

@@ -176,6 +176,7 @@
 ## エラーハンドリング
 
 ### 例外処理
+- `try-catch`文を使用する際は、必ず例外の型を明示してください（例: `on Exception catch (e)`）。`catch (e)` のような汎用的な例外捕捉は、意図しないエラーまで握りつぶしてしまう可能性があるため原則禁止します。
 - APIエラーは適切なエラーハンドリングを使用してください。
 - 認証エラーは専用のハンドリングを使用してください。
 - ネットワークエラーは`use_network_check.dart`を使用してください。
@@ -364,7 +365,6 @@ gh pr create \
 - `Missing documentation for a public member. Try adding documentation for the member.` の対策を必ず行うこと。
 
 - パブリックメンバーには必ずdartdoc形式（///）で日本語のドキュメントコメントを記述すること。
-- catch句では必ず例外の型（例: on Exception catch (e)）を明示すること。
 - ジェネリクスや型推論が必要な箇所では、型を明示して推論エラーを防ぐこと。
 - TODOコメントは必ず「// TODO(担当者名): ...」のFlutterスタイルで記述すること。
 - 非同期処理でBuildContextを使用する場合は、context.mounted等で安全性を必ず確認すること。

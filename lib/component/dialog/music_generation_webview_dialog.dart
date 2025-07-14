@@ -11,7 +11,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import '../../import/component.dart';
 import '../../import/provider.dart'; // Add this import
 import '../../import/theme.dart';
-import '../../utility/logger/logger.dart';
+import '../../import/utility.dart';
+import '../../l10n/app_localizations.dart';
 
 /// 音楽生成中のWebViewを表示するダイアログ
 class MusicGenerationWebViewDialog extends HookConsumerWidget {
@@ -38,6 +39,7 @@ class MusicGenerationWebViewDialog extends HookConsumerWidget {
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     logger.d('MusicGenerationWebViewDialog: build called');
     final theme = ref.watch(appThemeProvider);
     final isInitialized = useRef(false);
@@ -160,7 +162,7 @@ class MusicGenerationWebViewDialog extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ThemeText(
-              text: '音楽生成中...',
+              text: l10n.musicGenerationInProgress,
               color: theme.appColors.black,
               style: theme.textTheme.h30.copyWith(
                 fontSize: 20,
@@ -185,14 +187,14 @@ class MusicGenerationWebViewDialog extends HookConsumerWidget {
             ),
             hSpace(height: 16),
             ThemeText(
-              text: 'AIがあなたの愛犬のための音楽を生成しています。\n生成完了後、マイページで再生できます。',
+              text: l10n.aiGeneratingMusicForDog,
               color: theme.appColors.grey,
               style: theme.textTheme.h30.copyWith(fontSize: 14),
               align: TextAlign.center,
             ),
             hSpace(height: 16),
             DialogSecondaryButton(
-              text: '閉じる',
+              text: l10n.close,
               screen: 'music_generation_webview_dialog',
               width: double.infinity,
               callback: () {

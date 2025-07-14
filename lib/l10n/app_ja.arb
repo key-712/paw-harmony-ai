@@ -543,5 +543,560 @@
   "timeout": "タイムアウト",
   "@timeout": {
     "description": "タイムアウトエラーメッセージ"
+  },
+  "errorOccurred": "エラー: {err}",
+  "@errorOccurred": {
+    "description": "エラー発生時のメッセージ（エラー内容を含む）",
+    "placeholders": {
+      "err": {
+        "type": "Object"
+      }
+    }
+  },
+  "noProfile": "プロフィールがありません",
+  "@noProfile": {
+    "description": "プロフィール未設定時のメッセージ"
+  },
+  "dogAge": "{breed}・{age}歳",
+  "@dogAge": {
+    "description": "犬の犬種と年齢",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "currentPlan": "現在のプラン",
+  "@currentPlan": {
+    "description": "現在の購読プラン"
+  },
+  "premiumPlan": "プレミアムプラン",
+  "@premiumPlan": {
+    "description": "プレミアムプラン名"
+  },
+  "freePlan": "無料版",
+  "@freePlan": {
+    "description": "無料プラン名"
+  },
+  "upgrade": "アップグレード",
+  "@upgrade": {
+    "description": "アップグレードボタン"
+  },
+  "logout": "ログアウト",
+  "@logout": {
+    "description": "ログアウトボタン"
+  },
+  "musicGenerationSuccess": "🎵 音楽の生成が完了しました！マイページの「音楽再生履歴」で再生できます。",
+  "@musicGenerationSuccess": {
+    "description": "音楽生成成功時のメッセージ"
+  },
+  "musicGenerationFailed": "音楽の生成に失敗しました: {error}",
+  "@musicGenerationFailed": {
+    "description": "音楽生成失敗時のメッセージ",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "sceneLeavingHome": "留守番中",
+  "@sceneLeavingHome": {
+    "description": "利用シーン：留守番中"
+  },
+  "sceneBedtime": "就寝前",
+  "@sceneBedtime": {
+    "description": "利用シーン：就寝前"
+  },
+  "sceneStressful": "ストレスフル",
+  "@sceneStressful": {
+    "description": "利用シーン：ストレスフル"
+  },
+  "sceneLongDistanceTravel": "長距離移動中",
+  "@sceneLongDistanceTravel": {
+    "description": "利用シーン：長距離移動中"
+  },
+  "sceneDailyHealing": "日常の癒し",
+  "@sceneDailyHealing": {
+    "description": "利用シーン：日常の癒し"
+  },
+  "sceneCare": "療養/高齢犬ケア",
+  "@sceneCare": {
+    "description": "利用シーン：療養/高齢犬ケア"
+  },
+  "conditionCalmDown": "落ち着かせたい",
+  "@conditionCalmDown": {
+    "description": "犬の状態：落ち着かせたい"
+  },
+  "conditionRelax": "リラックスさせたい",
+  "@conditionRelax": {
+    "description": "犬の状態：リラックスさせたい"
+  },
+  "conditionSuppressExcitement": "興奮を抑えたい",
+  "@conditionSuppressExcitement": {
+    "description": "犬の状態：興奮を抑えたい"
+  },
+  "conditionReassure": "安心させたい",
+  "@conditionReassure": {
+    "description": "犬の状態：安心させたい"
+  },
+  "conditionGoodSleep": "安眠させたい",
+  "@conditionGoodSleep": {
+    "description": "犬の状態：安眠させたい"
+  },
+  "aiMusicGenerateTitle": "PawHarmony AI",
+  "@aiMusicGenerateTitle": {
+    "description": "AI音楽生成画面のタイトル"
+  },
+  "noDogProfileRegistered": "犬のプロフィールが登録されていません。",
+  "@noDogProfileRegistered": {
+    "description": "犬のプロフィールが未登録の場合のメッセージ"
+  },
+  "selectScene": "利用シーンを選択",
+  "@selectScene": {
+    "description": "利用シーン選択のタイトル"
+  },
+  "selectDogCondition": "犬の状態を選択",
+  "@selectDogCondition": {
+    "description": "犬の状態選択のタイトル"
+  },
+  "otherOptional": "その他（任意）",
+  "@otherOptional": {
+    "description": "任意入力フィールドのラベル"
+  },
+  "otherHint": "最近、夜泣きが多い、など",
+  "@otherHint": {
+    "description": "任意入力フィールドのヒントテキスト"
+  },
+  "generationsUnlimited": "生成回数: 無制限",
+  "@generationsUnlimited": {
+    "description": "生成回数が無制限の場合のテキスト"
+  },
+  "generationsLeft": "残り生成回数: {count}回 ({plan})",
+  "@generationsLeft": {
+    "description": "残りの生成回数を表示するテキスト",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "generateMusic": "音楽を生成する",
+  "@generateMusic": {
+    "description": "音楽生成ボタンのテキスト"
+  },
+  "loadingMusicGenerator": "音楽生成に必要なファイルをロード中です。しばらくお待ちください。",
+  "@loadingMusicGenerator": {
+    "description": "音楽ジェネレーターのロード中メッセージ"
+  },
+  "myPage": "マイページ",
+  "@myPage": {
+    "description": "マイページ画面のタイトル"
+  },
+  "musicPlaybackHistory": "音楽再生履歴",
+  "@musicPlaybackHistory": {
+    "description": "音楽再生履歴セクションのタイトル"
+  },
+  "noMusicPlaybackHistory": "音楽再生履歴はありません。",
+  "@noMusicPlaybackHistory": {
+    "description": "音楽再生履歴がない場合のメッセージ"
+  },
+  "generatedAt": "生成日時: {datetime}",
+  "@generatedAt": {
+    "description": "音楽が生成された日時",
+    "placeholders": {
+      "datetime": {
+        "type": "String"
+      }
+    }
+  },
+  "scene": "シーン: {scene}",
+  "@scene": {
+    "description": "利用シーン",
+    "placeholders": {
+      "scene": {
+        "type": "String"
+      }
+    }
+  },
+  "condition": "状態: {condition}",
+  "@condition": {
+    "description": "犬の状態",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "breed": "品種: {breed}",
+  "@breed": {
+    "description": "犬の品種",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      }
+    }
+  },
+  "duration": "再生時間: {duration}秒",
+  "@duration": {
+    "description": "音楽の再生時間",
+    "placeholders": {
+      "duration": {
+        "type": "int"
+      }
+    }
+  },
+  "registerDogProfileTitle": "愛犬のプロフィールを登録",
+  "@registerDogProfileTitle": {
+    "description": "犬のプロフィール登録画面のタイトル"
+  },
+  "editDogProfileTitle": "愛犬プロフィール編集",
+  "@editDogProfileTitle": {
+    "description": "犬のプロフィール編集画面のタイトル"
+  },
+  "breedToyPoodle": "トイプードル",
+  "@breedToyPoodle": {
+    "description": "犬種：トイプードル"
+  },
+  "breedChihuahua": "チワワ",
+  "@breedChihuahua": {
+    "description": "犬種：チワワ"
+  },
+  "breedShiba": "柴犬",
+  "@breedShiba": {
+    "description": "犬種：柴犬"
+  },
+  "breedMiniatureDachshund": "ミニチュアダックスフンド",
+  "@breedMiniatureDachshund": {
+    "description": "犬種：ミニチュアダックスフンド"
+  },
+  "breedPomeranian": "ポメラニアン",
+  "@breedPomeranian": {
+    "description": "犬種：ポメラニアン"
+  },
+  "breedFrenchBulldog": "フレンチブルドッグ",
+  "@breedFrenchBulldog": {
+    "description": "犬種：フレンチブルドッグ"
+  },
+  "breedGoldenRetriever": "ゴールデンレトリバー",
+  "@breedGoldenRetriever": {
+    "description": "犬種：ゴールデンレトリバー"
+  },
+  "breedLabradorRetriever": "ラブラドールレトリバー",
+  "@breedLabradorRetriever": {
+    "description": "犬種：ラブラドールレトリバー"
+  },
+  "breedMix": "ミックス",
+  "@breedMix": {
+    "description": "犬種：ミックス"
+  },
+  "breedOther": "その他",
+  "@breedOther": {
+    "description": "犬種：その他"
+  },
+  "dogName": "愛犬の名前",
+  "@dogName": {
+    "description": "犬の名前入力フィールドのラベル"
+  },
+  "dogNameValidator": "名前を入力してください",
+  "@dogNameValidator": {
+    "description": "犬の名前のバリデーションメッセージ"
+  },
+  "dogBreed": "犬種",
+  "@dogBreed": {
+    "description": "犬種選択フィールドのラベル"
+  },
+  "dogBreedValidator": "犬種を選択してください",
+  "@dogBreedValidator": {
+    "description": "犬種のバリデーションメッセージ"
+  },
+  "selectDateOfBirth": "生年月日を選択",
+  "@selectDateOfBirth": {
+    "description": "生年月日選択のテキスト"
+  },
+  "dateOfBirth": "生年月日: {date}",
+  "@dateOfBirth": {
+    "description": "生年月日表示テキスト",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "age": "年齢",
+  "@age": {
+    "description": "年齢入力フィールドのラベル"
+  },
+  "gender": "性別",
+  "@gender": {
+    "description": "性別選択のタイトル"
+  },
+  "male": "オス",
+  "@male": {
+    "description": "性別：オス"
+  },
+  "female": "メス",
+  "@female": {
+    "description": "性別：メス"
+  },
+  "genderValidator": "性別を選択してください",
+  "@genderValidator": {
+    "description": "性別のバリデーションメッセージ"
+  },
+  "personality": "性格（複数選択可）",
+  "@personality": {
+    "description": "性格選択のタイトル"
+  },
+  "personalityEasygoing": "おっとり",
+  "@personalityEasygoing": {
+    "description": "性格：おっとり"
+  },
+  "personalityActive": "活発",
+  "@personalityActive": {
+    "description": "性格：活発"
+  },
+  "personalityTimid": "臆病",
+  "@personalityTimid": {
+    "description": "性格：臆病"
+  },
+  "personalitySociable": "社交的",
+  "@personalitySociable": {
+    "description": "性格：社交的"
+  },
+  "personalityAffectionate": "甘えん坊",
+  "@personalityAffectionate": {
+    "description": "性格：甘えん坊"
+  },
+  "personalityMyPace": "マイペース",
+  "@personalityMyPace": {
+    "description": "性格：マイペース"
+  },
+  "register": "登録する",
+  "@register": {
+    "description": "登録ボタンのテキスト"
+  },
+  "update": "更新する",
+  "@update": {
+    "description": "更新ボタンのテキスト"
+  },
+  "profileSaved": "プロフィールが保存されました",
+  "@profileSaved": {
+    "description": "プロフィール保存成功時のメッセージ"
+  },
+  "subscriptionSettingTitle": "プレミアムプラン",
+  "@subscriptionSettingTitle": {
+    "description": "サブスクリプション設定画面のタイトル"
+  },
+  "currentPlanPremium": "現在のプラン: プレミアムプラン",
+  "@currentPlanPremium": {
+    "description": "プレミアムユーザー向けの現在のプラン表示テキスト"
+  },
+  "currentPlanFree": "現在のプラン: 無料版",
+  "@currentPlanFree": {
+    "description": "無料ユーザー向けの現在のプラン表示テキスト"
+  },
+  "premiumPlanBenefits": "プレミアムプランのメリット",
+  "@premiumPlanBenefits": {
+    "description": "プレミアムプランのメリットセクションのタイトル"
+  },
+  "unlimitedMusicGeneration": "無制限の音楽生成",
+  "@unlimitedMusicGeneration": {
+    "description": "メリット：無制限の音楽生成"
+  },
+  "detailedAnalysisReport": "詳細な分析レポート",
+  "@detailedAnalysisReport": {
+    "description": "メリット：詳細な分析レポート"
+  },
+  "adFree": "広告非表示",
+  "@adFree": {
+    "description": "メリット：広告なし"
+  },
+  "expertCuratedContent": "専門家監修コンテンツ",
+  "@expertCuratedContent": {
+    "description": "メリット：専門家監修コンテンツ"
+  },
+  "selectPlan": "プランを選択",
+  "@selectPlan": {
+    "description": "プラン選択セクションのタイトル"
+  },
+  "continueWithFreePlan": "無料版を続ける",
+  "@continueWithFreePlan": {
+    "description": "無料版を続けるボタンのテキスト"
+  },
+  "subscriptionCancellationNote": "※ サブスクリプションはいつでもキャンセルできます",
+  "@subscriptionCancellationNote": {
+    "description": "サブスクリプションキャンセルに関する注意書き"
+  },
+  "noAvailablePlans": "利用可能なプランがありません。",
+  "@noAvailablePlans": {
+    "description": "利用可能なプランがない場合のメッセージ"
+  },
+  "signUpTitle": "新規アカウント作成",
+  "@signUpTitle": {
+    "description": "サインアップ画面のタイトル"
+  },
+  "emailAddress": "メールアドレス",
+  "@emailAddress": {
+    "description": "メールアドレス入力フィールドのラベル"
+  },
+  "password": "パスワード",
+  "@password": {
+    "description": "パスワード入力フィールドのラベル"
+  },
+  "confirmPassword": "パスワード確認",
+  "@confirmPassword": {
+    "description": "パスワード確認入力フィールドのラベル"
+  },
+  "passwordTooShortSignUp": "8文字以上のパスワードを入力してください",
+  "@passwordTooShortSignUp": {
+    "description": "サインアップ時のパスワードが短すぎるバリデーションメッセージ"
+  },
+  "passwordMismatch": "パスワードが一致しません",
+  "@passwordMismatch": {
+    "description": "パスワード確認の不一致バリデーションメッセージ"
+  },
+  "agreeToTerms": "利用規約とプライバシーポリシーに同意します",
+  "@agreeToTerms": {
+    "description": "利用規約とプライバシーポリシー同意チェックボックスのテキスト"
+  },
+  "createAccount": "アカウントを作成",
+  "@createAccount": {
+    "description": "アカウント作成ボタンのテキスト"
+  },
+  "goToLogin": "ログインはこちら",
+  "@goToLogin": {
+    "description": "ログイン画面へ移動するボタンのテキスト"
+  },
+  "accountCreationFailed": "アカウント作成に失敗しました。",
+  "@accountCreationFailed": {
+    "description": "汎用アカウント作成失敗メッセージ"
+  },
+  "emailAlreadyInUse": "このメールアドレスは既に使用されています。\nログインをお試しください。",
+  "@emailAlreadyInUse": {
+    "description": "メールアドレスが既に使用されているエラーメッセージ"
+  },
+  "weakPassword": "パスワードが弱すぎます。より強力なパスワードを設定してください。",
+  "@weakPassword": {
+    "description": "パスワードが弱すぎるエラーメッセージ"
+  },
+  "invalidEmail": "無効なメールアドレスです。",
+  "@invalidEmail": {
+    "description": "無効なメールアドレスエラーメッセージ"
+  },
+  "operationNotAllowed": "メール/パスワード認証が有効になっていません。",
+  "@operationNotAllowed": {
+    "description": "操作が許可されていないエラーメッセージ"
+  },
+  "networkRequestFailed": "ネットワークエラーが発生しました。インターネット接続を確認してください。",
+  "@networkRequestFailed": {
+    "description": "ネットワークリクエスト失敗エラーメッセージ"
+  },
+  "accountCreationFailedWithError": "アカウント作成に失敗しました: {error}",
+  "@accountCreationFailedWithError": {
+    "description": "特定のエラーメッセージ付きのアカウント作成失敗メッセージ",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordResetTitle": "パスワードの再設定",
+  "@passwordResetTitle": {
+    "description": "パスワードリセット画面のタイトル"
+  },
+  "sendPasswordResetEmail": "パスワード再設定メールを送信",
+  "@sendPasswordResetEmail": {
+    "description": "パスワード再設定メールを送信するボタンのテキスト"
+  },
+  "passwordResetEmailSent": "パスワード再設定メールを送信しました。",
+  "@passwordResetEmailSent": {
+    "description": "パスワード再設定メール送信時の成功メッセージ"
+  },
+  "passwordResetFailed": "パスワード再設定メールの送信に失敗しました。",
+  "@passwordResetFailed": {
+    "description": "汎用パスワードリセット失敗メッセージ"
+  },
+  "userNotFound": "このメールアドレスで登録されたユーザーが見つかりません。",
+  "@userNotFound": {
+    "description": "ユーザーが見つからないエラーメッセージ"
+  },
+  "tooManyRequests": "リクエストが多すぎます。しばらく時間をおいてから再試行してください。",
+  "@tooManyRequests": {
+    "description": "リクエストが多すぎるエラーメッセージ"
+  },
+  "passwordResetFailedWithError": "パスワード再設定メールの送信に失敗しました: {error}",
+  "@passwordResetFailedWithError": {
+    "description": "特定のエラーメッセージ付きのパスワードリセット失敗メッセージ",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginTitle": "ログイン",
+  "@loginTitle": {
+    "description": "ログイン画面のタイトル"
+  },
+  "login": "ログイン",
+  "@login": {
+    "description": "ログインボタンのテキスト"
+  },
+  "forgotPassword": "パスワードをお忘れですか？",
+  "@forgotPassword": {
+    "description": "パスワードを忘れた場合のボタンテキスト"
+  },
+  "goToSignUp": "新規登録はこちら",
+  "@goToSignUp": {
+    "description": "新規登録画面へ移動するボタンのテキスト"
+  },
+  "loginFailed": "ログインに失敗しました。",
+  "@loginFailed": {
+    "description": "汎用ログイン失敗メッセージ"
+  },
+  "userNotFoundLogin": "このメールアドレスで登録されたユーザーが見つかりません。\n新規登録をお試しください。",
+  "@userNotFoundLogin": {
+    "description": "ログイン時のユーザーが見つからないエラーメッセージ"
+  },
+  "wrongPassword": "パスワードが間違っています。",
+  "@wrongPassword": {
+    "description": "パスワードが間違っているエラーメッセージ"
+  },
+  "invalidCredential": "メールアドレスまたはパスワードが正しくありません。",
+  "@invalidCredential": {
+    "description": "無効な認証情報エラーメッセージ"
+  },
+  "userDisabled": "このアカウントは無効になっています。",
+  "@userDisabled": {
+    "description": "ユーザーが無効化されているエラーメッセージ"
+  },
+  "tooManyLoginAttempts": "ログイン試行回数が多すぎます。しばらく時間をおいてから再試行してください。",
+  "@tooManyLoginAttempts": {
+    "description": "ログイン試行回数が多すぎるエラーメッセージ"
+  },
+  "loginFailedWithError": "ログインに失敗しました: {error}",
+  "@loginFailedWithError": {
+    "description": "特定のエラーメッセージ付きのログイン失敗メッセージ",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "musicGenerationInProgress": "音楽生成中...",
+  "@musicGenerationInProgress": {
+    "description": "音楽生成進行中ダイアログのタイトル"
+  },
+  "aiGeneratingMusicForDog": "AIがあなたの愛犬のための音楽を生成しています。\n生成完了後、マイページで再生できます。",
+  "@aiGeneratingMusicForDog": {
+    "description": "音楽生成ダイアログの説明テキスト"
+  },
+  "planInformationFetchFailed": "プラン情報の取得に失敗しました。",
+  "@planInformationFetchFailed": {
+    "description": "プラン情報取得失敗時のエラーメッセージ"
   }
 }

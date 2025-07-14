@@ -47,7 +47,7 @@ if (!dartDefines.containsKey('appId')) {
     dartDefines['appId'] = "crelve.pawHarmonyAi.mobile.prod"
 }
 if (!dartDefines.containsKey('appName')) {
-    dartDefines['appName'] = "template"
+    dartDefines['appName'] = "pawHarmonyAi"
 }
 
 android {
