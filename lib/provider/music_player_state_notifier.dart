@@ -124,12 +124,13 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       }
 
       // URLの詳細情報をログ出力
-      logger.d('=== URL詳細情報 ===');
-      logger.d('URL長: ${url.length}');
-      logger.d('Firebase Storage URL: ${url.contains('firebase')}');
-      logger.d('Base64データ: ${url.contains('data:audio')}');
-      logger.d('WAVファイル: ${url.contains('.wav')}');
-      logger.d('MP3ファイル: ${url.contains('.mp3')}');
+      logger
+        ..d('=== URL詳細情報 ===')
+        ..d('URL長: ${url.length}')
+        ..d('Firebase Storage URL: ${url.contains('firebase')}')
+        ..d('Base64データ: ${url.contains('data:audio')}')
+        ..d('WAVファイル: ${url.contains('.wav')}')
+        ..d('MP3ファイル: ${url.contains('.mp3')}');
 
       // Firebase Storage URLの場合、ファイルをダウンロードしてから再生
       if (url.contains('firebase') && !url.contains('data:audio')) {
@@ -162,9 +163,10 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
           logger.d('Local file set successfully');
           return;
         } on Exception catch (e) {
-          logger.e('Failed to download or set local file: $e');
-          // ダウンロードに失敗した場合、直接URL再生を試行
-          logger.d('Trying direct URL playback as fallback...');
+          logger
+            ..e('Failed to download or set local file: $e')
+            // ダウンロードに失敗した場合、直接URL再生を試行
+            ..d('Trying direct URL playback as fallback...');
 
           // 直接URL再生も試行
           try {
@@ -254,10 +256,10 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
           await _audioPlayer.setUrl(reencodedUrl);
           logger.d('Reencoded URL set successfully');
         } on PlayerException catch (e2) {
-          logger.e('Player exception with reencoded URL: $e2');
-
-          // 最後の手段：ダウンロードを試行
-          logger.d('Trying download as last resort...');
+          logger
+            ..e('Player exception with reencoded URL: $e2')
+            // 最後の手段：ダウンロードを試行
+            ..d('Trying download as last resort...');
           try {
             final localFile = await _downloadAndSaveFile(processedUrl);
             await _audioPlayer.setFilePath(localFile.path);
@@ -290,11 +292,12 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
 
       // URLの妥当性をチェック
       final uri = Uri.parse(encodedUrl);
-      logger.d('Parsed URI: $uri');
-      logger.d('URI scheme: ${uri.scheme}');
-      logger.d('URI host: ${uri.host}');
-      logger.d('URI path: ${uri.path}');
-      logger.d('URI query parameters: ${uri.queryParameters}');
+      logger
+        ..d('Parsed URI: $uri')
+        ..d('URI scheme: ${uri.scheme}')
+        ..d('URI host: ${uri.host}')
+        ..d('URI path: ${uri.path}')
+        ..d('URI query parameters: ${uri.queryParameters}');
 
       // HTTPリクエストを送信（タイムアウトを設定）
       final response = await http
@@ -315,9 +318,10 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
 
       if (response.statusCode != 200) {
         // 詳細なエラー情報をログ出力
-        logger.e('HTTP Error: ${response.statusCode}');
-        logger.e('Response body: ${response.body}');
-        logger.e('Response headers: ${response.headers}');
+        logger
+          ..e('HTTP Error: ${response.statusCode}')
+          ..e('Response body: ${response.body}')
+          ..e('Response headers: ${response.headers}');
 
         // 404エラーの場合、URLを再構築して試行
         if (response.statusCode == 404) {
@@ -369,7 +373,7 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       if (e.toString().contains('timeout') ||
           e.toString().contains('connection')) {
         logger.d('Network error detected, retrying...');
-        await Future.delayed(const Duration(seconds: 2));
+        await Future<void>.delayed(const Duration(seconds: 2));
         return _downloadAndSaveFile(url);
       }
 
@@ -490,8 +494,9 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       }
 
       // 音量と速度を設定
-      _audioPlayer.setVolume(1);
-      _audioPlayer.setSpeed(1);
+      _audioPlayer
+        ..setVolume(1)
+        ..setSpeed(1);
 
       // 再生開始前に少し待機
       Future.delayed(const Duration(milliseconds: 100), () {
@@ -596,11 +601,11 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     try {
       // 一度停止してから再初期化
       await _audioPlayer.stop();
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future<void>.delayed(const Duration(milliseconds: 200));
 
       // 音量を0にしてから1に戻す
       await _audioPlayer.setVolume(0);
-      await Future.delayed(const Duration(milliseconds: 100));
+      await Future<void>.delayed(const Duration(milliseconds: 100));
       await _audioPlayer.setVolume(1);
 
       // 再生状態をリセット

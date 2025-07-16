@@ -20,7 +20,7 @@ class MusicGenerationStateNotifier
   final Ref ref;
 
   // Store the current request to use when music generation completes
-  MusicGenerationRequest? _currentRequest; // Declare as class member
+  MusicGenerationRequest? _currentRequest;
 
   /// 音楽生成メソッド
   ///

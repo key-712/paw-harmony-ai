@@ -6,12 +6,6 @@ import 'base_music_service.dart';
 
 /// 音楽生成サービスの種類
 enum MusicGenerationServiceType {
-  /// Google AI Gemini Pro
-  googleAi,
-
-  /// Web Audio API
-  webAudio,
-
   /// Magenta.js
   magenta,
 }
@@ -29,10 +23,6 @@ class MusicGenerationFactory {
   /// [serviceType] 使用する音楽生成サービスの種類
   BaseMusicService getMusicService(MusicGenerationServiceType serviceType) {
     switch (serviceType) {
-      case MusicGenerationServiceType.googleAi:
-        return ref.read(googleAiMusicServiceProvider);
-      case MusicGenerationServiceType.webAudio:
-        return ref.read(webAudioMusicServiceProvider);
       case MusicGenerationServiceType.magenta:
         return ref.read(magentaMusicServiceProvider);
     }
@@ -49,27 +39,6 @@ class MusicGenerationFactory {
     } on Exception catch (e) {
       logger.e('Magenta.jsサービスの確認に失敗', error: e);
     }
-
-    try {
-      // Google AIの確認
-      final googleService = ref.read(googleAiMusicServiceProvider);
-      if (googleService.isApiKeyValid) {
-        availableServices.add(MusicGenerationServiceType.googleAi);
-        logger.d('Google AIサービスが利用可能です');
-      }
-    } on Exception catch (e) {
-      logger.e('Google AIサービスの確認に失敗', error: e);
-    }
-
-    try {
-      // Web Audio APIの確認（常に利用可能）
-      availableServices.add(MusicGenerationServiceType.webAudio);
-      logger.d('Web Audio APIサービスが利用可能です');
-    } on Exception catch (e) {
-      logger.e('Web Audio APIサービスの確認に失敗', error: e);
-    }
-
-    logger.d('利用可能な音楽生成サービス: $availableServices');
     return availableServices;
   }
 
@@ -82,22 +51,11 @@ class MusicGenerationFactory {
       return null;
     }
 
-    // 優先順位: Magenta.js > Web Audio API > Google AI
+    // 優先順位: Magenta.js
     if (availableServices.contains(MusicGenerationServiceType.magenta)) {
       logger.d('Magenta.jsを選択しました');
       return MusicGenerationServiceType.magenta;
-    } else if (availableServices.contains(
-      MusicGenerationServiceType.webAudio,
-    )) {
-      logger.d('Web Audio APIを選択しました');
-      return MusicGenerationServiceType.webAudio;
-    } else if (availableServices.contains(
-      MusicGenerationServiceType.googleAi,
-    )) {
-      logger.d('Google AIを選択しました');
-      return MusicGenerationServiceType.googleAi;
     }
-
     return null;
   }
 
@@ -160,23 +118,6 @@ class MusicGenerationFactory {
     final config = <String, dynamic>{};
 
     switch (serviceType) {
-      case MusicGenerationServiceType.googleAi:
-        config.addAll({
-          'temperature': 1.1,
-          'top_k': 40,
-          'maxOutputTokens': 2048,
-        });
-
-      case MusicGenerationServiceType.webAudio:
-        config.addAll({
-          'bpm': 60,
-          'key': 'C',
-          'mode': 'major',
-          'instruments': ['piano', 'strings'],
-          'volume': 0.7,
-          'reverb': 0.3,
-        });
-        {}
       case MusicGenerationServiceType.magenta:
         config.addAll({
           'bpm': 60,
@@ -199,11 +140,6 @@ class MusicGenerationFactory {
   /// サービスの表示名を取得するメソッド
   String _getServiceDisplayName(MusicGenerationServiceType serviceType) {
     switch (serviceType) {
-      case MusicGenerationServiceType.googleAi:
-        return 'Google AI Gemini Pro';
-
-      case MusicGenerationServiceType.webAudio:
-        return 'Web Audio API';
       case MusicGenerationServiceType.magenta:
         return 'Magenta.js';
     }
