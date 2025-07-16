@@ -88,6 +88,18 @@
   "@japanese": {
     "description": "Japanese language option"
   },
+  "french": "French",
+  "@french": {
+    "description": "French language option"
+  },
+  "italian": "Italian",
+  "@italian": {
+    "description": "Italian language option"
+  },
+  "spanish": "Spanish",
+  "@spanish": {
+    "description": "Spanish language option"
+  },
   "languageSettingSuccess": "Language settings have been changed",
   "@languageSettingSuccess": {
     "description": "Success message when language is changed"

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,6 +42,17 @@ Future<void> main() async {
     MobileAds.instance.initialize(),
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge),
   ]);
+
+  // just_audioプラグインの初期化（エラーハンドリング付き）
+  try {
+    final testPlayer = AudioPlayer();
+    await testPlayer.dispose();
+  } on Exception catch (e) {
+    logger
+      ..e('just_audio plugin initialization failed: $e')
+      // プラグイン初期化に失敗した場合の代替処理
+      ..w('Audio functionality may be limited');
+  }
 
   // アプリの起動
   final container = ProviderContainer(

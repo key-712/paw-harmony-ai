@@ -40,9 +40,6 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
     );
     final htmlContentSnapshot = useFuture(htmlContentFuture);
 
-    // WebViewコントローラーの初期化
-    final webViewController = useMemoized(WebViewController.new);
-
     ref.listen<AsyncValue<MusicGenerationHistory?>>(
       musicGenerationStateNotifierProvider,
       (_, state) {
@@ -169,9 +166,10 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: ThemeText(
-                    text: purchaseState.isSubscribed
-                        ? l10n.generationsUnlimited
-                        : l10n.generationsLeft(3, l10n.freePlan), // 仮の回数
+                    text:
+                        purchaseState.isSubscribed
+                            ? l10n.generationsUnlimited
+                            : l10n.generationsLeft(3, l10n.freePlan), // 仮の回数
                     color: theme.appColors.grey,
                     style: theme.textTheme.h30.copyWith(fontSize: 14),
                   ),
@@ -181,7 +179,8 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                   text: l10n.generateMusic,
                   screen: 'ai_music_generate_screen',
                   width: double.infinity,
-                  isDisabled: selectedScene.value == null ||
+                  isDisabled:
+                      selectedScene.value == null ||
                       selectedCondition.value == null ||
                       !(purchaseState.isSubscribed ||
                           // ignore: lines_longer_than_80_chars
@@ -215,28 +214,23 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                       context: context,
                       barrierDismissible: false,
                       builder: (BuildContext dialogContext) {
+                        // ダイアログごとに新しいWebViewControllerを生成
+                        final webViewController = WebViewController();
                         logger.d('ダイアログビルダーが呼び出されました');
                         return MusicGenerationWebViewDialog(
                           controller: webViewController,
                           htmlContent:
                               htmlContentSnapshot.data!, // Pass htmlContent
                           onWebViewCreated: (controller) {
-                            logger.d('WebViewが作成されました');
-                            // WebViewが作成されたら少し待ってから音楽生成を開始
-                            Future.delayed(
-                              const Duration(milliseconds: 500),
-                              () {
-                                if (isDialogShowing.value) {
-                                  logger.d('音楽生成を開始します');
-                                  ref
-                                      .read(
-                                        musicGenerationStateNotifierProvider
-                                            .notifier,
-                                      )
-                                      .generateMusic(request, controller);
-                                }
-                              },
-                            );
+                            logger.d('WebViewの準備が完了しました。音楽生成を開始します。');
+                            if (isDialogShowing.value) {
+                              ref
+                                  .read(
+                                    musicGenerationStateNotifierProvider
+                                        .notifier,
+                                  )
+                                  .generateMusic(request, controller);
+                            }
                           },
                         );
                       },

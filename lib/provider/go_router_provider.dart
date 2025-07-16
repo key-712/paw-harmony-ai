@@ -10,9 +10,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final prefs = ref.watch(sharedPreferencesProvider);
   final isInitialLaunch =
       prefs.getBool(SharedPreferencesKeys.initialLaunchKey) ?? true;
-  if (isInitialLaunch) {
-    prefs.setBool(SharedPreferencesKeys.initialLaunchKey, false);
-  }
+
+  // 初回起動時の初期ロケーションを設定
   final initialLocation =
       isInitialLaunch
           ? const WalkThroughRoute().location
@@ -47,10 +46,23 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         return null; // それ以外の画面へのリダイレクトは一時停止
       }
 
-      // ウォークスルーがまだ表示されていない場合、ウォークスルーへ
-      // ただし、既にウォークスルー画面にいる場合はリダイレクトしない
-      if (isInitialLaunch && currentPath != const WalkThroughRoute().location) {
-        return const WalkThroughRoute().location;
+      // 初回起動時の処理
+      if (isInitialLaunch) {
+        // 初回起動時は、ウォークスルー画面以外の画面にアクセスしようとした場合、
+        // ウォークスルー画面にリダイレクト
+        if (currentPath != const WalkThroughRoute().location) {
+          return const WalkThroughRoute().location;
+        }
+        // ウォークスルー画面にいる場合は何もしない
+        return null;
+      }
+
+      // 初回起動以外の場合、ウォークスルー画面へのアクセスを禁止
+      if (currentPath == const WalkThroughRoute().location) {
+        // ログイン済みの場合はベース画面へ、未ログインの場合はログイン画面へ
+        return ref.watch(isLoggedInProvider)
+            ? const BaseScreenRoute().location
+            : const LoginScreenRoute().location;
       }
 
       // ログイン状態のチェック
@@ -71,9 +83,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         }
 
         // ログイン済みでプロフィール登録済みの場合
-        // ログイン関連画面やウォークスルー画面にいる場合はBaseScreenRouteへリダイレクト
-        if (isGoingToLoginRelated ||
-            currentPath == const WalkThroughRoute().location) {
+        // ログイン関連画面にいる場合はBaseScreenRouteへリダイレクト
+        if (isGoingToLoginRelated) {
           return const BaseScreenRoute().location;
         }
       }

@@ -13,6 +13,7 @@ export '../component/dialog/music_generation_webview_dialog.dart';
 export '../component/dialog/rating_dialog.dart';
 export '../component/dialog/two_button_dialog.dart';
 export '../component/form/custom_text_form_field.dart';
+export '../component/form/password_text_form_field.dart';
 export '../component/header/back_icon_header.dart';
 export '../component/header/base_header.dart';
 export '../component/header/icon_actions_header.dart';

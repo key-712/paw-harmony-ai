@@ -75,10 +75,9 @@ class SignUpScreen extends HookConsumerWidget {
                   return null;
                 },
               ),
-              TextFormField(
+              PasswordTextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(labelText: l10n.password),
-                obscureText: true,
+                labelText: l10n.password,
                 validator: (value) {
                   if (value == null || value.length < 8) {
                     return l10n.passwordTooShortSignUp;
@@ -86,10 +85,9 @@ class SignUpScreen extends HookConsumerWidget {
                   return null;
                 },
               ),
-              TextFormField(
+              PasswordTextFormField(
                 controller: confirmPasswordController,
-                decoration: InputDecoration(labelText: l10n.confirmPassword),
-                obscureText: true,
+                labelText: l10n.confirmPassword,
                 validator: (value) {
                   if (value != passwordController.text) {
                     return l10n.passwordMismatch;

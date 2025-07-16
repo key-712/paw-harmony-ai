@@ -84,10 +84,9 @@ class LoginScreen extends HookConsumerWidget {
                   return null;
                 },
               ),
-              TextFormField(
+              PasswordTextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(labelText: l10n.password),
-                obscureText: true,
+                labelText: l10n.password,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return l10n.passwordRequired;

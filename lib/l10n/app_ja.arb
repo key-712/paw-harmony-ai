@@ -88,6 +88,18 @@
   "@japanese": {
     "description": "日本語言語オプション"
   },
+  "french": "フランス語",
+  "@french": {
+    "description": "フランス語言語オプション"
+  },
+  "italian": "イタリア語",
+  "@italian": {
+    "description": "イタリア語言語オプション"
+  },
+  "spanish": "スペイン語",
+  "@spanish": {
+    "description": "スペイン語言語オプション"
+  },
   "languageSettingSuccess": "言語設定を変更しました",
   "@languageSettingSuccess": {
     "description": "言語変更時の成功メッセージ"

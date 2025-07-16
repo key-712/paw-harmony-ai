@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../import/component.dart';
 import '../../import/provider.dart';
 import '../../import/theme.dart';
+import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 音楽再生画面のウィジェット
@@ -34,9 +35,19 @@ class MusicPlayerScreen extends HookConsumerWidget {
     final selectedTags = useState<List<String>>([]);
     final commentController = useTextEditingController();
 
-    Future.microtask(() {
+    Future.microtask(() async {
       if (!context.mounted) return;
-      playerNotifier.setUrl(musicUrl, context);
+      try {
+        await playerNotifier.setUrl(musicUrl, context);
+      } on Exception catch (e) {
+        logger.e('音楽の再生に失敗しました。アプリを再起動してください。', error: e);
+        if (!context.mounted) return;
+        showSnackBar(
+          context: context,
+          theme: theme,
+          text: '音楽の再生に失敗しました。アプリを再起動してください。',
+        );
+      }
     });
 
     return Scaffold(

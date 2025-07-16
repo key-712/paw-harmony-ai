@@ -44,7 +44,13 @@ class App extends HookConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('ja'), Locale('en')],
+      supportedLocales: const [
+        Locale('ja'),
+        Locale('en'),
+        Locale('fr'),
+        Locale('it'),
+        Locale('es'),
+      ],
     );
   }
 }

@@ -86,6 +86,96 @@ class LanguageSettingScreen extends HookConsumerWidget {
                     });
                   },
                 ),
+                ListTile(
+                  title: ThemeText(
+                    text: l10n.french,
+                    style: theme.textTheme.h40,
+                    color:
+                        locale == const Locale('fr')
+                            ? theme.appColors.black
+                            : theme.appColors.grey,
+                  ),
+                  trailing:
+                      locale == const Locale('fr')
+                          ? Icon(Icons.check, color: theme.appColors.primary)
+                          : null,
+                  onTap: () {
+                    localeNotifier.locale = const Locale('fr');
+                    Navigator.pop(context);
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      if (context.mounted) {
+                        showSnackBar(
+                          context: context,
+                          theme: theme,
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.languageSettingSuccess,
+                        );
+                      }
+                    });
+                  },
+                ),
+                ListTile(
+                  title: ThemeText(
+                    text: l10n.italian,
+                    style: theme.textTheme.h40,
+                    color:
+                        locale == const Locale('it')
+                            ? theme.appColors.black
+                            : theme.appColors.grey,
+                  ),
+                  trailing:
+                      locale == const Locale('it')
+                          ? Icon(Icons.check, color: theme.appColors.primary)
+                          : null,
+                  onTap: () {
+                    localeNotifier.locale = const Locale('it');
+                    Navigator.pop(context);
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      if (context.mounted) {
+                        showSnackBar(
+                          context: context,
+                          theme: theme,
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.languageSettingSuccess,
+                        );
+                      }
+                    });
+                  },
+                ),
+                ListTile(
+                  title: ThemeText(
+                    text: l10n.spanish,
+                    style: theme.textTheme.h40,
+                    color:
+                        locale == const Locale('es')
+                            ? theme.appColors.black
+                            : theme.appColors.grey,
+                  ),
+                  trailing:
+                      locale == const Locale('es')
+                          ? Icon(Icons.check, color: theme.appColors.primary)
+                          : null,
+                  onTap: () {
+                    localeNotifier.locale = const Locale('es');
+                    Navigator.pop(context);
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      if (context.mounted) {
+                        showSnackBar(
+                          context: context,
+                          theme: theme,
+                          text:
+                              AppLocalizations.of(
+                                context,
+                              )!.languageSettingSuccess,
+                        );
+                      }
+                    });
+                  },
+                ),
               ],
             ),
           ),
