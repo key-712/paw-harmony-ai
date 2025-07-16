@@ -44,10 +44,6 @@ class MusicGenerationStateNotifier
       // 音楽生成ファクトリーを取得
       final musicFactory = ref.read(musicGenerationFactoryProvider);
 
-      // 利用可能なサービスを確認
-      final availableServices = await musicFactory.getAvailableServices();
-      logger.d('利用可能な音楽生成サービス: $availableServices');
-
       // 犬の情報を基にプロンプトを生成
       final prompt = _generatePromptFromRequest(request);
 
