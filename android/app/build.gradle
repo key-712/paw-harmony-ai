@@ -44,14 +44,14 @@ if (project.hasProperty('dart-defines')) {
 
 // デフォルト値の設定
 if (!dartDefines.containsKey('appId')) {
-    dartDefines['appId'] = "crelve.pawHarmonyAi.mobile.prod"
+    dartDefines['appId'] = "crelve.paw.harmony.ai.mobile.prod"
 }
 if (!dartDefines.containsKey('appName')) {
-    dartDefines['appName'] = "pawHarmonyAi"
+    dartDefines['appName'] = "paw.harmony.ai"
 }
 
 android {
-    namespace "crelve.pawHarmonyAi.mobile.prod"
+    namespace "crelve.paw.harmony.ai.mobile.prod"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 

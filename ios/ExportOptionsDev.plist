@@ -10,8 +10,8 @@
 	<string>ad-hoc</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>crelve.pawHarmonyAi.mobile.dev</key>
-		<string>match AdHoc crelve.pawHarmonyAi.mobile.dev</string>
+		<key>crelve.paw.harmony.ai.mobile.dev</key>
+		<string>match AdHoc crelve.paw.harmony.ai.mobile.dev</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>

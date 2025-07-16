@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>pawHarmonyAi</string>
+	<string>paw.harmony.ai</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -20,7 +20,7 @@
 		<string>ja</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>pawHarmonyAi</string>
+	<string>paw.harmony.ai</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -36,7 +36,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>crelve.pawHarmonyAi.mobile$(appIdSuffix)</string>
+				<string>crelve.paw.harmony.ai.mobile$(appIdSuffix)</string>
 				<string>$(customUrlScheme)</string>
 			</array>
 		</dict>

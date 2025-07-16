@@ -7,7 +7,7 @@ MATCH_KEYCHAIN_PASSWORD ?=
 MATCH_PASSWORD ?= 
 
 FIREBASE_PROJECT_ID=crelve-paw-harmony-ai
-APP_ID=crelve.pawHarmonyAi.mobile
+APP_ID=crelve.paw.harmony.ai.mobile
 PREVIOUS_FLAVOR := $(shell cat previous_flavor.txt)
 
 test:
