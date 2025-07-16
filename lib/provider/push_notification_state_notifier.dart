@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../import/provider.dart';
-import '../../../import/type.dart';
-import '../../../import/utility.dart';
 import '../import/component.dart';
+import '../import/provider.dart';
 import '../import/theme.dart';
-import 'firebase_messaging_service.dart';
+import '../import/type.dart';
+import '../import/utility.dart';
 
 /// プッシュ通知関連の状態管理対象データの更新通知を管理するプロバイダ
 final AutoDisposeStateNotifierProvider<
@@ -96,14 +95,10 @@ class PushNotificationStateNotifier
       );
     } else {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: ThemeText(
-              text: '通知が許可されていません。',
-              style: theme.textTheme.h30,
-              color: theme.appColors.black,
-            ),
-          ),
+        showAlertSnackBar(
+          context: context,
+          theme: theme,
+          text: '通知が許可されていません。',
         );
       }
     }

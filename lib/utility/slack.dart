@@ -12,11 +12,10 @@ Future<void> sendToSlack({
   required String subject,
   required String content,
 }) async {
-  final localizations = AppLocalizations.of(context)!;
+  final l10n = AppLocalizations.of(context)!;
 
   final payload = <String, dynamic>{
-    'text':
-        '確認！\nアプリ名: ${localizations.productName}\n件名: $subject\n内容: $content',
+    'text': l10n.slackMessage(l10n.productName, subject, content),
   };
   final response = await http.post(
     Uri.parse(Env.slackWebhookUrl),

@@ -40,7 +40,7 @@ class App extends HookConsumerWidget {
       },
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
-      title: AppLocalizations.of(context)?.productName ?? 'Default Title',
+      title: AppLocalizations.of(context)?.productName ?? 'Paw Harmony AI',
       theme: theme.data,
       darkTheme: AppTheme.dark(mediaQuery).data,
       themeMode: themeMode,
@@ -54,6 +54,9 @@ class App extends HookConsumerWidget {
       supportedLocales: const [
         Locale('ja'),
         Locale('en'),
+        Locale('fr'),
+        Locale('it'),
+        Locale('es'),
       ],
     );
   }

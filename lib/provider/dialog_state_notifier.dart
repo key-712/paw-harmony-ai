@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../import/component.dart';
 import '../import/model.dart';
 import '../import/utility.dart';
@@ -8,8 +10,8 @@ import '../import/utility.dart';
 /// ダイアログの表示非表示の変更の通知を管理するプロバイダ
 final dialogStateNotifierProvider =
     StateNotifierProvider<DialogStateNotifier, bool>(
-  (ref) => DialogStateNotifier(),
-);
+      (ref) => DialogStateNotifier(),
+    );
 
 /// ダイアログの表示非表示の変更を通知するクラス
 class DialogStateNotifier extends StateNotifier<bool> {
@@ -18,7 +20,7 @@ class DialogStateNotifier extends StateNotifier<bool> {
 
   /// ダイアログを閉じます
   void hideDialog({required BuildContext context}) {
-    if (Navigator.of(context).canPop()) Navigator.of(context).pop();
+    if (Navigator.of(context).canPop()) GoRouter.of(context).pop();
   }
 
   /// 閉じるボタンのみあるダイアログを表示します
@@ -101,12 +103,14 @@ class DialogStateNotifier extends StateNotifier<bool> {
     VoidCallback? callback,
     required BuildContext context,
   }) {
+    final l10n = AppLocalizations.of(context)!;
     logger.e(error.toString());
-    final isBarrierDismissible = error.type != AppErrorType.unauthorized &&
+    final isBarrierDismissible =
+        error.type != AppErrorType.unauthorized &&
         error.type != AppErrorType.version;
     showActionDialog(
       screen: screen,
-      title: error.type.title,
+      title: error.type.getTitle(l10n),
       content: error.message,
       buttonLabel: 'OK',
       barrierDismissible: isBarrierDismissible,
@@ -124,10 +128,7 @@ class DialogStateNotifier extends StateNotifier<bool> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return RatingDialog(
-          screen: screen,
-          text: text,
-        );
+        return RatingDialog(screen: screen, text: text);
       },
     );
   }

@@ -29,10 +29,10 @@ Future<bool> hasRatingDialogShown({required WidgetRef ref}) async {
 
 /// 日付を "MM月dd日" の形式にフォーマット
 String formattedDate({required BuildContext context, required DateTime date}) {
-  final localizations = AppLocalizations.of(context)!;
-  final month = DateFormat.MMM(localizations.localeName).format(date);
+  final l10n = AppLocalizations.of(context)!;
+  final month = DateFormat.MMM(l10n.localeName).format(date);
   final day = date.day;
-  return localizations.formattedDate(month, day);
+  return l10n.formattedDate(month, day);
 }
 
 /// 日付を "yyyy/MM/dd" の形式にフォーマット

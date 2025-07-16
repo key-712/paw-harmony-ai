@@ -6,8 +6,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final localeProvider = StateProvider<Locale?>((ref) {
   // デバイスのロケールを取得して、初期ロケールを設定
   final deviceLocale = PlatformDispatcher.instance.locale;
-  if (deviceLocale.languageCode == 'ja') {
+  final languageCode = deviceLocale.languageCode;
+
+  if (languageCode == 'ja') {
     return const Locale('ja');
+  } else if (languageCode == 'fr') {
+    return const Locale('fr');
+  } else if (languageCode == 'it') {
+    return const Locale('it');
+  } else if (languageCode == 'es') {
+    return const Locale('es');
   }
   return const Locale('en');
 });

@@ -1,6 +1,4 @@
-# project-template
-
-プロジェクトのテンプレート
+# crelve-paw-harmony-ai
 
 ## 技術スタック
 

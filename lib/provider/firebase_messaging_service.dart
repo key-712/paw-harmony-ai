@@ -27,7 +27,7 @@ class FirebaseMessagingService {
     required BuildContext context,
     required WidgetRef ref,
   }) async {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
 
     if (title.isEmpty || body.isEmpty || token.isEmpty) {
       logger.e('無効な引数: title, body, または token が空です');
@@ -52,9 +52,9 @@ class FirebaseMessagingService {
       if (context.mounted) {
         await dialogStateNotifier.showActionDialog(
           screen: 'FCM通知',
-          title: localizations.error,
+          title: l10n.error,
           content: e.toString(),
-          buttonLabel: localizations.close,
+          buttonLabel: l10n.close,
           barrierDismissible: false,
           callback: () {},
           context: context,

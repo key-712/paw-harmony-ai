@@ -1,92 +1,1114 @@
 {
   "@@locale": "en",
   "productName": "productName",
+  "@productName": {
+    "description": "The name of the product/app"
+  },
   "welcomeMessage": "Welcome to {productName}!",
+  "@welcomeMessage": {
+    "description": "Welcome message shown on the welcome screen"
+  },
   "descriptionMessage": "",
+  "@descriptionMessage": {
+    "description": "Description message for the app"
+  },
   "mainIntroductionScreen": "",
+  "@mainIntroductionScreen": {
+    "description": "Title for the main introduction screen"
+  },
   "mainIntroductionContent": "",
+  "@mainIntroductionContent": {
+    "description": "Content for the main introduction screen"
+  },
   "serviceBeginScreen": "",
+  "@serviceBeginScreen": {
+    "description": "Title for the service begin screen"
+  },
   "serviceBeginContent": "",
+  "@serviceBeginContent": {
+    "description": "Content for the service begin screen"
+  },
   "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up button text"
+  },
   "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
   "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
   "skip": "Skip",
+  "@skip": {
+    "description": "Skip button text"
+  },
   "next": "Next",
+  "@next": {
+    "description": "Next button text"
+  },
   "edit": "Edit",
+  "@edit": {
+    "description": "Edit button text"
+  },
   "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
   "send": "Send",
+  "@send": {
+    "description": "Send button text"
+  },
   "search": "Search",
+  "@search": {
+    "description": "Search button text"
+  },
   "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications menu item"
+  },
   "profile": "Profile",
+  "@profile": {
+    "description": "Profile menu item"
+  },
   "setting": "Settings",
+  "@setting": {
+    "description": "Settings menu item"
+  },
   "languageSetting": "Language Settings",
+  "@languageSetting": {
+    "description": "Language settings screen title"
+  },
   "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
   "japanese": "Japanese",
+  "@japanese": {
+    "description": "Japanese language option"
+  },
+  "french": "French",
+  "@french": {
+    "description": "French language option"
+  },
+  "italian": "Italian",
+  "@italian": {
+    "description": "Italian language option"
+  },
+  "spanish": "Spanish",
+  "@spanish": {
+    "description": "Spanish language option"
+  },
   "languageSettingSuccess": "Language settings have been changed",
+  "@languageSettingSuccess": {
+    "description": "Success message when language is changed"
+  },
   "pushNotification": "Push Notifications",
+  "@pushNotification": {
+    "description": "Push notification settings"
+  },
   "onPushNotification": "Enable Push Notifications",
+  "@onPushNotification": {
+    "description": "Enable push notifications button"
+  },
   "onPushNotificationDenied": "Push notifications from {productName} are not allowed",
+  "@onPushNotificationDenied": {
+    "description": "Message when push notifications are denied"
+  },
   "onPushNotificationContent": "To enable push notifications, please allow \"Notifications\" in the settings.",
+  "@onPushNotificationContent": {
+    "description": "Instructions for enabling push notifications"
+  },
   "onPushNotificationContent2": "When you turn on the setting, you'll be able to receive push notifications.",
+  "@onPushNotificationContent2": {
+    "description": "Additional instructions for push notifications"
+  },
   "ratingContent": "How do you like the app?",
+  "@ratingContent": {
+    "description": "App rating question"
+  },
   "ratingContent2": "Tap the stars to rate the app.",
+  "@ratingContent2": {
+    "description": "Instructions for rating the app"
+  },
   "ratingSent": "Rating sent",
+  "@ratingSent": {
+    "description": "Success message when rating is sent"
+  },
   "recommendApp": "Recommended Apps",
+  "@recommendApp": {
+    "description": "Recommended apps screen title"
+  },
   "contact": "Contact Us",
+  "@contact": {
+    "description": "Contact us menu item"
+  },
   "premiumFeature": "Premium Features",
-  "frequentlyAskedQuestions": "FAQ",
-  "currentlyCreating": "Under Development",
-  "currentlyCreatingContent": "Please wait a moment",
+  "@premiumFeature": {
+    "description": "Premium features section"
+  },
   "legal": "Terms of Service",
+  "@legal": {
+    "description": "Terms of service menu item"
+  },
   "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy menu item"
+  },
   "contactContentForm": "Please enter your inquiry in the form below",
+  "@contactContentForm": {
+    "description": "Contact form instructions"
+  },
   "contactContent": "Inquiry Content",
+  "@contactContent": {
+    "description": "Contact content field label"
+  },
   "subject": "Subject",
+  "@subject": {
+    "description": "Subject field label"
+  },
   "sendSuccess": "Your inquiry has been sent",
+  "@sendSuccess": {
+    "description": "Success message when contact form is sent"
+  },
   "request": "Feedback & Requests",
+  "@request": {
+    "description": "Feedback and requests menu item"
+  },
   "content": "Feedback & Request Content",
+  "@content": {
+    "description": "Feedback content field label"
+  },
   "requestForm": "Please enter your feedback or request in the form below",
+  "@requestForm": {
+    "description": "Feedback form instructions"
+  },
   "sendSuccessRequest": "Your feedback or request has been sent",
+  "@sendSuccessRequest": {
+    "description": "Success message when feedback is sent"
+  },
   "error": "An Error Occurred",
+  "@error": {
+    "description": "Generic error message"
+  },
   "networkError": "Network Error",
+  "@networkError": {
+    "description": "Network error message"
+  },
   "checkConnection": "Check Internet Connection",
+  "@checkConnection": {
+    "description": "Check internet connection message"
+  },
   "skipWithoutRegister": "Start without registration",
+  "@skipWithoutRegister": {
+    "description": "Skip registration option"
+  },
   "review": "Review {productName}",
+  "@review": {
+    "description": "Review app option"
+  },
   "share": "Share {productName}",
+  "@share": {
+    "description": "Share app option"
+  },
   "shareMessage": "Share {productName} with everyone! {appLink}",
+  "@shareMessage": {
+    "description": "Share message template"
+  },
   "formattedDate": "{month} {date}",
+  "@formattedDate": {
+    "description": "Formatted date display"
+  },
   "sunday": "Sun",
+  "@sunday": {
+    "description": "Sunday abbreviation"
+  },
   "monday": "Mon",
+  "@monday": {
+    "description": "Monday abbreviation"
+  },
   "tuesday": "Tue",
+  "@tuesday": {
+    "description": "Tuesday abbreviation"
+  },
   "wednesday": "Wed",
+  "@wednesday": {
+    "description": "Wednesday abbreviation"
+  },
   "thursday": "Thu",
+  "@thursday": {
+    "description": "Thursday abbreviation"
+  },
   "friday": "Fri",
+  "@friday": {
+    "description": "Friday abbreviation"
+  },
   "saturday": "Sat",
+  "@saturday": {
+    "description": "Saturday abbreviation"
+  },
   "writeReview": "Write a Review",
+  "@writeReview": {
+    "description": "Write review button"
+  },
   "rate": "Rate",
+  "@rate": {
+    "description": "Rate button"
+  },
   "notRate": "Skip Rating",
+  "@notRate": {
+    "description": "Skip rating option"
+  },
   "emailRequired": "Please enter your email address",
+  "@emailRequired": {
+    "description": "Email required validation message"
+  },
   "emailInvalid": "Please enter a valid email address",
+  "@emailInvalid": {
+    "description": "Invalid email validation message"
+  },
   "emailTooLong": "Email address must be within 64 characters",
+  "@emailTooLong": {
+    "description": "Email too long validation message"
+  },
   "passwordRequired": "Please enter your password",
+  "@passwordRequired": {
+    "description": "Password required validation message"
+  },
   "passwordTooShort": "Password must be at least 6 characters",
+  "@passwordTooShort": {
+    "description": "Password too short validation message"
+  },
   "passwordTooLong": "Password must be within 40 characters",
+  "@passwordTooLong": {
+    "description": "Password too long validation message"
+  },
   "passwordInvalidCharacters": "Password must contain only alphanumeric characters and symbols (_-.)",
+  "@passwordInvalidCharacters": {
+    "description": "Invalid password characters validation message"
+  },
   "networkErrorContent": "Could not connect to the network.\nPlease check your connection.",
+  "@networkErrorContent": {
+    "description": "Network error content message"
+  },
   "errorContent": "The operation could not be completed.\nPlease try again.",
+  "@errorContent": {
+    "description": "Generic error content message"
+  },
   "sessionTimeout": "Session timed out.\nPlease log in again.",
+  "@sessionTimeout": {
+    "description": "Session timeout message"
+  },
   "connectionTimeout": "Connection timed out.\nPlease check your network connection and try again.",
+  "@connectionTimeout": {
+    "description": "Connection timeout message"
+  },
   "receiveTimeout": "Data reception timed out.\nPlease check your network connection and try again.",
+  "@receiveTimeout": {
+    "description": "Receive timeout message"
+  },
   "sendTimeout": "Data transmission timed out.\nPlease check your network connection and try again.",
+  "@sendTimeout": {
+    "description": "Send timeout message"
+  },
   "badCertificate": "There is a problem with the certificate and secure communication cannot be established.\nPlease check your connection and verify the server address.",
+  "@badCertificate": {
+    "description": "Bad certificate error message"
+  },
   "serverError": "A server error occurred.\nPlease try again later.",
+  "@serverError": {
+    "description": "Server error message"
+  },
   "badRequest": "The request is invalid.\nCurrently, the request cannot be processed.\nPlease try again later.",
+  "@badRequest": {
+    "description": "Bad request error message"
+  },
   "internalServerError": "An internal server error occurred.\nCurrently, the request cannot be processed.\nPlease try again later.",
+  "@internalServerError": {
+    "description": "Internal server error message"
+  },
   "badGateway": "The server returned an invalid response.\nPlease try again later.",
+  "@badGateway": {
+    "description": "Bad gateway error message"
+  },
   "serviceUnavailable": "The service is temporarily unavailable.\nPlease try again later.",
+  "@serviceUnavailable": {
+    "description": "Service unavailable error message"
+  },
   "gatewayTimeout": "A timeout occurred.\nThe server is not responding.\nPlease try again later.",
+  "@gatewayTimeout": {
+    "description": "Gateway timeout error message"
+  },
   "upgradeRequired": "A new version is available.\nPlease update.",
+  "@upgradeRequired": {
+    "description": "Upgrade required message"
+  },
   "tooManyRequests": "The request limit has been exceeded.\nPlease try again later.",
+  "@tooManyRequests": {
+    "description": "Too many requests error message"
+  },
   "actionCanceled": "The action was canceled.\nThe requested operation was not executed.\nIf you want to continue, please try again.",
-  "unexpectedError": "An unexpected error occurred"
+  "@actionCanceled": {
+    "description": "Action canceled message"
+  },
+  "unexpectedError": "An unexpected error occurred",
+  "@unexpectedError": {
+    "description": "Unexpected error message"
+  },
+  "playerList": "Music List",
+  "@playerList": {
+    "description": "Music list screen title"
+  },
+  "addPlayer": "Add Dog",
+  "@addPlayer": {
+    "description": "Add dog button text"
+  },
+  "recommendAppNameMinesweeper": "Minesweeper Quest",
+  "@recommendAppNameMinesweeper": {
+    "description": "Minesweeper app name"
+  },
+  "recommendAppDescriptionMinesweeper": "The definitive version of Minesweeper.\nEnjoyable for beginners to advanced players.",
+  "@recommendAppDescriptionMinesweeper": {
+    "description": "Minesweeper app description"
+  },
+  "recommendAppNameSudoku": "Sudoku Quest",
+  "@recommendAppNameSudoku": {
+    "description": "Sudoku app name"
+  },
+  "recommendAppDescriptionSudoku": "The definitive version of the Sudoku app.\nEnjoyable for beginners to advanced players.",
+  "@recommendAppDescriptionSudoku": {
+    "description": "Sudoku app description"
+  },
+  "recommendAppNameScience": "BeStudy Junior High School Science",
+  "@recommendAppNameScience": {
+    "description": "Science app name"
+  },
+  "recommendAppDescriptionScience": "A science learning app for junior high school students.\nCompletely covers physics, chemistry, biology, and earth science.",
+  "@recommendAppDescriptionScience": {
+    "description": "Science app description"
+  },
+  "recommendAppNameMath": "BeStudy Junior High School Math",
+  "@recommendAppNameMath": {
+    "description": "Math app name"
+  },
+  "recommendAppDescriptionMath": "A math learning app for junior high school students.\nCovers everything from basics to applications.",
+  "@recommendAppDescriptionMath": {
+    "description": "Math app description"
+  },
+  "recommendAppNameEnglish": "BeStudy Junior High School English",
+  "@recommendAppNameEnglish": {
+    "description": "English app name"
+  },
+  "recommendAppDescriptionEnglish": "An English learning app for junior high school students.\nYou can learn everything from vocabulary to grammar.",
+  "@recommendAppDescriptionEnglish": {
+    "description": "English app description"
+  },
+  "recommendAppNameSocialStudies": "BeStudy Junior High School Social Studies",
+  "@recommendAppNameSocialStudies": {
+    "description": "Social studies app name"
+  },
+  "recommendAppDescriptionSocialStudies": "A social studies learning app for junior high school students.\nPerfect for learning geography, history, and civics.",
+  "@recommendAppDescriptionSocialStudies": {
+    "description": "Social studies app description"
+  },
+  "recommendAppNameKanji": "BeStudy Junior High School Kanji",
+  "@recommendAppNameKanji": {
+    "description": "Kanji app name"
+  },
+  "recommendAppDescriptionKanji": "A kanji learning app for junior high school students.\nAlso useful for Kanji Kentei preparation.",
+  "@recommendAppDescriptionKanji": {
+    "description": "Kanji app description"
+  },
+  "recommendAppNameHighSchoolSocialStudies": "NowStudy High School Social Studies",
+  "@recommendAppNameHighSchoolSocialStudies": {
+    "description": "High school social studies app name"
+  },
+  "recommendAppDescriptionHighSchoolSocialStudies": "A social studies learning app for high school students.\nPerfect for learning Japanese and world history.",
+  "@recommendAppDescriptionHighSchoolSocialStudies": {
+    "description": "High school social studies app description"
+  },
+  "nowPlaying": "Now Playing",
+  "@nowPlaying": {
+    "description": "Now playing screen title"
+  },
+  "relaxSound": "Relax Sound",
+  "@relaxSound": {
+    "description": "Relax sound section title"
+  },
+  "setPlaybackTimer": "Set Playback Timer",
+  "@setPlaybackTimer": {
+    "description": "Set playback timer button"
+  },
+  "timerSet": "Timer: Stop after {duration}",
+  "@timerSet": {
+    "description": "Timer set message with duration"
+  },
+  "rateDogReaction": "Rate your dog's reaction",
+  "@rateDogReaction": {
+    "description": "Rate dog reaction section title"
+  },
+  "stoppedBarking": "Stopped barking",
+  "@stoppedBarking": {
+    "description": "Dog stopped barking option"
+  },
+  "calmedDownAndSlept": "Calmed down and slept",
+  "@calmedDownAndSlept": {
+    "description": "Dog calmed down and slept option"
+  },
+  "restless": "Restless",
+  "@restless": {
+    "description": "Dog restless option"
+  },
+  "breathingBecameCalm": "Breathing became calm",
+  "@breathingBecameCalm": {
+    "description": "Dog breathing became calm option"
+  },
+  "commentOptional": "Comment (optional)",
+  "@commentOptional": {
+    "description": "Optional comment field label"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Send feedback button"
+  },
+  "feedbackUnderDevelopment": "Feedback feature is currently under development.",
+  "@feedbackUnderDevelopment": {
+    "description": "Feedback under development message"
+  },
+  "off": "Off",
+  "@off": {
+    "description": "Off state text"
+  },
+  "minutes": "{minutes} min",
+  "@minutes": {
+    "description": "Minutes format"
+  },
+  "hours": "{hours}h",
+  "@hours": {
+    "description": "Hours format"
+  },
+  "continuousPlayback": "Continuous Playback",
+  "@continuousPlayback": {
+    "description": "Continuous playback option"
+  },
+  "updateNotice": "Update Notice",
+  "@updateNotice": {
+    "description": "Update notice title"
+  },
+  "updateAvailable": "A new version of the app is available.\nYou need to update to continue.",
+  "@updateAvailable": {
+    "description": "Update available message"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button text"
+  },
+  "slackMessage": "Confirmation!\nAppName: {appName}\nSubject: {subject}\nContent: {content}",
+  "@slackMessage": {
+    "description": "Slack message template"
+  },
+  "baseScreen": "Base Screen",
+  "@baseScreen": {
+    "description": "Base screen label"
+  },
+  "settingScreen": "Setting Screen",
+  "@settingScreen": {
+    "description": "Setting screen label"
+  },
+  "contactScreen": "Contact Screen",
+  "@contactScreen": {
+    "description": "Contact screen label"
+  },
+  "requestScreen": "Request Screen",
+  "@requestScreen": {
+    "description": "Request screen label"
+  },
+  "searchScreen": "Search Screen",
+  "@searchScreen": {
+    "description": "Search screen label"
+  },
+  "pushScreen": "Push Screen",
+  "@pushScreen": {
+    "description": "Push screen label"
+  },
+  "topScreen": "Top Screen",
+  "@topScreen": {
+    "description": "Top screen label"
+  },
+  "postScreen": "Post Screen",
+  "@postScreen": {
+    "description": "Post screen label"
+  },
+  "walkThroughScreen": "WalkThrough Screen",
+  "@walkThroughScreen": {
+    "description": "Walk through screen label"
+  },
+  "categoryScreen": "Category Screen",
+  "@categoryScreen": {
+    "description": "Category screen label"
+  },
+  "unauthorized": "Unauthorized",
+  "@unauthorized": {
+    "description": "Unauthorized error message"
+  },
+  "timeout": "Timeout",
+  "@timeout": {
+    "description": "Timeout error message"
+  },
+  "errorOccurred": "Error: {err}",
+  "@errorOccurred": {
+    "description": "Message when an error occurs (includes error details)",
+    "placeholders": {
+      "err": {
+        "type": "Object"
+      }
+    }
+  },
+  "noProfile": "No profile found",
+  "@noProfile": {
+    "description": "Message when no profile is set"
+  },
+  "dogAge": "{breed} • {age} years old",
+  "@dogAge": {
+    "description": "Dog's breed and age",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "currentPlan": "Current Plan",
+  "@currentPlan": {
+    "description": "Current subscription plan"
+  },
+  "premiumPlan": "Premium Plan",
+  "@premiumPlan": {
+    "description": "Premium plan name"
+  },
+  "freePlan": "Free Plan",
+  "@freePlan": {
+    "description": "Free plan name"
+  },
+  "upgrade": "Upgrade",
+  "@upgrade": {
+    "description": "Upgrade button"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button"
+  },
+  "musicGenerationSuccess": "🎵 Music generation complete! You can play it in 'Music Playback History' on My Page.",
+  "@musicGenerationSuccess": {
+    "description": "Message on successful music generation"
+  },
+  "musicGenerationFailed": "Music generation failed: {error}",
+  "@musicGenerationFailed": {
+    "description": "Message on failed music generation",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "sceneLeavingHome": "While away",
+  "@sceneLeavingHome": {
+    "description": "Scene: While away"
+  },
+  "sceneBedtime": "Bedtime",
+  "@sceneBedtime": {
+    "description": "Scene: Bedtime"
+  },
+  "sceneStressful": "Stressful",
+  "@sceneStressful": {
+    "description": "Scene: Stressful"
+  },
+  "sceneLongDistanceTravel": "Long-distance travel",
+  "@sceneLongDistanceTravel": {
+    "description": "Scene: Long-distance travel"
+  },
+  "sceneDailyHealing": "Daily healing",
+  "@sceneDailyHealing": {
+    "description": "Scene: Daily healing"
+  },
+  "sceneCare": "Medical/Senior care",
+  "@sceneCare": {
+    "description": "Scene: Medical/Senior care"
+  },
+  "conditionCalmDown": "Want to calm down",
+  "@conditionCalmDown": {
+    "description": "Dog's condition: Want to calm down"
+  },
+  "conditionRelax": "Want to relax",
+  "@conditionRelax": {
+    "description": "Dog's condition: Want to relax"
+  },
+  "conditionSuppressExcitement": "Want to suppress excitement",
+  "@conditionSuppressExcitement": {
+    "description": "Dog's condition: Want to suppress excitement"
+  },
+  "conditionReassure": "Want to reassure",
+  "@conditionReassure": {
+    "description": "Dog's condition: Want to reassure"
+  },
+  "conditionGoodSleep": "Want to sleep well",
+  "@conditionGoodSleep": {
+    "description": "Dog's condition: Want to sleep well"
+  },
+  "aiMusicGenerateTitle": "PawHarmony AI",
+  "@aiMusicGenerateTitle": {
+    "description": "Title for AI Music Generation screen"
+  },
+  "noDogProfileRegistered": "Dog profile is not registered.",
+  "@noDogProfileRegistered": {
+    "description": "Message when dog profile is not registered"
+  },
+  "selectScene": "Select a scene",
+  "@selectScene": {
+    "description": "Title for scene selection"
+  },
+  "selectDogCondition": "Select dog's condition",
+  "@selectDogCondition": {
+    "description": "Title for dog's condition selection"
+  },
+  "otherOptional": "Other (optional)",
+  "@otherOptional": {
+    "description": "Label for optional input field"
+  },
+  "otherHint": "e.g., Cries often at night recently",
+  "@otherHint": {
+    "description": "Hint text for optional input field"
+  },
+  "generationsUnlimited": "Generations: Unlimited",
+  "@generationsUnlimited": {
+    "description": "Text for unlimited generations"
+  },
+  "generationsLeft": "Generations left: {count} ({plan})",
+  "@generationsLeft": {
+    "description": "Text for remaining generations",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "generateMusic": "Generate Music",
+  "@generateMusic": {
+    "description": "Button text to generate music"
+  },
+  "loadingMusicGenerator": "Loading files needed for music generation. Please wait.",
+  "@loadingMusicGenerator": {
+    "description": "Message while loading music generator"
+  },
+  "myPage": "My Page",
+  "@myPage": {
+    "description": "Title for My Page screen"
+  },
+  "musicPlaybackHistory": "Music Playback History",
+  "@musicPlaybackHistory": {
+    "description": "Title for Music Playback History section"
+  },
+  "noMusicPlaybackHistory": "No music playback history.",
+  "@noMusicPlaybackHistory": {
+    "description": "Message when there is no music playback history"
+  },
+  "generatedAt": "Generated at: {datetime}",
+  "@generatedAt": {
+    "description": "Timestamp of when the music was generated",
+    "placeholders": {
+      "datetime": {
+        "type": "String"
+      }
+    }
+  },
+  "scene": "Scene: {scene}",
+  "@scene": {
+    "description": "The scene for which the music was generated",
+    "placeholders": {
+      "scene": {
+        "type": "String"
+      }
+    }
+  },
+  "condition": "Condition: {condition}",
+  "@condition": {
+    "description": "The dog's condition for which the music was generated",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "breed": "Breed: {breed}",
+  "@breed": {
+    "description": "The dog's breed",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      }
+    }
+  },
+  "duration": "Duration: {duration}s",
+  "@duration": {
+    "description": "Duration of the music in seconds",
+    "placeholders": {
+      "duration": {
+        "type": "int"
+      }
+    }
+  },
+  "registerDogProfileTitle": "Register Your Dog's Profile",
+  "@registerDogProfileTitle": {
+    "description": "Title for the dog profile registration screen"
+  },
+  "editDogProfileTitle": "Edit Dog Profile",
+  "@editDogProfileTitle": {
+    "description": "Title for the dog profile editing screen"
+  },
+  "breedToyPoodle": "Toy Poodle",
+  "@breedToyPoodle": {
+    "description": "Breed: Toy Poodle"
+  },
+  "breedChihuahua": "Chihuahua",
+  "@breedChihuahua": {
+    "description": "Breed: Chihuahua"
+  },
+  "breedShiba": "Shiba Inu",
+  "@breedShiba": {
+    "description": "Breed: Shiba Inu"
+  },
+  "breedMiniatureDachshund": "Miniature Dachshund",
+  "@breedMiniatureDachshund": {
+    "description": "Breed: Miniature Dachshund"
+  },
+  "breedPomeranian": "Pomeranian",
+  "@breedPomeranian": {
+    "description": "Breed: Pomeranian"
+  },
+  "breedFrenchBulldog": "French Bulldog",
+  "@breedFrenchBulldog": {
+    "description": "Breed: French Bulldog"
+  },
+  "breedGoldenRetriever": "Golden Retriever",
+  "@breedGoldenRetriever": {
+    "description": "Breed: Golden Retriever"
+  },
+  "breedLabradorRetriever": "Labrador Retriever",
+  "@breedLabradorRetriever": {
+    "description": "Breed: Labrador Retriever"
+  },
+  "breedMix": "Mix",
+  "@breedMix": {
+    "description": "Breed: Mix"
+  },
+  "breedOther": "Other",
+  "@breedOther": {
+    "description": "Breed: Other"
+  },
+  "dogName": "Dog's Name",
+  "@dogName": {
+    "description": "Label for dog's name input field"
+  },
+  "dogNameValidator": "Please enter a name",
+  "@dogNameValidator": {
+    "description": "Validation message for dog's name"
+  },
+  "dogBreed": "Breed",
+  "@dogBreed": {
+    "description": "Label for breed selection field"
+  },
+  "dogBreedValidator": "Please select a breed",
+  "@dogBreedValidator": {
+    "description": "Validation message for breed"
+  },
+  "selectDateOfBirth": "Select Date of Birth",
+  "@selectDateOfBirth": {
+    "description": "Text for selecting date of birth"
+  },
+  "dateOfBirth": "Date of Birth: {date}",
+  "@dateOfBirth": {
+    "description": "Display text for date of birth",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "age": "Age",
+  "@age": {
+    "description": "Label for age input field"
+  },
+  "gender": "Gender",
+  "@gender": {
+    "description": "Title for gender selection"
+  },
+  "male": "Male",
+  "@male": {
+    "description": "Gender: Male"
+  },
+  "female": "Female",
+  "@female": {
+    "description": "Gender: Female"
+  },
+  "genderValidator": "Please select a gender",
+  "@genderValidator": {
+    "description": "Validation message for gender"
+  },
+  "personality": "Personality (multiple selections allowed)",
+  "@personality": {
+    "description": "Title for personality selection"
+  },
+  "personalityEasygoing": "Easygoing",
+  "@personalityEasygoing": {
+    "description": "Personality: Easygoing"
+  },
+  "personalityActive": "Active",
+  "@personalityActive": {
+    "description": "Personality: Active"
+  },
+  "personalityTimid": "Timid",
+  "@personalityTimid": {
+    "description": "Personality: Timid"
+  },
+  "personalitySociable": "Sociable",
+  "@personalitySociable": {
+    "description": "Personality: Sociable"
+  },
+  "personalityAffectionate": "Affectionate",
+  "@personalityAffectionate": {
+    "description": "Personality: Affectionate"
+  },
+  "personalityMyPace": "Easygoing",
+  "@personalityMyPace": {
+    "description": "Personality: Easygoing (My Pace)"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button text"
+  },
+  "profileSaved": "Profile saved successfully",
+  "@profileSaved": {
+    "description": "Success message when profile is saved"
+  },
+  "subscriptionSettingTitle": "Premium Plan",
+  "@subscriptionSettingTitle": {
+    "description": "Title for subscription setting screen"
+  },
+  "currentPlanPremium": "Current Plan: Premium Plan",
+  "@currentPlanPremium": {
+    "description": "Current plan display text for premium users"
+  },
+  "currentPlanFree": "Current Plan: Free Plan",
+  "@currentPlanFree": {
+    "description": "Current plan display text for free users"
+  },
+  "premiumPlanBenefits": "Premium Plan Benefits",
+  "@premiumPlanBenefits": {
+    "description": "Title for premium plan benefits section"
+  },
+  "unlimitedMusicGeneration": "Unlimited Music Generation",
+  "@unlimitedMusicGeneration": {
+    "description": "Benefit: Unlimited music generation"
+  },
+  "detailedAnalysisReport": "Detailed Analysis Report",
+  "@detailedAnalysisReport": {
+    "description": "Benefit: Detailed analysis report"
+  },
+  "adFree": "Ad-Free",
+  "@adFree": {
+    "description": "Benefit: No advertisements"
+  },
+  "expertCuratedContent": "Expert Curated Content",
+  "@expertCuratedContent": {
+    "description": "Benefit: Expert curated content"
+  },
+  "selectPlan": "Select Plan",
+  "@selectPlan": {
+    "description": "Title for plan selection section"
+  },
+  "continueWithFreePlan": "Continue with Free Plan",
+  "@continueWithFreePlan": {
+    "description": "Button text to continue with free plan"
+  },
+  "subscriptionCancellationNote": "※ Subscription can be cancelled at any time",
+  "@subscriptionCancellationNote": {
+    "description": "Note about subscription cancellation"
+  },
+  "noAvailablePlans": "No available plans.",
+  "@noAvailablePlans": {
+    "description": "Message when no plans are available"
+  },
+  "signUpTitle": "Create New Account",
+  "@signUpTitle": {
+    "description": "Title for sign up screen"
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": "Label for email address input field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Label for password input field"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Label for password confirmation input field"
+  },
+  "passwordTooShortSignUp": "Password must be at least 8 characters",
+  "@passwordTooShortSignUp": {
+    "description": "Password too short validation message for sign up"
+  },
+  "passwordMismatch": "Passwords do not match",
+  "@passwordMismatch": {
+    "description": "Password confirmation mismatch validation message"
+  },
+  "agreeToTerms": "I agree to the Terms of Service and Privacy Policy",
+  "@agreeToTerms": {
+    "description": "Terms and privacy policy agreement checkbox text"
+  },
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create account button text"
+  },
+  "goToLogin": "Go to Login",
+  "@goToLogin": {
+    "description": "Go to login button text"
+  },
+  "accountCreationFailed": "Account creation failed.",
+  "@accountCreationFailed": {
+    "description": "Generic account creation failure message"
+  },
+  "emailAlreadyInUse": "This email address is already in use.\nPlease try logging in.",
+  "@emailAlreadyInUse": {
+    "description": "Email already in use error message"
+  },
+  "weakPassword": "Password is too weak. Please set a stronger password.",
+  "@weakPassword": {
+    "description": "Weak password error message"
+  },
+  "invalidEmail": "Invalid email address.",
+  "@invalidEmail": {
+    "description": "Invalid email error message"
+  },
+  "operationNotAllowed": "Email/password authentication is not enabled.",
+  "@operationNotAllowed": {
+    "description": "Operation not allowed error message"
+  },
+  "networkRequestFailed": "Network error occurred. Please check your internet connection.",
+  "@networkRequestFailed": {
+    "description": "Network request failed error message"
+  },
+  "accountCreationFailedWithError": "Account creation failed: {error}",
+  "@accountCreationFailedWithError": {
+    "description": "Account creation failed with specific error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordResetTitle": "Password Reset",
+  "@passwordResetTitle": {
+    "description": "Title for password reset screen"
+  },
+  "sendPasswordResetEmail": "Send Password Reset Email",
+  "@sendPasswordResetEmail": {
+    "description": "Button text to send password reset email"
+  },
+  "passwordResetEmailSent": "Password reset email has been sent.",
+  "@passwordResetEmailSent": {
+    "description": "Success message when password reset email is sent"
+  },
+  "passwordResetFailed": "Failed to send password reset email.",
+  "@passwordResetFailed": {
+    "description": "Generic password reset failure message"
+  },
+  "userNotFound": "No user found with this email address.",
+  "@userNotFound": {
+    "description": "User not found error message"
+  },
+  "tooManyRequests": "Too many requests. Please try again later.",
+  "@tooManyRequests": {
+    "description": "Too many requests error message"
+  },
+  "passwordResetFailedWithError": "Failed to send password reset email: {error}",
+  "@passwordResetFailedWithError": {
+    "description": "Password reset failed with specific error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginTitle": "Login",
+  "@loginTitle": {
+    "description": "Title for login screen"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password button text"
+  },
+  "goToSignUp": "Go to Sign Up",
+  "@goToSignUp": {
+    "description": "Go to sign up button text"
+  },
+  "loginFailed": "Login failed.",
+  "@loginFailed": {
+    "description": "Generic login failure message"
+  },
+  "userNotFoundLogin": "No user found with this email address.\nPlease try signing up.",
+  "@userNotFoundLogin": {
+    "description": "User not found error message for login"
+  },
+  "wrongPassword": "Password is incorrect.",
+  "@wrongPassword": {
+    "description": "Wrong password error message"
+  },
+  "invalidCredential": "Email address or password is incorrect.",
+  "@invalidCredential": {
+    "description": "Invalid credential error message"
+  },
+  "userDisabled": "This account has been disabled.",
+  "@userDisabled": {
+    "description": "User disabled error message"
+  },
+  "tooManyLoginAttempts": "Too many login attempts. Please try again later.",
+  "@tooManyLoginAttempts": {
+    "description": "Too many login attempts error message"
+  },
+  "loginFailedWithError": "Login failed: {error}",
+  "@loginFailedWithError": {
+    "description": "Login failed with specific error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "musicGenerationInProgress": "Generating Music...",
+  "@musicGenerationInProgress": {
+    "description": "Title for music generation in progress dialog"
+  },
+  "aiGeneratingMusicForDog": "AI is generating music for your beloved dog.\nYou can play it on My Page after generation is complete.",
+  "@aiGeneratingMusicForDog": {
+    "description": "Description text in music generation dialog"
+  },
+  "planInformationFetchFailed": "Failed to fetch plan information.",
+  "@planInformationFetchFailed": {
+    "description": "Error message when plan information fetch fails"
+  }
 }

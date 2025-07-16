@@ -11,6 +11,7 @@ class BaseHeader extends ConsumerWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.backgroundColor,
+    this.actions,
   });
 
   /// タイトル
@@ -18,6 +19,9 @@ class BaseHeader extends ConsumerWidget implements PreferredSizeWidget {
 
   /// 背景色
   final Color? backgroundColor;
+
+  /// アクションボタン
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -33,6 +37,7 @@ class BaseHeader extends ConsumerWidget implements PreferredSizeWidget {
       ),
       backgroundColor: backgroundColor ?? theme.appColors.background,
       leading: Container(),
+      actions: actions,
     );
   }
 }

@@ -1,0 +1,1110 @@
+{
+  "@@locale": "it",
+  "productName": "Paw Harmony",
+  "@productName": {
+    "description": "Nome dell'applicazione"
+  },
+  "welcomeMessage": "Benvenuto su {productName}!",
+  "@welcomeMessage": {
+    "description": "Messaggio visualizzato nella schermata di benvenuto"
+  },
+  "descriptionMessage": "",
+  "@descriptionMessage": {
+    "description": "Messaggio di descrizione dell'applicazione"
+  },
+  "mainIntroductionScreen": "Schermata di introduzione principale",
+  "@mainIntroductionScreen": {
+    "description": "Titolo della schermata di introduzione principale"
+  },
+  "mainIntroductionContent": "Contenuto dell'introduzione principale",
+  "@mainIntroductionContent": {
+    "description": "Contenuto della schermata di introduzione principale"
+  },
+  "serviceBeginScreen": "Schermata di inizio servizio",
+  "@serviceBeginScreen": {
+    "description": "Titolo della schermata di inizio servizio"
+  },
+  "serviceBeginContent": "Contenuto della schermata di inizio servizio",
+  "@serviceBeginContent": {
+    "description": "Contenuto della schermata di inizio servizio"
+  },
+  "signUp": "Registrati",
+  "@signUp": {
+    "description": "Testo del pulsante di registrazione"
+  },
+  "close": "Chiudi",
+  "@close": {
+    "description": "Testo del pulsante di chiusura"
+  },
+  "cancel": "Annulla",
+  "@cancel": {
+    "description": "Testo del pulsante di annullamento"
+  },
+  "skip": "Salta",
+  "@skip": {
+    "description": "Testo del pulsante per saltare"
+  },
+  "next": "Avanti",
+  "@next": {
+    "description": "Testo del pulsante successivo"
+  },
+  "edit": "Modifica",
+  "@edit": {
+    "description": "Testo del pulsante di modifica"
+  },
+  "save": "Salva",
+  "@save": {
+    "description": "Testo del pulsante di salvataggio"
+  },
+  "send": "Invia",
+  "@send": {
+    "description": "Testo del pulsante di invio"
+  },
+  "search": "Cerca",
+  "@search": {
+    "description": "Testo del pulsante di ricerca"
+  },
+  "notifications": "Notifiche",
+  "@notifications": {
+    "description": "Voce del menu delle notifiche"
+  },
+  "profile": "Profilo",
+  "@profile": {
+    "description": "Voce del menu del profilo"
+  },
+  "setting": "Impostazioni",
+  "@setting": {
+    "description": "Voce del menu delle impostazioni"
+  },
+  "languageSetting": "Impostazioni della lingua",
+  "@languageSetting": {
+    "description": "Titolo della schermata delle impostazioni della lingua"
+  },
+  "english": "Inglese",
+  "@english": {
+    "description": "Opzione lingua inglese"
+  },
+  "japanese": "Giapponese",
+  "@japanese": {
+    "description": "Opzione lingua giapponese"
+  },
+  "french": "Francese",
+  "@french": {
+    "description": "Opzione lingua francese"
+  },
+  "italian": "Italiano",
+  "@italian": {
+    "description": "Opzione lingua italiana"
+  },
+  "spanish": "Spagnolo",
+  "@spanish": {
+    "description": "Opzione lingua spagnola"
+  },
+  "languageSettingSuccess": "Le impostazioni della lingua sono state modificate",
+  "@languageSettingSuccess": {
+    "description": "Messaggio di successo al cambio della lingua"
+  },
+  "pushNotification": "Notifiche push",
+  "@pushNotification": {
+    "description": "Impostazione delle notifiche push"
+  },
+  "onPushNotification": "Attiva le notifiche push",
+  "@onPushNotification": {
+    "description": "Pulsante per attivare le notifiche push"
+  },
+  "onPushNotificationDenied": "Le notifiche push da {productName} non sono consentite",
+  "@onPushNotificationDenied": {
+    "description": "Messaggio quando le notifiche push vengono negate"
+  },
+  "onPushNotificationContent": "Per attivare le notifiche push, consenti 'Notifiche' nelle impostazioni.",
+  "@onPushNotificationContent": {
+    "description": "Spiegazione per l'attivazione delle notifiche push"
+  },
+  "onPushNotificationContent2": "Quando attivi l'impostazione, potrai ricevere notifiche push.",
+  "@onPushNotificationContent2": {
+    "description": "Spiegazione aggiuntiva sulle notifiche push"
+  },
+  "ratingContent": "Cosa ne pensi dell'app?",
+  "@ratingContent": {
+    "description": "Domanda per la valutazione dell'app"
+  },
+  "ratingContent2": "Tocca le stelle per valutare l'app.",
+  "@ratingContent2": {
+    "description": "Spiegazione per la valutazione dell'app"
+  },
+  "ratingSent": "Valutazione inviata",
+  "@ratingSent": {
+    "description": "Messaggio di successo all'invio della valutazione"
+  },
+  "recommendApp": "App consigliate",
+  "@recommendApp": {
+    "description": "Titolo della schermata delle app consigliate"
+  },
+  "contact": "Contattaci",
+  "@contact": {
+    "description": "Voce del menu di contatto"
+  },
+  "premiumFeature": "Funzioni premium",
+  "@premiumFeature": {
+    "description": "Sezione delle funzioni premium"
+  },
+  "legal": "Termini di utilizzo",
+  "@legal": {
+    "description": "Voce del menu dei termini di utilizzo"
+  },
+  "privacyPolicy": "Informativa sulla privacy",
+  "@privacyPolicy": {
+    "description": "Voce del menu dell'informativa sulla privacy"
+  },
+  "contactContentForm": "Inserisci la tua richiesta nel modulo sottostante",
+  "@contactContentForm": {
+    "description": "Spiegazione del modulo di contatto"
+  },
+  "contactContent": "Contenuto della richiesta",
+  "@contactContent": {
+    "description": "Etichetta del campo del contenuto della richiesta"
+  },
+  "subject": "Oggetto",
+  "@subject": {
+    "description": "Etichetta del campo dell'oggetto"
+  },
+  "sendSuccess": "La tua richiesta è stata inviata",
+  "@sendSuccess": {
+    "description": "Messaggio di successo all'invio della richiesta"
+  },
+  "request": "Commenti e richieste",
+  "@request": {
+    "description": "Voce del menu per commenti e richieste"
+  },
+  "content": "Contenuto dei commenti e delle richieste",
+  "@content": {
+    "description": "Etichetta del campo del contenuto dei commenti e delle richieste"
+  },
+  "requestForm": "Inserisci i tuoi commenti o le tue richieste nel modulo sottostante",
+  "@requestForm": {
+    "description": "Spiegazione del modulo di commenti e richieste"
+  },
+  "sendSuccessRequest": "I tuoi commenti o le tue richieste sono stati inviati",
+  "@sendSuccessRequest": {
+    "description": "Messaggio di successo all'invio di commenti e richieste"
+  },
+  "error": "Si è verificato un errore",
+  "@error": {
+    "description": "Messaggio di errore generico"
+  },
+  "networkError": "Errore di rete",
+  "@networkError": {
+    "description": "Messaggio di errore di rete"
+  },
+  "checkConnection": "Controlla la connessione a Internet",
+  "@checkConnection": {
+    "description": "Messaggio per controllare la connessione a Internet"
+  },
+  "skipWithoutRegister": "Inizia senza registrarti",
+  "@skipWithoutRegister": {
+    "description": "Opzione per iniziare senza registrarsi"
+  },
+  "review": "Valuta {productName}",
+  "@review": {
+    "description": "Opzione per valutare l'app"
+  },
+  "share": "Condividi {productName}",
+  "@share": {
+    "description": "Opzione per condividere l'app"
+  },
+  "shareMessage": "Condividi {productName} con tutti! {appLink}",
+  "@shareMessage": {
+    "description": "Modello di messaggio di condivisione"
+  },
+  "formattedDate": "{date} {month}",
+  "@formattedDate": {
+    "description": "Visualizzazione della data formattata"
+  },
+  "sunday": "Dom",
+  "@sunday": {
+    "description": "Abbreviazione di domenica"
+  },
+  "monday": "Lun",
+  "@monday": {
+    "description": "Abbreviazione di lunedì"
+  },
+  "tuesday": "Mar",
+  "@tuesday": {
+    "description": "Abbreviazione di martedì"
+  },
+  "wednesday": "Mer",
+  "@wednesday": {
+    "description": "Abbreviazione di mercoledì"
+  },
+  "thursday": "Gio",
+  "@thursday": {
+    "description": "Abbreviazione di giovedì"
+  },
+  "friday": "Ven",
+  "@friday": {
+    "description": "Abbreviazione di venerdì"
+  },
+  "saturday": "Sab",
+  "@saturday": {
+    "description": "Abbreviazione di sabato"
+  },
+  "writeReview": "Scrivi una recensione",
+  "@writeReview": {
+    "description": "Pulsante per scrivere una recensione"
+  },
+  "rate": "Valuta",
+  "@rate": {
+    "description": "Pulsante per valutare"
+  },
+  "notRate": "Non valutare",
+  "@notRate": {
+    "description": "Opzione per non valutare"
+  },
+  "emailRequired": "Inserisci il tuo indirizzo email",
+  "@emailRequired": {
+    "description": "Messaggio di convalida per l'email richiesta"
+  },
+  "emailInvalid": "Inserisci un indirizzo email valido",
+  "@emailInvalid": {
+    "description": "Messaggio di convalida per un'email non valida"
+  },
+  "emailTooLong": "L'indirizzo email non deve superare i 64 caratteri",
+  "@emailTooLong": {
+    "description": "Messaggio di convalida per un'email troppo lunga"
+  },
+  "passwordRequired": "Inserisci la tua password",
+  "@passwordRequired": {
+    "description": "Messaggio di convalida per la password richiesta"
+  },
+  "passwordTooShort": "La password deve contenere almeno 6 caratteri",
+  "@passwordTooShort": {
+    "description": "Messaggio di convalida per una password troppo corta"
+  },
+  "passwordTooLong": "La password non deve superare i 40 caratteri",
+  "@passwordTooLong": {
+    "description": "Messaggio di convalida per una password troppo lunga"
+  },
+  "passwordInvalidCharacters": "La password deve contenere solo caratteri alfanumerici e simboli (_-.)",
+  "@passwordInvalidCharacters": {
+    "description": "Messaggio di convalida per caratteri di password non validi"
+  },
+  "networkErrorContent": "Impossibile connettersi alla rete.\nControlla la tua connessione.",
+  "@networkErrorContent": {
+    "description": "Messaggio di contenuto di errore di rete"
+  },
+  "errorContent": "Impossibile eseguire normalmente.\nRiprova.",
+  "@errorContent": {
+    "description": "Messaggio di contenuto di errore generico"
+  },
+  "sessionTimeout": "La tua sessione è scaduta.\nEffettua nuovamente l'accesso.",
+  "@sessionTimeout": {
+    "description": "Messaggio di timeout della sessione"
+  },
+  "connectionTimeout": "La connessione è scaduta.\nControlla la tua connessione di rete e riprova.",
+  "@connectionTimeout": {
+    "description": "Messaggio di timeout della connessione"
+  },
+  "receiveTimeout": "La ricezione dei dati è scaduta.\nControlla la tua connessione di rete e riprova.",
+  "@receiveTimeout": {
+    "description": "Messaggio di timeout della ricezione"
+  },
+  "sendTimeout": "L'invio dei dati è scaduto.\nControlla la tua connessione di rete e riprova.",
+  "@sendTimeout": {
+    "description": "Messaggio di timeout dell'invio"
+  },
+  "badCertificate": "C'è un problema con il certificato, non è stato possibile stabilire una comunicazione sicura.\nControlla la tua connessione di rete e utilizza l'indirizzo del server corretto.",
+  "@badCertificate": {
+    "description": "Messaggio di errore del certificato"
+  },
+  "serverError": "Si è verificato un errore del server.\nRiprova tra qualche istante.",
+  "@serverError": {
+    "description": "Messaggio di errore del server"
+  },
+  "badRequest": "La richiesta non è valida.\nAl momento non possiamo elaborare la richiesta.\nRiprova tra qualche istante.",
+  "@badRequest": {
+    "description": "Messaggio di errore di richiesta non valida"
+  },
+  "internalServerError": "Si è verificato un errore interno del server.\nAl momento non possiamo elaborare la richiesta.\nRiprova tra qualche istante.",
+  "@internalServerError": {
+    "description": "Messaggio di errore interno del server"
+  },
+  "badGateway": "Il server ha restituito una risposta non valida.\nRiprova tra qualche istante.",
+  "@badGateway": {
+    "description": "Messaggio di errore di gateway non valido"
+  },
+  "serviceUnavailable": "Il servizio è temporaneamente non disponibile.\nRiprova tra qualche istante.",
+  "@serviceUnavailable": {
+    "description": "Messaggio di errore di servizio non disponibile"
+  },
+  "gatewayTimeout": "Si è verificato un timeout.\nIl server non risponde.\nRiprova tra qualche istante.",
+  "@gatewayTimeout": {
+    "description": "Messaggio di errore di timeout del gateway"
+  },
+  "upgradeRequired": "È disponibile una nuova versione.\nAggiorna il prima possibile.",
+  "@upgradeRequired": {
+    "description": "Messaggio di aggiornamento richiesto"
+  },
+  "tooManyRequests": "La richiesta ha superato il limite.\nRiprova tra qualche istante.",
+  "@tooManyRequests": {
+    "description": "Messaggio di errore di troppe richieste"
+  },
+  "actionCanceled": "L'azione è stata annullata.\nNessuna elaborazione è stata eseguita come richiesto.\nSe desideri continuare, riprova.",
+  "@actionCanceled": {
+    "description": "Messaggio di annullamento dell'azione"
+  },
+  "unexpectedError": "Si è verificato un errore imprevisto",
+  "@unexpectedError": {
+    "description": "Messaggio di errore imprevisto"
+  },
+  "playerList": "Elenco musica",
+  "@playerList": {
+    "description": "Titolo della schermata dell'elenco musicale"
+  },
+  "addPlayer": "Aggiungi cane",
+  "@addPlayer": {
+    "description": "Testo del pulsante per aggiungere un cane"
+  },
+  "recommendAppNameMinesweeper": "Minesweeper Quest",
+  "@recommendAppNameMinesweeper": {
+    "description": "Nome dell'app Campo minato"
+  },
+  "recommendAppDescriptionMinesweeper": "La versione definitiva di Campo minato.\nApprezzato da tutti, dai principianti agli esperti.",
+  "@recommendAppDescriptionMinesweeper": {
+    "description": "Descrizione dell'app Campo minato"
+  },
+  "recommendAppNameSudoku": "Sudoku Quest",
+  "@recommendAppNameSudoku": {
+    "description": "Nome dell'app Sudoku"
+  },
+  "recommendAppDescriptionSudoku": "La versione definitiva dell'app Numpad.\nApprezzato da tutti, dai principianti agli esperti.",
+  "@recommendAppDescriptionSudoku": {
+    "description": "Descrizione dell'app Sudoku"
+  },
+  "recommendAppNameScience": "BeStudy Scienze Medie",
+  "@recommendAppNameScience": {
+    "description": "Nome dell'app di scienze"
+  },
+  "recommendAppDescriptionScience": "App di apprendimento delle scienze per studenti delle scuole medie.\nCopre completamente fisica, chimica, biologia e scienze della terra.",
+  "@recommendAppDescriptionScience": {
+    "description": "Descrizione dell'app di scienze"
+  },
+  "recommendAppNameMath": "BeStudy Matematica Medie",
+  "@recommendAppNameMath": {
+    "description": "Nome dell'app di matematica"
+  },
+  "recommendAppDescriptionMath": "App di apprendimento della matematica per studenti delle scuole medie.\nCopre dalle basi ai concetti avanzati.",
+  "@recommendAppDescriptionMath": {
+    "description": "Descrizione dell'app di matematica"
+  },
+  "recommendAppNameEnglish": "BeStudy Inglese Medie",
+  "@recommendAppNameEnglish": {
+    "description": "Nome dell'app di inglese"
+  },
+  "recommendAppDescriptionEnglish": "App di apprendimento dell'inglese per studenti delle scuole medie.\nPuoi imparare vocabolario e grammatica.",
+  "@recommendAppDescriptionEnglish": {
+    "description": "Descrizione dell'app di inglese"
+  },
+  "recommendAppNameSocialStudies": "BeStudy Sociali Medie",
+  "@recommendAppNameSocialStudies": {
+    "description": "Nome dell'app di studi sociali"
+  },
+  "recommendAppDescriptionSocialStudies": "App di apprendimento degli studi sociali per studenti delle scuole medie.\nOttimizzata per l'apprendimento di geografia, storia ed educazione civica.",
+  "@recommendAppDescriptionSocialStudies": {
+    "description": "Descrizione dell'app di studi sociali"
+  },
+  "recommendAppNameKanji": "BeStudy Kanji Medie",
+  "@recommendAppNameKanji": {
+    "description": "Nome dell'app di kanji"
+  },
+  "recommendAppDescriptionKanji": "App di apprendimento dei kanji per studenti delle scuole medie.\nUtile anche per la preparazione al test di kanji.",
+  "@recommendAppDescriptionKanji": {
+    "description": "Descrizione dell'app di kanji"
+  },
+  "recommendAppNameHighSchoolSocialStudies": "NowStudy Sociali Superiori",
+  "@recommendAppNameHighSchoolSocialStudies": {
+    "description": "Nome dell'app di studi sociali per le scuole superiori"
+  },
+  "recommendAppDescriptionHighSchoolSocialStudies": "App di apprendimento degli studi sociali per studenti delle scuole superiori.\nOttimizzata per l'apprendimento della storia giapponese e della storia mondiale.",
+  "@recommendAppDescriptionHighSchoolSocialStudies": {
+    "description": "Descrizione dell'app di studi sociali per le scuole superiori"
+  },
+  "nowPlaying": "In riproduzione",
+  "@nowPlaying": {
+    "description": "Titolo della schermata di riproduzione in corso"
+  },
+  "relaxSound": "Suono rilassante",
+  "@relaxSound": {
+    "description": "Titolo della sezione dei suoni rilassanti"
+  },
+  "setPlaybackTimer": "Imposta timer di riproduzione",
+  "@setPlaybackTimer": {
+    "description": "Pulsante per impostare il timer di riproduzione"
+  },
+  "timerSet": "Timer: stop dopo {duration}",
+  "@timerSet": {
+    "description": "Messaggio di impostazione del timer (con durata)"
+  },
+  "rateDogReaction": "Valuta la reazione del tuo cane",
+  "@rateDogReaction": {
+    "description": "Titolo della sezione di valutazione della reazione del cane"
+  },
+  "stoppedBarking": "Ha smesso di abbaiare",
+  "@stoppedBarking": {
+    "description": "Opzione: ha smesso di abbaiare"
+  },
+  "calmedDownAndSlept": "Si è calmato e ha dormito",
+  "@calmedDownAndSlept": {
+    "description": "Opzione: si è calmato e ha dormito"
+  },
+  "restless": "Irrequieto",
+  "@restless": {
+    "description": "Opzione: irrequieto"
+  },
+  "breathingBecameCalm": "La respirazione è diventata calma",
+  "@breathingBecameCalm": {
+    "description": "Opzione: la respirazione è diventata calma"
+  },
+  "commentOptional": "Commento (opzionale)",
+  "@commentOptional": {
+    "description": "Etichetta del campo di commento opzionale"
+  },
+  "sendFeedback": "Invia commento",
+  "@sendFeedback": {
+    "description": "Pulsante per inviare un commento"
+  },
+  "feedbackUnderDevelopment": "La funzione di commento è attualmente in fase di sviluppo.",
+  "@feedbackUnderDevelopment": {
+    "description": "Messaggio che indica che la funzione di commento è in fase di sviluppo"
+  },
+  "off": "Spento",
+  "@off": {
+    "description": "Testo per lo stato spento"
+  },
+  "minutes": "{minutes} minuti",
+  "@minutes": {
+    "description": "Formato per i minuti"
+  },
+  "hours": "{hours} ore",
+  "@hours": {
+    "description": "Formato per le ore"
+  },
+  "continuousPlayback": "Riproduzione continua",
+  "@continuousPlayback": {
+    "description": "Opzione di riproduzione continua"
+  },
+  "updateNotice": "Avviso di aggiornamento",
+  "@updateNotice": {
+    "description": "Titolo dell'avviso di aggiornamento"
+  },
+  "updateAvailable": "È disponibile una nuova versione dell'app.\nÈ necessario aggiornare per continuare.",
+  "@updateAvailable": {
+    "description": "Messaggio di aggiornamento disponibile"
+  },
+  "update": "Aggiorna",
+  "@update": {
+    "description": "Testo del pulsante di aggiornamento"
+  },
+  "slackMessage": "Conferma!\nNome app: {appName}\nOggetto: {subject}\nContenuto: {content}",
+  "@slackMessage": {
+    "description": "Modello di messaggio Slack"
+  },
+  "baseScreen": "Schermata base",
+  "@baseScreen": {
+    "description": "Etichetta della schermata base"
+  },
+  "settingScreen": "Schermata impostazioni",
+  "@settingScreen": {
+    "description": "Etichetta della schermata impostazioni"
+  },
+  "contactScreen": "Schermata di contatto",
+  "@contactScreen": {
+    "description": "Etichetta della schermata di contatto"
+  },
+  "requestScreen": "Schermata commenti e richieste",
+  "@requestScreen": {
+    "description": "Etichetta della schermata commenti e richieste"
+  },
+  "searchScreen": "Schermata di ricerca",
+  "@searchScreen": {
+    "description": "Etichetta della schermata di ricerca"
+  },
+  "pushScreen": "Schermata notifiche push",
+  "@pushScreen": {
+    "description": "Etichetta della schermata notifiche push"
+  },
+  "topScreen": "Schermata principale",
+  "@topScreen": {
+    "description": "Etichetta della schermata principale"
+  },
+  "postScreen": "Schermata di pubblicazione",
+  "@postScreen": {
+    "description": "Etichetta della schermata di pubblicazione"
+  },
+  "walkThroughScreen": "Schermata tutorial",
+  "@walkThroughScreen": {
+    "description": "Etichetta della schermata tutorial"
+  },
+  "categoryScreen": "Schermata categoria",
+  "@categoryScreen": {
+    "description": "Etichetta della schermata categoria"
+  },
+  "unauthorized": "Autenticazione fallita",
+  "@unauthorized": {
+    "description": "Messaggio di errore di autenticazione fallita"
+  },
+  "timeout": "Timeout",
+  "@timeout": {
+    "description": "Messaggio di errore di timeout"
+  },
+  "errorOccurred": "Errore: {err}",
+  "@errorOccurred": {
+    "description": "Messaggio quando si verifica un errore (include il contenuto dell'errore)",
+    "placeholders": {
+      "err": {
+        "type": "Object"
+      }
+    }
+  },
+  "noProfile": "Nessun profilo",
+  "@noProfile": {
+    "description": "Messaggio quando non è impostato alcun profilo"
+  },
+  "dogAge": "{breed}・{age} anni",
+  "@dogAge": {
+    "description": "Razza ed età del cane",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "currentPlan": "Piano attuale",
+  "@currentPlan": {
+    "description": "Piano di abbonamento attuale"
+  },
+  "premiumPlan": "Piano Premium",
+  "@premiumPlan": {
+    "description": "Nome del piano Premium"
+  },
+  "freePlan": "Versione gratuita",
+  "@freePlan": {
+    "description": "Nome del piano gratuito"
+  },
+  "upgrade": "Aggiorna",
+  "@upgrade": {
+    "description": "Pulsante di aggiornamento"
+  },
+  "logout": "Esci",
+  "@logout": {
+    "description": "Pulsante di logout"
+  },
+  "musicGenerationSuccess": "🎵 La generazione della musica è completata! Puoi riprodurla in 'Cronologia di riproduzione musicale' su La mia pagina.",
+  "@musicGenerationSuccess": {
+    "description": "Messaggio di successo della generazione musicale"
+  },
+  "musicGenerationFailed": "Generazione della musica fallita: {error}",
+  "@musicGenerationFailed": {
+    "description": "Messaggio di errore della generazione musicale",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "sceneLeavingHome": "Mentre è solo",
+  "@sceneLeavingHome": {
+    "description": "Scena d'uso: Mentre è solo"
+  },
+  "sceneBedtime": "Prima di dormire",
+  "@sceneBedtime": {
+    "description": "Scena d'uso: Prima di dormire"
+  },
+  "sceneStressful": "Stressante",
+  "@sceneStressful": {
+    "description": "Scena d'uso: Stressante"
+  },
+  "sceneLongDistanceTravel": "Lungo viaggio",
+  "@sceneLongDistanceTravel": {
+    "description": "Scena d'uso: Lungo viaggio"
+  },
+  "sceneDailyHealing": "Guarigione quotidiana",
+  "@sceneDailyHealing": {
+    "description": "Scena d'uso: Guarigione quotidiana"
+  },
+  "sceneCare": "Cura/Cura per cani anziani",
+  "@sceneCare": {
+    "description": "Scena d'uso: Cura/Cura per cani anziani"
+  },
+  "conditionCalmDown": "Per calmarlo",
+  "@conditionCalmDown": {
+    "description": "Stato del cane: Per calmarlo"
+  },
+  "conditionRelax": "Per rilassarlo",
+  "@conditionRelax": {
+    "description": "Stato del cane: Per rilassarlo"
+  },
+  "conditionSuppressExcitement": "Per calmare la sua eccitazione",
+  "@conditionSuppressExcitement": {
+    "description": "Stato del cane: Per calmare la sua eccitazione"
+  },
+  "conditionReassure": "Per rassicurarlo",
+  "@conditionReassure": {
+    "description": "Stato del cane: Per rassicurarlo"
+  },
+  "conditionGoodSleep": "Per un buon sonno",
+  "@conditionGoodSleep": {
+    "description": "Stato del cane: Per un buon sonno"
+  },
+  "aiMusicGenerateTitle": "PawHarmony AI",
+  "@aiMusicGenerateTitle": {
+    "description": "Titolo della schermata di generazione musicale AI"
+  },
+  "noDogProfileRegistered": "Il profilo del cane non è registrato.",
+  "@noDogProfileRegistered": {
+    "description": "Messaggio quando il profilo del cane non è registrato"
+  },
+  "selectScene": "Seleziona scena d'uso",
+  "@selectScene": {
+    "description": "Titolo della selezione della scena d'uso"
+  },
+  "selectDogCondition": "Seleziona stato del cane",
+  "@selectDogCondition": {
+    "description": "Titolo della selezione dello stato del cane"
+  },
+  "otherOptional": "Altro (opzionale)",
+  "@otherOptional": {
+    "description": "Etichetta del campo di inserimento opzionale"
+  },
+  "otherHint": "Ad esempio, piange molto di notte ultimamente",
+  "@otherHint": {
+    "description": "Testo di aiuto per il campo di inserimento opzionale"
+  },
+  "generationsUnlimited": "Numero di generazioni: Illimitato",
+  "@generationsUnlimited": {
+    "description": "Testo quando il numero di generazioni è illimitato"
+  },
+  "generationsLeft": "Generazioni rimanenti: {count} volte ({plan})",
+  "@generationsLeft": {
+    "description": "Testo che mostra il numero di generazioni rimanenti",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "generateMusic": "Genera musica",
+  "@generateMusic": {
+    "description": "Testo del pulsante di generazione musicale"
+  },
+  "loadingMusicGenerator": "Caricamento dei file necessari per la generazione musicale. Attendere prego.",
+  "@loadingMusicGenerator": {
+    "description": "Messaggio di caricamento del generatore musicale"
+  },
+  "myPage": "La mia pagina",
+  "@myPage": {
+    "description": "Titolo della schermata La mia pagina"
+  },
+  "musicPlaybackHistory": "Cronologia di riproduzione musicale",
+  "@musicPlaybackHistory": {
+    "description": "Titolo della sezione della cronologia di riproduzione musicale"
+  },
+  "noMusicPlaybackHistory": "Nessuna cronologia di riproduzione musicale.",
+  "@noMusicPlaybackHistory": {
+    "description": "Messaggio quando non c'è cronologia di riproduzione musicale"
+  },
+  "generatedAt": "Data di generazione: {datetime}",
+  "@generatedAt": {
+    "description": "Data e ora di generazione della musica",
+    "placeholders": {
+      "datetime": {
+        "type": "String"
+      }
+    }
+  },
+  "scene": "Scena: {scene}",
+  "@scene": {
+    "description": "Scena d'uso",
+    "placeholders": {
+      "scene": {
+        "type": "String"
+      }
+    }
+  },
+  "condition": "Stato: {condition}",
+  "@condition": {
+    "description": "Stato del cane",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "breed": "Razza: {breed}",
+  "@breed": {
+    "description": "Razza del cane",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      }
+    }
+  },
+  "duration": "Durata: {duration} secondi",
+  "@duration": {
+    "description": "Durata della musica",
+    "placeholders": {
+      "duration": {
+        "type": "int"
+      }
+    }
+  },
+  "registerDogProfileTitle": "Registra il profilo del tuo cane",
+  "@registerDogProfileTitle": {
+    "description": "Titolo della schermata di registrazione del profilo del cane"
+  },
+  "editDogProfileTitle": "Modifica profilo del cane",
+  "@editDogProfileTitle": {
+    "description": "Titolo della schermata di modifica del profilo del cane"
+  },
+  "breedToyPoodle": "Barboncino Toy",
+  "@breedToyPoodle": {
+    "description": "Razza: Barboncino Toy"
+  },
+  "breedChihuahua": "Chihuahua",
+  "@breedChihuahua": {
+    "description": "Razza: Chihuahua"
+  },
+  "breedShiba": "Shiba Inu",
+  "@breedShiba": {
+    "description": "Razza: Shiba Inu"
+  },
+  "breedMiniatureDachshund": "Bassotto nano",
+  "@breedMiniatureDachshund": {
+    "description": "Razza: Bassotto nano"
+  },
+  "breedPomeranian": "Pomerania",
+  "@breedPomeranian": {
+    "description": "Razza: Pomerania"
+  },
+  "breedFrenchBulldog": "Bulldog francese",
+  "@breedFrenchBulldog": {
+    "description": "Razza: Bulldog francese"
+  },
+  "breedGoldenRetriever": "Golden Retriever",
+  "@breedGoldenRetriever": {
+    "description": "Razza: Golden Retriever"
+  },
+  "breedLabradorRetriever": "Labrador Retriever",
+  "@breedLabradorRetriever": {
+    "description": "Razza: Labrador Retriever"
+  },
+  "breedMix": "Meticcio",
+  "@breedMix": {
+    "description": "Razza: Meticcio"
+  },
+  "breedOther": "Altro",
+  "@breedOther": {
+    "description": "Razza: Altro"
+  },
+  "dogName": "Nome del cane",
+  "@dogName": {
+    "description": "Etichetta del campo di inserimento del nome del cane"
+  },
+  "dogNameValidator": "Inserisci un nome",
+  "@dogNameValidator": {
+    "description": "Messaggio di convalida per il nome del cane"
+  },
+  "dogBreed": "Razza",
+  "@dogBreed": {
+    "description": "Etichetta del campo di selezione della razza"
+  },
+  "dogBreedValidator": "Seleziona una razza",
+  "@dogBreedValidator": {
+    "description": "Messaggio di convalida per la razza del cane"
+  },
+  "selectDateOfBirth": "Seleziona data di nascita",
+  "@selectDateOfBirth": {
+    "description": "Testo per la selezione della data di nascita"
+  },
+  "dateOfBirth": "Data di nascita: {date}",
+  "@dateOfBirth": {
+    "description": "Testo di visualizzazione della data di nascita",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "age": "Età",
+  "@age": {
+    "description": "Etichetta del campo di inserimento dell'età"
+  },
+  "gender": "Sesso",
+  "@gender": {
+    "description": "Titolo della selezione del sesso"
+  },
+  "male": "Maschio",
+  "@male": {
+    "description": "Sesso: Maschio"
+  },
+  "female": "Femmina",
+  "@female": {
+    "description": "Sesso: Femmina"
+  },
+  "genderValidator": "Seleziona il sesso",
+  "@genderValidator": {
+    "description": "Messaggio di convalida per il sesso"
+  },
+  "personality": "Carattere (selezione multipla)",
+  "@personality": {
+    "description": "Titolo della selezione del carattere"
+  },
+  "personalityEasygoing": "Tranquillo",
+  "@personalityEasygoing": {
+    "description": "Carattere: Tranquillo"
+  },
+  "personalityActive": "Attivo",
+  "@personalityActive": {
+    "description": "Carattere: Attivo"
+  },
+  "personalityTimid": "Timido",
+  "@personalityTimid": {
+    "description": "Carattere: Timido"
+  },
+  "personalitySociable": "Socievole",
+  "@personalitySociable": {
+    "description": "Carattere: Socievole"
+  },
+  "personalityAffectionate": "Affettuoso",
+  "@personalityAffectionate": {
+    "description": "Carattere: Affettuoso"
+  },
+  "personalityMyPace": "A modo suo",
+  "@personalityMyPace": {
+    "description": "Carattere: A modo suo"
+  },
+  "register": "Registra",
+  "@register": {
+    "description": "Testo del pulsante di registrazione"
+  },
+  "profileSaved": "Profilo salvato",
+  "@profileSaved": {
+    "description": "Messaggio di successo al salvataggio del profilo"
+  },
+  "subscriptionSettingTitle": "Piano Premium",
+  "@subscriptionSettingTitle": {
+    "description": "Titolo della schermata delle impostazioni dell'abbonamento"
+  },
+  "currentPlanPremium": "Piano attuale: Piano Premium",
+  "@currentPlanPremium": {
+    "description": "Testo di visualizzazione del piano attuale per gli utenti premium"
+  },
+  "currentPlanFree": "Piano attuale: Versione gratuita",
+  "@currentPlanFree": {
+    "description": "Testo di visualizzazione del piano attuale per gli utenti gratuiti"
+  },
+  "premiumPlanBenefits": "Vantaggi del Piano Premium",
+  "@premiumPlanBenefits": {
+    "description": "Titolo della sezione dei vantaggi del Piano Premium"
+  },
+  "unlimitedMusicGeneration": "Generazione musicale illimitata",
+  "@unlimitedMusicGeneration": {
+    "description": "Vantaggio: Generazione musicale illimitata"
+  },
+  "detailedAnalysisReport": "Rapporto di analisi dettagliato",
+  "@detailedAnalysisReport": {
+    "description": "Vantaggio: Rapporto di analisi dettagliato"
+  },
+  "adFree": "Senza pubblicità",
+  "@adFree": {
+    "description": "Vantaggio: Senza pubblicità"
+  },
+  "expertCuratedContent": "Contenuti curati da esperti",
+  "@expertCuratedContent": {
+    "description": "Vantaggio: Contenuti curati da esperti"
+  },
+  "selectPlan": "Seleziona piano",
+  "@selectPlan": {
+    "description": "Titolo della sezione di selezione del piano"
+  },
+  "continueWithFreePlan": "Continua con la versione gratuita",
+  "@continueWithFreePlan": {
+    "description": "Testo del pulsante per continuare con la versione gratuita"
+  },
+  "subscriptionCancellationNote": "※ Puoi annullare l'abbonamento in qualsiasi momento",
+  "@subscriptionCancellationNote": {
+    "description": "Nota sulla cancellazione dell'abbonamento"
+  },
+  "noAvailablePlans": "Nessun piano disponibile.",
+  "@noAvailablePlans": {
+    "description": "Messaggio quando non ci sono piani disponibili"
+  },
+  "signUpTitle": "Crea nuovo account",
+  "@signUpTitle": {
+    "description": "Titolo della schermata di registrazione"
+  },
+  "emailAddress": "Indirizzo email",
+  "@emailAddress": {
+    "description": "Etichetta del campo di inserimento dell'indirizzo email"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Etichetta del campo di inserimento della password"
+  },
+  "confirmPassword": "Conferma password",
+  "@confirmPassword": {
+    "description": "Etichetta del campo di conferma della password"
+  },
+  "passwordTooShortSignUp": "Inserisci una password di almeno 8 caratteri",
+  "@passwordTooShortSignUp": {
+    "description": "Messaggio di convalida per una password troppo corta durante la registrazione"
+  },
+  "passwordMismatch": "Le password non corrispondono",
+  "@passwordMismatch": {
+    "description": "Messaggio di convalida per la non corrispondenza delle password"
+  },
+  "agreeToTerms": "Accetto i termini di utilizzo e l'informativa sulla privacy",
+  "@agreeToTerms": {
+    "description": "Testo della casella di controllo per accettare i termini e l'informativa sulla privacy"
+  },
+  "createAccount": "Crea account",
+  "@createAccount": {
+    "description": "Testo del pulsante di creazione dell'account"
+  },
+  "goToLogin": "Accedi qui",
+  "@goToLogin": {
+    "description": "Testo del pulsante per andare alla schermata di accesso"
+  },
+  "accountCreationFailed": "Creazione dell'account fallita.",
+  "@accountCreationFailed": {
+    "description": "Messaggio di errore generico alla creazione dell'account"
+  },
+  "emailAlreadyInUse": "Questo indirizzo email è già in uso.\nProva ad accedere.",
+  "@emailAlreadyInUse": {
+    "description": "Messaggio di errore quando l'indirizzo email è già in uso"
+  },
+  "weakPassword": "La password è troppo debole. Imposta una password più sicura.",
+  "@weakPassword": {
+    "description": "Messaggio di errore per una password troppo debole"
+  },
+  "invalidEmail": "Indirizzo email non valido.",
+  "@invalidEmail": {
+    "description": "Messaggio di errore per un indirizzo email non valido"
+  },
+  "operationNotAllowed": "L'autenticazione tramite email/password non è abilitata.",
+  "@operationNotAllowed": {
+    "description": "Messaggio di errore quando l'operazione non è consentita"
+  },
+  "networkRequestFailed": "Si è verificato un errore di rete. Controlla la tua connessione a Internet.",
+  "@networkRequestFailed": {
+    "description": "Messaggio di errore di richiesta di rete fallita"
+  },
+  "accountCreationFailedWithError": "Creazione dell'account fallita: {error}",
+  "@accountCreationFailedWithError": {
+    "description": "Messaggio di errore alla creazione dell'account con un messaggio di errore specifico",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordResetTitle": "Reimposta password",
+  "@passwordResetTitle": {
+    "description": "Titolo della schermata di reimpostazione della password"
+  },
+  "sendPasswordResetEmail": "Invia email di reimpostazione password",
+  "@sendPasswordResetEmail": {
+    "description": "Testo del pulsante per inviare un'email di reimpostazione della password"
+  },
+  "passwordResetEmailSent": "È stata inviata un'email di reimpostazione della password.",
+  "@passwordResetEmailSent": {
+    "description": "Messaggio di successo all'invio dell'email di reimpostazione della password"
+  },
+  "passwordResetFailed": "Invio dell'email di reimpostazione della password fallito.",
+  "@passwordResetFailed": {
+    "description": "Messaggio di errore generico alla reimpostazione della password"
+  },
+  "userNotFound": "Nessun utente trovato con questo indirizzo email.",
+  "@userNotFound": {
+    "description": "Messaggio di errore quando l'utente non viene trovato"
+  },
+  "tooManyRequestsPassword": "Troppe richieste. Riprova più tardi.",
+  "@tooManyRequestsPassword": {
+    "description": "Messaggio di errore per troppe richieste"
+  },
+  "passwordResetFailedWithError": "Invio dell'email di reimpostazione della password fallito: {error}",
+  "@passwordResetFailedWithError": {
+    "description": "Messaggio di errore alla reimpostazione della password con un messaggio di errore specifico",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginTitle": "Accedi",
+  "@loginTitle": {
+    "description": "Titolo della schermata di accesso"
+  },
+  "login": "Accedi",
+  "@login": {
+    "description": "Testo del pulsante di accesso"
+  },
+  "forgotPassword": "Password dimenticata?",
+  "@forgotPassword": {
+    "description": "Testo del pulsante per quando si dimentica la password"
+  },
+  "goToSignUp": "Registrati qui",
+  "@goToSignUp": {
+    "description": "Testo del pulsante per andare alla schermata di registrazione"
+  },
+  "loginFailed": "Accesso fallito.",
+  "@loginFailed": {
+    "description": "Messaggio di errore generico all'accesso"
+  },
+  "userNotFoundLogin": "Nessun utente trovato con questo indirizzo email.\nProva a registrarti.",
+  "@userNotFoundLogin": {
+    "description": "Messaggio di errore quando l'utente non viene trovato durante l'accesso"
+  },
+  "wrongPassword": "Password errata.",
+  "@wrongPassword": {
+    "description": "Messaggio di errore per una password errata"
+  },
+  "invalidCredential": "L'indirizzo email o la password non sono corretti.",
+  "@invalidCredential": {
+    "description": "Messaggio di errore per credenziali non valide"
+  },
+  "userDisabled": "Questo account è stato disabilitato.",
+  "@userDisabled": {
+    "description": "Messaggio di errore quando l'utente è disabilitato"
+  },
+  "tooManyLoginAttempts": "Troppi tentativi di accesso. Riprova più tardi.",
+  "@tooManyLoginAttempts": {
+    "description": "Messaggio di errore per troppi tentativi di accesso"
+  },
+  "loginFailedWithError": "Accesso fallito: {error}",
+  "@loginFailedWithError": {
+    "description": "Messaggio di errore all'accesso con un messaggio di errore specifico",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "musicGenerationInProgress": "Generazione musicale in corso...",
+  "@musicGenerationInProgress": {
+    "description": "Titolo della finestra di dialogo di generazione musicale in corso"
+  },
+  "aiGeneratingMusicForDog": "L'IA sta generando musica per il tuo cane.\nUna volta completata la generazione, potrai riprodurla su La mia pagina.",
+  "@aiGeneratingMusicForDog": {
+    "description": "Testo di descrizione della finestra di dialogo di generazione musicale"
+  },
+  "planInformationFetchFailed": "Recupero delle informazioni sul piano fallito.",
+  "@planInformationFetchFailed": {
+    "description": "Messaggio di errore al fallimento del recupero delle informazioni sul piano"
+  }
+}

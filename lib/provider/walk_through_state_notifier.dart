@@ -40,6 +40,13 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
   /// 最後のページかどうか
   bool get isLastStep => state.currentPage == lastStepIndex;
 
+  /// 初回起動フラグを更新します
+  void _updateInitialLaunchFlag() {
+    _ref
+        .read(sharedPreferencesProvider)
+        .setBool(SharedPreferencesKeys.initialLaunchKey, false);
+  }
+
   /// 表示ページの変更完了を通知します
   void updateCurrentPage(int index) {
     if (state.currentPage == index) return;
@@ -86,6 +93,8 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
     if (state.isAnimating) return;
 
     if (isLastStep && context.mounted) {
+      // 初回起動フラグを更新
+      _updateInitialLaunchFlag();
       const BaseScreenRoute().go(context);
     } else {
       await switchPage(nextStepIndex, controller);
@@ -99,6 +108,8 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
     required BuildContext context,
   }) async {
     if (isLastStep && context.mounted) {
+      // 初回起動フラグを更新
+      _updateInitialLaunchFlag();
       if (context.mounted) {
         const BaseScreenRoute().go(context);
       }

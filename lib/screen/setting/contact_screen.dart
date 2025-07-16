@@ -14,15 +14,13 @@ class ContactScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     final subjectController = TextEditingController();
     final contentController = TextEditingController();
 
     return Scaffold(
-      appBar: BackIconHeader(
-        title: localizations.contact,
-      ),
+      appBar: BackIconHeader(title: l10n.contact),
       backgroundColor: theme.appColors.background,
       body: Column(
         children: [
@@ -33,25 +31,25 @@ class ContactScreen extends HookConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ThemeText(
-                    text: localizations.contactContentForm,
+                    text: l10n.contactContentForm,
                     color: theme.appColors.black,
                     style: theme.textTheme.h30,
                   ),
                   hSpace(height: 16),
                   CustomTextFormField(
                     controller: subjectController,
-                    labelText: localizations.subject,
+                    labelText: l10n.subject,
                   ),
                   hSpace(height: 32),
                   CustomTextFormField(
                     controller: contentController,
-                    labelText: localizations.contactContent,
+                    labelText: l10n.contactContent,
                     maxLines: 5,
                   ),
                   const Spacer(),
                   PrimaryButton(
                     screen: ScreenLabel.contact,
-                    text: localizations.send,
+                    text: l10n.send,
                     width: getScreenSize(context).width,
                     isDisabled: false,
                     callback: () async {
@@ -64,7 +62,7 @@ class ContactScreen extends HookConsumerWidget {
                         showSnackBar(
                           context: context,
                           theme: theme,
-                          text: localizations.sendSuccess,
+                          text: l10n.sendSuccess,
                         );
                         const BaseScreenRoute().go(context);
                       }

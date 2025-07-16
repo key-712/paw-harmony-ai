@@ -17,30 +17,32 @@ class PushScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
-    final pushNotificationState =
-        ref.watch(pushNotificationStateNotifierProvider);
-    final pushNotificationStateNotifier =
-        ref.watch(pushNotificationStateNotifierProvider.notifier);
-    final notificationPermissionAllowed =
-        ref.watch(notificationPermissionStateNotifierProvider);
+    final pushNotificationState = ref.watch(
+      pushNotificationStateNotifierProvider,
+    );
+    final pushNotificationStateNotifier = ref.watch(
+      pushNotificationStateNotifierProvider.notifier,
+    );
+    final notificationPermissionAllowed = ref.watch(
+      notificationPermissionStateNotifierProvider,
+    );
     final mediaQuery = ref.watch(mediaQueryStateNotifierProvider);
 
     usePushNotificationToken(context: context, ref: ref);
     useNetworkCheck(context: context, ref: ref, screen: ScreenLabel.push);
 
     return Scaffold(
-      appBar: BackIconHeader(
-        title: localizations.pushNotification,
-      ),
+      appBar: BackIconHeader(title: l10n.pushNotification),
       backgroundColor: theme.appColors.background,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: mediaQuery == MediaType.sp
-                ? LayoutList.spHorizontalPadding
-                : tabletHorizontalPadding(context: context),
+            horizontal:
+                mediaQuery == MediaType.sp
+                    ? LayoutList.spHorizontalPadding
+                    : tabletHorizontalPadding(context: context),
             vertical: 32,
           ),
           child: Column(
@@ -51,50 +53,48 @@ class PushScreen extends HookConsumerWidget {
                   padding: const EdgeInsets.only(bottom: 16),
                   child: MessageCard(
                     screen: ScreenLabel.push,
-                    title: localizations
-                        .onPushNotificationDenied(localizations.productName),
-                    message: localizations.onPushNotificationContent,
+                    title: l10n.onPushNotificationDenied(l10n.productName),
+                    message: l10n.onPushNotificationContent,
                     onTap: openAppSettings,
                   ),
                 ),
               MessageCard(
                 screen: ScreenLabel.push,
-                message: localizations.onPushNotificationContent2,
+                message: l10n.onPushNotificationContent2,
               ),
               hSpace(height: 16),
               Row(
                 children: [
                   ThemeText(
-                    text: localizations.onPushNotification,
-                    color: notificationPermissionAllowed
-                        ? theme.appColors.black
-                        : theme.appColors.black.withValues(alpha: 0.5),
+                    text: l10n.onPushNotification,
+                    color:
+                        notificationPermissionAllowed
+                            ? theme.appColors.black
+                            : theme.appColors.black.withValues(alpha: 0.5),
                     style: theme.textTheme.h30,
                   ),
                   const Spacer(),
                   PrimarySwitch(
-                    label: localizations.onPushNotification,
+                    label: l10n.onPushNotification,
                     value: pushNotificationState.isEnabledPushNotification,
-                    onChanged: notificationPermissionAllowed
-                        ? (value) => pushNotificationStateNotifier
+                    onChanged:
+                        notificationPermissionAllowed
+                            ? (value) => pushNotificationStateNotifier
                                 .updateIsEnabledPushNotification(
-                              isEnabled: value,
-                              context: context,
-                              ref: ref,
-                            )
-                        : null,
+                                  isEnabled: value,
+                                  context: context,
+                                  ref: ref,
+                                )
+                            : null,
                   ),
                 ],
               ),
               isNotProduction()
                   ? SelectableText(
-                      pushNotificationState.token,
-                      style: theme.textTheme.h30,
-                    )
-                  : Container(
-                      height: 1,
-                      color: theme.appColors.background,
-                    ),
+                    pushNotificationState.token,
+                    style: theme.textTheme.h30,
+                  )
+                  : Container(height: 1, color: theme.appColors.background),
               hSpace(height: 16),
               const AdBanner(),
             ],
@@ -106,10 +106,7 @@ class PushScreen extends HookConsumerWidget {
 }
 
 /// PushNotificationウィジェットのWidgetbookでの確認用メソッド
-@widgetbook.UseCase(
-  name: 'PushScreen',
-  type: PushScreen,
-)
+@widgetbook.UseCase(name: 'PushScreen', type: PushScreen)
 Widget pushNotificationUseCase(BuildContext context) {
   return const PushScreen();
 }
