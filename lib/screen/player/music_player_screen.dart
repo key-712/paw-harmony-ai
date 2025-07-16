@@ -1,5 +1,6 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -35,20 +36,24 @@ class MusicPlayerScreen extends HookConsumerWidget {
     final selectedTags = useState<List<String>>([]);
     final commentController = useTextEditingController();
 
-    Future.microtask(() async {
-      if (!context.mounted) return;
-      try {
-        await playerNotifier.setUrl(musicUrl, context);
-      } on Exception catch (e) {
-        logger.e('音楽の再生に失敗しました。アプリを再起動してください。', error: e);
+    // 音楽URLの設定を一度だけ実行
+    useEffect(() {
+      Future.microtask(() async {
         if (!context.mounted) return;
-        showSnackBar(
-          context: context,
-          theme: theme,
-          text: '音楽の再生に失敗しました。アプリを再起動してください。',
-        );
-      }
-    });
+        try {
+          await playerNotifier.setUrl(musicUrl, context);
+        } on Exception catch (e) {
+          logger.e('音楽の再生に失敗しました。アプリを再起動してください。', error: e);
+          if (!context.mounted) return;
+          showSnackBar(
+            context: context,
+            theme: theme,
+            text: '音楽の再生に失敗しました。アプリを再起動してください。',
+          );
+        }
+      });
+      return null;
+    }, [musicUrl]);
 
     return Scaffold(
       appBar: BackIconHeader(title: l10n.nowPlaying),
@@ -113,6 +118,19 @@ class MusicPlayerScreen extends HookConsumerWidget {
                 ),
               ],
             ),
+            // デバッグ用の音声テストボタン
+            if (kDebugMode) ...[
+              hSpace(height: 16),
+              SecondaryButton(
+                text: '音声テスト（デバッグ）',
+                screen: 'music_player_screen',
+                width: double.infinity,
+                isDisabled: false,
+                callback: () async {
+                  await playerNotifier.testAudio();
+                },
+              ),
+            ],
             hSpace(height: 16),
             SecondaryButton(
               text:

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../import/component.dart';
 import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/theme.dart';
 import '../../l10n/app_localizations.dart';
-import '../../utility/logger/logger.dart';
 
 /// AI音楽生成画面のウィジェット
 class AiMusicGenerateScreen extends HookConsumerWidget {
@@ -32,42 +29,22 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
     final additionalInfoController = useTextEditingController();
     final purchaseState = ref.watch(purchaseStateNotifierProvider);
     final theme = ref.watch(appThemeProvider);
-    final isDialogShowing = useState(false); // Moved to top
-
-    // HTMLコンテンツを非同期でロード
-    final htmlContentFuture = useMemoized(
-      () => rootBundle.loadString('assets/web/music_generator.html'),
+    final musicGenerationState = ref.watch(
+      musicGenerationStateNotifierProvider,
     );
-    final htmlContentSnapshot = useFuture(htmlContentFuture);
 
     ref.listen<AsyncValue<MusicGenerationHistory?>>(
       musicGenerationStateNotifierProvider,
       (_, state) {
         if (!context.mounted) return;
 
-        logger
-          ..d('=== 音楽生成状態変更 ===')
-          ..d('状態: $state')
-          ..d('ダイアログ表示中: ${isDialogShowing.value}');
-
-        // 音楽生成が完了またはエラーになった場合のみ、ダイアログを閉じる
-        if (isDialogShowing.value &&
-            (state is AsyncData || state is AsyncError)) {
-          logger.d('音楽生成が完了またはエラーになったため、ダイアログを閉じます');
-          Navigator.of(context).pop();
-          isDialogShowing.value = false;
-        }
-
         if (state is AsyncData && state.value != null) {
-          logger.d('音楽生成完了: ${state.value?.id}');
-          // 音楽生成完了の通知を表示
           showSnackBar(
             context: context,
             theme: theme,
             text: l10n.musicGenerationSuccess,
           );
         } else if (state is AsyncError) {
-          logger.d('音楽生成エラー: ${state.error}');
           showAlertSnackBar(
             context: context,
             theme: theme,
@@ -169,7 +146,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                     text:
                         purchaseState.isSubscribed
                             ? l10n.generationsUnlimited
-                            : l10n.generationsLeft(3, l10n.freePlan), // 仮の回数
+                            : l10n.generationsLeft(3, l10n.freePlan),
                     color: theme.appColors.grey,
                     style: theme.textTheme.h30.copyWith(fontSize: 14),
                   ),
@@ -182,19 +159,8 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                   isDisabled:
                       selectedScene.value == null ||
                       selectedCondition.value == null ||
-                      !(purchaseState.isSubscribed ||
-                          // ignore: lines_longer_than_80_chars
-                          true), // TODO(dev): Implement actual free trial limit check
-                  callback: () async {
-                    if (!htmlContentSnapshot.hasData) {
-                      showAlertSnackBar(
-                        context: context,
-                        theme: theme,
-                        text: l10n.loadingMusicGenerator,
-                      );
-                      return;
-                    }
-
+                      musicGenerationState.isLoading,
+                  callback: () {
                     final request = MusicGenerationRequest(
                       userId: profile.userId,
                       dogId: profile.id,
@@ -204,41 +170,31 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                       dogBreed: profile.breed,
                       dogPersonalityTraits: profile.personalityTraits,
                     );
-
-                    // 音楽生成ダイアログを表示
-                    isDialogShowing.value = true;
-                    logger.d('ダイアログを表示します');
-
-                    // ダイアログを表示してから音楽生成を開始
-                    await showDialog<void>(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (BuildContext dialogContext) {
-                        // ダイアログごとに新しいWebViewControllerを生成
-                        final webViewController = WebViewController();
-                        logger.d('ダイアログビルダーが呼び出されました');
-                        return MusicGenerationWebViewDialog(
-                          controller: webViewController,
-                          htmlContent:
-                              htmlContentSnapshot.data!, // Pass htmlContent
-                          onWebViewCreated: (controller) {
-                            logger.d('WebViewの準備が完了しました。音楽生成を開始します。');
-                            if (isDialogShowing.value) {
-                              ref
-                                  .read(
-                                    musicGenerationStateNotifierProvider
-                                        .notifier,
-                                  )
-                                  .generateMusic(request, controller);
-                            }
-                          },
-                        );
-                      },
-                    );
-                    logger.d('ダイアログが閉じられました');
-                    isDialogShowing.value = false;
+                    ref
+                        .read(musicGenerationStateNotifierProvider.notifier)
+                        .generateMusic(request);
                   },
                 ),
+                if (musicGenerationState.isLoading) ...[
+                  hSpace(height: 16),
+                  const Center(child: CircularProgressIndicator()),
+                  hSpace(height: 8),
+                  Center(
+                    child: ThemeText(
+                      text: l10n.musicGenerationInProgress,
+                      color: theme.appColors.grey,
+                      style: theme.textTheme.h30.copyWith(fontSize: 14),
+                    ),
+                  ),
+                  hSpace(height: 8),
+                  Center(
+                    child: ThemeText(
+                      text: 'Google AI Lyria RealTimeを使用して音楽を生成中...',
+                      color: theme.appColors.grey,
+                      style: theme.textTheme.h30.copyWith(fontSize: 12),
+                    ),
+                  ),
+                ],
               ],
             ),
           );

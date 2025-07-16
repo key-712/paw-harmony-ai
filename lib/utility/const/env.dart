@@ -46,4 +46,7 @@ class Env {
   static const revenueCatGoogleApiKey = String.fromEnvironment(
     'revenueCatGoogleApiKey',
   );
+
+  /// Google AI APIキー
+  static const googleAiApiKey = String.fromEnvironment('googleAiApiKey');
 }

@@ -42,15 +42,39 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
   /// オーディオプレイヤーの初期化
   void _initializeAudioPlayer() {
     try {
+      logger.d('=== オーディオプレイヤー初期化開始 ===');
+
       _audioPlayer.positionStream.listen((position) {
+        logger.d('再生位置更新: $position');
         state = state.copyWith(position: position);
       });
+
       _audioPlayer.durationStream.listen((duration) {
+        logger.d('総再生時間更新: $duration');
         state = state.copyWith(duration: duration);
       });
+
       _audioPlayer.playingStream.listen((isPlaying) {
+        logger.d('再生状態変更: ${isPlaying ? "再生中" : "停止中"}');
         state = state.copyWith(isPlaying: isPlaying);
       });
+
+      // プレイヤー状態の監視（自動再生なし）
+      _audioPlayer.playerStateStream.listen((playerState) {
+        logger.d('プレイヤー状態: ${playerState.processingState}');
+        if (playerState.processingState == ProcessingState.idle) {
+          logger.w('プレイヤーがアイドル状態です');
+        }
+      });
+
+      // エラーストリームの監視を追加
+      _audioPlayer.playerStateStream.listen((playerState) {
+        if (playerState.processingState == ProcessingState.idle) {
+          logger.w('プレイヤーがアイドル状態です');
+        }
+      });
+
+      logger.d('オーディオプレイヤー初期化完了');
     } on PlayerException catch (e) {
       logger.e('Player exception: $e');
     } on Exception catch (e) {
@@ -66,19 +90,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
   /// [url] 再生する音楽のURL
   Future<void> setUrl(String url, BuildContext context) async {
     try {
-      // プラグインの初期化状態をチェック
-      if (!_isPluginInitialized()) {
-        logger.e('just_audio plugin not initialized');
-        if (!context.mounted) return;
-        state = state.copyWith(
-          appError: AppError(
-            error: Exception('Audio plugin not available'),
-            context: context,
-          ),
-        );
-        return;
-      }
-
       // URLの形式をログ出力
       logger.d('Setting URL: $url');
 
@@ -88,7 +99,7 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       }
 
       // Firebase Storage URLの場合、ファイルをダウンロードしてから再生
-      if (url.contains('firebase')) {
+      if (url.contains('firebase') && !url.contains('data:audio')) {
         logger.d('Firebase Storage URL detected, downloading file...');
         try {
           final localFile = await _downloadAndSaveFile(url);
@@ -107,38 +118,11 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
           logger.d(
             'Setting file path for iOS compatibility: ${localFile.path}',
           );
-          try {
-            // iOSでは、ファイルパスを直接設定する前に少し待機
-            await Future.delayed(const Duration(milliseconds: 100));
-            await _audioPlayer.setFilePath(localFile.path);
-            logger.d('Local file set successfully for iOS');
-            return;
-          } on PlayerException catch (e) {
-            logger.e('Player exception when setting local file: $e');
-            logger.e('Error code: ${e.code}');
-            logger.e('Error message: ${e.message}');
-
-            // iOS固有のエラーコードをチェック
-            if (e.code == -11800) {
-              logger.e('iOS audio session error detected');
-              // iOSのオーディオセッションをリセットして再試行
-              try {
-                await _audioPlayer.stop();
-                await Future.delayed(const Duration(milliseconds: 500));
-                await _audioPlayer.setFilePath(localFile.path);
-                logger.d('iOS audio session reset and file set successfully');
-                return;
-              } on PlayerException catch (e2) {
-                logger.e('iOS audio session reset failed: $e2');
-                rethrow;
-              }
-            }
-            rethrow;
-          }
+          await _audioPlayer.setFilePath(localFile.path);
+          logger.d('Local file set successfully for iOS');
+          return;
         } on Exception catch (e) {
           logger.e('Failed to download or set local file: $e');
-          // ダウンロードに失敗した場合は、元のURLで直接再生を試行
-          logger.d('Falling back to direct URL playback...');
         }
       }
 
@@ -238,9 +222,10 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
           )
           .timeout(const Duration(seconds: 30));
 
-      logger.d('HTTP Response Status: ${response.statusCode}');
-      logger.d('HTTP Response Headers: ${response.headers}');
-      logger.d('Response body size: ${response.bodyBytes.length} bytes');
+      logger
+        ..d('HTTP Response Status: ${response.statusCode}')
+        ..d('HTTP Response Headers: ${response.headers}')
+        ..d('Response body size: ${response.bodyBytes.length} bytes');
 
       if (response.statusCode != 200) {
         throw Exception('Failed to download file: HTTP ${response.statusCode}');
@@ -282,18 +267,20 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
         final fmt = String.fromCharCodes(fileBytes.skip(12).take(4));
         final data = String.fromCharCodes(fileBytes.skip(36).take(4));
 
-        logger.d('File header: $header');
-        logger.d('WAVE identifier: $wave');
-        logger.d('Format chunk: $fmt');
-        logger.d('Data chunk: $data');
+        logger
+          ..d('File header: $header')
+          ..d('WAVE identifier: $wave')
+          ..d('Format chunk: $fmt')
+          ..d('Data chunk: $data');
 
         if (header != 'RIFF' ||
             wave != 'WAVE' ||
             fmt != 'fmt ' ||
             data != 'data') {
-          logger.w('Warning: File does not appear to be a valid WAV file');
-          logger.w('Expected: RIFF, WAVE, fmt , data');
-          logger.w('Found: $header, $wave, $fmt, $data');
+          logger
+            ..w('Warning: File does not appear to be a valid WAV file')
+            ..w('Expected: RIFF, WAVE, fmt , data')
+            ..w('Found: $header, $wave, $fmt, $data');
         } else {
           logger.d('WAV file header appears valid');
         }
@@ -323,11 +310,12 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
           logger.d('iOS compatibility: $isIOSCompatible');
 
           if (!isIOSCompatible) {
-            logger.w('Warning: File may not be fully compatible with iOS');
-            logger.w('Expected: 44.1kHz, 1-2 channels, 16-bit');
-            logger.w(
-              'Found: ${sampleRate}Hz, $channels channels, $bitsPerSample-bit',
-            );
+            logger
+              ..w('Warning: File may not be fully compatible with iOS')
+              ..w('Expected: 44.1kHz, 1-2 channels, 16-bit')
+              ..w(
+                'Found: ${sampleRate}Hz,$channels channels,$bitsPerSample-bit',
+              );
           }
         }
       }
@@ -339,27 +327,65 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     }
   }
 
-  /// プラグインが初期化されているかチェック
-  bool _isPluginInitialized() {
+  /// 音楽を再生するメソッド
+  void play() {
+    logger
+      ..d('=== 音楽再生開始 ===')
+      ..d('現在の再生状態: ${state.isPlaying}')
+      ..d('現在の再生位置: ${state.position}')
+      ..d('総再生時間: ${state.duration}');
+
     try {
-      // 簡単なテストでプラグインの状態を確認
-      return _audioPlayer != null;
+      // シミュレーターでの音声再生を改善
+      _audioPlayer
+        ..setVolume(1) // 音量を最大に設定
+        ..setSpeed(1) // 再生速度を1.0に設定
+        ..play();
+      logger.d('play()メソッドが正常に呼び出されました');
+
+      // 音声レベルを確認
+      _audioPlayer.volumeStream.listen((volume) {
+        logger.d('現在の音量: $volume');
+      });
     } on Exception catch (e) {
-      logger.e('Plugin initialization check failed: $e');
-      return false;
+      logger.e('音楽再生中にエラーが発生しました: $e');
+      rethrow;
     }
   }
 
-  /// 音楽を再生するメソッド
-  void play() => _audioPlayer.play();
-
   /// 音楽を一時停止するメソッド
-  void pause() => _audioPlayer.pause();
+  void pause() {
+    logger
+      ..d('=== 音楽一時停止 ===')
+      ..d('現在の再生状態: ${state.isPlaying}')
+      ..d('現在の再生位置: ${state.position}');
+
+    try {
+      _audioPlayer.pause();
+      logger.d('pause()メソッドが正常に呼び出されました');
+    } on Exception catch (e) {
+      logger.e('音楽一時停止中にエラーが発生しました: $e');
+      rethrow;
+    }
+  }
 
   /// 音楽の再生位置を変更するメソッド
   ///
   /// [position] 新しい再生位置
-  void seek(Duration position) => _audioPlayer.seek(position);
+  void seek(Duration position) {
+    logger
+      ..d('=== 再生位置変更 ===')
+      ..d('変更前の位置: ${state.position}')
+      ..d('変更後の位置: $position');
+
+    try {
+      _audioPlayer.seek(position);
+      logger.d('seek()メソッドが正常に呼び出されました');
+    } on Exception catch (e) {
+      logger.e('再生位置変更中にエラーが発生しました: $e');
+      rethrow;
+    }
+  }
 
   /// 再生タイマーを設定するメソッド
   ///
@@ -374,6 +400,76 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
         start: state.position,
         end: endPosition > state.duration! ? state.duration : endPosition,
       );
+    }
+  }
+
+  /// デバッグ用の音声テストメソッド
+  Future<void> testAudio() async {
+    logger.d('=== 音声テスト開始 ===');
+
+    try {
+      // Firebase Storageのテスト用URL
+      const testUrl =
+          'https://firebasestorage.googleapis.com/v0/b/crelve-paw-harmony-ai-dev.firebasestorage.app/o/generated_music%2F57746176-a207-41ee-add9-63ec2e70a934.wav?alt=media&token=43a5e492-ebc1-4716-b4ec-9abe85ba22fc';
+
+      logger.d('テストURL: $testUrl');
+
+      // 既存の音楽を停止
+      await _audioPlayer.stop();
+      logger.d('既存の音楽を停止しました');
+
+      // URL設定を試行
+      await _audioPlayer.setUrl(testUrl);
+      logger.d('URL設定完了');
+
+      // 音量設定
+      await _audioPlayer.setVolume(1);
+      logger.d('音量設定完了');
+
+      // 再生開始
+      await _audioPlayer.play();
+      logger.d('Firebase Storageのテスト音声を再生しました');
+
+      // 10秒後に停止
+      Future.delayed(const Duration(seconds: 10), () async {
+        await _audioPlayer.stop();
+        logger.d('テスト音声を停止しました');
+      });
+    } on PlayerException catch (e) {
+      logger.e('プレイヤーエラー: ${e.code} - ${e.message}');
+      // 代替テスト音声を試行
+      await _testWithFallbackAudio();
+    } on Exception catch (e) {
+      logger.e('音声テスト中にエラーが発生しました: $e');
+      // 代替テスト音声を試行
+      await _testWithFallbackAudio();
+    }
+  }
+
+  /// 代替テスト音声を使用したテスト
+  Future<void> _testWithFallbackAudio() async {
+    logger.d('=== 代替音声テスト開始 ===');
+
+    try {
+      // 短いテスト音声（ビープ音）
+      const fallbackUrl =
+          'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT';
+
+      logger.d('代替URL: $fallbackUrl');
+
+      await _audioPlayer.setUrl(fallbackUrl);
+      await _audioPlayer.setVolume(1);
+      await _audioPlayer.play();
+
+      logger.d('代替テスト音声を再生しました');
+
+      // 3秒後に停止
+      Future.delayed(const Duration(seconds: 3), () async {
+        await _audioPlayer.stop();
+        logger.d('代替テスト音声を停止しました');
+      });
+    } on Exception catch (e) {
+      logger.e('代替音声テスト中にエラーが発生しました: $e');
     }
   }
 

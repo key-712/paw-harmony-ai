@@ -69,7 +69,6 @@ dependencies:
   url_launcher: ^6.3.1
   uuid: ^4.4.2
   version: ^3.0.2
-  webview_flutter: ^4.7.0
   widgetbook: ^3.5.0
   widgetbook_annotation: ^3.1.0
 

@@ -19,6 +19,7 @@ export '../utility/layout.dart';
 export '../utility/logger/logger.dart';
 export '../utility/logger/provider_logger.dart';
 export '../utility/media_query.dart';
+export '../utility/music_generation_factory.dart';
 export '../utility/open_review.dart';
 export '../utility/open_url.dart';
 export '../utility/platform.dart';

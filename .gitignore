@@ -37,6 +37,10 @@ dart_env/
 .pub/
 /build/
 
+# Node.js related
+node_modules/
+**/node_modules/
+
 # Environment files
 .env
 .env.local
