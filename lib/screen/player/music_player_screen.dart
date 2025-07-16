@@ -1,6 +1,5 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -118,20 +117,6 @@ class MusicPlayerScreen extends HookConsumerWidget {
                 ),
               ],
             ),
-            // デバッグ用の音声テストボタン
-            if (kDebugMode) ...[
-              hSpace(height: 16),
-              SecondaryButton(
-                text: '音声テスト（デバッグ）',
-                screen: 'music_player_screen',
-                width: double.infinity,
-                isDisabled: false,
-                callback: () async {
-                  await playerNotifier.testAudio();
-                },
-              ),
-            ],
-            hSpace(height: 16),
             SecondaryButton(
               text:
                   playerState.timerDuration == null
