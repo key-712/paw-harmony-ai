@@ -1,92 +1,1114 @@
 {
   "@@locale": "ja",
   "productName": "ProductName",
+  "@productName": {
+    "description": "アプリ名"
+  },
   "welcomeMessage": "{productName}へようこそ！",
+  "@welcomeMessage": {
+    "description": "ウェルカム画面に表示されるメッセージ"
+  },
   "descriptionMessage": "",
+  "@descriptionMessage": {
+    "description": "アプリの説明メッセージ"
+  },
   "mainIntroductionScreen": "",
+  "@mainIntroductionScreen": {
+    "description": "メイン紹介画面のタイトル"
+  },
   "mainIntroductionContent": "",
+  "@mainIntroductionContent": {
+    "description": "メイン紹介画面のコンテンツ"
+  },
   "serviceBeginScreen": "",
+  "@serviceBeginScreen": {
+    "description": "サービス開始画面のタイトル"
+  },
   "serviceBeginContent": "",
+  "@serviceBeginContent": {
+    "description": "サービス開始画面のコンテンツ"
+  },
   "signUp": "新規会員登録",
+  "@signUp": {
+    "description": "新規登録ボタンのテキスト"
+  },
   "close": "閉じる",
+  "@close": {
+    "description": "閉じるボタンのテキスト"
+  },
   "cancel": "キャンセル",
+  "@cancel": {
+    "description": "キャンセルボタンのテキスト"
+  },
   "skip": "スキップ",
+  "@skip": {
+    "description": "スキップボタンのテキスト"
+  },
   "next": "次へ",
+  "@next": {
+    "description": "次へボタンのテキスト"
+  },
   "edit": "編集",
+  "@edit": {
+    "description": "編集ボタンのテキスト"
+  },
   "save": "保存",
+  "@save": {
+    "description": "保存ボタンのテキスト"
+  },
   "send": "送信",
+  "@send": {
+    "description": "送信ボタンのテキスト"
+  },
   "search": "検索",
+  "@search": {
+    "description": "検索ボタンのテキスト"
+  },
   "notifications": "通知",
+  "@notifications": {
+    "description": "通知メニュー項目"
+  },
   "profile": "プロフィール",
+  "@profile": {
+    "description": "プロフィールメニュー項目"
+  },
   "setting": "設定",
+  "@setting": {
+    "description": "設定メニュー項目"
+  },
   "languageSetting": "言語設定",
+  "@languageSetting": {
+    "description": "言語設定画面のタイトル"
+  },
   "english": "英語",
+  "@english": {
+    "description": "英語言語オプション"
+  },
   "japanese": "日本語",
+  "@japanese": {
+    "description": "日本語言語オプション"
+  },
+  "french": "フランス語",
+  "@french": {
+    "description": "フランス語言語オプション"
+  },
+  "italian": "イタリア語",
+  "@italian": {
+    "description": "イタリア語言語オプション"
+  },
+  "spanish": "スペイン語",
+  "@spanish": {
+    "description": "スペイン語言語オプション"
+  },
   "languageSettingSuccess": "言語設定を変更しました",
+  "@languageSettingSuccess": {
+    "description": "言語変更時の成功メッセージ"
+  },
   "pushNotification": "プッシュ通知",
+  "@pushNotification": {
+    "description": "プッシュ通知設定"
+  },
   "onPushNotification": "プッシュ通知をONにする",
+  "@onPushNotification": {
+    "description": "プッシュ通知有効化ボタン"
+  },
   "onPushNotificationDenied": "{productName} からのプッシュ通知が許可されていません",
+  "@onPushNotificationDenied": {
+    "description": "プッシュ通知が拒否された時のメッセージ"
+  },
   "onPushNotificationContent": "プッシュ通知を有効にするには、設定画面から「通知」を許可してください。",
+  "@onPushNotificationContent": {
+    "description": "プッシュ通知有効化の説明"
+  },
   "onPushNotificationContent2": "設定をONにすると、プッシュ通知を受け取ることができるようになります。",
+  "@onPushNotificationContent2": {
+    "description": "プッシュ通知の追加説明"
+  },
   "ratingContent": "アプリはいかがですか？",
+  "@ratingContent": {
+    "description": "アプリ評価の質問"
+  },
   "ratingContent2": "星をタップして、アプリを評価してください。",
+  "@ratingContent2": {
+    "description": "アプリ評価の説明"
+  },
   "ratingSent": "評価を送信しました",
+  "@ratingSent": {
+    "description": "評価送信時の成功メッセージ"
+  },
   "recommendApp": "おすすめアプリ",
+  "@recommendApp": {
+    "description": "おすすめアプリ画面のタイトル"
+  },
   "contact": "お問い合わせ",
+  "@contact": {
+    "description": "お問い合わせメニュー項目"
+  },
   "premiumFeature": "プレミアム機能",
-  "frequentlyAskedQuestions": "よくある質問",
-  "currentlyCreating": "現在作成中です",
-  "currentlyCreatingContent": "もう少々お待ちください",
+  "@premiumFeature": {
+    "description": "プレミアム機能セクション"
+  },
   "legal": "利用規約",
+  "@legal": {
+    "description": "利用規約メニュー項目"
+  },
   "privacyPolicy": "プライバシーポリシー",
+  "@privacyPolicy": {
+    "description": "プライバシーポリシーメニュー項目"
+  },
   "contactContentForm": "お問い合わせ内容を以下のフォームにご記入ください",
+  "@contactContentForm": {
+    "description": "お問い合わせフォームの説明"
+  },
   "contactContent": "お問い合わせ内容",
+  "@contactContent": {
+    "description": "お問い合わせ内容フィールドのラベル"
+  },
   "subject": "件名",
+  "@subject": {
+    "description": "件名フィールドのラベル"
+  },
   "sendSuccess": "お問い合わせ内容を送信しました",
+  "@sendSuccess": {
+    "description": "お問い合わせ送信時の成功メッセージ"
+  },
   "request": "ご意見・ご要望",
+  "@request": {
+    "description": "ご意見・ご要望メニュー項目"
+  },
   "content": "ご意見・ご要望内容",
+  "@content": {
+    "description": "ご意見・ご要望内容フィールドのラベル"
+  },
   "requestForm": "ご意見・ご要望内容を以下のフォームにご記入ください",
+  "@requestForm": {
+    "description": "ご意見・ご要望フォームの説明"
+  },
   "sendSuccessRequest": "ご意見・ご要望を送信しました",
+  "@sendSuccessRequest": {
+    "description": "ご意見・ご要望送信時の成功メッセージ"
+  },
   "error": "エラーが発生しました",
+  "@error": {
+    "description": "汎用エラーメッセージ"
+  },
   "networkError": "ネットワークエラー",
+  "@networkError": {
+    "description": "ネットワークエラーメッセージ"
+  },
   "checkConnection": "インターネット接続を確認する",
-  "skipWithoutRegister": "",
+  "@checkConnection": {
+    "description": "インターネット接続確認メッセージ"
+  },
+  "skipWithoutRegister": "登録せずに始める",
+  "@skipWithoutRegister": {
+    "description": "登録スキップオプション"
+  },
   "review": "{productName}を評価",
+  "@review": {
+    "description": "アプリ評価オプション"
+  },
   "share": "{productName}をシェア",
+  "@share": {
+    "description": "アプリシェアオプション"
+  },
   "shareMessage": "{productName}をみんなで共有しよう！ {appLink}",
+  "@shareMessage": {
+    "description": "シェアメッセージテンプレート"
+  },
   "formattedDate": "{month}月{date}日",
+  "@formattedDate": {
+    "description": "フォーマットされた日付表示"
+  },
   "sunday": "日",
+  "@sunday": {
+    "description": "日曜日の略称"
+  },
   "monday": "月",
+  "@monday": {
+    "description": "月曜日の略称"
+  },
   "tuesday": "火",
+  "@tuesday": {
+    "description": "火曜日の略称"
+  },
   "wednesday": "水",
+  "@wednesday": {
+    "description": "水曜日の略称"
+  },
   "thursday": "木",
+  "@thursday": {
+    "description": "木曜日の略称"
+  },
   "friday": "金",
+  "@friday": {
+    "description": "金曜日の略称"
+  },
   "saturday": "土",
+  "@saturday": {
+    "description": "土曜日の略称"
+  },
   "writeReview": "レビューを書く",
+  "@writeReview": {
+    "description": "レビューを書くボタン"
+  },
   "rate": "評価する",
+  "@rate": {
+    "description": "評価ボタン"
+  },
   "notRate": "評価しない",
+  "@notRate": {
+    "description": "評価スキップオプション"
+  },
   "emailRequired": "メールアドレスを入力してください",
+  "@emailRequired": {
+    "description": "メールアドレス必須バリデーションメッセージ"
+  },
   "emailInvalid": "有効なメールアドレスを入力してください",
+  "@emailInvalid": {
+    "description": "無効なメールアドレスバリデーションメッセージ"
+  },
   "emailTooLong": "メールアドレスは64文字以内で入力してください",
+  "@emailTooLong": {
+    "description": "メールアドレス長すぎバリデーションメッセージ"
+  },
   "passwordRequired": "パスワードを入力してください",
+  "@passwordRequired": {
+    "description": "パスワード必須バリデーションメッセージ"
+  },
   "passwordTooShort": "パスワードは6文字以上で入力してください",
+  "@passwordTooShort": {
+    "description": "パスワード短すぎバリデーションメッセージ"
+  },
   "passwordTooLong": "パスワードは40文字以内で入力してください",
+  "@passwordTooLong": {
+    "description": "パスワード長すぎバリデーションメッセージ"
+  },
   "passwordInvalidCharacters": "パスワードは半角英数＋記号（_-.）のみで入力してください",
+  "@passwordInvalidCharacters": {
+    "description": "無効なパスワード文字バリデーションメッセージ"
+  },
   "networkErrorContent": "ネットワークに接続できませんでした。\n接続を確認してください。",
+  "@networkErrorContent": {
+    "description": "ネットワークエラーコンテンツメッセージ"
+  },
   "errorContent": "正常に実行できませんでした。\nもう一度お試しください。",
+  "@errorContent": {
+    "description": "汎用エラーコンテンツメッセージ"
+  },
   "sessionTimeout": "セッションがタイムアウトしました。\n再度ログインしてください。",
+  "@sessionTimeout": {
+    "description": "セッションタイムアウトメッセージ"
+  },
   "connectionTimeout": "接続がタイムアウトしました。\nネットワーク接続を確認し、もう一度お試しください。",
+  "@connectionTimeout": {
+    "description": "接続タイムアウトメッセージ"
+  },
   "receiveTimeout": "データの受信がタイムアウトしました。\nネットワーク接続を確認し、もう一度お試しください。",
+  "@receiveTimeout": {
+    "description": "受信タイムアウトメッセージ"
+  },
   "sendTimeout": "データの送信がタイムアウトしました。\nネットワーク接続を確認し、もう一度お試しください。",
+  "@sendTimeout": {
+    "description": "送信タイムアウトメッセージ"
+  },
   "badCertificate": "証明書に問題があり、安全な通信が確立できません。\nネットワーク接続を確認し、正しいサーバーアドレスを使用していることを確認してください。",
+  "@badCertificate": {
+    "description": "証明書エラーメッセージ"
+  },
   "serverError": "サーバーエラーが発生しました。\nしばらく待ってからもう一度お試しください。",
+  "@serverError": {
+    "description": "サーバーエラーメッセージ"
+  },
   "badRequest": "リクエストが無効です。\n現在、要求を処理できません。\nしばらくしてから再試行してください。",
+  "@badRequest": {
+    "description": "不正リクエストエラーメッセージ"
+  },
   "internalServerError": "サーバー内部でエラーが発生しました。\n現在、要求を処理できません。\nしばらくしてから再試行してください。",
+  "@internalServerError": {
+    "description": "内部サーバーエラーメッセージ"
+  },
   "badGateway": "サーバーが不正な応答を返しました。\nしばらくしてから再試行してください。",
+  "@badGateway": {
+    "description": "不正ゲートウェイエラーメッセージ"
+  },
   "serviceUnavailable": "サービスが一時的に利用できません。\nしばらくしてから再試行してください。",
+  "@serviceUnavailable": {
+    "description": "サービス利用不可エラーメッセージ"
+  },
   "gatewayTimeout": "タイムアウトが発生しました。\nサーバーが応答していません。\nしばらくしてから再試行してください。",
+  "@gatewayTimeout": {
+    "description": "ゲートウェイタイムアウトエラーメッセージ"
+  },
   "upgradeRequired": "新しいバージョンが利用可能です。\nぜひアップデートをお願いします。",
+  "@upgradeRequired": {
+    "description": "アップデート必要メッセージ"
+  },
   "tooManyRequests": "リクエストが制限を超えています。\nしばらくしてから再度お試しください。",
+  "@tooManyRequests": {
+    "description": "リクエスト制限超過エラーメッセージ"
+  },
   "actionCanceled": "操作がキャンセルされました。\n要求された処理は実行されませんでした。\n続行する場合は、再試行してください。",
-  "unexpectedError": "予期せぬエラーが発生しました"
+  "@actionCanceled": {
+    "description": "操作キャンセルメッセージ"
+  },
+  "unexpectedError": "予期せぬエラーが発生しました",
+  "@unexpectedError": {
+    "description": "予期せぬエラーメッセージ"
+  },
+  "playerList": "音楽一覧",
+  "@playerList": {
+    "description": "音楽一覧画面のタイトル"
+  },
+  "addPlayer": "愛犬追加",
+  "@addPlayer": {
+    "description": "愛犬追加ボタンのテキスト"
+  },
+  "recommendAppNameMinesweeper": "マインスイーパークエスト",
+  "@recommendAppNameMinesweeper": {
+    "description": "マインスイーパーアプリ名"
+  },
+  "recommendAppDescriptionMinesweeper": "マインスイーパーの決定版。\n初心者から上級者まで楽しめる。",
+  "@recommendAppDescriptionMinesweeper": {
+    "description": "マインスイーパーアプリの説明"
+  },
+  "recommendAppNameSudoku": "数独クエスト",
+  "@recommendAppNameSudoku": {
+    "description": "数独アプリ名"
+  },
+  "recommendAppDescriptionSudoku": "ナンプレアプリの決定版。\n初心者から上級者まで楽しめる。",
+  "@recommendAppDescriptionSudoku": {
+    "description": "数独アプリの説明"
+  },
+  "recommendAppNameScience": "BeStudy 中学理科",
+  "@recommendAppNameScience": {
+    "description": "理科アプリ名"
+  },
+  "recommendAppDescriptionScience": "中学生向けの理科学習アプリ。\n物理・化学・生物・地学を完全網羅。",
+  "@recommendAppDescriptionScience": {
+    "description": "理科アプリの説明"
+  },
+  "recommendAppNameMath": "BeStudy 中学数学",
+  "@recommendAppNameMath": {
+    "description": "数学アプリ名"
+  },
+  "recommendAppDescriptionMath": "中学生向けの数学学習アプリ。\n基本から応用までカバー。",
+  "@recommendAppDescriptionMath": {
+    "description": "数学アプリの説明"
+  },
+  "recommendAppNameEnglish": "BeStudy 中学英語",
+  "@recommendAppNameEnglish": {
+    "description": "英語アプリ名"
+  },
+  "recommendAppDescriptionEnglish": "中学生向けの英語学習アプリ。\n単語から文法まで学べる。",
+  "@recommendAppDescriptionEnglish": {
+    "description": "英語アプリの説明"
+  },
+  "recommendAppNameSocialStudies": "BeStudy 中学社会",
+  "@recommendAppNameSocialStudies": {
+    "description": "社会アプリ名"
+  },
+  "recommendAppDescriptionSocialStudies": "中学生向けの社会学習アプリ。\n地歴公民の学習に最適。",
+  "@recommendAppDescriptionSocialStudies": {
+    "description": "社会アプリの説明"
+  },
+  "recommendAppNameKanji": "BeStudy 中学漢字",
+  "@recommendAppNameKanji": {
+    "description": "漢字アプリ名"
+  },
+  "recommendAppDescriptionKanji": "中学生向けの漢字学習アプリ。\n漢検対策にも。",
+  "@recommendAppDescriptionKanji": {
+    "description": "漢字アプリの説明"
+  },
+  "recommendAppNameHighSchoolSocialStudies": "NowStudy 高校社会",
+  "@recommendAppNameHighSchoolSocialStudies": {
+    "description": "高校社会アプリ名"
+  },
+  "recommendAppDescriptionHighSchoolSocialStudies": "高校生向けの社会学習アプリ。\n日本史や世界史の学習に最適。",
+  "@recommendAppDescriptionHighSchoolSocialStudies": {
+    "description": "高校社会アプリの説明"
+  },
+  "nowPlaying": "再生中",
+  "@nowPlaying": {
+    "description": "再生中画面のタイトル"
+  },
+  "relaxSound": "リラックスサウンド",
+  "@relaxSound": {
+    "description": "リラックスサウンドセクションのタイトル"
+  },
+  "setPlaybackTimer": "再生タイマーを設定",
+  "@setPlaybackTimer": {
+    "description": "再生タイマー設定ボタン"
+  },
+  "timerSet": "タイマー: {duration}後停止",
+  "@timerSet": {
+    "description": "タイマー設定メッセージ（時間付き）"
+  },
+  "rateDogReaction": "愛犬の反応を評価",
+  "@rateDogReaction": {
+    "description": "愛犬の反応評価セクションのタイトル"
+  },
+  "stoppedBarking": "吠えなくなった",
+  "@stoppedBarking": {
+    "description": "吠えなくなったオプション"
+  },
+  "calmedDownAndSlept": "落ち着いて寝た",
+  "@calmedDownAndSlept": {
+    "description": "落ち着いて寝たオプション"
+  },
+  "restless": "そわそわ",
+  "@restless": {
+    "description": "そわそわオプション"
+  },
+  "breathingBecameCalm": "呼吸が穏やか",
+  "@breathingBecameCalm": {
+    "description": "呼吸が穏やかオプション"
+  },
+  "commentOptional": "コメント（任意）",
+  "@commentOptional": {
+    "description": "任意コメントフィールドのラベル"
+  },
+  "sendFeedback": "フィードバックを送信",
+  "@sendFeedback": {
+    "description": "フィードバック送信ボタン"
+  },
+  "feedbackUnderDevelopment": "フィードバック機能は現在開発中です。",
+  "@feedbackUnderDevelopment": {
+    "description": "フィードバック開発中メッセージ"
+  },
+  "off": "オフ",
+  "@off": {
+    "description": "オフ状態のテキスト"
+  },
+  "minutes": "{minutes}分",
+  "@minutes": {
+    "description": "分のフォーマット"
+  },
+  "hours": "{hours}時間",
+  "@hours": {
+    "description": "時間のフォーマット"
+  },
+  "continuousPlayback": "連続再生",
+  "@continuousPlayback": {
+    "description": "連続再生オプション"
+  },
+  "updateNotice": "アップデートのお知らせ",
+  "@updateNotice": {
+    "description": "アップデート通知のタイトル"
+  },
+  "updateAvailable": "新しいバージョンのアプリが利用可能です。\n続行するにはアップデートが必要です。",
+  "@updateAvailable": {
+    "description": "アップデート利用可能メッセージ"
+  },
+  "update": "アップデート",
+  "@update": {
+    "description": "アップデートボタンのテキスト"
+  },
+  "slackMessage": "確認！\nアプリ名: {appName}\n件名: {subject}\n内容: {content}",
+  "@slackMessage": {
+    "description": "Slackメッセージテンプレート"
+  },
+  "baseScreen": "ベース画面",
+  "@baseScreen": {
+    "description": "ベース画面ラベル"
+  },
+  "settingScreen": "設定画面",
+  "@settingScreen": {
+    "description": "設定画面ラベル"
+  },
+  "contactScreen": "お問い合わせ画面",
+  "@contactScreen": {
+    "description": "お問い合わせ画面ラベル"
+  },
+  "requestScreen": "ご意見・ご要望画面",
+  "@requestScreen": {
+    "description": "ご意見・ご要望画面ラベル"
+  },
+  "searchScreen": "検索画面",
+  "@searchScreen": {
+    "description": "検索画面ラベル"
+  },
+  "pushScreen": "プッシュ通知画面",
+  "@pushScreen": {
+    "description": "プッシュ通知画面ラベル"
+  },
+  "topScreen": "トップ画面",
+  "@topScreen": {
+    "description": "トップ画面ラベル"
+  },
+  "postScreen": "投稿画面",
+  "@postScreen": {
+    "description": "投稿画面ラベル"
+  },
+  "walkThroughScreen": "ウォークスルー画面",
+  "@walkThroughScreen": {
+    "description": "ウォークスルー画面ラベル"
+  },
+  "categoryScreen": "カテゴリ画面",
+  "@categoryScreen": {
+    "description": "カテゴリ画面ラベル"
+  },
+  "unauthorized": "認証に失敗しました",
+  "@unauthorized": {
+    "description": "認証失敗エラーメッセージ"
+  },
+  "timeout": "タイムアウト",
+  "@timeout": {
+    "description": "タイムアウトエラーメッセージ"
+  },
+  "errorOccurred": "エラー: {err}",
+  "@errorOccurred": {
+    "description": "エラー発生時のメッセージ（エラー内容を含む）",
+    "placeholders": {
+      "err": {
+        "type": "Object"
+      }
+    }
+  },
+  "noProfile": "プロフィールがありません",
+  "@noProfile": {
+    "description": "プロフィール未設定時のメッセージ"
+  },
+  "dogAge": "{breed}・{age}歳",
+  "@dogAge": {
+    "description": "犬の犬種と年齢",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "currentPlan": "現在のプラン",
+  "@currentPlan": {
+    "description": "現在の購読プラン"
+  },
+  "premiumPlan": "プレミアムプラン",
+  "@premiumPlan": {
+    "description": "プレミアムプラン名"
+  },
+  "freePlan": "無料版",
+  "@freePlan": {
+    "description": "無料プラン名"
+  },
+  "upgrade": "アップグレード",
+  "@upgrade": {
+    "description": "アップグレードボタン"
+  },
+  "logout": "ログアウト",
+  "@logout": {
+    "description": "ログアウトボタン"
+  },
+  "musicGenerationSuccess": "🎵 音楽の生成が完了しました！マイページの「音楽再生履歴」で再生できます。",
+  "@musicGenerationSuccess": {
+    "description": "音楽生成成功時のメッセージ"
+  },
+  "musicGenerationFailed": "音楽の生成に失敗しました: {error}",
+  "@musicGenerationFailed": {
+    "description": "音楽生成失敗時のメッセージ",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "sceneLeavingHome": "留守番中",
+  "@sceneLeavingHome": {
+    "description": "利用シーン：留守番中"
+  },
+  "sceneBedtime": "就寝前",
+  "@sceneBedtime": {
+    "description": "利用シーン：就寝前"
+  },
+  "sceneStressful": "ストレスフル",
+  "@sceneStressful": {
+    "description": "利用シーン：ストレスフル"
+  },
+  "sceneLongDistanceTravel": "長距離移動中",
+  "@sceneLongDistanceTravel": {
+    "description": "利用シーン：長距離移動中"
+  },
+  "sceneDailyHealing": "日常の癒し",
+  "@sceneDailyHealing": {
+    "description": "利用シーン：日常の癒し"
+  },
+  "sceneCare": "療養/高齢犬ケア",
+  "@sceneCare": {
+    "description": "利用シーン：療養/高齢犬ケア"
+  },
+  "conditionCalmDown": "落ち着かせたい",
+  "@conditionCalmDown": {
+    "description": "犬の状態：落ち着かせたい"
+  },
+  "conditionRelax": "リラックスさせたい",
+  "@conditionRelax": {
+    "description": "犬の状態：リラックスさせたい"
+  },
+  "conditionSuppressExcitement": "興奮を抑えたい",
+  "@conditionSuppressExcitement": {
+    "description": "犬の状態：興奮を抑えたい"
+  },
+  "conditionReassure": "安心させたい",
+  "@conditionReassure": {
+    "description": "犬の状態：安心させたい"
+  },
+  "conditionGoodSleep": "安眠させたい",
+  "@conditionGoodSleep": {
+    "description": "犬の状態：安眠させたい"
+  },
+  "aiMusicGenerateTitle": "PawHarmony AI",
+  "@aiMusicGenerateTitle": {
+    "description": "AI音楽生成画面のタイトル"
+  },
+  "noDogProfileRegistered": "犬のプロフィールが登録されていません。",
+  "@noDogProfileRegistered": {
+    "description": "犬のプロフィールが未登録の場合のメッセージ"
+  },
+  "selectScene": "利用シーンを選択",
+  "@selectScene": {
+    "description": "利用シーン選択のタイトル"
+  },
+  "selectDogCondition": "犬の状態を選択",
+  "@selectDogCondition": {
+    "description": "犬の状態選択のタイトル"
+  },
+  "otherOptional": "その他（任意）",
+  "@otherOptional": {
+    "description": "任意入力フィールドのラベル"
+  },
+  "otherHint": "最近、夜泣きが多い、など",
+  "@otherHint": {
+    "description": "任意入力フィールドのヒントテキスト"
+  },
+  "generationsUnlimited": "生成回数: 無制限",
+  "@generationsUnlimited": {
+    "description": "生成回数が無制限の場合のテキスト"
+  },
+  "generationsLeft": "残り生成回数: {count}回 ({plan})",
+  "@generationsLeft": {
+    "description": "残りの生成回数を表示するテキスト",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "plan": {
+        "type": "String"
+      }
+    }
+  },
+  "generateMusic": "音楽を生成する",
+  "@generateMusic": {
+    "description": "音楽生成ボタンのテキスト"
+  },
+  "loadingMusicGenerator": "音楽生成に必要なファイルをロード中です。しばらくお待ちください。",
+  "@loadingMusicGenerator": {
+    "description": "音楽ジェネレーターのロード中メッセージ"
+  },
+  "myPage": "マイページ",
+  "@myPage": {
+    "description": "マイページ画面のタイトル"
+  },
+  "musicPlaybackHistory": "音楽再生履歴",
+  "@musicPlaybackHistory": {
+    "description": "音楽再生履歴セクションのタイトル"
+  },
+  "noMusicPlaybackHistory": "音楽再生履歴はありません。",
+  "@noMusicPlaybackHistory": {
+    "description": "音楽再生履歴がない場合のメッセージ"
+  },
+  "generatedAt": "生成日時: {datetime}",
+  "@generatedAt": {
+    "description": "音楽が生成された日時",
+    "placeholders": {
+      "datetime": {
+        "type": "String"
+      }
+    }
+  },
+  "scene": "シーン: {scene}",
+  "@scene": {
+    "description": "利用シーン",
+    "placeholders": {
+      "scene": {
+        "type": "String"
+      }
+    }
+  },
+  "condition": "状態: {condition}",
+  "@condition": {
+    "description": "犬の状態",
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "breed": "品種: {breed}",
+  "@breed": {
+    "description": "犬の品種",
+    "placeholders": {
+      "breed": {
+        "type": "String"
+      }
+    }
+  },
+  "duration": "再生時間: {duration}秒",
+  "@duration": {
+    "description": "音楽の再生時間",
+    "placeholders": {
+      "duration": {
+        "type": "int"
+      }
+    }
+  },
+  "registerDogProfileTitle": "愛犬のプロフィールを登録",
+  "@registerDogProfileTitle": {
+    "description": "犬のプロフィール登録画面のタイトル"
+  },
+  "editDogProfileTitle": "愛犬プロフィール編集",
+  "@editDogProfileTitle": {
+    "description": "犬のプロフィール編集画面のタイトル"
+  },
+  "breedToyPoodle": "トイプードル",
+  "@breedToyPoodle": {
+    "description": "犬種：トイプードル"
+  },
+  "breedChihuahua": "チワワ",
+  "@breedChihuahua": {
+    "description": "犬種：チワワ"
+  },
+  "breedShiba": "柴犬",
+  "@breedShiba": {
+    "description": "犬種：柴犬"
+  },
+  "breedMiniatureDachshund": "ミニチュアダックスフンド",
+  "@breedMiniatureDachshund": {
+    "description": "犬種：ミニチュアダックスフンド"
+  },
+  "breedPomeranian": "ポメラニアン",
+  "@breedPomeranian": {
+    "description": "犬種：ポメラニアン"
+  },
+  "breedFrenchBulldog": "フレンチブルドッグ",
+  "@breedFrenchBulldog": {
+    "description": "犬種：フレンチブルドッグ"
+  },
+  "breedGoldenRetriever": "ゴールデンレトリバー",
+  "@breedGoldenRetriever": {
+    "description": "犬種：ゴールデンレトリバー"
+  },
+  "breedLabradorRetriever": "ラブラドールレトリバー",
+  "@breedLabradorRetriever": {
+    "description": "犬種：ラブラドールレトリバー"
+  },
+  "breedMix": "ミックス",
+  "@breedMix": {
+    "description": "犬種：ミックス"
+  },
+  "breedOther": "その他",
+  "@breedOther": {
+    "description": "犬種：その他"
+  },
+  "dogName": "愛犬の名前",
+  "@dogName": {
+    "description": "犬の名前入力フィールドのラベル"
+  },
+  "dogNameValidator": "名前を入力してください",
+  "@dogNameValidator": {
+    "description": "犬の名前のバリデーションメッセージ"
+  },
+  "dogBreed": "犬種",
+  "@dogBreed": {
+    "description": "犬種選択フィールドのラベル"
+  },
+  "dogBreedValidator": "犬種を選択してください",
+  "@dogBreedValidator": {
+    "description": "犬種のバリデーションメッセージ"
+  },
+  "selectDateOfBirth": "生年月日を選択",
+  "@selectDateOfBirth": {
+    "description": "生年月日選択のテキスト"
+  },
+  "dateOfBirth": "生年月日: {date}",
+  "@dateOfBirth": {
+    "description": "生年月日表示テキスト",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "age": "年齢",
+  "@age": {
+    "description": "年齢入力フィールドのラベル"
+  },
+  "gender": "性別",
+  "@gender": {
+    "description": "性別選択のタイトル"
+  },
+  "male": "オス",
+  "@male": {
+    "description": "性別：オス"
+  },
+  "female": "メス",
+  "@female": {
+    "description": "性別：メス"
+  },
+  "genderValidator": "性別を選択してください",
+  "@genderValidator": {
+    "description": "性別のバリデーションメッセージ"
+  },
+  "personality": "性格（複数選択可）",
+  "@personality": {
+    "description": "性格選択のタイトル"
+  },
+  "personalityEasygoing": "おっとり",
+  "@personalityEasygoing": {
+    "description": "性格：おっとり"
+  },
+  "personalityActive": "活発",
+  "@personalityActive": {
+    "description": "性格：活発"
+  },
+  "personalityTimid": "臆病",
+  "@personalityTimid": {
+    "description": "性格：臆病"
+  },
+  "personalitySociable": "社交的",
+  "@personalitySociable": {
+    "description": "性格：社交的"
+  },
+  "personalityAffectionate": "甘えん坊",
+  "@personalityAffectionate": {
+    "description": "性格：甘えん坊"
+  },
+  "personalityMyPace": "マイペース",
+  "@personalityMyPace": {
+    "description": "性格：マイペース"
+  },
+  "register": "登録する",
+  "@register": {
+    "description": "登録ボタンのテキスト"
+  },
+  "update": "更新する",
+  "@update": {
+    "description": "更新ボタンのテキスト"
+  },
+  "profileSaved": "プロフィールが保存されました",
+  "@profileSaved": {
+    "description": "プロフィール保存成功時のメッセージ"
+  },
+  "subscriptionSettingTitle": "プレミアムプラン",
+  "@subscriptionSettingTitle": {
+    "description": "サブスクリプション設定画面のタイトル"
+  },
+  "currentPlanPremium": "現在のプラン: プレミアムプラン",
+  "@currentPlanPremium": {
+    "description": "プレミアムユーザー向けの現在のプラン表示テキスト"
+  },
+  "currentPlanFree": "現在のプラン: 無料版",
+  "@currentPlanFree": {
+    "description": "無料ユーザー向けの現在のプラン表示テキスト"
+  },
+  "premiumPlanBenefits": "プレミアムプランのメリット",
+  "@premiumPlanBenefits": {
+    "description": "プレミアムプランのメリットセクションのタイトル"
+  },
+  "unlimitedMusicGeneration": "無制限の音楽生成",
+  "@unlimitedMusicGeneration": {
+    "description": "メリット：無制限の音楽生成"
+  },
+  "detailedAnalysisReport": "詳細な分析レポート",
+  "@detailedAnalysisReport": {
+    "description": "メリット：詳細な分析レポート"
+  },
+  "adFree": "広告非表示",
+  "@adFree": {
+    "description": "メリット：広告なし"
+  },
+  "expertCuratedContent": "専門家監修コンテンツ",
+  "@expertCuratedContent": {
+    "description": "メリット：専門家監修コンテンツ"
+  },
+  "selectPlan": "プランを選択",
+  "@selectPlan": {
+    "description": "プラン選択セクションのタイトル"
+  },
+  "continueWithFreePlan": "無料版を続ける",
+  "@continueWithFreePlan": {
+    "description": "無料版を続けるボタンのテキスト"
+  },
+  "subscriptionCancellationNote": "※ サブスクリプションはいつでもキャンセルできます",
+  "@subscriptionCancellationNote": {
+    "description": "サブスクリプションキャンセルに関する注意書き"
+  },
+  "noAvailablePlans": "利用可能なプランがありません。",
+  "@noAvailablePlans": {
+    "description": "利用可能なプランがない場合のメッセージ"
+  },
+  "signUpTitle": "新規アカウント作成",
+  "@signUpTitle": {
+    "description": "サインアップ画面のタイトル"
+  },
+  "emailAddress": "メールアドレス",
+  "@emailAddress": {
+    "description": "メールアドレス入力フィールドのラベル"
+  },
+  "password": "パスワード",
+  "@password": {
+    "description": "パスワード入力フィールドのラベル"
+  },
+  "confirmPassword": "パスワード確認",
+  "@confirmPassword": {
+    "description": "パスワード確認入力フィールドのラベル"
+  },
+  "passwordTooShortSignUp": "8文字以上のパスワードを入力してください",
+  "@passwordTooShortSignUp": {
+    "description": "サインアップ時のパスワードが短すぎるバリデーションメッセージ"
+  },
+  "passwordMismatch": "パスワードが一致しません",
+  "@passwordMismatch": {
+    "description": "パスワード確認の不一致バリデーションメッセージ"
+  },
+  "agreeToTerms": "利用規約とプライバシーポリシーに同意します",
+  "@agreeToTerms": {
+    "description": "利用規約とプライバシーポリシー同意チェックボックスのテキスト"
+  },
+  "createAccount": "アカウントを作成",
+  "@createAccount": {
+    "description": "アカウント作成ボタンのテキスト"
+  },
+  "goToLogin": "ログインはこちら",
+  "@goToLogin": {
+    "description": "ログイン画面へ移動するボタンのテキスト"
+  },
+  "accountCreationFailed": "アカウント作成に失敗しました。",
+  "@accountCreationFailed": {
+    "description": "汎用アカウント作成失敗メッセージ"
+  },
+  "emailAlreadyInUse": "このメールアドレスは既に使用されています。\nログインをお試しください。",
+  "@emailAlreadyInUse": {
+    "description": "メールアドレスが既に使用されているエラーメッセージ"
+  },
+  "weakPassword": "パスワードが弱すぎます。より強力なパスワードを設定してください。",
+  "@weakPassword": {
+    "description": "パスワードが弱すぎるエラーメッセージ"
+  },
+  "invalidEmail": "無効なメールアドレスです。",
+  "@invalidEmail": {
+    "description": "無効なメールアドレスエラーメッセージ"
+  },
+  "operationNotAllowed": "メール/パスワード認証が有効になっていません。",
+  "@operationNotAllowed": {
+    "description": "操作が許可されていないエラーメッセージ"
+  },
+  "networkRequestFailed": "ネットワークエラーが発生しました。インターネット接続を確認してください。",
+  "@networkRequestFailed": {
+    "description": "ネットワークリクエスト失敗エラーメッセージ"
+  },
+  "accountCreationFailedWithError": "アカウント作成に失敗しました: {error}",
+  "@accountCreationFailedWithError": {
+    "description": "特定のエラーメッセージ付きのアカウント作成失敗メッセージ",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordResetTitle": "パスワードの再設定",
+  "@passwordResetTitle": {
+    "description": "パスワードリセット画面のタイトル"
+  },
+  "sendPasswordResetEmail": "パスワード再設定メールを送信",
+  "@sendPasswordResetEmail": {
+    "description": "パスワード再設定メールを送信するボタンのテキスト"
+  },
+  "passwordResetEmailSent": "パスワード再設定メールを送信しました。",
+  "@passwordResetEmailSent": {
+    "description": "パスワード再設定メール送信時の成功メッセージ"
+  },
+  "passwordResetFailed": "パスワード再設定メールの送信に失敗しました。",
+  "@passwordResetFailed": {
+    "description": "汎用パスワードリセット失敗メッセージ"
+  },
+  "userNotFound": "このメールアドレスで登録されたユーザーが見つかりません。",
+  "@userNotFound": {
+    "description": "ユーザーが見つからないエラーメッセージ"
+  },
+  "tooManyRequests": "リクエストが多すぎます。しばらく時間をおいてから再試行してください。",
+  "@tooManyRequests": {
+    "description": "リクエストが多すぎるエラーメッセージ"
+  },
+  "passwordResetFailedWithError": "パスワード再設定メールの送信に失敗しました: {error}",
+  "@passwordResetFailedWithError": {
+    "description": "特定のエラーメッセージ付きのパスワードリセット失敗メッセージ",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginTitle": "ログイン",
+  "@loginTitle": {
+    "description": "ログイン画面のタイトル"
+  },
+  "login": "ログイン",
+  "@login": {
+    "description": "ログインボタンのテキスト"
+  },
+  "forgotPassword": "パスワードをお忘れですか？",
+  "@forgotPassword": {
+    "description": "パスワードを忘れた場合のボタンテキスト"
+  },
+  "goToSignUp": "新規登録はこちら",
+  "@goToSignUp": {
+    "description": "新規登録画面へ移動するボタンのテキスト"
+  },
+  "loginFailed": "ログインに失敗しました。",
+  "@loginFailed": {
+    "description": "汎用ログイン失敗メッセージ"
+  },
+  "userNotFoundLogin": "このメールアドレスで登録されたユーザーが見つかりません。\n新規登録をお試しください。",
+  "@userNotFoundLogin": {
+    "description": "ログイン時のユーザーが見つからないエラーメッセージ"
+  },
+  "wrongPassword": "パスワードが間違っています。",
+  "@wrongPassword": {
+    "description": "パスワードが間違っているエラーメッセージ"
+  },
+  "invalidCredential": "メールアドレスまたはパスワードが正しくありません。",
+  "@invalidCredential": {
+    "description": "無効な認証情報エラーメッセージ"
+  },
+  "userDisabled": "このアカウントは無効になっています。",
+  "@userDisabled": {
+    "description": "ユーザーが無効化されているエラーメッセージ"
+  },
+  "tooManyLoginAttempts": "ログイン試行回数が多すぎます。しばらく時間をおいてから再試行してください。",
+  "@tooManyLoginAttempts": {
+    "description": "ログイン試行回数が多すぎるエラーメッセージ"
+  },
+  "loginFailedWithError": "ログインに失敗しました: {error}",
+  "@loginFailedWithError": {
+    "description": "特定のエラーメッセージ付きのログイン失敗メッセージ",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "musicGenerationInProgress": "音楽生成中...",
+  "@musicGenerationInProgress": {
+    "description": "音楽生成進行中ダイアログのタイトル"
+  },
+  "aiGeneratingMusicForDog": "AIがあなたの愛犬のための音楽を生成しています。\n生成完了後、マイページで再生できます。",
+  "@aiGeneratingMusicForDog": {
+    "description": "音楽生成ダイアログの説明テキスト"
+  },
+  "planInformationFetchFailed": "プラン情報の取得に失敗しました。",
+  "@planInformationFetchFailed": {
+    "description": "プラン情報取得失敗時のエラーメッセージ"
+  }
 }

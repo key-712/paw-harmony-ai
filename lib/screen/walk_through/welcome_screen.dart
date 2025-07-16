@@ -13,7 +13,7 @@ class WelcomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
 
     return Scaffold(
@@ -24,14 +24,14 @@ class WelcomeScreen extends HookConsumerWidget {
             children: <Widget>[
               Assets.image.walkThrough1.image(width: 300, height: 300),
               ThemeText(
-                text: localizations.welcomeMessage(localizations.productName),
+                text: l10n.welcomeMessage(l10n.productName),
                 color: theme.appColors.black,
                 style: theme.textTheme.h60.bold(),
                 align: TextAlign.center,
               ),
               hSpace(height: 16),
               ThemeText(
-                text: localizations.descriptionMessage,
+                text: l10n.descriptionMessage,
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
                 align: TextAlign.center,

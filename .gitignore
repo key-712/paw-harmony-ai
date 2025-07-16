@@ -37,6 +37,10 @@ dart_env/
 .pub/
 /build/
 
+# Node.js related
+node_modules/
+**/node_modules/
+
 # Environment files
 .env
 .env.local
@@ -100,6 +104,9 @@ app.*.map.json
 **/lib/l10n/app_localizations.dart
 **/lib/l10n/app_localizations_ja.dart
 **/lib/l10n/app_localizations_en.dart
+**/lib/l10n/app_localizations_fr.dart
+**/lib/l10n/app_localizations_it.dart
+**/lib/l10n/app_localizations_es.dart
 firebase.json
 previous_flavor.txt
 **/coverage/

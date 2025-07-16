@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -26,7 +27,7 @@ class CalendarDialog extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
     final selectedDate = useState<DateTime?>(null);
 
@@ -41,16 +42,17 @@ class CalendarDialog extends HookConsumerWidget {
             focusedDay: selectedDate.value ?? DateTime.now(),
             firstDay: DateTime(1900),
             lastDay: DateTime(2100),
-            locale: ref.watch(localeProvider) == const Locale('ja')
-                ? 'ja_JP'
-                : 'en_US',
+            locale:
+                ref.watch(localeProvider) == const Locale('ja')
+                    ? 'ja_JP'
+                    : 'en_US',
             selectedDayPredicate: (day) {
               return isSameDay(selectedDate.value, day);
             },
             onDaySelected: (selected, focused) {
               selectedDate.value = selected;
               dateController.text = dateFormat.format(selected);
-              Navigator.of(context).pop();
+              GoRouter.of(context).pop();
             },
             headerStyle: const HeaderStyle(
               formatButtonVisible: false,
@@ -70,7 +72,7 @@ class CalendarDialog extends HookConsumerWidget {
           hSpace(height: 16),
           DialogSecondaryButton(
             screen: 'CalendarDialog',
-            text: localizations.close,
+            text: l10n.close,
             width: getScreenSize(context).width * 0.4,
             callback: callBack,
           ),

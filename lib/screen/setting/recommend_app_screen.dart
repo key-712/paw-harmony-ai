@@ -15,15 +15,16 @@ class RecommendAppScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
 
-    final filteredApps = recommendedApps
-        .where((app) => app.appName != localizations.productName)
-        .toList();
+    final filteredApps =
+        getRecommendedApps(
+          context,
+        ).where((app) => app.appName != l10n.productName).toList();
 
     return Scaffold(
-      appBar: BackIconHeader(title: localizations.recommendApp),
+      appBar: BackIconHeader(title: l10n.recommendApp),
       backgroundColor: theme.appColors.background,
       body: Column(
         children: [
@@ -44,9 +45,10 @@ class RecommendAppScreen extends HookConsumerWidget {
                     child: GestureDetector(
                       onTap: () {
                         openExternalBrowser(
-                          url: Platform.isAndroid
-                              ? app.playStoreUrl
-                              : app.appStoreUrl,
+                          url:
+                              Platform.isAndroid
+                                  ? app.playStoreUrl
+                                  : app.appStoreUrl,
                         );
                       },
                       child: Card(
@@ -55,8 +57,9 @@ class RecommendAppScreen extends HookConsumerWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         elevation: 8,
-                        shadowColor:
-                            theme.appColors.black.withValues(alpha: 0.5),
+                        shadowColor: theme.appColors.black.withValues(
+                          alpha: 0.5,
+                        ),
                         child: ListTile(
                           contentPadding: const EdgeInsets.all(16),
                           leading: ClipRRect(

@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:version/version.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../import/provider.dart';
 import '../import/utility.dart';
 
@@ -36,19 +37,23 @@ class UpdateChecker {
     required WidgetRef ref,
     required String screen,
   }) {
-    ref.watch(dialogStateNotifierProvider.notifier).showActionDialog(
-          title: 'アップデートのお知らせ',
+    final l10n = AppLocalizations.of(context)!;
+    ref
+        .watch(dialogStateNotifierProvider.notifier)
+        .showActionDialog(
+          title: l10n.updateNotice,
           screen: screen,
-          content: '新しいバージョンのアプリが利用可能です。\n続行するにはアップデートが必要です。',
-          buttonLabel: 'アップデート',
+          content: l10n.updateAvailable,
+          buttonLabel: l10n.update,
           barrierDismissible: false,
           forceShow: true,
           context: context,
           callback: () {
             openExternalBrowser(
-              url: Platform.isIOS
-                  ? ExternalPageList.iosAppLink
-                  : ExternalPageList.androidAppLink,
+              url:
+                  Platform.isIOS
+                      ? ExternalPageList.iosAppLink
+                      : ExternalPageList.androidAppLink,
             );
           },
         );

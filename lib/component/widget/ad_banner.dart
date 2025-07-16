@@ -14,8 +14,6 @@ class AdBanner extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final myBanner = AdManagerBannerAd(
-      //テスト用
-      // adUnitId: AdUnitId.testBanner,
       adUnitId:
           Platform.isIOS ? Env.iOSBannerAdUnitId : Env.androidBannerAdUnitId,
 

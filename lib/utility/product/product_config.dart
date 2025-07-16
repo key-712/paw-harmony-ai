@@ -15,7 +15,7 @@ class ExternalPageList {
       'https://apps.apple.com/jp/app/id6742074009?action=write-review';
 
   /// 利用規約のURL
-  static const legal = 'https://crelve-template-prod.web.app/index.html';
+  static const legal = 'https://crelve-paw-harmony-ai-prod.web.app/index.html';
 
   /// プライバシーポリシーのURL
   static const privacyPolicy =

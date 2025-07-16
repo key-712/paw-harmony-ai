@@ -1,5 +1,8 @@
 export '../model/app_error.dart';
 export '../model/app_info.dart';
+export '../model/dog_profile.dart';
+export '../model/feedback.dart';
+export '../model/music_generation.dart';
 export '../model/push_notification_setting.dart';
 export '../model/push_notification_update.dart';
 export '../model/result.dart';

@@ -7,12 +7,17 @@ import '../import/hook.dart';
 import '../import/provider.dart';
 import '../import/screen.dart';
 import '../import/utility.dart';
+import '../l10n/app_localizations.dart';
 
 /// ベース画面
 class BaseScreen extends HookConsumerWidget {
   /// ベース画面
   const BaseScreen({super.key});
 
+  /// ベース画面のUIを構築します。
+  ///
+  /// [context] はウィジェットツリー内の現在のビルドコンテキストです。
+  /// [ref] はプロバイダーを監視するためのWidgetRefです。
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final base = ref.watch(baseStateNotifierProvider);
@@ -49,6 +54,8 @@ class BaseScreen extends HookConsumerWidget {
               child: IndexedStack(
                 index: base.selectIndex,
                 children: [
+                  AiMusicGenerateScreen(scrollController: scrollControllers[0]),
+                  MyPageScreen(scrollController: scrollControllers[1]),
                   SettingScreen(scrollController: scrollControllers[2]),
                 ],
               ),
@@ -70,10 +77,34 @@ class BaseScreen extends HookConsumerWidget {
             baseStateNotifier.setIndex(index: index);
           }
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: '選手一覧'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: '選手追加'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: '設定'),
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.list),
+            label:
+                ThemeText(
+                  text: AppLocalizations.of(context)!.playerList,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ).text,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.pets),
+            label:
+                ThemeText(
+                  text: AppLocalizations.of(context)!.addPlayer,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ).text,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.settings),
+            label:
+                ThemeText(
+                  text: AppLocalizations.of(context)!.setting,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ).text,
+          ),
         ],
       ),
     );
