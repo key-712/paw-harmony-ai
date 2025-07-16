@@ -76,13 +76,14 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
         children: [
           dogProfile.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (err, stack) => Center(
-              child: ThemeText(
-                text: l10n.errorOccurred(err.toString()),
-                color: theme.appColors.black,
-                style: theme.textTheme.h30,
-              ),
-            ),
+            error:
+                (err, stack) => Center(
+                  child: ThemeText(
+                    text: l10n.errorOccurred(err.toString()),
+                    color: theme.appColors.black,
+                    style: theme.textTheme.h30,
+                  ),
+                ),
             data: (profile) {
               if (profile == null) {
                 return Center(
@@ -144,9 +145,10 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: ThemeText(
-                        text: purchaseState.isSubscribed
-                            ? l10n.generationsUnlimited
-                            : l10n.generationsLeft(3, l10n.freePlan),
+                        text:
+                            purchaseState.isSubscribed
+                                ? l10n.generationsUnlimited
+                                : l10n.generationsLeft(3, l10n.freePlan),
                         color: theme.appColors.grey,
                         style: theme.textTheme.h30.copyWith(fontSize: 14),
                       ),
@@ -156,7 +158,8 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                       text: l10n.generateMusic,
                       screen: 'ai_music_generate_screen',
                       width: double.infinity,
-                      isDisabled: selectedScene.value == null ||
+                      isDisabled:
+                          selectedScene.value == null ||
                           selectedCondition.value == null ||
                           musicGenerationState.isLoading,
                       callback: () {
@@ -170,9 +173,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                           dogPersonalityTraits: profile.personalityTraits,
                         );
                         ref
-                            .read(
-                              musicGenerationStateNotifierProvider.notifier,
-                            )
+                            .read(musicGenerationStateNotifierProvider.notifier)
                             .generateMusic(request);
                       },
                     ),
@@ -182,14 +183,8 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
             },
           ),
           if (musicGenerationState.isLoading)
-            const ModalBarrier(
-              color: Colors.black54,
-              dismissible: false,
-            ),
-          if (musicGenerationState.isLoading)
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
+            const ModalBarrier(color: Colors.black54, dismissible: false),
+          if (musicGenerationState.isLoading) const Center(child: Loading()),
         ],
       ),
     );
