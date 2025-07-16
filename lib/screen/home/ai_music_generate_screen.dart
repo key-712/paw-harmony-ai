@@ -175,26 +175,6 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                         .generateMusic(request);
                   },
                 ),
-                if (musicGenerationState.isLoading) ...[
-                  hSpace(height: 16),
-                  const Center(child: CircularProgressIndicator()),
-                  hSpace(height: 8),
-                  Center(
-                    child: ThemeText(
-                      text: l10n.musicGenerationInProgress,
-                      color: theme.appColors.grey,
-                      style: theme.textTheme.h30.copyWith(fontSize: 14),
-                    ),
-                  ),
-                  hSpace(height: 8),
-                  Center(
-                    child: ThemeText(
-                      text: 'Google AI Lyria RealTimeを使用して音楽を生成中...',
-                      color: theme.appColors.grey,
-                      style: theme.textTheme.h30.copyWith(fontSize: 12),
-                    ),
-                  ),
-                ],
               ],
             ),
           );

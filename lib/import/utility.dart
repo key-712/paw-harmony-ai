@@ -1,4 +1,5 @@
 export '../utility/app_tracking_transparency.dart';
+export '../utility/base_music_service.dart';
 export '../utility/color_utility.dart';
 export '../utility/const/env.dart';
 export '../utility/const/firebase_analytics_event_names.dart';
