@@ -2,8 +2,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../import/provider.dart';
 import '../import/utility.dart';
-import 'base_music_service.dart';
-
 
 /// 音楽生成ファクトリークラス
 class MusicGenerationFactory {
@@ -17,7 +15,6 @@ class MusicGenerationFactory {
   BaseMusicService getMusicService() {
     return ref.read(magentaMusicServiceProvider);
   }
-
 
   /// 音楽生成を実行するメソッド
   ///
@@ -36,9 +33,7 @@ class MusicGenerationFactory {
 
     try {
       // サービス固有の設定を適用
-      final finalConfig = _getServiceSpecificConfig(
-        config,
-      );
+      final finalConfig = _getServiceSpecificConfig(config);
 
       // 音楽生成を実行
       final result = await service.generateMusic(
@@ -54,11 +49,7 @@ class MusicGenerationFactory {
       logger.d('音楽生成完了: Magenta.js');
       return result;
     } on Exception catch (e, st) {
-      logger.e(
-        '音楽生成エラー: Magenta.js',
-        error: e,
-        stackTrace: st,
-      );
+      logger.e('音楽生成エラー: Magenta.js', error: e, stackTrace: st);
       rethrow;
     }
   }
@@ -83,9 +74,8 @@ class MusicGenerationFactory {
 
     return config;
   }
-
 }
 
 /// MusicGenerationFactoryを提供するProvider
-final musicGenerationFactoryProvider =
-    Provider((ref) => MusicGenerationFactory(ref));
+final Provider<MusicGenerationFactory> musicGenerationFactoryProvider =
+    Provider(MusicGenerationFactory.new);
