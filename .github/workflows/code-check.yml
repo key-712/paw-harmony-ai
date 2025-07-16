@@ -56,13 +56,9 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
+          firebase login:ci --no-localhost
           dart pub global activate flutterfire_cli
-          flutterfire configure \
-            --yes \
-            --project=crelve-paw-harmony-ai-dev \
-            --platforms=android,ios \
-            --android-package-name=crelve.pawHarmonyAi.mobile.dev \
-            --ios-bundle-id=crelve.pawHarmonyAi.mobile.dev
+          flutterfire configure             --yes 
 
       - name: pub get
         run: |
