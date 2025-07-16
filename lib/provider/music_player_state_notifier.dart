@@ -144,7 +144,7 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
           logger.d('Downloaded file size: $fileSize bytes');
 
           // ファイルの存在確認
-          if (!await localFile.exists()) {
+          if (!localFile.existsSync()) {
             throw Exception('Downloaded file does not exist');
           }
 
@@ -398,7 +398,7 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     );
 
     // ファイルの存在を確認
-    if (!await file.exists()) {
+    if (!file.existsSync()) {
       throw Exception('File was not saved properly');
     }
 

@@ -61,8 +61,8 @@ jobs:
             --yes \
             --project=crelve-paw-harmony-ai-dev \
             --platforms=android,ios \
-            --android-package-name=crelve.pawHarmonyAi.mobile.dev \
-            --ios-bundle-id=crelve.pawHarmonyAi.mobile.dev
+            --android-package-name=crelve.paw.harmony.ai.mobile.dev \
+            --ios-bundle-id=crelve.paw.harmony.ai.mobile.dev
 
       - name: pub get
         run: |
