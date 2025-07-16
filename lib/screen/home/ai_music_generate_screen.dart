@@ -72,113 +72,125 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: BaseHeader(title: l10n.aiMusicGenerateTitle),
-      body: dogProfile.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error:
-            (err, stack) => Center(
+      body: Stack(
+        children: [
+          dogProfile.when(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (err, stack) => Center(
               child: ThemeText(
                 text: l10n.errorOccurred(err.toString()),
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
               ),
             ),
-        data: (profile) {
-          if (profile == null) {
-            return Center(
-              child: ThemeText(
-                text: l10n.noDogProfileRegistered,
-                color: theme.appColors.black,
-                style: theme.textTheme.h30,
-              ),
-            );
-          }
-          return SingleChildScrollView(
-            controller: scrollController,
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ThemeText(
-                  text: l10n.selectScene,
-                  color: theme.appColors.black,
-                  style: theme.textTheme.h30.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SingleSelectChip(
-                  choices: scenes,
-                  selectedChoice: selectedScene.value,
-                  onSelectionChanged: (selected) {
-                    selectedScene.value = selected;
-                  },
-                ),
-                hSpace(height: 24),
-                ThemeText(
-                  text: l10n.selectDogCondition,
-                  color: theme.appColors.black,
-                  style: theme.textTheme.h30.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SingleSelectChip(
-                  choices: conditions,
-                  selectedChoice: selectedCondition.value,
-                  onSelectionChanged: (selected) {
-                    selectedCondition.value = selected;
-                  },
-                ),
-                hSpace(height: 24),
-                TextField(
-                  controller: additionalInfoController,
-                  decoration: InputDecoration(
-                    labelText: l10n.otherOptional,
-                    hintText: l10n.otherHint,
-                    border: const OutlineInputBorder(),
-                  ),
-                  maxLines: 3,
-                ),
-                hSpace(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
+            data: (profile) {
+              if (profile == null) {
+                return Center(
                   child: ThemeText(
-                    text:
-                        purchaseState.isSubscribed
+                    text: l10n.noDogProfileRegistered,
+                    color: theme.appColors.black,
+                    style: theme.textTheme.h30,
+                  ),
+                );
+              }
+              return SingleChildScrollView(
+                controller: scrollController,
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ThemeText(
+                      text: l10n.selectScene,
+                      color: theme.appColors.black,
+                      style: theme.textTheme.h30.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SingleSelectChip(
+                      choices: scenes,
+                      selectedChoice: selectedScene.value,
+                      onSelectionChanged: (selected) {
+                        selectedScene.value = selected;
+                      },
+                    ),
+                    hSpace(height: 24),
+                    ThemeText(
+                      text: l10n.selectDogCondition,
+                      color: theme.appColors.black,
+                      style: theme.textTheme.h30.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SingleSelectChip(
+                      choices: conditions,
+                      selectedChoice: selectedCondition.value,
+                      onSelectionChanged: (selected) {
+                        selectedCondition.value = selected;
+                      },
+                    ),
+                    hSpace(height: 24),
+                    TextField(
+                      controller: additionalInfoController,
+                      decoration: InputDecoration(
+                        labelText: l10n.otherOptional,
+                        hintText: l10n.otherHint,
+                        border: const OutlineInputBorder(),
+                      ),
+                      maxLines: 3,
+                    ),
+                    hSpace(height: 16),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: ThemeText(
+                        text: purchaseState.isSubscribed
                             ? l10n.generationsUnlimited
                             : l10n.generationsLeft(3, l10n.freePlan),
-                    color: theme.appColors.grey,
-                    style: theme.textTheme.h30.copyWith(fontSize: 14),
-                  ),
+                        color: theme.appColors.grey,
+                        style: theme.textTheme.h30.copyWith(fontSize: 14),
+                      ),
+                    ),
+                    hSpace(height: 32),
+                    PrimaryButton(
+                      text: l10n.generateMusic,
+                      screen: 'ai_music_generate_screen',
+                      width: double.infinity,
+                      isDisabled: selectedScene.value == null ||
+                          selectedCondition.value == null ||
+                          musicGenerationState.isLoading,
+                      callback: () {
+                        final request = MusicGenerationRequest(
+                          userId: profile.userId,
+                          dogId: profile.id,
+                          scenario: selectedScene.value!,
+                          dogCondition: selectedCondition.value!,
+                          additionalInfo: additionalInfoController.text,
+                          dogBreed: profile.breed,
+                          dogPersonalityTraits: profile.personalityTraits,
+                        );
+                        ref
+                            .read(
+                              musicGenerationStateNotifierProvider.notifier,
+                            )
+                            .generateMusic(request);
+                      },
+                    ),
+                  ],
                 ),
-                hSpace(height: 32),
-                PrimaryButton(
-                  text: l10n.generateMusic,
-                  screen: 'ai_music_generate_screen',
-                  width: double.infinity,
-                  isDisabled:
-                      selectedScene.value == null ||
-                      selectedCondition.value == null ||
-                      musicGenerationState.isLoading,
-                  callback: () {
-                    final request = MusicGenerationRequest(
-                      userId: profile.userId,
-                      dogId: profile.id,
-                      scenario: selectedScene.value!,
-                      dogCondition: selectedCondition.value!,
-                      additionalInfo: additionalInfoController.text,
-                      dogBreed: profile.breed,
-                      dogPersonalityTraits: profile.personalityTraits,
-                    );
-                    ref
-                        .read(musicGenerationStateNotifierProvider.notifier)
-                        .generateMusic(request);
-                  },
-                ),
-              ],
+              );
+            },
+          ),
+          if (musicGenerationState.isLoading)
+            const ModalBarrier(
+              color: Colors.black54,
+              dismissible: false,
             ),
-          );
-        },
+          if (musicGenerationState.isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
       ),
     );
   }
