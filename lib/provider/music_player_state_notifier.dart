@@ -560,6 +560,39 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     }
   }
 
+  /// 音楽を停止するメソッド
+  void stop() {
+    logger
+      ..d('=== 音楽停止 ===')
+      ..d('現在の再生状態: ${state.isPlaying}')
+      ..d('現在の再生位置: ${state.position}');
+
+    try {
+      _audioPlayer.stop();
+      logger.d('stop()メソッドが正常に呼び出されました');
+    } on Exception catch (e) {
+      logger.e('音楽停止中にエラーが発生しました: $e');
+      rethrow;
+    }
+  }
+
+  /// 再生速度を設定するメソッド
+  ///
+  /// [speed] 再生速度（0.5-2.0の範囲）
+  void setPlaybackSpeed(double speed) {
+    logger
+      ..d('=== 再生速度設定 ===')
+      ..d('設定する速度: $speed');
+
+    try {
+      _audioPlayer.setSpeed(speed);
+      logger.d('setSpeed()メソッドが正常に呼び出されました');
+    } on Exception catch (e) {
+      logger.e('再生速度設定中にエラーが発生しました: $e');
+      rethrow;
+    }
+  }
+
   /// 音楽の再生位置を変更するメソッド
   ///
   /// [position] 新しい再生位置

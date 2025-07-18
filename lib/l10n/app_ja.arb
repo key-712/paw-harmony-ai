@@ -36,6 +36,10 @@
   "@close": {
     "description": "閉じるボタンのテキスト"
   },
+  "closePlayer": "プレイヤーを閉じる",
+  "@closePlayer": {
+    "description": "音楽プレイヤーを閉じるボタンのテキスト"
+  },
   "cancel": "キャンセル",
   "@cancel": {
     "description": "キャンセルボタンのテキスト"
@@ -556,14 +560,13 @@
   "@timeout": {
     "description": "タイムアウトエラーメッセージ"
   },
-  "errorOccurred": "エラー: {err}",
+  "errorOccurred": "エラーが発生しました",
   "@errorOccurred": {
-    "description": "エラー発生時のメッセージ（エラー内容を含む）",
-    "placeholders": {
-      "err": {
-        "type": "Object"
-      }
-    }
+    "description": "エラーが発生した時のメッセージ"
+  },
+  "musicPlaybackFailed": "音楽の再生に失敗しました。アプリを再起動してください。",
+  "@musicPlaybackFailed": {
+    "description": "音楽再生失敗時のメッセージ"
   },
   "noProfile": "プロフィールがありません",
   "@noProfile": {
@@ -600,6 +603,22 @@
   "logout": "ログアウト",
   "@logout": {
     "description": "ログアウトボタン"
+  },
+  "logoutConfirmTitle": "ログアウト確認",
+  "@logoutConfirmTitle": {
+    "description": "ログアウト確認ダイアログのタイトル"
+  },
+  "logoutConfirmMessage": "ログアウトしますか？",
+  "@logoutConfirmMessage": {
+    "description": "ログアウト確認ダイアログのメッセージ"
+  },
+  "confirm": "確認",
+  "@confirm": {
+    "description": "確認ボタン"
+  },
+  "cancel": "キャンセル",
+  "@cancel": {
+    "description": "キャンセルボタン"
   },
   "musicGenerationSuccess": "🎵 音楽の生成が完了しました！マイページの「音楽再生履歴」で再生できます。",
   "@musicGenerationSuccess": {
@@ -706,9 +725,9 @@
   "@loadingMusicGenerator": {
     "description": "音楽ジェネレーターのロード中メッセージ"
   },
-  "myPage": "マイページ",
-  "@myPage": {
-    "description": "マイページ画面のタイトル"
+  "audioGeneration": "音声生成",
+  "@audioGeneration": {
+    "description": "音声生成画面のタイトル"
   },
   "musicPlaybackHistory": "音楽再生履歴",
   "@musicPlaybackHistory": {
@@ -1110,5 +1129,29 @@
   "planInformationFetchFailed": "プラン情報の取得に失敗しました。",
   "@planInformationFetchFailed": {
     "description": "プラン情報取得失敗時のエラーメッセージ"
+  },
+  "musicDetail": "音楽詳細",
+  "@musicDetail": {
+    "description": "音楽詳細画面のタイトル"
+  },
+  "musicInfo": "音楽情報",
+  "@musicInfo": {
+    "description": "音楽情報タブのタイトル"
+  },
+  "dogReaction": "愛犬の反応",
+  "@dogReaction": {
+    "description": "愛犬の反応タブのタイトル"
+  },
+  "playbackSpeed": "再生速度",
+  "@playbackSpeed": {
+    "description": "再生速度のラベル"
+  },
+  "musicNotFound": "音楽が見つかりません",
+  "@musicNotFound": {
+    "description": "音楽が見つからない時のメッセージ"
+  },
+  "selectTags": "タグを選択",
+  "@selectTags": {
+    "description": "タグ選択セクションのタイトル"
   }
 }

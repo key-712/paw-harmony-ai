@@ -101,6 +101,7 @@ flutter:
   assets:
     - assets/image/
     - assets/web/
+    - 7c17ab82-7dd0-43a5-8fd0-d318b7d8f559.wav
   fonts:
     - family: NotoSansJP
       fonts:

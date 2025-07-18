@@ -77,20 +77,20 @@ class WalkThroughScreen extends HookConsumerWidget {
                       context: context,
                     ),
               ),
-              hSpace(height: 16),
-              LinkText(
-                screen: ScreenLabel.walkThrough,
-                text:
-                    walkThroughNotifier.isLastStep
-                        ? l10n.skipWithoutRegister
-                        : l10n.skip,
-                onTap:
-                    () => walkThroughNotifier.handleSkipLinkText(
-                      controller: controller,
-                      ref: ref,
-                      context: context,
-                    ),
-              ),
+              // hSpace(height: 16),
+              // LinkText(
+              //   screen: ScreenLabel.walkThrough,
+              //   text:
+              //       walkThroughNotifier.isLastStep
+              //           ? l10n.skipWithoutRegister
+              //           : l10n.skip,
+              //   onTap:
+              //       () => walkThroughNotifier.handleSkipLinkText(
+              //         controller: controller,
+              //         ref: ref,
+              //         context: context,
+              //       ),
+              // ),
             ],
           ),
         ),

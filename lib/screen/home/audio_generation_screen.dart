@@ -8,16 +8,16 @@ import '../../import/provider.dart';
 import '../../import/theme.dart';
 import '../../l10n/app_localizations.dart';
 
-/// AI音楽生成画面のウィジェット
-class AiMusicGenerateScreen extends HookConsumerWidget {
-  /// AiMusicGenerateScreenのコンストラクタ
-  const AiMusicGenerateScreen({super.key, required this.scrollController});
+/// 音声生成画面のウィジェット
+class AudioGenerationScreen extends HookConsumerWidget {
+  /// AudioGenerationScreenのコンストラクタ
+  const AudioGenerationScreen({super.key, required this.scrollController});
 
   /// スクロールコントローラー
   final ScrollController scrollController;
 
   @override
-  /// AI音楽生成画面を構築するメソッド
+  /// 音声生成画面を構築するメソッド
   ///
   /// [context] ビルドコンテキスト
   /// [ref] RiverpodのRefインスタンス
@@ -71,7 +71,8 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
     ];
 
     return Scaffold(
-      appBar: BaseHeader(title: l10n.aiMusicGenerateTitle),
+      appBar: BaseHeader(title: l10n.audioGeneration),
+      backgroundColor: theme.appColors.background,
       body: Stack(
         children: [
           dogProfile.when(
@@ -79,7 +80,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
             error:
                 (err, stack) => Center(
                   child: ThemeText(
-                    text: l10n.errorOccurred(err.toString()),
+                    text: l10n.errorOccurred,
                     color: theme.appColors.black,
                     style: theme.textTheme.h30,
                   ),
@@ -156,7 +157,7 @@ class AiMusicGenerateScreen extends HookConsumerWidget {
                     hSpace(height: 32),
                     PrimaryButton(
                       text: l10n.generateMusic,
-                      screen: 'ai_music_generate_screen',
+                      screen: 'audio_generation_screen',
                       width: double.infinity,
                       isDisabled:
                           selectedScene.value == null ||

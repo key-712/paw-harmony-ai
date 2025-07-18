@@ -36,6 +36,10 @@
   "@close": {
     "description": "Close button text"
   },
+  "closePlayer": "Close Player",
+  "@closePlayer": {
+    "description": "Close music player button text"
+  },
   "cancel": "Cancel",
   "@cancel": {
     "description": "Cancel button text"
@@ -556,14 +560,9 @@
   "@timeout": {
     "description": "Timeout error message"
   },
-  "errorOccurred": "Error: {err}",
+  "errorOccurred": "An error occurred",
   "@errorOccurred": {
-    "description": "Message when an error occurs (includes error details)",
-    "placeholders": {
-      "err": {
-        "type": "Object"
-      }
-    }
+    "description": "Message when an error occurs"
   },
   "noProfile": "No profile found",
   "@noProfile": {
@@ -600,6 +599,22 @@
   "logout": "Logout",
   "@logout": {
     "description": "Logout button"
+  },
+  "logoutConfirmTitle": "Logout Confirmation",
+  "@logoutConfirmTitle": {
+    "description": "Logout confirmation dialog title"
+  },
+  "logoutConfirmMessage": "Are you sure you want to logout?",
+  "@logoutConfirmMessage": {
+    "description": "Logout confirmation dialog message"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
   },
   "musicGenerationSuccess": "🎵 Music generation complete! You can play it in 'Music Playback History' on My Page.",
   "@musicGenerationSuccess": {
@@ -706,9 +721,9 @@
   "@loadingMusicGenerator": {
     "description": "Message while loading music generator"
   },
-  "myPage": "My Page",
-  "@myPage": {
-    "description": "Title for My Page screen"
+  "audioGeneration": "Audio Generation",
+  "@audioGeneration": {
+    "description": "Title for Audio Generation screen"
   },
   "musicPlaybackHistory": "Music Playback History",
   "@musicPlaybackHistory": {
@@ -1110,5 +1125,37 @@
   "planInformationFetchFailed": "Failed to fetch plan information.",
   "@planInformationFetchFailed": {
     "description": "Error message when plan information fetch fails"
+  },
+  "musicDetail": "Music Detail",
+  "@musicDetail": {
+    "description": "Title for music detail screen"
+  },
+  "musicInfo": "Music Info",
+  "@musicInfo": {
+    "description": "Music info tab title"
+  },
+  "dogReaction": "Dog Reaction",
+  "@dogReaction": {
+    "description": "Dog reaction tab title"
+  },
+  "playbackSpeed": "Playback Speed",
+  "@playbackSpeed": {
+    "description": "Playback speed label"
+  },
+  "musicNotFound": "Music not found",
+  "@musicNotFound": {
+    "description": "Message when music is not found"
+  },
+  "errorOccurred": "An error occurred",
+  "@errorOccurred": {
+    "description": "Message when an error occurs"
+  },
+  "musicPlaybackFailed": "Failed to play music. Please restart the app.",
+  "@musicPlaybackFailed": {
+    "description": "Message when music playback fails"
+  },
+  "selectTags": "Select Tags",
+  "@selectTags": {
+    "description": "Title for tag selection section"
   }
 }

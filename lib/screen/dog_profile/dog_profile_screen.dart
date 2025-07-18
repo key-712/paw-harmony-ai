@@ -53,9 +53,10 @@ class DogProfileScreen extends HookConsumerWidget {
       next.whenOrNull(
         error: (err, stack) {
           showAlertSnackBar(
-              context: context,
-              theme: theme,
-              text: l10n.errorOccurred(err.toString()));
+            context: context,
+            theme: theme,
+            text: l10n.errorOccurred,
+          );
         },
       );
     });
@@ -95,18 +96,20 @@ class DogProfileScreen extends HookConsumerWidget {
     ];
 
     return Scaffold(
-      appBar: dogProfileState.value == null
-          ? BaseHeader(title: l10n.registerDogProfileTitle)
-          : BackIconHeader(title: l10n.editDogProfileTitle),
+      appBar:
+          dogProfileState.value == null
+              ? BaseHeader(title: l10n.registerDogProfileTitle)
+              : BackIconHeader(title: l10n.editDogProfileTitle),
       body: dogProfileState.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(
-          child: ThemeText(
-            text: l10n.errorOccurred(err.toString()),
-            color: theme.appColors.black,
-            style: theme.textTheme.h30,
-          ),
-        ),
+        error:
+            (err, stack) => Center(
+              child: ThemeText(
+                text: l10n.errorOccurred,
+                color: theme.appColors.black,
+                style: theme.textTheme.h30,
+              ),
+            ),
         data:
             (profile) => SingleChildScrollView(
               controller: scrollController,
@@ -195,43 +198,50 @@ class DogProfileScreen extends HookConsumerWidget {
                     TextFormField(
                       controller: nameController,
                       decoration: InputDecoration(labelText: l10n.dogName),
-                      validator: (value) =>
-                          value!.isEmpty ? l10n.dogNameValidator : null,
+                      validator:
+                          (value) =>
+                              value!.isEmpty ? l10n.dogNameValidator : null,
                     ),
                     DropdownButtonFormField<String>(
-                      value: breedController.text.isEmpty
-                          ? null
-                          : breedController.text,
+                      value:
+                          breedController.text.isEmpty
+                              ? null
+                              : breedController.text,
                       decoration: InputDecoration(labelText: l10n.dogBreed),
-                      items: dogBreeds
-                          .map(
-                            (b) => DropdownMenuItem(
-                              value: b,
-                              child: ThemeText(
-                                text: b,
-                                color: theme.appColors.black,
-                                style: theme.textTheme.h30,
-                              ),
-                            ),
-                          )
-                          .toList(),
+                      items:
+                          dogBreeds
+                              .map(
+                                (b) => DropdownMenuItem(
+                                  value: b,
+                                  child: ThemeText(
+                                    text: b,
+                                    color: theme.appColors.black,
+                                    style: theme.textTheme.h30,
+                                  ),
+                                ),
+                              )
+                              .toList(),
                       onChanged: (value) {
                         if (value != null) {
                           breedController.text = value;
                         }
                       },
-                      validator: (value) =>
-                          value == null ? l10n.dogBreedValidator : null,
+                      validator:
+                          (value) =>
+                              value == null ? l10n.dogBreedValidator : null,
                     ),
                     hSpace(height: 16),
                     ListTile(
                       title: ThemeText(
-                        text: dateOfBirth.value == null
-                            ? l10n.selectDateOfBirth
-                            : l10n.dateOfBirth(dateOfBirth.value!
-                                .toLocal()
-                                .toIso8601String()
-                                .split('T')[0]),
+                        text:
+                            dateOfBirth.value == null
+                                ? l10n.selectDateOfBirth
+                                : l10n.dateOfBirth(
+                                  dateOfBirth.value!
+                                      .toLocal()
+                                      .toIso8601String()
+                                      .split('T')[0],
+                                ),
                         color: theme.appColors.black,
                         style: theme.textTheme.h30,
                       ),
@@ -385,17 +395,18 @@ class DogProfileScreen extends HookConsumerWidget {
                       },
                     ),
                     if (profile != null) // 編集画面の場合のみキャンセルボタンを表示
-                      CancelButton(
-                        text: l10n.cancel,
-                        screen: 'dog_profile_screen',
-                        width: double.infinity,
-                        isDisabled: false,
-                        callback: () {
-                          if (context.mounted) {
-                            GoRouter.of(context).pop();
-                          }
-                        },
-                      ),
+                      hSpace(height: 16),
+                    CancelButton(
+                      text: l10n.cancel,
+                      screen: 'dog_profile_screen',
+                      width: double.infinity,
+                      isDisabled: false,
+                      callback: () {
+                        if (context.mounted) {
+                          GoRouter.of(context).pop();
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),

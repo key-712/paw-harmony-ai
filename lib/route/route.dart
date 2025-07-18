@@ -139,22 +139,6 @@ class DogProfileScreenRoute extends GoRouteData with _$DogProfileScreenRoute {
   DogProfileScreen(scrollController: ScrollController());
 }
 
-@TypedGoRoute<MusicPlayerScreenRoute>(path: '/player')
-/// 音楽再生画面への遷移データクラス
-class MusicPlayerScreenRoute extends GoRouteData with _$MusicPlayerScreenRoute {
-  /// 音楽再生画面への遷移データクラス
-  ///
-  /// [musicUrl] 再生する音楽のURL
-  const MusicPlayerScreenRoute({required this.musicUrl});
-
-  /// 再生する音楽のURL
-  final String musicUrl;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      MusicPlayerScreen(musicUrl: musicUrl);
-}
-
 @TypedGoRoute<SubscriptionSettingScreenRoute>(path: '/subscription_setting')
 /// サブスクリプション設定画面への遷移データクラス
 class SubscriptionSettingScreenRoute extends GoRouteData
@@ -167,25 +151,39 @@ class SubscriptionSettingScreenRoute extends GoRouteData
       const SubscriptionSettingScreen();
 }
 
-@TypedGoRoute<MyPageRoute>(path: '/my-page')
-/// マイページ画面への遷移データクラス
-class MyPageRoute extends GoRouteData with _$MyPageRoute {
-  /// マイページ画面への遷移データクラス
-  const MyPageRoute();
+@TypedGoRoute<PlayerListRoute>(path: '/player-list')
+/// プレイヤーリスト画面への遷移データクラス
+class PlayerListRoute extends GoRouteData with _$PlayerListRoute {
+  /// プレイヤーリスト画面への遷移データクラス
+  const PlayerListRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      MyPageScreen(scrollController: ScrollController());
+      PlayerListScreen(scrollController: ScrollController());
 }
 
-@TypedGoRoute<AiMusicGenerateScreenRoute>(path: '/ai-music-generate')
-/// AI音楽生成画面への遷移データクラス
-class AiMusicGenerateScreenRoute extends GoRouteData
-    with _$AiMusicGenerateScreenRoute {
-  /// AI音楽生成画面への遷移データクラス
-  const AiMusicGenerateScreenRoute();
+@TypedGoRoute<AudioGenerationScreenRoute>(path: '/audio-generation')
+/// 音声生成画面への遷移データクラス
+class AudioGenerationScreenRoute extends GoRouteData
+    with _$AudioGenerationScreenRoute {
+  /// 音声生成画面への遷移データクラス
+  const AudioGenerationScreenRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      AiMusicGenerateScreen(scrollController: ScrollController());
+      AudioGenerationScreen(scrollController: ScrollController());
+}
+
+@TypedGoRoute<MusicDetailRoute>(path: '/music-detail/:musicId')
+/// 音楽詳細画面への遷移データクラス
+class MusicDetailRoute extends GoRouteData with _$MusicDetailRoute {
+  /// 音楽詳細画面への遷移データクラス
+  const MusicDetailRoute({required this.musicId});
+
+  /// 音楽アイテムのID
+  final String musicId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      MusicDetailScreen(musicId: musicId);
 }

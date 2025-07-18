@@ -36,6 +36,10 @@
   "@close": {
     "description": "Testo del pulsante di chiusura"
   },
+  "closePlayer": "Chiudi il lettore",
+  "@closePlayer": {
+    "description": "Testo del pulsante per chiudere il lettore musicale"
+  },
   "cancel": "Annulla",
   "@cancel": {
     "description": "Testo del pulsante di annullamento"
@@ -601,6 +605,22 @@
   "@logout": {
     "description": "Pulsante di logout"
   },
+  "logoutConfirmTitle": "Conferma logout",
+  "@logoutConfirmTitle": {
+    "description": "Titolo del dialogo di conferma logout"
+  },
+  "logoutConfirmMessage": "Sei sicuro di voler effettuare il logout?",
+  "@logoutConfirmMessage": {
+    "description": "Messaggio del dialogo di conferma logout"
+  },
+  "confirm": "Conferma",
+  "@confirm": {
+    "description": "Pulsante di conferma"
+  },
+  "cancel": "Annulla",
+  "@cancel": {
+    "description": "Pulsante di annullamento"
+  },
   "musicGenerationSuccess": "🎵 La generazione della musica è completata! Puoi riprodurla in 'Cronologia di riproduzione musicale' su La mia pagina.",
   "@musicGenerationSuccess": {
     "description": "Messaggio di successo della generazione musicale"
@@ -706,9 +726,9 @@
   "@loadingMusicGenerator": {
     "description": "Messaggio di caricamento del generatore musicale"
   },
-  "myPage": "La mia pagina",
-  "@myPage": {
-    "description": "Titolo della schermata La mia pagina"
+  "audioGeneration": "Generazione Audio",
+  "@audioGeneration": {
+    "description": "Titolo della schermata di generazione audio"
   },
   "musicPlaybackHistory": "Cronologia di riproduzione musicale",
   "@musicPlaybackHistory": {
@@ -1106,5 +1126,37 @@
   "planInformationFetchFailed": "Recupero delle informazioni sul piano fallito.",
   "@planInformationFetchFailed": {
     "description": "Messaggio di errore al fallimento del recupero delle informazioni sul piano"
+  },
+  "musicDetail": "Dettagli musica",
+  "@musicDetail": {
+    "description": "Titolo della schermata di dettagli della musica"
+  },
+  "musicInfo": "Info Musica",
+  "@musicInfo": {
+    "description": "Titolo della scheda informazioni musica"
+  },
+  "dogReaction": "Reazione del Cane",
+  "@dogReaction": {
+    "description": "Titolo della scheda reazione del cane"
+  },
+  "playbackSpeed": "Velocità di Riproduzione",
+  "@playbackSpeed": {
+    "description": "Etichetta velocità di riproduzione"
+  },
+  "musicNotFound": "Musica non trovata",
+  "@musicNotFound": {
+    "description": "Messaggio quando la musica non viene trovata"
+  },
+  "errorOccurred": "Si è verificato un errore",
+  "@errorOccurred": {
+    "description": "Messaggio quando si verifica un errore"
+  },
+  "musicPlaybackFailed": "Impossibile riprodurre la musica. Riavvia l'app.",
+  "@musicPlaybackFailed": {
+    "description": "Messaggio quando la riproduzione della musica fallisce"
+  },
+  "selectTags": "Seleziona tag",
+  "@selectTags": {
+    "description": "Titolo della sezione di selezione dei tag"
   }
 }

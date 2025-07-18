@@ -95,7 +95,7 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
     if (isLastStep && context.mounted) {
       // 初回起動フラグを更新
       _updateInitialLaunchFlag();
-      const BaseScreenRoute().go(context);
+      const SignUpScreenRoute().go(context);
     } else {
       await switchPage(nextStepIndex, controller);
     }

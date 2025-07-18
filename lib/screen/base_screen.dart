@@ -54,8 +54,8 @@ class BaseScreen extends HookConsumerWidget {
               child: IndexedStack(
                 index: base.selectIndex,
                 children: [
-                  AiMusicGenerateScreen(scrollController: scrollControllers[0]),
-                  MyPageScreen(scrollController: scrollControllers[1]),
+                  AudioGenerationScreen(scrollController: scrollControllers[0]),
+                  PlayerListScreen(scrollController: scrollControllers[1]),
                   SettingScreen(scrollController: scrollControllers[2]),
                 ],
               ),
@@ -82,16 +82,16 @@ class BaseScreen extends HookConsumerWidget {
             icon: const Icon(Icons.list),
             label:
                 ThemeText(
-                  text: AppLocalizations.of(context)!.playerList,
+                  text: AppLocalizations.of(context)!.audioGeneration,
                   color: Theme.of(context).colorScheme.onSurface,
                   style: Theme.of(context).textTheme.bodyMedium!,
                 ).text,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.pets),
+            icon: const Icon(Icons.music_note),
             label:
                 ThemeText(
-                  text: AppLocalizations.of(context)!.addPlayer,
+                  text: AppLocalizations.of(context)!.playerList,
                   color: Theme.of(context).colorScheme.onSurface,
                   style: Theme.of(context).textTheme.bodyMedium!,
                 ).text,

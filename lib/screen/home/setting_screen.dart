@@ -33,7 +33,7 @@ class SettingScreen extends HookConsumerWidget {
         error:
             (err, stack) => Center(
               child: ThemeText(
-                text: l10n.errorOccurred(err.toString()),
+                text: l10n.errorOccurred,
                 color: theme.appColors.black,
                 style: theme.textTheme.h30,
               ),
@@ -94,9 +94,10 @@ class SettingScreen extends HookConsumerWidget {
                     style: theme.textTheme.h30,
                   ),
                   subtitle: ThemeText(
-                    text: purchaseState.isSubscribed
-                        ? l10n.premiumPlan
-                        : l10n.freePlan,
+                    text:
+                        purchaseState.isSubscribed
+                            ? l10n.premiumPlan
+                            : l10n.freePlan,
                     color: theme.appColors.grey,
                     style: theme.textTheme.h30,
                   ),
@@ -144,16 +145,16 @@ class SettingScreen extends HookConsumerWidget {
                         const PushScreenRoute().push<void>(context);
                       },
                     ),
-                    hSpace(height: 8),
-                    RoundedList(
-                      title: l10n.recommendApp,
-                      screen: ScreenLabel.setting,
-                      icon: Icons.app_registration,
-                      iconColor: theme.appColors.purple,
-                      onTap: () {
-                        const RecommendAppScreenRoute().push<void>(context);
-                      },
-                    ),
+                    // hSpace(height: 8),
+                    // RoundedList(
+                    //   title: l10n.recommendApp,
+                    //   screen: ScreenLabel.setting,
+                    //   icon: Icons.app_registration,
+                    //   iconColor: theme.appColors.purple,
+                    //   onTap: () {
+                    //     const RecommendAppScreenRoute().push<void>(context);
+                    //   },
+                    // ),
                     hSpace(height: 8),
                     RoundedList(
                       title: l10n.contact,
@@ -197,16 +198,34 @@ class SettingScreen extends HookConsumerWidget {
                       },
                     ),
                     hSpace(height: 8),
-                    ListTile(
-                      leading: const Icon(Icons.logout),
-                      title: ThemeText(
-                        text: l10n.logout,
-                        color: theme.appColors.red,
-                        style: theme.textTheme.h30,
-                      ),
+                    RoundedList(
+                      title: l10n.logout,
+                      screen: ScreenLabel.setting,
+                      icon: Icons.logout,
+                      iconColor: theme.appColors.red,
                       onTap: () {
-                        ref.read(authStateNotifierProvider.notifier).signOut();
-                        const LoginScreenRoute().go(context);
+                        showDialog<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return TwoButtonDialog(
+                              title: l10n.logoutConfirmTitle,
+                              screen: ScreenLabel.setting,
+                              content: l10n.logoutConfirmMessage,
+                              primaryText: l10n.confirm,
+                              secondaryText: l10n.cancel,
+                              primaryCallBack: () {
+                                Navigator.of(context).pop();
+                                ref
+                                    .read(authStateNotifierProvider.notifier)
+                                    .signOut();
+                                const LoginScreenRoute().go(context);
+                              },
+                              secondaryCallBack: () {
+                                Navigator.of(context).pop();
+                              },
+                            );
+                          },
+                        );
                       },
                     ),
                   ],

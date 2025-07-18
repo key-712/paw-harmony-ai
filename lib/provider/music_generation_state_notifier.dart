@@ -420,3 +420,62 @@ musicHistoryStreamProvider =
         return Stream.value([]);
       }
     });
+
+/// 特定の音楽IDで音楽履歴を取得するStreamProvider
+final AutoDisposeStreamProviderFamily<MusicGenerationHistory?, String>
+musicHistoryByIdStreamProvider = StreamProvider.autoDispose
+    .family<MusicGenerationHistory?, String>((ref, musicId) {
+  final userId = ref.watch(authStateChangesProvider).value?.uid;
+  logger.d('=== 特定音楽履歴取得開始 音楽ID: $musicId, ユーザーID: $userId ===');
+  
+  if (userId == null) {
+    logger.d('ユーザーIDがnullのため、nullを返します');
+    return Stream.value(null);
+  }
+
+  try {
+    final firestore = ref.read(firestoreProvider);
+    final collectionRef = firestore.collection('musicGenerationHistories');
+    
+    return collectionRef
+        .doc(musicId)
+        .snapshots()
+        .map((snapshot) {
+          if (!snapshot.exists) {
+            logger.d('音楽履歴が見つかりません: $musicId');
+            return null;
+          }
+
+          try {
+            final history = MusicGenerationHistory.fromJson(snapshot.data()!);
+            
+            // ユーザーIDの確認
+            if (history.userId != userId) {
+              logger.d('ユーザーIDが一致しません: ${history.userId} != $userId');
+              return null;
+            }
+
+            logger.d('=== 特定音楽履歴取得完了 ===');
+            return history;
+          } on Exception catch (e) {
+            logger.e('ドキュメントのパースエラー: ${snapshot.id}', error: e);
+            return null;
+          }
+        })
+        .handleError((Object error, StackTrace stackTrace) {
+          logger.e(
+            'Failed to fetch music history by ID due to permission error',
+            error: error,
+            stackTrace: stackTrace,
+          );
+          return null;
+        });
+  } on Exception catch (e, st) {
+    logger.e(
+      'An unexpected error occurred while fetching music history by ID',
+      error: e,
+      stackTrace: st,
+    );
+    return Stream.value(null);
+  }
+});
