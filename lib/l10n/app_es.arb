@@ -1158,5 +1158,29 @@
   "selectTags": "Seleccionar etiquetas",
   "@selectTags": {
     "description": "Título de la sección de selección de etiquetas"
+  },
+  "emailSentTitle": "Correo enviado",
+  "@emailSentTitle": {
+    "description": "Título de la pantalla de correo enviado"
+  },
+  "emailSentMessage": "El correo ha sido enviado.\nPor favor, revise su bandeja de entrada.",
+  "@emailSentMessage": {
+    "description": "Mensaje de la pantalla de correo enviado"
+  },
+  "emailNotVerifiedTitle": "Correo no verificado",
+  "@emailNotVerifiedTitle": {
+    "description": "Título del diálogo de correo no verificado"
+  },
+  "emailNotVerifiedMessage": "La dirección de correo electrónico no está verificada.\n¿Desea reenviar el correo de verificación?",
+  "@emailNotVerifiedMessage": {
+    "description": "Mensaje del diálogo de correo no verificado"
+  },
+  "resendEmail": "Reenviar",
+  "@resendEmail": {
+    "description": "Texto del botón de reenvío de correo"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Texto del botón OK"
   }
 }

@@ -1153,5 +1153,29 @@
   "selectTags": "タグを選択",
   "@selectTags": {
     "description": "タグ選択セクションのタイトル"
+  },
+  "emailSentTitle": "メール送信完了",
+  "@emailSentTitle": {
+    "description": "メール送信完了画面のタイトル"
+  },
+  "emailSentMessage": "メールを送信しました。\nメールボックスをご確認ください。",
+  "@emailSentMessage": {
+    "description": "メール送信完了画面のメッセージ"
+  },
+  "emailNotVerifiedTitle": "メールアドレスが未確認です",
+  "@emailNotVerifiedTitle": {
+    "description": "メールアドレス未確認ダイアログのタイトル"
+  },
+  "emailNotVerifiedMessage": "メールアドレスの確認が完了していません。\n確認メールを再送信しますか？",
+  "@emailNotVerifiedMessage": {
+    "description": "メールアドレス未確認ダイアログのメッセージ"
+  },
+  "resendEmail": "再送信",
+  "@resendEmail": {
+    "description": "メール再送信ボタンのテキスト"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OKボタンのテキスト"
   }
 }

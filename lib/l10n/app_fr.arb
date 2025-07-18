@@ -1158,5 +1158,29 @@
   "selectTags": "Sélectionner les étiquettes",
   "@selectTags": {
     "description": "Titre de la section de sélection des étiquettes"
+  },
+  "emailSentTitle": "E-mail envoyé",
+  "@emailSentTitle": {
+    "description": "Titre de l'écran d'e-mail envoyé"
+  },
+  "emailSentMessage": "L'e-mail a été envoyé.\nVeuillez vérifier votre boîte de réception.",
+  "@emailSentMessage": {
+    "description": "Message de l'écran d'e-mail envoyé"
+  },
+  "emailNotVerifiedTitle": "E-mail non vérifié",
+  "@emailNotVerifiedTitle": {
+    "description": "Titre de la boîte de dialogue e-mail non vérifié"
+  },
+  "emailNotVerifiedMessage": "L'adresse e-mail n'est pas vérifiée.\nSouhaitez-vous renvoyer l'e-mail de vérification ?",
+  "@emailNotVerifiedMessage": {
+    "description": "Message de la boîte de dialogue e-mail non vérifié"
+  },
+  "resendEmail": "Renvoyer",
+  "@resendEmail": {
+    "description": "Texte du bouton de renvoi d'e-mail"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Texte du bouton OK"
   }
 }

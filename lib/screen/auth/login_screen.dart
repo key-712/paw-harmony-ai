@@ -65,7 +65,9 @@ class LoginScreen extends HookConsumerWidget {
                     actions: [
                       TextButton(
                         onPressed: () {
-                          ref.read(authStateNotifierProvider.notifier).sendEmailVerification();
+                          ref
+                              .read(authStateNotifierProvider.notifier)
+                              .sendEmailVerification();
                           Navigator.of(context).pop();
                         },
                         child: Text(l10n.resendEmail),

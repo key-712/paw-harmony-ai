@@ -1157,5 +1157,29 @@
   "selectTags": "Select Tags",
   "@selectTags": {
     "description": "Title for tag selection section"
+  },
+  "emailSentTitle": "Email Sent",
+  "@emailSentTitle": {
+    "description": "Title for email sent screen"
+  },
+  "emailSentMessage": "Email has been sent.\nPlease check your mailbox.",
+  "@emailSentMessage": {
+    "description": "Message for email sent screen"
+  },
+  "emailNotVerifiedTitle": "Email Not Verified",
+  "@emailNotVerifiedTitle": {
+    "description": "Title for email not verified dialog"
+  },
+  "emailNotVerifiedMessage": "Email address is not verified.\nWould you like to resend the verification email?",
+  "@emailNotVerifiedMessage": {
+    "description": "Message for email not verified dialog"
+  },
+  "resendEmail": "Resend",
+  "@resendEmail": {
+    "description": "Text for resend email button"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Text for OK button"
   }
 }

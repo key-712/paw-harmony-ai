@@ -1158,5 +1158,29 @@
   "selectTags": "Seleziona tag",
   "@selectTags": {
     "description": "Titolo della sezione di selezione dei tag"
+  },
+  "emailSentTitle": "Email inviata",
+  "@emailSentTitle": {
+    "description": "Titolo della schermata email inviata"
+  },
+  "emailSentMessage": "L'email è stata inviata.\nControlla la tua casella di posta.",
+  "@emailSentMessage": {
+    "description": "Messaggio della schermata email inviata"
+  },
+  "emailNotVerifiedTitle": "Email non verificata",
+  "@emailNotVerifiedTitle": {
+    "description": "Titolo della finestra di dialogo email non verificata"
+  },
+  "emailNotVerifiedMessage": "L'indirizzo email non è verificato.\nVuoi rinviare l'email di verifica?",
+  "@emailNotVerifiedMessage": {
+    "description": "Messaggio della finestra di dialogo email non verificata"
+  },
+  "resendEmail": "Rinvia",
+  "@resendEmail": {
+    "description": "Testo del pulsante di rinvio email"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Testo del pulsante OK"
   }
 }
