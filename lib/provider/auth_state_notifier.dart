@@ -65,9 +65,21 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
       final credential = await ref
           .read(firebaseAuthProvider)
           .signInWithEmailAndPassword(email: email, password: password);
-      if (credential.user != null && !credential.user!.emailVerified) {
-        throw FirebaseAuthException(code: 'email-not-verified');
+
+      if (credential.user != null) {
+        // ユーザー情報を再読み込みして最新の確認状態を取得
+        await credential.user!.reload();
+
+        if (!credential.user!.emailVerified) {
+          // メール未確認の場合はログアウトしてからエラーを投げる
+          await ref.read(firebaseAuthProvider).signOut();
+          throw FirebaseAuthException(
+            code: 'requires-recent-login',
+            message: 'Email verification required',
+          );
+        }
       }
+
       state = const AsyncValue.data(null);
     } on FirebaseAuthException catch (e, st) {
       state = AsyncValue.error(e, st);
@@ -93,15 +105,22 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
   }
 
   /// メール確認状態をチェックするメソッド
+  ///
+  /// 戻り値: メール確認済みの場合はtrue、未確認の場合はfalse
+  /// 例外: エラーが発生した場合はFirebaseAuthExceptionを投げる
   Future<bool> isEmailVerified() async {
+    final user = ref.read(firebaseAuthProvider).currentUser;
+    if (user == null) {
+      throw FirebaseAuthException(
+        code: 'user-not-found',
+        message: 'No user is currently signed in',
+      );
+    }
+
     try {
-      final user = ref.read(firebaseAuthProvider).currentUser;
-      if (user != null) {
-        // ユーザー情報を再読み込みして最新の確認状態を取得
-        await user.reload();
-        return user.emailVerified;
-      }
-      return false;
+      // ユーザー情報を再読み込みして最新の確認状態を取得
+      await user.reload();
+      return user.emailVerified;
     } on FirebaseAuthException catch (e) {
       logger.e(e);
       rethrow;
