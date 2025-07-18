@@ -33,7 +33,7 @@ class MusicDetailScreen extends HookConsumerWidget {
     final playerNotifier = ref.read(musicPlayerProvider.notifier);
     final playerState = ref.watch(musicPlayerProvider);
     final musicHistory = ref.watch(musicHistoryByIdStreamProvider(musicId));
-    final rating = useState(3);
+    final rating = useState(5);
     final selectedTags = useState<List<String>>([]);
     final commentController = useTextEditingController();
     final playbackSpeed = useState<double>(1);
@@ -480,14 +480,38 @@ class MusicDetailScreen extends HookConsumerWidget {
           text: l10n.sendFeedback,
           screen: 'music_detail_screen',
           width: double.infinity,
-          isDisabled: false,
-          callback: () {
-            // TODO: フィードバック送信機能を実装
-            showSnackBar(
-              context: context,
-              theme: theme,
-              text: l10n.feedbackUnderDevelopment,
+          isDisabled: ref.watch(feedbackStateNotifierProvider).isLoading,
+          callback: () async {
+            final user = ref.watch(authStateChangesProvider).value;
+            final dogProfileState = ref.watch(dogProfileStateNotifierProvider);
+
+            final dogProfile = dogProfileState.when(
+              data: (profile) => profile,
+              loading: () => null,
+              error: (_, _) => null,
             );
+
+            if (user == null || dogProfile == null) {
+              showSnackBar(context: context, theme: theme, text: l10n.error);
+              return;
+            }
+            await ref
+                .read(feedbackStateNotifierProvider.notifier)
+                .submitFeedback(
+                  userId: user.uid,
+                  dogId: dogProfile.id,
+                  musicHistoryId: musicId,
+                  rating: rating.value,
+                  behaviorTags: selectedTags.value,
+                  comment: commentController.text,
+                );
+            if (context.mounted) {
+              showSnackBar(
+                context: context,
+                theme: theme,
+                text: l10n.sendSuccessRequest,
+              );
+            }
           },
         ),
         hSpace(height: 16),
