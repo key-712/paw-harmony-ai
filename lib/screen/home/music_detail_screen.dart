@@ -33,7 +33,7 @@ class MusicDetailScreen extends HookConsumerWidget {
     final playerNotifier = ref.read(musicPlayerProvider.notifier);
     final playerState = ref.watch(musicPlayerProvider);
     final musicHistory = ref.watch(musicHistoryByIdStreamProvider(musicId));
-    final rating = useState(3);
+    final rating = useState(5);
     final selectedTags = useState<List<String>>([]);
     final commentController = useTextEditingController();
     final playbackSpeed = useState<double>(1);
@@ -482,18 +482,22 @@ class MusicDetailScreen extends HookConsumerWidget {
           width: double.infinity,
           isDisabled: ref.watch(feedbackStateNotifierProvider).isLoading,
           callback: () async {
-            final user = ref.watch(authStateNotifierProvider).user;
-            final dogProfile =
-                ref.watch(dogProfileStateNotifierProvider).dogProfile;
+            final user = ref.watch(authStateChangesProvider).value;
+            final dogProfileState = ref.watch(dogProfileStateNotifierProvider);
+
+            final dogProfile = dogProfileState.when(
+              data: (profile) => profile,
+              loading: () => null,
+              error: (_, _) => null,
+            );
+
             if (user == null || dogProfile == null) {
-              showSnackBar(
-                context: context,
-                theme: theme,
-                text: l10n.notLoggedIn,
-              );
+              showSnackBar(context: context, theme: theme, text: l10n.error);
               return;
             }
-            await ref.read(feedbackStateNotifierProvider.notifier).submitFeedback(
+            await ref
+                .read(feedbackStateNotifierProvider.notifier)
+                .submitFeedback(
                   userId: user.uid,
                   dogId: dogProfile.id,
                   musicHistoryId: musicId,
@@ -505,7 +509,7 @@ class MusicDetailScreen extends HookConsumerWidget {
               showSnackBar(
                 context: context,
                 theme: theme,
-                text: l10n.feedbackSent,
+                text: l10n.sendSuccessRequest,
               );
             }
           },
