@@ -6,8 +6,6 @@ linter:
     prefer_relative_imports: true
     public_member_api_docs: true
 analyzer:
-  plugins:
-    - custom_lint
   exclude: # ignore generated files
     - "**/*.g.dart"
     - "**/*.freezed.dart"
