@@ -480,14 +480,34 @@ class MusicDetailScreen extends HookConsumerWidget {
           text: l10n.sendFeedback,
           screen: 'music_detail_screen',
           width: double.infinity,
-          isDisabled: false,
-          callback: () {
-            // TODO: フィードバック送信機能を実装
-            showSnackBar(
-              context: context,
-              theme: theme,
-              text: l10n.feedbackUnderDevelopment,
-            );
+          isDisabled: ref.watch(feedbackStateNotifierProvider).isLoading,
+          callback: () async {
+            final user = ref.watch(authStateNotifierProvider).user;
+            final dogProfile =
+                ref.watch(dogProfileStateNotifierProvider).dogProfile;
+            if (user == null || dogProfile == null) {
+              showSnackBar(
+                context: context,
+                theme: theme,
+                text: l10n.notLoggedIn,
+              );
+              return;
+            }
+            await ref.read(feedbackStateNotifierProvider.notifier).submitFeedback(
+                  userId: user.uid,
+                  dogId: dogProfile.id,
+                  musicHistoryId: musicId,
+                  rating: rating.value,
+                  behaviorTags: selectedTags.value,
+                  comment: commentController.text,
+                );
+            if (context.mounted) {
+              showSnackBar(
+                context: context,
+                theme: theme,
+                text: l10n.feedbackSent,
+              );
+            }
           },
         ),
         hSpace(height: 16),
