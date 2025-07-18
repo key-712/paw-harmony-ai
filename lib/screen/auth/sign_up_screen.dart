@@ -25,13 +25,17 @@ class SignUpScreen extends HookConsumerWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final confirmPasswordController = useTextEditingController();
+    final emailFocusNode = useFocusNode();
+    final passwordFocusNode = useFocusNode();
+    final confirmPasswordFocusNode = useFocusNode();
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final isAgreed = useState(false);
     final theme = ref.watch(appThemeProvider);
 
     ref.listen<AsyncValue<void>>(authStateNotifierProvider, (_, state) {
       if (state is AsyncData) {
-        const EmailSentScreenRoute().go(context);
+        // サインアップ成功後は直接ログイン画面に遷移
+        const LoginScreenRoute().go(context);
       }
       if (state is AsyncError) {
         var errorMessage = l10n.accountCreationFailed;
@@ -66,7 +70,13 @@ class SignUpScreen extends HookConsumerWidget {
             children: [
               TextFormField(
                 controller: emailController,
+                focusNode: emailFocusNode,
                 decoration: InputDecoration(labelText: l10n.emailAddress),
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                onFieldSubmitted: (_) {
+                  passwordFocusNode.requestFocus();
+                },
                 validator: (value) {
                   if (value == null || !EmailValidator.validate(value)) {
                     return l10n.emailInvalid;
@@ -76,7 +86,12 @@ class SignUpScreen extends HookConsumerWidget {
               ),
               PasswordTextFormField(
                 controller: passwordController,
+                focusNode: passwordFocusNode,
                 labelText: l10n.password,
+                textInputAction: TextInputAction.next,
+                onFieldSubmitted: (_) {
+                  confirmPasswordFocusNode.requestFocus();
+                },
                 validator: (value) {
                   if (value == null || value.length < 8) {
                     return l10n.passwordTooShortSignUp;
@@ -86,7 +101,9 @@ class SignUpScreen extends HookConsumerWidget {
               ),
               PasswordTextFormField(
                 controller: confirmPasswordController,
+                focusNode: confirmPasswordFocusNode,
                 labelText: l10n.confirmPassword,
+                textInputAction: TextInputAction.done,
                 validator: (value) {
                   if (value != passwordController.text) {
                     return l10n.passwordMismatch;
@@ -94,6 +111,7 @@ class SignUpScreen extends HookConsumerWidget {
                   return null;
                 },
               ),
+              hSpace(height: 16),
               Row(
                 children: [
                   Checkbox(
@@ -121,9 +139,15 @@ class SignUpScreen extends HookConsumerWidget {
                   if (formKey.currentState!.validate() && isAgreed.value) {
                     ref
                         .read(authStateNotifierProvider.notifier)
-                        .signUp(emailController.text, '');
+                        .signUp(emailController.text, passwordController.text);
                   }
                 },
+              ),
+              hSpace(height: 8),
+              ThemeText(
+                text: l10n.emailVerificationRequired,
+                color: theme.appColors.grey,
+                style: theme.textTheme.h20,
               ),
               hSpace(height: 16),
               SecondaryButton(

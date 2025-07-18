@@ -1177,5 +1177,9 @@
   "ok": "OK",
   "@ok": {
     "description": "OKボタンのテキスト"
+  },
+  "emailVerificationRequired": "※アカウント作成後、メール確認が必要です",
+  "@emailVerificationRequired": {
+    "description": "アカウント作成後にメール確認が必要であることを示すメッセージ"
   }
 }

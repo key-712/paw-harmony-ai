@@ -1182,5 +1182,9 @@
   "ok": "OK",
   "@ok": {
     "description": "Texto del botón OK"
+  },
+  "emailVerificationRequired": "※La verificación por correo electrónico es necesaria después de crear la cuenta",
+  "@emailVerificationRequired": {
+    "description": "Message indicating that email verification is required after sign up"
   }
 }

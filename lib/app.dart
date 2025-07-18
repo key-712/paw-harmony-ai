@@ -1,6 +1,4 @@
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,26 +12,6 @@ class App extends HookConsumerWidget {
   /// インスタンスを作成します
   const App({super.key});
 
-  Future<void> _handleDynamicLinks(WidgetRef ref) async {
-    final dynamicLinks = FirebaseDynamicLinks.instance;
-
-    // アプリが起動していない状態でリンクを開いた場合
-    final data = await dynamicLinks.getInitialLink();
-    if (data != null) {
-      final deepLink = data.link;
-      // TODO: パスワードを保存するように修正する
-      ref.read(authStateNotifierProvider.notifier).signInWithEmailLink(deepLink.toString());
-    }
-
-    // アプリが起動中の状態でリンクを開いた場合
-    dynamicLinks.onLink.listen((data) {
-      final deepLink = data.link;
-      ref.read(authStateNotifierProvider.notifier).signInWithEmailLink(deepLink.toString());
-    }).onError((error) {
-      // Handle error
-    });
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -41,11 +19,6 @@ class App extends HookConsumerWidget {
     final goRouter = ref.watch(goRouterProvider);
     final mediaQuery = ref.watch(mediaQueryStateNotifierProvider);
     final locale = ref.watch(localeProvider);
-
-    useEffect(() {
-      _handleDynamicLinks(ref);
-      return null;
-    }, const []);
 
     useHandleTransit(context: context, ref: ref);
 
