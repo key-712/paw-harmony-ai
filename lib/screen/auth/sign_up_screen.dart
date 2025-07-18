@@ -30,6 +30,9 @@ class SignUpScreen extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
 
     ref.listen<AsyncValue<void>>(authStateNotifierProvider, (_, state) {
+      if (state is AsyncData) {
+        const EmailSentScreenRoute().go(context);
+      }
       if (state is AsyncError) {
         var errorMessage = l10n.accountCreationFailed;
 
@@ -38,8 +41,6 @@ class SignUpScreen extends HookConsumerWidget {
           switch (authException.code) {
             case 'email-already-in-use':
               errorMessage = l10n.emailAlreadyInUse;
-            case 'weak-password':
-              errorMessage = l10n.weakPassword;
             case 'invalid-email':
               errorMessage = l10n.invalidEmail;
             case 'operation-not-allowed':
@@ -47,9 +48,7 @@ class SignUpScreen extends HookConsumerWidget {
             case 'network-request-failed':
               errorMessage = l10n.networkRequestFailed;
             default:
-              errorMessage = l10n.accountCreationFailedWithError(
-                authException.message ?? '',
-              );
+              errorMessage = l10n.accountCreationFailed;
           }
         }
 
@@ -122,7 +121,7 @@ class SignUpScreen extends HookConsumerWidget {
                   if (formKey.currentState!.validate() && isAgreed.value) {
                     ref
                         .read(authStateNotifierProvider.notifier)
-                        .signUp(emailController.text, passwordController.text);
+                        .signUp(emailController.text, '');
                   }
                 },
               ),

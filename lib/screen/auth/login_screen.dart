@@ -55,10 +55,32 @@ class LoginScreen extends HookConsumerWidget {
               errorMessage = l10n.tooManyLoginAttempts;
             case 'network-request-failed':
               errorMessage = l10n.networkRequestFailed;
-            default:
-              errorMessage = l10n.loginFailedWithError(
-                authException.message ?? '',
+            case 'email-not-verified':
+              showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(l10n.emailNotVerifiedTitle),
+                    content: Text(l10n.emailNotVerifiedMessage),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          ref.read(authStateNotifierProvider.notifier).sendEmailVerification();
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(l10n.resendEmail),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(l10n.ok),
+                      ),
+                    ],
+                  );
+                },
               );
+              return;
+            default:
+              errorMessage = l10n.loginFailed;
           }
         }
 

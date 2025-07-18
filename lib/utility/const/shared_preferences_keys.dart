@@ -11,4 +11,7 @@ class SharedPreferencesKeys {
 
   /// レーティングダイアログの表示回数
   static const ratingDialogShown = 'rating_dialog_shown';
+
+  /// Eメール
+  static const email = 'email';
 }

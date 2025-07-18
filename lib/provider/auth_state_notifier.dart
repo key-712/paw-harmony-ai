@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../import/provider.dart';
+import '../import/utility.dart';
+
 /// FirebaseAuthのインスタンスを提供するProvider
 final firebaseAuthProvider = Provider<FirebaseAuth>(
   (ref) => FirebaseAuth.instance,
@@ -38,9 +41,36 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
   Future<void> signUp(String email, String password) async {
     state = const AsyncValue.loading();
     try {
+      final actionCodeSettings = ActionCodeSettings(
+        url: 'https://flutter-tips-8dc02.firebaseapp.com', // TODO: Replace with your domain
+        handleCodeInApp: true,
+        iOSBundleId: 'com.example.flutter_tips', // TODO: Replace with your bundle id
+        androidPackageName: 'com.example.flutter_tips', // TODO: Replace with your package name
+        androidInstallApp: true,
+        androidMinimumVersion: '12',
+      );
+
       await ref
           .read(firebaseAuthProvider)
-          .createUserWithEmailAndPassword(email: email, password: password);
+          .sendSignInLinkToEmail(email: email, actionCodeSettings: actionCodeSettings);
+      await ref.read(sharedPreferencesProvider).setString(SharedPreferencesKeys.email, email);
+      state = const AsyncValue.data(null);
+    } on FirebaseAuthException catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
+
+  Future<void> signInWithEmailLink(String emailLink) async {
+    state = const AsyncValue.loading();
+    try {
+      final email = ref.read(sharedPreferencesProvider).getString(SharedPreferencesKeys.email);
+      if (email == null) {
+        throw Exception('Email is not set');
+      }
+      await ref
+          .read(firebaseAuthProvider)
+          .signInWithEmailLink(email: email, emailLink: emailLink);
+      await ref.read(sharedPreferencesProvider).remove(SharedPreferencesKeys.email);
       state = const AsyncValue.data(null);
     } on FirebaseAuthException catch (e, st) {
       state = AsyncValue.error(e, st);
@@ -54,10 +84,22 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
   Future<void> login(String email, String password) async {
     state = const AsyncValue.loading();
     try {
-      await ref
+      final credential = await ref
           .read(firebaseAuthProvider)
           .signInWithEmailAndPassword(email: email, password: password);
+      if (credential.user != null && !credential.user!.emailVerified) {
+        throw FirebaseAuthException(code: 'email-not-verified');
+      }
       state = const AsyncValue.data(null);
+    } on FirebaseAuthException catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
+
+  /// メールアドレスの確認メールを再送信する
+  Future<void> sendEmailVerification() async {
+    try {
+      await ref.read(firebaseAuthProvider).currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e, st) {
       state = AsyncValue.error(e, st);
     }

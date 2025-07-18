@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:$(universalLinks)</string>
+		<string>applinks:flutter-tips-8dc02.firebaseapp.com</string>
 	</array>
 </dict>
 </plist>
