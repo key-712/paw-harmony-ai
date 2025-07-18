@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../import/utility.dart';
+
 /// FirebaseAuthのインスタンスを提供するProvider
 final firebaseAuthProvider = Provider<FirebaseAuth>(
   (ref) => FirebaseAuth.instance,
@@ -74,10 +76,19 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
 
   /// メールアドレスの確認メールを再送信する
   Future<void> sendEmailVerification() async {
+    state = const AsyncValue.loading();
     try {
-      await ref.read(firebaseAuthProvider).currentUser?.sendEmailVerification();
-    } on FirebaseAuthException catch (e, st) {
-      state = AsyncValue.error(e, st);
+      final user = ref.read(firebaseAuthProvider).currentUser;
+      if (user == null) {
+        throw FirebaseAuthException(
+          code: 'user-not-found',
+          message: 'No user is currently signed in',
+        );
+      }
+      await user.sendEmailVerification();
+      state = const AsyncValue.data(null);
+    } on FirebaseAuthException catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 
@@ -91,9 +102,9 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
         return user.emailVerified;
       }
       return false;
-    } on FirebaseAuthException catch (e, st) {
-      state = AsyncValue.error(e, st);
-      return false;
+    } on FirebaseAuthException catch (e) {
+      logger.e(e);
+      rethrow;
     }
   }
 
