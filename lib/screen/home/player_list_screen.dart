@@ -51,7 +51,7 @@ class PlayerListScreen extends HookConsumerWidget {
             showSnackBar(
               context: context,
               theme: theme,
-              text: '音楽の再生に失敗しました。アプリを再起動してください。',
+              text: l10n.musicPlaybackFailed,
             );
           }
         });
