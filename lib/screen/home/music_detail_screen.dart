@@ -129,7 +129,7 @@ class MusicDetailScreen extends HookConsumerWidget {
               ],
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: Loading()),
           error:
               (error, stackTrace) => Center(
                 child: ThemeText(

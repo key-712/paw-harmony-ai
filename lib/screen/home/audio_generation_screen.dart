@@ -76,7 +76,7 @@ class AudioGenerationScreen extends HookConsumerWidget {
       body: Stack(
         children: [
           dogProfile.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: Loading()),
             error:
                 (err, stack) => Center(
                   child: ThemeText(

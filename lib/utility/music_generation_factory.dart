@@ -26,10 +26,9 @@ class MusicGenerationFactory {
     int duration = 30,
     Map<String, dynamic>? config,
   }) async {
-    logger.d('=== 音楽生成ファクトリー開始 ===');
+    logger.d('音楽生成開始');
 
     final service = getMusicService();
-    logger.d('選択されたサービス: Magenta.js');
 
     try {
       // サービス固有の設定を適用
@@ -41,15 +40,11 @@ class MusicGenerationFactory {
         duration: duration,
         config: finalConfig,
       );
-
-      // 結果にサービス情報を追加
       result['service_type'] = 'magenta';
       result['service_name'] = 'Magenta.js';
-
-      logger.d('音楽生成完了: Magenta.js');
       return result;
     } on Exception catch (e, st) {
-      logger.e('音楽生成エラー: Magenta.js', error: e, stackTrace: st);
+      logger.e('音楽生成エラー', error: e, stackTrace: st);
       rethrow;
     }
   }

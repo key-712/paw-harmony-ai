@@ -29,7 +29,7 @@ class SettingScreen extends HookConsumerWidget {
       appBar: BaseHeader(title: l10n.setting),
       backgroundColor: theme.appColors.background,
       body: dogProfile.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: Loading()),
         error:
             (err, stack) => Center(
               child: ThemeText(

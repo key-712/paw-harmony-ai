@@ -101,7 +101,7 @@ class DogProfileScreen extends HookConsumerWidget {
               ? BaseHeader(title: l10n.registerDogProfileTitle)
               : BackIconHeader(title: l10n.editDogProfileTitle),
       body: dogProfileState.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: Loading()),
         error:
             (err, stack) => Center(
               child: ThemeText(
@@ -158,18 +158,8 @@ class DogProfileScreen extends HookConsumerWidget {
                                             if (loadingProgress == null) {
                                               return child;
                                             }
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value:
-                                                    loadingProgress
-                                                                .expectedTotalBytes !=
-                                                            null
-                                                        ? loadingProgress
-                                                                .cumulativeBytesLoaded /
-                                                            loadingProgress
-                                                                .expectedTotalBytes!
-                                                        : null,
-                                              ),
+                                            return const Center(
+                                              child: Loading(),
                                             );
                                           },
                                           errorBuilder: (
@@ -267,22 +257,6 @@ class DogProfileScreen extends HookConsumerWidget {
                                   : 0);
                           ageController.text = age.toString();
                         }
-                      },
-                    ),
-
-                    /// 年齢入力フィールド
-                    /// 生年月日が選択されている場合は自動計算され、編集不可
-                    TextFormField(
-                      controller: ageController,
-                      decoration: InputDecoration(labelText: l10n.age),
-                      keyboardType: TextInputType.number,
-                      readOnly: true, // 年齢は常に編集不可
-                      contextMenuBuilder: (context, editableTextState) {
-                        // コンテキストメニューを無効化
-                        return const SizedBox.shrink();
-                      },
-                      validator: (value) {
-                        return null; // 年齢は生年月日からの自動計算のため、バリデーションは不要
                       },
                     ),
                     hSpace(height: 16),
@@ -394,19 +368,19 @@ class DogProfileScreen extends HookConsumerWidget {
                         }
                       },
                     ),
-                    if (profile != null) // 編集画面の場合のみキャンセルボタンを表示
-                      hSpace(height: 16),
-                    CancelButton(
-                      text: l10n.cancel,
-                      screen: 'dog_profile_screen',
-                      width: double.infinity,
-                      isDisabled: false,
-                      callback: () {
-                        if (context.mounted) {
-                          GoRouter.of(context).pop();
-                        }
-                      },
-                    ),
+                    if (dogProfileState.value == null) hSpace(height: 16),
+                    if (dogProfileState.value != null)
+                      CancelButton(
+                        text: l10n.cancel,
+                        screen: 'dog_profile_screen',
+                        width: double.infinity,
+                        isDisabled: false,
+                        callback: () {
+                          if (context.mounted) {
+                            GoRouter.of(context).pop();
+                          }
+                        },
+                      ),
                   ],
                 ),
               ),

@@ -69,7 +69,7 @@ class PlayerListScreen extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             musicHistory.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(child: Loading()),
               error:
                   (err, stack) => Center(
                     child: ThemeText(

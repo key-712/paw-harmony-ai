@@ -70,7 +70,7 @@ class MusicGenerationStateNotifier
         ..d('プロンプト: $prompt')
         ..d('設定: $config');
 
-      // ファクトリーを使用して音楽を生成（Magenta.jsを優先）
+      // ファクトリーを使用して音楽を生成（
       final result = await musicFactory.generateMusic(
         prompt: prompt,
         config: config,
@@ -226,13 +226,9 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       return;
     }
 
-    logger
-      ..d('現在のリクエスト情報:')
-      ..d('  - userId: ${_currentRequest!.userId}')
-      ..d('  - dogId: ${_currentRequest!.dogId}')
-      ..d('  - scenario: ${_currentRequest!.scenario}')
-      ..d('  - dogCondition: ${_currentRequest!.dogCondition}')
-      ..d('  - dogBreed: ${_currentRequest!.dogBreed}');
+    logger.d(
+      'リクエスト: - userId: ${_currentRequest!.userId} - dogId: ${_currentRequest!.dogId} - scenario: ${_currentRequest!.scenario} - dogCondition: ${_currentRequest!.dogCondition} - dogBreed: ${_currentRequest!.dogBreed}',
+    );
 
     try {
       // JSONメッセージをパース
@@ -243,10 +239,7 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       final generationConfig =
           jsonData['generation_config'] as Map<String, dynamic>?;
 
-      logger
-        ..d('音楽データを受信しました。Base64データの長さ: ${base64MusicData.length}')
-        ..d('Base64データの先頭50文字: ${base64MusicData.substring(0, 50)}...')
-        ..d('生成設定情報: $generationConfig');
+      logger.d('生成設定情報: $generationConfig');
 
       // Base64データをデコードしてFirebase Storageにアップロード
       final musicBytes = base64Decode(
@@ -425,57 +418,59 @@ musicHistoryStreamProvider =
 final AutoDisposeStreamProviderFamily<MusicGenerationHistory?, String>
 musicHistoryByIdStreamProvider = StreamProvider.autoDispose
     .family<MusicGenerationHistory?, String>((ref, musicId) {
-  final userId = ref.watch(authStateChangesProvider).value?.uid;
-  logger.d('=== 特定音楽履歴取得開始 音楽ID: $musicId, ユーザーID: $userId ===');
-  
-  if (userId == null) {
-    logger.d('ユーザーIDがnullのため、nullを返します');
-    return Stream.value(null);
-  }
+      final userId = ref.watch(authStateChangesProvider).value?.uid;
+      logger.d('=== 特定音楽履歴取得開始 音楽ID: $musicId, ユーザーID: $userId ===');
 
-  try {
-    final firestore = ref.read(firestoreProvider);
-    final collectionRef = firestore.collection('musicGenerationHistories');
-    
-    return collectionRef
-        .doc(musicId)
-        .snapshots()
-        .map((snapshot) {
-          if (!snapshot.exists) {
-            logger.d('音楽履歴が見つかりません: $musicId');
-            return null;
-          }
+      if (userId == null) {
+        logger.d('ユーザーIDがnullのため、nullを返します');
+        return Stream.value(null);
+      }
 
-          try {
-            final history = MusicGenerationHistory.fromJson(snapshot.data()!);
-            
-            // ユーザーIDの確認
-            if (history.userId != userId) {
-              logger.d('ユーザーIDが一致しません: ${history.userId} != $userId');
+      try {
+        final firestore = ref.read(firestoreProvider);
+        final collectionRef = firestore.collection('musicGenerationHistories');
+
+        return collectionRef
+            .doc(musicId)
+            .snapshots()
+            .map((snapshot) {
+              if (!snapshot.exists) {
+                logger.d('音楽履歴が見つかりません: $musicId');
+                return null;
+              }
+
+              try {
+                final history = MusicGenerationHistory.fromJson(
+                  snapshot.data()!,
+                );
+
+                // ユーザーIDの確認
+                if (history.userId != userId) {
+                  logger.d('ユーザーIDが一致しません: ${history.userId} != $userId');
+                  return null;
+                }
+
+                logger.d('=== 特定音楽履歴取得完了 ===');
+                return history;
+              } on Exception catch (e) {
+                logger.e('ドキュメントのパースエラー: ${snapshot.id}', error: e);
+                return null;
+              }
+            })
+            .handleError((Object error, StackTrace stackTrace) {
+              logger.e(
+                'Failed to fetch music history by ID due to permission error',
+                error: error,
+                stackTrace: stackTrace,
+              );
               return null;
-            }
-
-            logger.d('=== 特定音楽履歴取得完了 ===');
-            return history;
-          } on Exception catch (e) {
-            logger.e('ドキュメントのパースエラー: ${snapshot.id}', error: e);
-            return null;
-          }
-        })
-        .handleError((Object error, StackTrace stackTrace) {
-          logger.e(
-            'Failed to fetch music history by ID due to permission error',
-            error: error,
-            stackTrace: stackTrace,
-          );
-          return null;
-        });
-  } on Exception catch (e, st) {
-    logger.e(
-      'An unexpected error occurred while fetching music history by ID',
-      error: e,
-      stackTrace: st,
-    );
-    return Stream.value(null);
-  }
-});
+            });
+      } on Exception catch (e, st) {
+        logger.e(
+          'An unexpected error occurred while fetching music history by ID',
+          error: e,
+          stackTrace: st,
+        );
+        return Stream.value(null);
+      }
+    });
