@@ -17,4 +17,7 @@ class SharedPreferencesKeys {
 
   /// 最終生成日
   static const lastGenerationDateKey = 'last_generation_date';
+ 
+  /// Eメール
+  static const email = 'email';
 }

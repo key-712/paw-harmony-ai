@@ -6,6 +6,7 @@ import '../../import/component.dart';
 import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/theme.dart';
+import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 import '../../provider/ad_provider.dart';
 import '../../provider/generation_count_provider.dart';
@@ -26,8 +27,6 @@ class AudioGenerationScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final dogProfile = ref.watch(dogProfileStateNotifierProvider);
-    final selectedScene = useState<String?>(null);
-    final selectedCondition = useState<String?>(null);
     final additionalInfoController = useTextEditingController();
     final purchaseState = ref.watch(purchaseStateNotifierProvider);
     final theme = ref.watch(appThemeProvider);
@@ -63,21 +62,11 @@ class AudioGenerationScreen extends HookConsumerWidget {
       },
     );
 
-    final scenes = [
-      l10n.sceneLeavingHome,
-      l10n.sceneBedtime,
-      l10n.sceneStressful,
-      l10n.sceneLongDistanceTravel,
-      l10n.sceneDailyHealing,
-      l10n.sceneCare,
-    ];
-    final conditions = [
-      l10n.conditionCalmDown,
-      l10n.conditionRelax,
-      l10n.conditionSuppressExcitement,
-      l10n.conditionReassure,
-      l10n.conditionGoodSleep,
-    ];
+    final sceneIdToLabel = buildSceneIdToLabelMap(l10n);
+    final conditionIdToLabel = buildConditionIdToLabelMap(l10n);
+
+    final selectedSceneId = useState<String?>(null);
+    final selectedConditionId = useState<String?>(null);
 
     void showGenerationLimitDialog() {
       showDialog<void>(
@@ -120,7 +109,7 @@ class AudioGenerationScreen extends HookConsumerWidget {
       body: Stack(
         children: [
           dogProfile.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: Loading()),
             error:
                 (err, stack) => Center(
                   child: ThemeText(
@@ -153,12 +142,54 @@ class AudioGenerationScreen extends HookConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SingleSelectChip(
-                      choices: scenes,
-                      selectedChoice: selectedScene.value,
-                      onSelectionChanged: (selected) {
-                        selectedScene.value = selected;
-                      },
+                    hSpace(height: 8),
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: theme.appColors.grey.withValues(alpha: 0.3),
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: DropdownButtonFormField<String>(
+                        value: selectedSceneId.value,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                          border: InputBorder.none,
+                          hintText: l10n.selectScene,
+                          hintStyle: theme.textTheme.h30.copyWith(
+                            color: theme.appColors.grey,
+                            fontSize: 16,
+                          ),
+                        ),
+                        items:
+                            sceneIds.map((id) {
+                              return DropdownMenuItem<String>(
+                                value: id,
+                                child: ThemeText(
+                                  text: sceneIdToLabel[id]!,
+                                  color: theme.appColors.black,
+                                  style: theme.textTheme.h30.copyWith(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                        onChanged: (id) {
+                          selectedSceneId.value = id;
+                        },
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: theme.appColors.grey,
+                        ),
+                        dropdownColor: theme.appColors.background,
+                        style: theme.textTheme.h30.copyWith(
+                          fontSize: 16,
+                          color: theme.appColors.black,
+                        ),
+                      ),
                     ),
                     hSpace(height: 24),
                     ThemeText(
@@ -169,22 +200,54 @@ class AudioGenerationScreen extends HookConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SingleSelectChip(
-                      choices: conditions,
-                      selectedChoice: selectedCondition.value,
-                      onSelectionChanged: (selected) {
-                        selectedCondition.value = selected;
-                      },
-                    ),
-                    hSpace(height: 24),
-                    TextField(
-                      controller: additionalInfoController,
-                      decoration: InputDecoration(
-                        labelText: l10n.otherOptional,
-                        hintText: l10n.otherHint,
-                        border: const OutlineInputBorder(),
+                    hSpace(height: 8),
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: theme.appColors.grey.withValues(alpha: 0.3),
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      maxLines: 3,
+                      child: DropdownButtonFormField<String>(
+                        value: selectedConditionId.value,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                          border: InputBorder.none,
+                          hintText: l10n.selectDogCondition,
+                          hintStyle: theme.textTheme.h30.copyWith(
+                            color: theme.appColors.grey,
+                            fontSize: 16,
+                          ),
+                        ),
+                        items:
+                            conditionIds.map((id) {
+                              return DropdownMenuItem<String>(
+                                value: id,
+                                child: ThemeText(
+                                  text: conditionIdToLabel[id]!,
+                                  color: theme.appColors.black,
+                                  style: theme.textTheme.h30.copyWith(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                        onChanged: (id) {
+                          selectedConditionId.value = id;
+                        },
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: theme.appColors.grey,
+                        ),
+                        dropdownColor: theme.appColors.background,
+                        style: theme.textTheme.h30.copyWith(
+                          fontSize: 16,
+                          color: theme.appColors.black,
+                        ),
+                      ),
                     ),
                     hSpace(height: 16),
                     Align(
@@ -204,8 +267,8 @@ class AudioGenerationScreen extends HookConsumerWidget {
                       screen: 'audio_generation_screen',
                       width: double.infinity,
                       isDisabled:
-                          selectedScene.value == null ||
-                          selectedCondition.value == null ||
+                          selectedSceneId.value == null ||
+                          selectedConditionId.value == null ||
                           musicGenerationState.isLoading,
                       callback: () {
                         if (generationCount > 0) {
@@ -225,6 +288,18 @@ class AudioGenerationScreen extends HookConsumerWidget {
                         } else {
                           showGenerationLimitDialog();
                         }
+                        final request = MusicGenerationRequest(
+                          userId: profile.userId,
+                          dogId: profile.id,
+                          scenario: selectedSceneId.value!,
+                          dogCondition: selectedConditionId.value!,
+                          additionalInfo: additionalInfoController.text,
+                          dogBreed: profile.breed,
+                          dogPersonalityTraits: profile.personalityTraits,
+                        );
+                        ref
+                            .read(musicGenerationStateNotifierProvider.notifier)
+                            .generateMusic(request);
                       },
                     ),
                   ],

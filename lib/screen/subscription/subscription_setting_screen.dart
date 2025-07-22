@@ -95,7 +95,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
             _buildBenefitItem(l10n.expertCuratedContent, theme),
             hSpace(height: 32),
             if (offerings.value == null)
-              const Center(child: CircularProgressIndicator())
+              const Center(child: Loading())
             else if (offerings.value!.current == null)
               Center(child: Text(l10n.noAvailablePlans))
             else

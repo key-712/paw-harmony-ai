@@ -96,14 +96,12 @@ lib/
 ## リリースまでにやること
 
 PROGRESS
-
-9. Asana タスクの実行
 10. 利用規約、プラポリの複製及び更新
 11. APNs 認証キーの追加(Prod のみ)
 12. アイコン/ウォークスルー画像のサイズ変更・置換
     assets/image/
     launcher_icon/image/
-13. make create-native-splash ← 横展開の場合、ここまでで 1 時間
+13. make create-native-splash
 14. app-ads.txt を設定する
     https://qiita.com/masaibar/items/c378b4f01b707ac2506a
 15. スクショコンテンツの作成
@@ -130,3 +128,4 @@ DONE
 6. run-dev,run-prod
 7. BigQuery 連携(Prod のみ)
 8. AdMob アカウントの作成(Prod のみ)
+9. タスクの実行

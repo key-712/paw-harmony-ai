@@ -1,10 +1,10 @@
 // ignore_for_file: unawaited_futures, lines_longer_than_80_chars
 
-import 'dart:async'; // Completerのために追加
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:uuid/uuid.dart'; // Add this import back
+import 'package:uuid/uuid.dart';
 
 import '../import/model.dart';
 import '../import/provider.dart';
@@ -27,15 +27,10 @@ class MusicGenerationStateNotifier
   /// [request] 音楽生成リクエスト
   Future<void> generateMusic(MusicGenerationRequest request) async {
     logger
-      ..d('=== Magenta.js 音楽生成リクエスト開始 ===')
-      ..d('リクエスト情報:')
-      ..d('  - userId: ${request.userId}')
-      ..d('  - dogId: ${request.dogId}')
-      ..d('  - dogBreed: ${request.dogBreed}')
-      ..d('  - dogPersonalityTraits: ${request.dogPersonalityTraits}')
-      ..d('  - scenario: ${request.scenario}')
-      ..d('  - dogCondition: ${request.dogCondition}')
-      ..d('  - additionalInfo: ${request.additionalInfo}');
+      ..d('=== 音楽生成リクエスト開始 ===')
+      ..d(
+        'リクエスト情報: userId: ${request.userId} dogId: ${request.dogId} dogBreed: ${request.dogBreed} dogPersonalityTraits: ${request.dogPersonalityTraits} scenario: ${request.scenario} dogCondition: ${request.dogCondition} additionalInfo: ${request.additionalInfo}',
+      );
 
     state = const AsyncValue.loading();
     _currentRequest = request; // Store the request
@@ -48,35 +43,18 @@ class MusicGenerationStateNotifier
       final prompt = _generatePromptFromRequest(request);
 
       // 音楽生成設定
-      final config = {
-        'density': 0.5,
-        'brightness': 0.5,
-        'bpm': 120,
-        'scale': 'C_MAJOR_A_MINOR',
-        'temperature': 1.1,
-        'top_k': 40,
-        'key': 'C',
-        'mode': 'major',
-        'reverb': 0.3,
-        'delay': 0.1,
-        'mute_bass': false,
-        'mute_drums': false,
-        'only_bass_and_drums': false,
-        'seed': DateTime.now().millisecondsSinceEpoch % 1000000,
-      };
+      final config = _generateConfigFromRequest(request);
 
       logger
         ..d('音楽生成APIリクエスト送信')
         ..d('プロンプト: $prompt')
         ..d('設定: $config');
 
-      // ファクトリーを使用して音楽を生成（Magenta.jsを優先）
+      // ファクトリーを使用して音楽を生成（
       final result = await musicFactory.generateMusic(
         prompt: prompt,
         config: config,
       );
-
-      logger.d('Magenta.js音楽生成結果: $result');
 
       // 結果を処理
       final musicData = result['audio_data'] as String;
@@ -90,9 +68,7 @@ class MusicGenerationStateNotifier
       });
 
       await musicGenerationCompleted(message);
-    } on Exception catch (e, st) {
-      logger.e('Google AI音楽生成エラー', error: e, stackTrace: st);
-
+    } on Exception catch (e) {
       String errorMessage;
       if (e.toString().contains('APIキーが設定されていません')) {
         errorMessage = '音楽生成APIキーが設定されていません。設定を確認してください。';
@@ -125,70 +101,256 @@ class MusicGenerationStateNotifier
     final personalityTraits = request.dogPersonalityTraits.join(', ');
     final additionalInfo = request.additionalInfo;
 
-    // シーンに基づく音楽スタイルの選択
+    // 多言語キーから日本語文字列へのマッピング
+    final scenarioKey = _getScenarioKey(scenario);
+    final conditionKey = _getConditionKey(condition);
+    final breedKey = getBreedKey(breed);
+
+    // シーンに基づく音楽スタイルの選択（レゲエ、ソフトロック、クラシックを重視）
     var musicStyle = '';
-    switch (scenario) {
-      case '留守番中':
+    switch (scenarioKey) {
+      case 'sceneLeavingHome':
         musicStyle =
-            'Calm ambient music with gentle nature sounds, soft piano melodies, peaceful atmosphere';
-      case '就寝前':
+            'Gentle reggae-inspired music with soft offbeat rhythms, warm bass lines and peaceful atmosphere, similar to Bob Marley\'s calming songs';
+      case 'sceneBedtime':
         musicStyle =
-            'Peaceful lullaby with soft strings and gentle rhythms, sleep-inducing';
-      case 'ストレスフル':
+            'Soft classical lullaby with gentle strings, warm cello harmonies and peaceful piano melodies, inspired by Debussy\'s peaceful compositions';
+      case 'sceneStressful':
         musicStyle =
-            'Soothing meditation music with calming frequencies and gentle waves, stress-relieving';
-      case '長距離移動中':
+            'Calming soft rock with gentle acoustic guitar, warm vocals and soothing rhythms, similar to Jack Johnson\'s peaceful songs';
+      case 'sceneLongDistanceTravel':
         musicStyle =
-            'Relaxing travel music with smooth jazz elements and soft percussion, calming';
-      case '日常の癒し':
+            'Relaxing reggae with smooth bass lines, gentle percussion and warm harmonies, inspired by peaceful reggae artists';
+      case 'sceneDailyHealing':
         musicStyle =
-            'Healing music with warm tones and gentle harmonies, therapeutic';
-      case '療養/高齢犬ケア':
+            'Healing classical music with warm string quartets, gentle piano and soft woodwinds, therapeutic and peaceful';
+      case 'sceneCare':
         musicStyle =
-            'Therapeutic music with soft classical elements and gentle melodies, healing';
+            'Therapeutic soft rock with gentle acoustic instruments, warm harmonies and peaceful melodies, healing and comforting';
+      case 'sceneThunderFireworks':
+        musicStyle =
+            'Soothing classical music with deep bass tones and gentle strings, designed to mask loud noises and provide comfort';
+      case 'sceneSeparationAnxiety':
+        musicStyle =
+            'Warm soft rock with comforting acoustic guitar and gentle vocals, creating a sense of security and companionship';
+      case 'sceneNewEnvironment':
+        musicStyle =
+            'Calming reggae with steady rhythms and warm harmonies, helping dogs feel grounded in unfamiliar surroundings';
+      case 'scenePostExercise':
+        musicStyle =
+            'Relaxing classical music with gentle piano and soft strings, perfect for post-exercise relaxation';
+      case 'sceneGrooming':
+        musicStyle =
+            'Peaceful soft rock with gentle acoustic melodies, creating a calm atmosphere for grooming sessions';
+      case 'sceneMealTime':
+        musicStyle =
+            'Gentle classical music with soft woodwinds and strings, enhancing the dining experience';
+      case 'scenePlayTime':
+        musicStyle =
+            'Upbeat reggae with cheerful rhythms and warm harmonies, encouraging playful energy';
+      case 'sceneTraining':
+        musicStyle =
+            'Focused soft rock with steady beats and clear melodies, aiding concentration during training';
+      case 'sceneGuests':
+        musicStyle =
+            'Welcoming classical music with warm string arrangements, creating a hospitable atmosphere';
+      case 'sceneBadWeather':
+        musicStyle =
+            'Comforting soft rock with gentle acoustic guitar, providing solace during bad weather';
+      case 'sceneSeasonalChange':
+        musicStyle =
+            'Adaptive classical music with seasonal themes, helping dogs adjust to changing weather';
+      case 'scenePuppySocialization':
+        musicStyle =
+            'Gentle reggae with playful rhythms and warm tones, supporting puppy socialization';
+      case 'sceneSeniorCare':
+        musicStyle =
+            'Nurturing soft rock with gentle melodies and warm harmonies, specially designed for senior dogs';
+      case 'sceneMultipleDogs':
+        musicStyle =
+            'Balanced classical music with harmonious arrangements, promoting peace among multiple dogs';
+      case 'sceneVetVisit':
+        musicStyle =
+            'Calming soft rock with reassuring tones, reducing anxiety before veterinary visits';
       default:
-        musicStyle = 'Gentle, calming music with soft melodies, peaceful';
+        musicStyle =
+            'Gentle, calming music with soft melodies and warm harmonies, peaceful';
     }
 
-    // 犬の状態に基づく調整
+    // 犬の状態に基づく調整（レゲエ、ソフトロック、クラシックの要素を組み合わせ）
     var conditionModifier = '';
-    switch (condition) {
-      case '落ち着かせたい':
+    switch (conditionKey) {
+      case 'conditionCalmDown':
         conditionModifier =
-            'with deep, slow rhythms and low frequencies, calming';
-      case 'リラックスさせたい':
+            'with deep reggae bass rhythms and soft classical strings, calming and grounding';
+      case 'conditionRelax':
         conditionModifier =
-            'with flowing melodies and peaceful harmonies, relaxing';
-      case '興奮を抑えたい':
+            'with flowing soft rock melodies and peaceful classical harmonies, relaxing and warm';
+      case 'conditionSuppressExcitement':
         conditionModifier =
-            'with steady, calming beats and smooth transitions, soothing';
-      case '安心させたい':
+            'with steady reggae offbeat rhythms and gentle classical progressions, soothing and steady';
+      case 'conditionReassure':
         conditionModifier =
-            'with warm, comforting tones and gentle progressions, reassuring';
-      case '安眠させたい':
+            'with warm soft rock tones and comforting classical instruments, reassuring and peaceful';
+      case 'conditionGoodSleep':
         conditionModifier =
-            'with dreamy, sleep-inducing sounds and soft dynamics, peaceful';
+            'with dreamy classical lullabies and soft rock ballads, peaceful and sleep-inducing';
+      case 'conditionConcentration':
+        conditionModifier =
+            'with focused classical melodies and steady soft rock rhythms, enhancing concentration';
+      case 'conditionSocialization':
+        conditionModifier =
+            'with welcoming reggae rhythms and friendly classical harmonies, promoting social interaction';
+      case 'conditionLearning':
+        conditionModifier =
+            'with structured classical arrangements and clear soft rock patterns, supporting learning';
+      case 'conditionExercise':
+        conditionModifier =
+            'with energetic reggae beats and motivating soft rock rhythms, encouraging activity';
+      case 'conditionAppetite':
+        conditionModifier =
+            'with appetizing classical melodies and warm soft rock tones, enhancing dining experience';
+      case 'conditionPainRelief':
+        conditionModifier =
+            'with therapeutic classical harmonies and soothing soft rock melodies, providing pain relief';
+      case 'conditionAnxietyRelief':
+        conditionModifier =
+            'with reassuring reggae rhythms and comforting classical strings, alleviating anxiety';
+      case 'conditionStressRelief':
+        conditionModifier =
+            'with stress-relieving classical compositions and calming soft rock harmonies';
+      case 'conditionImmunity':
+        conditionModifier =
+            'with healing classical melodies and restorative soft rock harmonies, supporting health';
+      case 'conditionMemory':
+        conditionModifier =
+            'with memory-enhancing classical patterns and structured soft rock arrangements';
+      case 'conditionEmotionalStability':
+        conditionModifier =
+            'with emotionally stabilizing classical harmonies and balanced soft rock melodies';
+      case 'conditionCuriosity':
+        conditionModifier =
+            'with intriguing classical variations and engaging soft rock rhythms, sparking curiosity';
+      case 'conditionPatience':
+        conditionModifier =
+            'with steady classical progressions and patient soft rock rhythms, building endurance';
+      case 'conditionCooperation':
+        conditionModifier =
+            'with harmonious classical arrangements and cooperative soft rock melodies';
+      case 'conditionIndependence':
+        conditionModifier =
+            'with confident classical themes and independent soft rock harmonies';
+      case 'conditionLove':
+        conditionModifier =
+            'with loving classical melodies and affectionate soft rock harmonies, deepening bonds';
       default:
-        conditionModifier = 'with gentle, soothing qualities, calming';
+        conditionModifier =
+            'with gentle, soothing qualities using soft instruments, calming';
     }
 
-    // 犬種に基づく調整
+    // 犬種に基づく調整（レゲエ、ソフトロック、クラシックの要素を組み合わせ）
     var breedModifier = '';
-    if (breed.contains('チワワ') || breed.contains('トイプードル')) {
-      breedModifier =
-          'specially designed for small dogs with higher-pitched calming sounds, gentle';
-    } else if (breed.contains('ゴールデン') || breed.contains('ラブラドール')) {
-      breedModifier =
-          'tailored for large, gentle dogs with warm, deep tones, comforting';
-    } else if (breed.contains('柴犬') || breed.contains('秋田')) {
-      breedModifier =
-          'adapted for Japanese breeds with traditional, peaceful elements, serene';
-    } else {
-      breedModifier =
-          'suitable for all dog breeds with universal calming properties, gentle';
+    switch (breedKey) {
+      case 'breedToyPoodle':
+      case 'breedChihuahua':
+        breedModifier =
+            'specially designed for small dogs with gentle classical melodies and soft rock harmonies, gentle and comforting';
+      case 'breedShiba':
+        breedModifier =
+            'adapted for Japanese breeds with peaceful classical elements and gentle soft rock melodies, serene and calming';
+      case 'breedMiniatureDachshund':
+        breedModifier =
+            'adapted for hunting breeds with alert classical melodies and focused soft rock rhythms, attentive';
+      case 'breedPomeranian':
+        breedModifier =
+            'designed for tiny breeds with delicate classical melodies and gentle soft rock harmonies, ultra-gentle';
+      case 'breedFrenchBulldog':
+        breedModifier =
+            'designed for brachycephalic breeds with gentle classical melodies and relaxed soft rock harmonies, easy-going';
+      case 'breedGoldenRetriever':
+      case 'breedLabradorRetriever':
+        breedModifier =
+            'tailored for large, gentle dogs with warm reggae bass and soft classical strings, comforting and grounding';
+      case 'breedMix':
+        breedModifier =
+            'suitable for mixed breed dogs with universal calming properties using reggae, soft rock and classical elements, gentle';
+      case 'breedOther':
+        breedModifier =
+            'suitable for all dog breeds with universal calming properties using reggae, soft rock and classical elements, gentle';
+      case 'breedLabrador':
+        breedModifier =
+            'tailored for large, gentle dogs with warm reggae bass and soft classical strings, comforting and grounding';
+      case 'breedAkita':
+        breedModifier =
+            'adapted for Japanese breeds with peaceful classical elements and gentle soft rock melodies, serene and calming';
+      case 'breedMaltese':
+        breedModifier =
+            'designed for tiny breeds with delicate classical melodies and gentle soft rock harmonies, ultra-gentle';
+      case 'breedSiberianHusky':
+      case 'breedAlaskanMalamute':
+        breedModifier =
+            'tailored for northern breeds with strong classical themes and powerful soft rock rhythms, energizing';
+      case 'breedBorderCollie':
+      case 'breedAustralianShepherd':
+        breedModifier =
+            'adapted for working breeds with focused classical arrangements and active soft rock rhythms, stimulating';
+      case 'breedBulldog':
+      case 'breedPug':
+        breedModifier =
+            'designed for brachycephalic breeds with gentle classical melodies and relaxed soft rock harmonies, easy-going';
+      case 'breedGermanShepherd':
+      case 'breedDoberman':
+        breedModifier =
+            'tailored for guardian breeds with protective classical themes and confident soft rock harmonies, reassuring';
+      case 'breedBeagle':
+      case 'breedDachshund':
+        breedModifier =
+            'adapted for hunting breeds with alert classical melodies and focused soft rock rhythms, attentive';
+      case 'breedSamoyed':
+      case 'breedGreatPyrenees':
+        breedModifier =
+            'designed for gentle giants with majestic classical themes and warm soft rock harmonies, majestic';
+      case 'breedCorgi':
+      case 'breedWelshCorgi':
+        breedModifier =
+            'tailored for herding breeds with energetic classical melodies and lively soft rock rhythms, spirited';
+      case 'breedShihTzu':
+      case 'breedPekingese':
+        breedModifier =
+            'adapted for ancient breeds with traditional classical themes and dignified soft rock harmonies, dignified';
+      case 'breedBerneseMountainDog':
+      case 'breedSaintBernard':
+        breedModifier =
+            'designed for mountain breeds with robust classical themes and hearty soft rock harmonies, strong';
+      case 'breedBostonTerrier':
+        breedModifier =
+            'tailored for companion breeds with friendly classical melodies and cheerful soft rock harmonies, sociable';
+      case 'breedWestHighlandWhiteTerrier':
+      case 'breedYorkshireTerrier':
+        breedModifier =
+            'adapted for terrier breeds with spirited classical melodies and feisty soft rock rhythms, spirited';
+      case 'breedNewfoundland':
+      case 'breedRetriever':
+        breedModifier =
+            'designed for water breeds with flowing classical melodies and smooth soft rock harmonies, fluid';
+      case 'breedShetlandSheepdog':
+      case 'breedCollie':
+        breedModifier =
+            'tailored for intelligent breeds with sophisticated classical arrangements and thoughtful soft rock melodies, smart';
+      case 'breedBassetHound':
+      case 'breedBloodhound':
+        breedModifier =
+            'adapted for scent hounds with deep classical tones and resonant soft rock harmonies, deep';
+      case 'breedGreyhound':
+      case 'breedWhippet':
+        breedModifier =
+            'designed for sight hounds with swift classical melodies and agile soft rock rhythms, swift';
+      default:
+        breedModifier =
+            'suitable for all dog breeds with universal calming properties using reggae, soft rock and classical elements, gentle';
     }
 
-    // 汎用的な音楽生成プロンプトを構築
+    // 汎用的な音楽生成プロンプトを構築（レゲエ、ソフトロック、クラシックを重視）
     final prompt =
         '''
 Generate calming music for a dog with the following characteristics:
@@ -198,19 +360,589 @@ Generate calming music for a dog with the following characteristics:
 - Additional context: ${additionalInfo?.isNotEmpty == true ? additionalInfo : 'No additional information provided'}
 
 Requirements:
-- Create 30 seconds of continuous, flowing music
-- Use gentle melodies and soft dynamics
-- Avoid sudden changes or loud elements
-- Ensure the music is calming and peaceful
-- Suitable for dogs of all ages and sizes
-- Use smooth transitions throughout the piece
-- Focus on creating a soothing atmosphere
+- Create 30 seconds of continuous, flowing music with clear musical structure
+- Use gentle melodies with natural melodic contours and variations
+- Incorporate harmonic progressions that create emotional depth
+- Include rhythmic variations while maintaining steady tempo
+- Layer multiple instruments to create rich musical textures
+- Use dynamic changes to create musical interest without being jarring
+- Ensure smooth transitions between musical phrases
+- Focus on creating a soothing atmosphere with musical sophistication
+- Incorporate elements from reggae (gentle offbeat rhythms, warm bass), soft rock (acoustic guitars, warm harmonies), and classical (string instruments, peaceful melodies)
+- Vary the instrumentation to create diverse musical textures
+- Include a mix of acoustic and electronic elements when appropriate
+- Emphasize warm, comforting tones that dogs respond well to
+- Create musical phrases with clear beginnings, developments, and resolutions
+- Use chord progressions that evoke emotional responses
+- Include melodic variations and counter-melodies for musical interest
+- Maintain musical coherence while providing gentle surprises
 
-The music should help the dog feel calm, relaxed, and comfortable in the given scenario.
+The music should help the dog feel calm, relaxed, and comfortable in the given scenario, drawing inspiration from the proven calming effects of reggae, soft rock, and classical music on dogs. The composition should feel like a complete musical piece rather than a repetitive loop.
 '''.trim();
 
     logger.d('生成された音楽生成プロンプト: $prompt');
     return prompt;
+  }
+
+  /// リクエスト情報に基づいて音楽生成設定を動的に調整するメソッド
+  Map<String, dynamic> _generateConfigFromRequest(
+    MusicGenerationRequest request,
+  ) {
+    final scenario = request.scenario;
+    final condition = request.dogCondition;
+    final breed = request.dogBreed;
+
+    // 多言語キーから日本語文字列へのマッピング
+    final scenarioKey = _getScenarioKey(scenario);
+    final conditionKey = _getConditionKey(condition);
+    final breedKey = getBreedKey(breed);
+
+    // 基本設定（レゲエ、ソフトロック、クラシックに適したパラメータ）
+    final config = <String, dynamic>{
+      'density': 0.5,
+      'brightness': 0.5,
+      'bpm': 120,
+      'scale': 'C_MAJOR_A_MINOR',
+      'temperature': 1.3, // より創造的な変化を促進
+      'top_k': 50, // より多様な選択肢
+      'key': 'C',
+      'mode': 'major',
+      'reverb': 0.3,
+      'delay': 0.1,
+      'mute_bass': false,
+      'mute_drums': false,
+      'only_bass_and_drums': false,
+      'seed': DateTime.now().millisecondsSinceEpoch % 1000000,
+      // 曲感を出すための追加パラメータ
+      'melody_variation': 0.8, // メロディーの変化度
+      'harmonic_complexity': 0.6, // 和声の複雑さ
+      'rhythm_variation': 0.7, // リズムの変化
+      'instrument_layering': 0.8, // 楽器の重ね合わせ
+      'dynamic_range': 0.6, // 音量の変化
+      'phrase_length': 4, // フレーズの長さ（小節数）
+      'chord_progression_variety': 0.7, // コード進行の多様性
+      'melodic_contour': 0.8, // メロディーの起伏
+      // シーン情報を追加
+      'scenario': scenario,
+      'condition': condition,
+      'breed': breed,
+    };
+
+    // シーンに基づく設定調整（レゲエ、ソフトロック、クラシックの特徴を反映）
+    switch (scenarioKey) {
+      case 'sceneLeavingHome':
+        // レゲエ風：オフビートリズム、温かいベース（犬の心拍数に近いテンポ）
+        config['bpm'] = 95;
+        config['brightness'] = 0.6;
+        config['density'] = 0.4;
+        config['reverb'] = 0.3;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'sceneBedtime':
+        // クラシック風：ゆったりとした弦楽器（落ち着いたテンポ）
+        config['bpm'] = 75;
+        config['brightness'] = 0.4;
+        config['density'] = 0.3;
+        config['reverb'] = 0.5;
+        config['delay'] = 0.2;
+        config['mode'] = 'major';
+      case 'sceneStressful':
+        // ソフトロック風：アコースティックギター、温かいハーモニー（中程度のテンポ）
+        config['bpm'] = 90;
+        config['brightness'] = 0.5;
+        config['density'] = 0.4;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+      case 'sceneLongDistanceTravel':
+        // レゲエ風：スムーズなベースライン（安定したテンポ）
+        config['bpm'] = 100;
+        config['brightness'] = 0.6;
+        config['density'] = 0.4;
+        config['reverb'] = 0.2;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+      case 'sceneDailyHealing':
+        // クラシック風：弦楽四重奏（バランスの取れたテンポ）
+        config['bpm'] = 85;
+        config['brightness'] = 0.5;
+        config['density'] = 0.4;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'sceneCare':
+        // ソフトロック風：癒し系アコースティック（穏やかなテンポ）
+        config['bpm'] = 80;
+        config['brightness'] = 0.4;
+        config['density'] = 0.3;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.2;
+        config['mode'] = 'major';
+      case 'sceneThunderFireworks':
+        // クラシック風：深いベーストーンで音をマスク
+        config['bpm'] = 70;
+        config['brightness'] = 0.3;
+        config['density'] = 0.5;
+        config['reverb'] = 0.6;
+        config['delay'] = 0.2;
+        config['mode'] = 'major';
+      case 'sceneSeparationAnxiety':
+        // ソフトロック風：安心感を与える温かいハーモニー
+        config['bpm'] = 85;
+        config['brightness'] = 0.6;
+        config['density'] = 0.4;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'sceneNewEnvironment':
+        // レゲエ風：安定したリズムで安心感を提供
+        config['bpm'] = 90;
+        config['brightness'] = 0.5;
+        config['density'] = 0.4;
+        config['reverb'] = 0.3;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+      case 'scenePostExercise':
+        // クラシック風：心拍数を下げる穏やかな音楽
+        config['bpm'] = 70;
+        config['brightness'] = 0.4;
+        config['density'] = 0.3;
+        config['reverb'] = 0.5;
+        config['delay'] = 0.2;
+        config['mode'] = 'major';
+      case 'sceneGrooming':
+        // ソフトロック風：リラックスした雰囲気
+        config['bpm'] = 80;
+        config['brightness'] = 0.5;
+        config['density'] = 0.3;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'sceneMealTime':
+        // クラシック風：食事を楽しむ音楽
+        config['bpm'] = 85;
+        config['brightness'] = 0.6;
+        config['density'] = 0.4;
+        config['reverb'] = 0.3;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+      case 'scenePlayTime':
+        // レゲエ風：楽しいリズムで遊びを促進
+        config['bpm'] = 105;
+        config['brightness'] = 0.7;
+        config['density'] = 0.5;
+        config['reverb'] = 0.2;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+        // 曲感を出すための追加設定
+        config['melody_variation'] = 0.9; // 遊び時間はメロディーの変化を多く
+        config['rhythm_variation'] = 0.8; // リズムの変化も多く
+        config['harmonic_complexity'] = 0.7; // 和声も少し複雑に
+        config['dynamic_range'] = 0.7; // 音量の変化も多く
+        config['phrase_length'] = 2; // 短いフレーズで活発に
+        config['chord_progression_variety'] = 0.8; // コード進行の多様性
+        config['melodic_contour'] = 0.9; // メロディーの起伏を大きく
+      case 'sceneTraining':
+        // ソフトロック風：集中力を高める音楽
+        config['bpm'] = 95;
+        config['brightness'] = 0.6;
+        config['density'] = 0.4;
+        config['reverb'] = 0.3;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+      case 'sceneGuests':
+        // クラシック風：歓迎の音楽
+        config['bpm'] = 90;
+        config['brightness'] = 0.6;
+        config['density'] = 0.4;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'sceneBadWeather':
+        // ソフトロック風：慰めの音楽
+        config['bpm'] = 80;
+        config['brightness'] = 0.4;
+        config['density'] = 0.3;
+        config['reverb'] = 0.5;
+        config['delay'] = 0.2;
+        config['mode'] = 'major';
+      case 'sceneSeasonalChange':
+        // クラシック風：季節に適応する音楽
+        config['bpm'] = 85;
+        config['brightness'] = 0.5;
+        config['density'] = 0.4;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'scenePuppySocialization':
+        // レゲエ風：子犬の好奇心を刺激
+        config['bpm'] = 100;
+        config['brightness'] = 0.7;
+        config['density'] = 0.4;
+        config['reverb'] = 0.3;
+        config['delay'] = 0.1;
+        config['mode'] = 'major';
+      case 'sceneSeniorCare':
+        // ソフトロック風：シニア犬に優しい音楽
+        config['bpm'] = 75;
+        config['brightness'] = 0.4;
+        config['density'] = 0.3;
+        config['reverb'] = 0.5;
+        config['delay'] = 0.2;
+        config['mode'] = 'major';
+      case 'sceneMultipleDogs':
+        // クラシック風：調和を促進する音楽
+        config['bpm'] = 85;
+        config['brightness'] = 0.5;
+        config['density'] = 0.4;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+      case 'sceneVetVisit':
+        // ソフトロック風：不安を軽減する音楽
+        config['bpm'] = 80;
+        config['brightness'] = 0.5;
+        config['density'] = 0.3;
+        config['reverb'] = 0.4;
+        config['delay'] = 0.15;
+        config['mode'] = 'major';
+    }
+
+    // 犬の状態に基づく調整（レゲエ、ソフトロック、クラシックの要素を反映）
+    switch (conditionKey) {
+      case 'conditionCalmDown':
+        // レゲエのベースリズム + クラシックの弦楽器（心拍数を下げるテンポ）
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        config['delay'] = (config['delay'] as double) + 0.05;
+      case 'conditionRelax':
+        // ソフトロックの温かいハーモニー（安定したテンポ）
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['delay'] = (config['delay'] as double) + 0.05;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'conditionSuppressExcitement':
+        // レゲエのオフビートリズム（心拍数を下げるテンポ）
+        config['bpm'] = (config['bpm'] as int) - 10;
+        config['density'] = (config['density'] as double) - 0.15;
+        config['delay'] = (config['delay'] as double) + 0.1;
+      case 'conditionReassure':
+        // ソフトロックの温かいトーン（安定したテンポ）
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        config['delay'] = (config['delay'] as double) + 0.05;
+      case 'conditionGoodSleep':
+        // クラシックのララバイ（心拍数を下げるテンポ）
+        config['bpm'] = (config['bpm'] as int) - 15;
+        config['density'] = (config['density'] as double) - 0.2;
+        config['reverb'] = (config['reverb'] as double) + 0.2;
+        config['delay'] = (config['delay'] as double) + 0.1;
+      case 'conditionConcentration':
+        // クラシックの構造化された音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      case 'conditionSocialization':
+        // レゲエの友好的なリズム
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+      case 'conditionLearning':
+        // クラシックの構造化された音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['density'] = (config['density'] as double) + 0.1;
+      case 'conditionExercise':
+        // レゲエのエネルギッシュなリズム
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+      case 'conditionAppetite':
+        // ソフトロックの温かいトーン
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'conditionPainRelief':
+        // クラシックの治療的な音楽
+        config['bpm'] = (config['bpm'] as int) - 10;
+        config['reverb'] = (config['reverb'] as double) + 0.2;
+        // 曲感を出すための追加設定
+        config['melody_variation'] = 0.6; // 痛み軽減は穏やかなメロディー
+        config['harmonic_complexity'] = 0.8; // 和声は豊かに
+        config['rhythm_variation'] = 0.4; // リズムは安定
+        config['dynamic_range'] = 0.5; // 音量変化は控えめ
+        config['phrase_length'] = 8; // 長いフレーズで落ち着き
+        config['chord_progression_variety'] = 0.6; // コード進行は穏やか
+        config['melodic_contour'] = 0.5; // メロディーの起伏は控えめ
+      case 'conditionAnxietyRelief':
+        // レゲエの安心感を与えるリズム
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'conditionStressRelief':
+        // クラシックのストレス軽減音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'conditionImmunity':
+        // ソフトロックの健康的な音楽
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+      case 'conditionMemory':
+        // クラシックの記憶を促進する音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['density'] = (config['density'] as double) + 0.1;
+      case 'conditionEmotionalStability':
+        // ソフトロックの感情を安定させる音楽
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'conditionCuriosity':
+        // レゲエの好奇心を刺激するリズム
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+      case 'conditionPatience':
+        // クラシックの忍耐力を高める音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['density'] = (config['density'] as double) + 0.1;
+      case 'conditionCooperation':
+        // ソフトロックの協調性を促進する音楽
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+      case 'conditionIndependence':
+        // レゲエの自立心を促進するリズム
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+      case 'conditionLove':
+        // ソフトロックの愛情を深める音楽
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+    }
+
+    // 犬種に基づく調整（レゲエ、ソフトロック、クラシックの要素を反映）
+    switch (breedKey) {
+      case 'breedToyPoodle':
+      case 'breedChihuahua':
+        // 小型犬：クラシックの優しいメロディー（少し速めのテンポ）
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        // 曲感を出すための追加設定
+        config['melody_variation'] =
+            (config['melody_variation'] as double) + 0.1; // 小型犬用のメロディー変化
+        config['harmonic_complexity'] =
+            (config['harmonic_complexity'] as double) + 0.1; // 和声の豊かさ
+        config['rhythm_variation'] =
+            (config['rhythm_variation'] as double) + 0.1; // リズムの変化
+        config['dynamic_range'] =
+            (config['dynamic_range'] as double) + 0.1; // 音量の変化
+        config['phrase_length'] =
+            (config['phrase_length'] as int) - 1; // 短いフレーズ
+        config['chord_progression_variety'] =
+            (config['chord_progression_variety'] as double) + 0.1; // コード進行の多様性
+        config['melodic_contour'] =
+            (config['melodic_contour'] as double) + 0.1; // メロディーの起伏
+      case 'breedShiba':
+        // 日本犬：クラシックの平和な要素（穏やかなテンポ）
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.05;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        config['delay'] = (config['delay'] as double) + 0.05;
+      case 'breedMiniatureDachshund':
+        // 小型犬：クラシックの優しいメロディー（少し速めのテンポ）
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        // 曲感を出すための追加設定
+        config['melody_variation'] =
+            (config['melody_variation'] as double) + 0.1; // 小型犬用のメロディー変化
+        config['harmonic_complexity'] =
+            (config['harmonic_complexity'] as double) + 0.1; // 和声の豊かさ
+        config['rhythm_variation'] =
+            (config['rhythm_variation'] as double) + 0.1; // リズムの変化
+        config['dynamic_range'] =
+            (config['dynamic_range'] as double) + 0.1; // 音量の変化
+        config['phrase_length'] =
+            (config['phrase_length'] as int) - 1; // 短いフレーズ
+        config['chord_progression_variety'] =
+            (config['chord_progression_variety'] as double) + 0.1; // コード進行の多様性
+        config['melodic_contour'] =
+            (config['melodic_contour'] as double) + 0.1; // メロディーの起伏
+      case 'breedPomeranian':
+        // 超小型犬：より繊細な音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.15;
+        config['density'] = (config['density'] as double) - 0.15;
+        config['reverb'] = (config['reverb'] as double) + 0.15;
+      case 'breedFrenchBulldog':
+        // ブルドッグ：穏やかな音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedGoldenRetriever':
+      case 'breedLabradorRetriever':
+        // 大型犬：レゲエの温かいベース（安定したテンポ）
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedMix':
+        // 混種犬：汎用的な設定
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedOther':
+        // その他の犬種：汎用的な設定
+        break;
+      case 'breedAkita':
+        // 日本犬：クラシックの平和な要素（穏やかなテンポ）
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.05;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        config['delay'] = (config['delay'] as double) + 0.05;
+      case 'breedMaltese':
+        // 超小型犬：より繊細な音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.15;
+        config['density'] = (config['density'] as double) - 0.15;
+        config['reverb'] = (config['reverb'] as double) + 0.15;
+      case 'breedSiberianHusky':
+      case 'breedAlaskanMalamute':
+        // 北方犬：力強い音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      case 'breedBorderCollie':
+      case 'breedAustralianShepherd':
+        // 作業犬：集中力を高める音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      case 'breedBulldog':
+      case 'breedPug':
+        // 短頭種：穏やかな音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedGermanShepherd':
+      case 'breedDoberman':
+        // 護衛犬：自信を与える音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedBeagle':
+      case 'breedDachshund':
+        // 猟犬：注意力を高める音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      case 'breedSamoyed':
+      case 'breedGreatPyrenees':
+        // 大型犬：威厳のある音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedCorgi':
+      case 'breedWelshCorgi':
+        // 牧羊犬：活発な音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      case 'breedShihTzu':
+      case 'breedPekingese':
+        // 古代犬：伝統的な音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedBerneseMountainDog':
+      case 'breedSaintBernard':
+        // 山岳犬：力強い音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedBostonTerrier':
+        // コンパニオン犬：友好的な音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedWestHighlandWhiteTerrier':
+      case 'breedYorkshireTerrier':
+        // テリア：活発な音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      case 'breedNewfoundland':
+      case 'breedRetriever':
+        // 水犬：流れるような音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedShetlandSheepdog':
+      case 'breedCollie':
+        // 知能犬：洗練された音楽
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedBassetHound':
+      case 'breedBloodhound':
+        // 嗅覚犬：深い音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedGreyhound':
+      case 'breedWhippet':
+        // 視覚犬：素早い音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) + 0.1;
+        config['reverb'] = (config['reverb'] as double) - 0.1;
+      default:
+        // その他の犬種：汎用的な設定
+        break;
+    }
+
+    // 値の範囲を制限（犬の心拍数に適した範囲）
+    config['bpm'] = (config['bpm'] as int).clamp(60, 120);
+    config['brightness'] = (config['brightness'] as double).clamp(0.1, 1.0);
+    config['density'] = (config['density'] as double).clamp(0.1, 1.0);
+    config['reverb'] = (config['reverb'] as double).clamp(0.0, 1.0);
+    config['delay'] = (config['delay'] as double).clamp(0.0, 0.5);
+    // 新しい音楽パラメータの範囲制限
+    config['melody_variation'] = (config['melody_variation'] as double).clamp(
+      0.1,
+      1.0,
+    );
+    config['harmonic_complexity'] = (config['harmonic_complexity'] as double)
+        .clamp(0.1, 1.0);
+    config['rhythm_variation'] = (config['rhythm_variation'] as double).clamp(
+      0.1,
+      1.0,
+    );
+    config['instrument_layering'] = (config['instrument_layering'] as double)
+        .clamp(0.1, 1.0);
+    config['dynamic_range'] = (config['dynamic_range'] as double).clamp(
+      0.1,
+      1.0,
+    );
+    config['phrase_length'] = (config['phrase_length'] as int).clamp(1, 16);
+    config['chord_progression_variety'] =
+        (config['chord_progression_variety'] as double).clamp(0.1, 1.0);
+    config['melodic_contour'] = (config['melodic_contour'] as double).clamp(
+      0.1,
+      1.0,
+    );
+
+    return config;
   }
 
   /// 音楽生成が完了したときに呼び出されるメソッド
@@ -226,13 +958,9 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       return;
     }
 
-    logger
-      ..d('現在のリクエスト情報:')
-      ..d('  - userId: ${_currentRequest!.userId}')
-      ..d('  - dogId: ${_currentRequest!.dogId}')
-      ..d('  - scenario: ${_currentRequest!.scenario}')
-      ..d('  - dogCondition: ${_currentRequest!.dogCondition}')
-      ..d('  - dogBreed: ${_currentRequest!.dogBreed}');
+    logger.d(
+      'リクエスト: - userId: ${_currentRequest!.userId} - dogId: ${_currentRequest!.dogId} - scenario: ${_currentRequest!.scenario} - dogCondition: ${_currentRequest!.dogCondition} - dogBreed: ${_currentRequest!.dogBreed}',
+    );
 
     try {
       // JSONメッセージをパース
@@ -243,10 +971,7 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       final generationConfig =
           jsonData['generation_config'] as Map<String, dynamic>?;
 
-      logger
-        ..d('音楽データを受信しました。Base64データの長さ: ${base64MusicData.length}')
-        ..d('Base64データの先頭50文字: ${base64MusicData.substring(0, 50)}...')
-        ..d('生成設定情報: $generationConfig');
+      logger.d('生成設定情報: $generationConfig');
 
       // Base64データをデコードしてFirebase Storageにアップロード
       final musicBytes = base64Decode(
@@ -323,7 +1048,7 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       logger.d('Firestoreへの保存完了');
 
       state = AsyncValue.data(newHistory);
-      _currentRequest = null; // Clear the request
+      _currentRequest = null;
 
       logger.d('=== 音楽生成完了処理終了 ===');
     } on Exception catch (e, st) {
@@ -339,7 +1064,107 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       Exception('音楽の生成に失敗しました: $errorMessage'),
       StackTrace.current,
     );
-    _currentRequest = null; // Clear the request
+    _currentRequest = null;
+  }
+
+  /// シーンIDから多言語キーを取得するヘルパーメソッド
+  String _getScenarioKey(String scenarioId) {
+    switch (scenarioId) {
+      case '1':
+        return 'sceneLeavingHome';
+      case '2':
+        return 'sceneBedtime';
+      case '3':
+        return 'sceneStressful';
+      case '4':
+        return 'sceneLongDistanceTravel';
+      case '5':
+        return 'sceneDailyHealing';
+      case '6':
+        return 'sceneCare';
+      case '7':
+        return 'sceneThunderFireworks';
+      case '8':
+        return 'sceneSeparationAnxiety';
+      case '9':
+        return 'sceneNewEnvironment';
+      case '10':
+        return 'scenePostExercise';
+      case '11':
+        return 'sceneGrooming';
+      case '12':
+        return 'sceneMealTime';
+      case '13':
+        return 'scenePlayTime';
+      case '14':
+        return 'sceneTraining';
+      case '15':
+        return 'sceneGuests';
+      case '16':
+        return 'sceneBadWeather';
+      case '17':
+        return 'sceneSeasonalChange';
+      case '18':
+        return 'scenePuppySocialization';
+      case '19':
+        return 'sceneSeniorCare';
+      case '20':
+        return 'sceneMultipleDogs';
+      case '21':
+        return 'sceneVetVisit';
+      default:
+        return 'sceneLeavingHome';
+    }
+  }
+
+  /// コンディションIDから多言語キーを取得するヘルパーメソッド
+  String _getConditionKey(String conditionId) {
+    switch (conditionId) {
+      case '1':
+        return 'conditionCalmDown';
+      case '2':
+        return 'conditionRelax';
+      case '3':
+        return 'conditionSuppressExcitement';
+      case '4':
+        return 'conditionReassure';
+      case '5':
+        return 'conditionGoodSleep';
+      case '6':
+        return 'conditionConcentration';
+      case '7':
+        return 'conditionSocialization';
+      case '8':
+        return 'conditionLearning';
+      case '9':
+        return 'conditionExercise';
+      case '10':
+        return 'conditionAppetite';
+      case '11':
+        return 'conditionPainRelief';
+      case '12':
+        return 'conditionAnxietyRelief';
+      case '13':
+        return 'conditionStressRelief';
+      case '14':
+        return 'conditionImmunity';
+      case '15':
+        return 'conditionMemory';
+      case '16':
+        return 'conditionEmotionalStability';
+      case '17':
+        return 'conditionCuriosity';
+      case '18':
+        return 'conditionPatience';
+      case '19':
+        return 'conditionCooperation';
+      case '20':
+        return 'conditionIndependence';
+      case '21':
+        return 'conditionLove';
+      default:
+        return 'conditionCalmDown';
+    }
   }
 }
 
@@ -425,57 +1250,59 @@ musicHistoryStreamProvider =
 final AutoDisposeStreamProviderFamily<MusicGenerationHistory?, String>
 musicHistoryByIdStreamProvider = StreamProvider.autoDispose
     .family<MusicGenerationHistory?, String>((ref, musicId) {
-  final userId = ref.watch(authStateChangesProvider).value?.uid;
-  logger.d('=== 特定音楽履歴取得開始 音楽ID: $musicId, ユーザーID: $userId ===');
-  
-  if (userId == null) {
-    logger.d('ユーザーIDがnullのため、nullを返します');
-    return Stream.value(null);
-  }
+      final userId = ref.watch(authStateChangesProvider).value?.uid;
+      logger.d('=== 特定音楽履歴取得開始 音楽ID: $musicId, ユーザーID: $userId ===');
 
-  try {
-    final firestore = ref.read(firestoreProvider);
-    final collectionRef = firestore.collection('musicGenerationHistories');
-    
-    return collectionRef
-        .doc(musicId)
-        .snapshots()
-        .map((snapshot) {
-          if (!snapshot.exists) {
-            logger.d('音楽履歴が見つかりません: $musicId');
-            return null;
-          }
+      if (userId == null) {
+        logger.d('ユーザーIDがnullのため、nullを返します');
+        return Stream.value(null);
+      }
 
-          try {
-            final history = MusicGenerationHistory.fromJson(snapshot.data()!);
-            
-            // ユーザーIDの確認
-            if (history.userId != userId) {
-              logger.d('ユーザーIDが一致しません: ${history.userId} != $userId');
+      try {
+        final firestore = ref.read(firestoreProvider);
+        final collectionRef = firestore.collection('musicGenerationHistories');
+
+        return collectionRef
+            .doc(musicId)
+            .snapshots()
+            .map((snapshot) {
+              if (!snapshot.exists) {
+                logger.d('音楽履歴が見つかりません: $musicId');
+                return null;
+              }
+
+              try {
+                final history = MusicGenerationHistory.fromJson(
+                  snapshot.data()!,
+                );
+
+                // ユーザーIDの確認
+                if (history.userId != userId) {
+                  logger.d('ユーザーIDが一致しません: ${history.userId} != $userId');
+                  return null;
+                }
+
+                logger.d('=== 特定音楽履歴取得完了 ===');
+                return history;
+              } on Exception catch (e) {
+                logger.e('ドキュメントのパースエラー: ${snapshot.id}', error: e);
+                return null;
+              }
+            })
+            .handleError((Object error, StackTrace stackTrace) {
+              logger.e(
+                'Failed to fetch music history by ID due to permission error',
+                error: error,
+                stackTrace: stackTrace,
+              );
               return null;
-            }
-
-            logger.d('=== 特定音楽履歴取得完了 ===');
-            return history;
-          } on Exception catch (e) {
-            logger.e('ドキュメントのパースエラー: ${snapshot.id}', error: e);
-            return null;
-          }
-        })
-        .handleError((Object error, StackTrace stackTrace) {
-          logger.e(
-            'Failed to fetch music history by ID due to permission error',
-            error: error,
-            stackTrace: stackTrace,
-          );
-          return null;
-        });
-  } on Exception catch (e, st) {
-    logger.e(
-      'An unexpected error occurred while fetching music history by ID',
-      error: e,
-      stackTrace: st,
-    );
-    return Stream.value(null);
-  }
-});
+            });
+      } on Exception catch (e, st) {
+        logger.e(
+          'An unexpected error occurred while fetching music history by ID',
+          error: e,
+          stackTrace: st,
+        );
+        return Stream.value(null);
+      }
+    });

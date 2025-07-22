@@ -60,6 +60,9 @@
                     android:name="android.intent.category.DEFAULT"/>
                 <category
                     android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="flutter-tips-8dc02.firebaseapp.com"
+                    android:scheme="https"/>
             </intent-filter>
         </activity>
         <activity
