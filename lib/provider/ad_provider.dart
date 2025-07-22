@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../import/provider.dart';
 import '../import/type.dart';
 import '../import/utility.dart';
 
@@ -34,6 +35,7 @@ class AdNotifier extends StateNotifier<AdState> {
         onAdLoaded: (ad) {
           interstitialAd = ad;
           logger.d('InterstitialAd loaded: $ad');
+          _ref.read(generationCountProvider.notifier).increment();
           state = state.copyWith(isInterstitialAdLoaded: true);
         },
         onAdFailedToLoad: (error) {

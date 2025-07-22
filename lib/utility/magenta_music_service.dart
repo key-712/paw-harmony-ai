@@ -193,8 +193,6 @@ class MagentaMusicService extends BaseMusicService {
     int duration = 30,
     Map<String, dynamic>? config,
   }) async {
-    logger.d('音楽生成開始 プロンプト: $prompt');
-
     try {
       // デフォルト設定
       final defaultConfig = {

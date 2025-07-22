@@ -20,7 +20,7 @@ String getBreedKey(String breedId) {
     case '9':
       return 'breedMix';
     case '10':
-      return 'breedOther';
+      return 'breedWhippet';
     case '11':
       return 'breedAkita';
     case '12':
@@ -82,9 +82,9 @@ String getBreedKey(String breedId) {
     case '40':
       return 'breedGreyhound';
     case '41':
-      return 'breedWhippet';
+      return 'breedOther';
     default:
-      return 'breedGeneric';
+      return 'breedOther';
   }
 }
 

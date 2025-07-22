@@ -195,7 +195,7 @@ class DogProfileScreen extends HookConsumerWidget {
                                 (breedId) => DropdownMenuItem(
                                   value: breedId,
                                   child: ThemeText(
-                                    text: l10n.__getValue(getBreedKey(breedId)),
+                                    text: l10n.getValue(getBreedKey(breedId)),
                                     color: theme.appColors.black,
                                     style: theme.textTheme.h30,
                                   ),
@@ -204,7 +204,6 @@ class DogProfileScreen extends HookConsumerWidget {
                               .toList(),
                       onChanged: (value) {
                         if (value != null) {
-                          logger.d('選択された犬種ID: $value');
                           breedController.text = value;
                         }
                       },
@@ -304,15 +303,13 @@ class DogProfileScreen extends HookConsumerWidget {
                       choices:
                           personalityIdToKey.keys
                               .map(
-                                (id) =>
-                                    l10n.__getValue(personalityIdToKey[id]!),
+                                (id) => l10n.getValue(personalityIdToKey[id]!),
                               )
                               .toList(),
                       selectedChoices:
                           personalities.value
                               .map(
-                                (id) =>
-                                    l10n.__getValue(personalityIdToKey[id]!),
+                                (id) => l10n.getValue(personalityIdToKey[id]!),
                               )
                               .toList(),
                       onSelectionChanged: (selectedList) {
@@ -323,8 +320,7 @@ class DogProfileScreen extends HookConsumerWidget {
                                   return personalityIdToKey.entries
                                       .firstWhere(
                                         (entry) =>
-                                            l10n.__getValue(entry.value) ==
-                                            label,
+                                            l10n.getValue(entry.value) == label,
                                         orElse: () => const MapEntry('', ''),
                                       )
                                       .key;
@@ -406,10 +402,98 @@ class DogProfileScreen extends HookConsumerWidget {
   }
 }
 
-// l10nの多言語キーから値を取得するヘルパー（暫定）
-extension _L10nExt on AppLocalizations {
-  String __getValue(String key) {
+/// l10nの多言語キーから値を取得するヘルパー
+extension L10nExt on AppLocalizations {
+  /// l10nの多言語キーから値を取得するメソッド
+  ///
+  /// [key] 多言語キー
+  ///
+  /// [return] 多言語キーに対応する値
+  String getValue(String key) {
     switch (key) {
+      case 'breedToyPoodle':
+        return breedToyPoodle;
+      case 'breedChihuahua':
+        return breedChihuahua;
+      case 'breedShiba':
+        return breedShiba;
+      case 'breedMiniatureDachshund':
+        return breedMiniatureDachshund;
+      case 'breedPomeranian':
+        return breedPomeranian;
+      case 'breedFrenchBulldog':
+        return breedFrenchBulldog;
+      case 'breedGoldenRetriever':
+        return breedGoldenRetriever;
+      case 'breedLabradorRetriever':
+        return breedLabradorRetriever;
+      case 'breedMix':
+        return breedMix;
+      case 'breedWhippet':
+        return breedWhippet;
+      case 'breedAkita':
+        return breedAkita;
+      case 'breedMaltese':
+        return breedMaltese;
+      case 'breedSiberianHusky':
+        return breedSiberianHusky;
+      case 'breedAlaskanMalamute':
+        return breedAlaskanMalamute;
+      case 'breedBorderCollie':
+        return breedBorderCollie;
+      case 'breedAustralianShepherd':
+        return breedAustralianShepherd;
+      case 'breedBulldog':
+        return breedBulldog;
+      case 'breedPug':
+        return breedPug;
+      case 'breedGermanShepherd':
+        return breedGermanShepherd;
+      case 'breedDoberman':
+        return breedDoberman;
+      case 'breedBeagle':
+        return breedBeagle;
+      case 'breedDachshund':
+        return breedDachshund;
+      case 'breedSamoyed':
+        return breedSamoyed;
+      case 'breedGreatPyrenees':
+        return breedGreatPyrenees;
+      case 'breedCorgi':
+        return breedCorgi;
+      case 'breedWelshCorgi':
+        return breedWelshCorgi;
+      case 'breedShihTzu':
+        return breedShihTzu;
+      case 'breedPekingese':
+        return breedPekingese;
+      case 'breedBerneseMountainDog':
+        return breedBerneseMountainDog;
+      case 'breedSaintBernard':
+        return breedSaintBernard;
+      case 'breedBostonTerrier':
+        return breedBostonTerrier;
+      case 'breedWestHighlandWhiteTerrier':
+        return breedWestHighlandWhiteTerrier;
+      case 'breedYorkshireTerrier':
+        return breedYorkshireTerrier;
+      case 'breedNewfoundland':
+        return breedNewfoundland;
+      case 'breedRetriever':
+        return breedRetriever;
+      case 'breedShetlandSheepdog':
+        return breedShetlandSheepdog;
+      case 'breedCollie':
+        return breedCollie;
+      case 'breedBassetHound':
+        return breedBassetHound;
+      case 'breedBloodhound':
+        return breedBloodhound;
+      case 'breedGreyhound':
+        return breedGreyhound;
+      case 'breedOther':
+        return breedOther;
+      // 性格
       case 'personalityEasygoing':
         return personalityEasygoing;
       case 'personalityActive':

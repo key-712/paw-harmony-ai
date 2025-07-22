@@ -1381,5 +1381,21 @@
   "durationTitle": "Duration",
   "@durationTitle": { "description": "Title for duration section" },
   "generatedAtTitle": "Generated At",
-  "@generatedAtTitle": { "description": "Title for generated at section" }
+  "@generatedAtTitle": { "description": "Title for generated at section" },
+  "generationLimitTitle": "Generation limit reached",
+  "@generationLimitTitle": {
+    "description": "Title for generation limit dialog"
+  },
+  "watchAd": "Watch ad to add more",
+  "@watchAd": {
+    "description": "Text for watch ad button"
+  },
+  "watchAdToAddCount": "Watch ad to add count",
+  "@watchAdToAddCount": {
+    "description": "Text for button to add count by watching ad"
+  },
+  "subscribeToPlan": "Subscribe to Plan",
+  "@subscribeToPlan": {
+    "description": "Text for subscription registration button"
+  }
 }

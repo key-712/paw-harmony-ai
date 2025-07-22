@@ -1377,5 +1377,21 @@
   "durationTitle": "再生時間",
   "@durationTitle": { "description": "再生時間のタイトル" },
   "generatedAtTitle": "生成日時",
-  "@generatedAtTitle": { "description": "生成日時のタイトル" }
+  "@generatedAtTitle": { "description": "生成日時のタイトル" },
+  "generationLimitTitle": "生成回数の上限に達しました",
+  "@generationLimitTitle": {
+    "description": "生成回数制限ダイアログのタイトル"
+  },
+  "watchAd": "広告を視聴して回数を追加",
+  "@watchAd": {
+    "description": "広告視聴ボタンのテキスト"
+  },
+  "watchAdToAddCount": "広告を見て回数を追加",
+  "@watchAdToAddCount": {
+    "description": "広告視聴で回数を追加するボタンのテキスト"
+  },
+  "subscribeToPlan": "サブスクに登録する",
+  "@subscribeToPlan": {
+    "description": "サブスクリプション登録ボタンのテキスト"
+  }
 }

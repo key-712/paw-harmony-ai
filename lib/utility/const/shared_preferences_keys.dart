@@ -12,6 +12,12 @@ class SharedPreferencesKeys {
   /// レーティングダイアログの表示回数
   static const ratingDialogShown = 'rating_dialog_shown';
 
+  /// 音楽生成回数
+  static const generationCountKey = 'generation_count';
+
+  /// 最終生成日
+  static const lastGenerationDateKey = 'last_generation_date';
+ 
   /// Eメール
   static const email = 'email';
 }

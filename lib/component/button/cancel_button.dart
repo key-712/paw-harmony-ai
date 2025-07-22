@@ -18,6 +18,7 @@ class CancelButton extends ConsumerWidget {
     required this.width,
     required this.isDisabled,
     required this.callback,
+    this.height,
   });
 
   /// ボタンのテキスト
@@ -35,31 +36,32 @@ class CancelButton extends ConsumerWidget {
   /// ボタンがタップされた時のコールバック
   final VoidCallback callback;
 
+  /// ボタンの高さ
+  final double? height;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
 
     return GestureDetector(
-      onTap: isDisabled
-          ? null
-          : () async {
-              await ref.read(firebaseAnalyticsServiceProvider).tapButton(
-                    parameters: TapButtonLog(
-                      screen: screen,
-                      label: text,
-                    ),
-                  );
-              callback();
-            },
+      onTap:
+          isDisabled
+              ? null
+              : () async {
+                await ref
+                    .read(firebaseAnalyticsServiceProvider)
+                    .tapButton(
+                      parameters: TapButtonLog(screen: screen, label: text),
+                    );
+                callback();
+              },
       child: Container(
-        height: ButtonStyles.buttonHeight,
+        height: height ?? ButtonStyles.buttonHeight,
         width: width,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: theme.appColors.white,
-          border: Border.all(
-            color: theme.appColors.grey,
-          ),
+          border: Border.all(color: theme.appColors.grey),
           borderRadius: BorderRadius.circular(ButtonStyles.buttonBorderRadius),
         ),
         child: ThemeText(
@@ -73,13 +75,13 @@ class CancelButton extends ConsumerWidget {
 }
 
 /// CancelButtonウィジェットのWidgetbookでの確認用メソッド
-@widgetbook.UseCase(
-  name: 'CancelButton',
-  type: CancelButton,
-)
+@widgetbook.UseCase(name: 'CancelButton', type: CancelButton)
 Widget cancelButtonUseCase(BuildContext context) {
-  final text =
-      useStringKnob(context: context, label: 'Title', initialValue: 'ボタン');
+  final text = useStringKnob(
+    context: context,
+    label: 'Title',
+    initialValue: 'ボタン',
+  );
   const isDisabled = false;
   void callback() {}
 

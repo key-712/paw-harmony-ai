@@ -31,6 +31,13 @@ class AudioGenerationScreen extends HookConsumerWidget {
     final musicGenerationState = ref.watch(
       musicGenerationStateNotifierProvider,
     );
+    final generationCount = ref.watch(generationCountProvider);
+    final adNotifier = ref.read(adStateNotifierProvider.notifier);
+
+    useEffect(() {
+      adNotifier.loadInterstitialAd();
+      return null;
+    }, const []);
 
     ref.listen<AsyncValue<MusicGenerationHistory?>>(
       musicGenerationStateNotifierProvider,
@@ -212,7 +219,10 @@ class AudioGenerationScreen extends HookConsumerWidget {
                         text:
                             purchaseState.isSubscribed
                                 ? l10n.generationsUnlimited
-                                : l10n.generationsLeft(3, l10n.freePlan),
+                                : l10n.generationsLeft(
+                                  generationCount,
+                                  l10n.freePlan,
+                                ),
                         color: theme.appColors.grey,
                         style: theme.textTheme.h30.copyWith(fontSize: 14),
                       ),
@@ -227,18 +237,27 @@ class AudioGenerationScreen extends HookConsumerWidget {
                           selectedConditionId.value == null ||
                           musicGenerationState.isLoading,
                       callback: () {
-                        final request = MusicGenerationRequest(
-                          userId: profile.userId,
-                          dogId: profile.id,
-                          scenario: selectedSceneId.value!,
-                          dogCondition: selectedConditionId.value!,
-                          additionalInfo: additionalInfoController.text,
-                          dogBreed: profile.breed,
-                          dogPersonalityTraits: profile.personalityTraits,
-                        );
-                        ref
-                            .read(musicGenerationStateNotifierProvider.notifier)
-                            .generateMusic(request);
+                        if (generationCount > 0) {
+                          ref
+                              .read(generationCountProvider.notifier)
+                              .decrement();
+                          final request = MusicGenerationRequest(
+                            userId: profile.userId,
+                            dogId: profile.id,
+                            scenario: selectedSceneId.value!,
+                            dogCondition: selectedConditionId.value!,
+                            additionalInfo: additionalInfoController.text,
+                            dogBreed: profile.breed,
+                            dogPersonalityTraits: profile.personalityTraits,
+                          );
+                          ref
+                              .read(
+                                musicGenerationStateNotifierProvider.notifier,
+                              )
+                              .generateMusic(request);
+                        } else {
+                          showGenerationLimitDialog(context: context);
+                        }
                       },
                     ),
                   ],

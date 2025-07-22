@@ -1315,6 +1315,10 @@
   "@emailVerificationRequired": {
     "description": "Message indicating that email verification is required after sign up"
   },
+  "subscribeToPlan": "S'abonner au plan",
+  "@subscribeToPlan": {
+    "description": "Texte pour le bouton d'inscription à l'abonnement"
+  },
   "breedAkita": "Akita",
   "@breedAkita": {"description": "Race : Akita"},
   "breedMaltese": "Bichon maltais",
@@ -1382,5 +1386,17 @@
   "conditionTitle": "État",
   "@conditionTitle": { "description": "Titre de la section état" },
   "breedTitle": "Race",
-  "@breedTitle": { "description": "Titre de la section race" }
+  "@breedTitle": { "description": "Titre de la section race" },
+  "generationLimitTitle": "Limite de génération atteinte",
+  "@generationLimitTitle": {
+    "description": "Titre de la boîte de dialogue de limite de génération"
+  },
+  "watchAd": "Regarder une pub pour ajouter",
+  "@watchAd": {
+    "description": "Texte pour le bouton regarder une pub"
+  },
+  "watchAdToAddCount": "Regarder une pub pour ajouter",
+  "@watchAdToAddCount": {
+    "description": "Texte pour le bouton ajouter en regardant une pub"
+  }
 }

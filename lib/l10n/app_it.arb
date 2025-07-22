@@ -1382,5 +1382,21 @@
   "conditionTitle": "Condizione",
   "@conditionTitle": { "description": "Titolo della sezione condizione" },
   "breedTitle": "Razza",
-  "@breedTitle": { "description": "Titolo della sezione razza" }
+  "@breedTitle": { "description": "Titolo della sezione razza" },
+  "generationLimitTitle": "Limite di generazione raggiunta",
+  "@generationLimitTitle": {
+    "description": "Titolo della finestra di dialogo del limite di generazione"
+  },
+  "watchAd": "Guarda un annuncio per aggiungere altro",
+  "@watchAd": {
+    "description": "Testo per il pulsante guarda annuncio"
+  },
+  "watchAdToAddCount": "Guarda un annuncio per aggiungere",
+  "@watchAdToAddCount": {
+    "description": "Testo per il pulsante aggiungere guardando un annuncio"
+  },
+  "subscribeToPlan": "Abbonati al piano",
+  "@subscribeToPlan": {
+    "description": "Testo per il pulsante di registrazione abbonamento"
+  }
 }
