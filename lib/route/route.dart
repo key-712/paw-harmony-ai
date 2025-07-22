@@ -127,6 +127,17 @@ class PasswordResetScreenRoute extends GoRouteData
       const PasswordResetScreen();
 }
 
+@TypedGoRoute<EmailSentScreenRoute>(path: '/email-sent')
+/// メール送信完了画面への遷移データクラス
+class EmailSentScreenRoute extends GoRouteData with _$EmailSentScreenRoute {
+  /// メール送信完了画面への遷移データクラス
+  const EmailSentScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const EmailSentScreen();
+}
+
 @TypedGoRoute<DogProfileScreenRoute>(path: '/dog-profile')
 /// 犬プロフィール画面への遷移データクラス
 class DogProfileScreenRoute extends GoRouteData with _$DogProfileScreenRoute {

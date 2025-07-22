@@ -14,6 +14,7 @@ import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
+import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 犬のプロフィール画面のウィジェット
@@ -81,27 +82,17 @@ class DogProfileScreen extends HookConsumerWidget {
       });
       return null;
     }, [dogProfileState.value]);
-
-    final dogBreeds = <String>[
-      l10n.breedToyPoodle,
-      l10n.breedChihuahua,
-      l10n.breedShiba,
-      l10n.breedMiniatureDachshund,
-      l10n.breedPomeranian,
-      l10n.breedFrenchBulldog,
-      l10n.breedGoldenRetriever,
-      l10n.breedLabradorRetriever,
-      l10n.breedMix,
-      l10n.breedOther,
-    ];
+    final dogBreedIds = getAvailableBreedIds();
 
     return Scaffold(
-      appBar:
-          dogProfileState.value == null
-              ? BaseHeader(title: l10n.registerDogProfileTitle)
-              : BackIconHeader(title: l10n.editDogProfileTitle),
+      appBar: BaseHeader(
+        title:
+            dogProfileState.value == null
+                ? l10n.registerDogProfileTitle
+                : l10n.editDogProfileTitle,
+      ),
       body: dogProfileState.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: Loading()),
         error:
             (err, stack) => Center(
               child: ThemeText(
@@ -158,18 +149,8 @@ class DogProfileScreen extends HookConsumerWidget {
                                             if (loadingProgress == null) {
                                               return child;
                                             }
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value:
-                                                    loadingProgress
-                                                                .expectedTotalBytes !=
-                                                            null
-                                                        ? loadingProgress
-                                                                .cumulativeBytesLoaded /
-                                                            loadingProgress
-                                                                .expectedTotalBytes!
-                                                        : null,
-                                              ),
+                                            return const Center(
+                                              child: Loading(),
                                             );
                                           },
                                           errorBuilder: (
@@ -209,12 +190,12 @@ class DogProfileScreen extends HookConsumerWidget {
                               : breedController.text,
                       decoration: InputDecoration(labelText: l10n.dogBreed),
                       items:
-                          dogBreeds
+                          dogBreedIds
                               .map(
-                                (b) => DropdownMenuItem(
-                                  value: b,
+                                (breedId) => DropdownMenuItem(
+                                  value: breedId,
                                   child: ThemeText(
-                                    text: b,
+                                    text: l10n.__getValue(getBreedKey(breedId)),
                                     color: theme.appColors.black,
                                     style: theme.textTheme.h30,
                                   ),
@@ -223,6 +204,7 @@ class DogProfileScreen extends HookConsumerWidget {
                               .toList(),
                       onChanged: (value) {
                         if (value != null) {
+                          logger.d('選択された犬種ID: $value');
                           breedController.text = value;
                         }
                       },
@@ -267,22 +249,6 @@ class DogProfileScreen extends HookConsumerWidget {
                                   : 0);
                           ageController.text = age.toString();
                         }
-                      },
-                    ),
-
-                    /// 年齢入力フィールド
-                    /// 生年月日が選択されている場合は自動計算され、編集不可
-                    TextFormField(
-                      controller: ageController,
-                      decoration: InputDecoration(labelText: l10n.age),
-                      keyboardType: TextInputType.number,
-                      readOnly: true, // 年齢は常に編集不可
-                      contextMenuBuilder: (context, editableTextState) {
-                        // コンテキストメニューを無効化
-                        return const SizedBox.shrink();
-                      },
-                      validator: (value) {
-                        return null; // 年齢は生年月日からの自動計算のため、バリデーションは不要
                       },
                     ),
                     hSpace(height: 16),
@@ -333,18 +299,39 @@ class DogProfileScreen extends HookConsumerWidget {
                       color: theme.appColors.black,
                       style: theme.textTheme.h30,
                     ),
+                    // IDリスト
                     MultiSelectChip(
-                      choices: [
-                        l10n.personalityEasygoing,
-                        l10n.personalityActive,
-                        l10n.personalityTimid,
-                        l10n.personalitySociable,
-                        l10n.personalityAffectionate,
-                        l10n.personalityMyPace,
-                      ],
-                      selectedChoices: personalities.value.toList(),
+                      choices:
+                          personalityIdToKey.keys
+                              .map(
+                                (id) =>
+                                    l10n.__getValue(personalityIdToKey[id]!),
+                              )
+                              .toList(),
+                      selectedChoices:
+                          personalities.value
+                              .map(
+                                (id) =>
+                                    l10n.__getValue(personalityIdToKey[id]!),
+                              )
+                              .toList(),
                       onSelectionChanged: (selectedList) {
-                        personalities.value = Set.from(selectedList);
+                        // 選択されたラベルからIDに変換
+                        final selectedIds =
+                            selectedList
+                                .map((label) {
+                                  return personalityIdToKey.entries
+                                      .firstWhere(
+                                        (entry) =>
+                                            l10n.__getValue(entry.value) ==
+                                            label,
+                                        orElse: () => const MapEntry('', ''),
+                                      )
+                                      .key;
+                                })
+                                .where((id) => id.isNotEmpty)
+                                .toSet();
+                        personalities.value = selectedIds;
                       },
                     ),
                     hSpace(height: 32),
@@ -354,6 +341,9 @@ class DogProfileScreen extends HookConsumerWidget {
                       width: double.infinity,
                       isDisabled: false,
                       callback: () async {
+                        logger.d(
+                          '保存時のbreedController.text: ${breedController.text}',
+                        );
                         if (formKey.currentState!.validate()) {
                           if (gender.value == null) {
                             genderError.value = l10n.genderValidator;
@@ -394,24 +384,46 @@ class DogProfileScreen extends HookConsumerWidget {
                         }
                       },
                     ),
-                    if (profile != null) // 編集画面の場合のみキャンセルボタンを表示
-                      hSpace(height: 16),
-                    CancelButton(
-                      text: l10n.cancel,
-                      screen: 'dog_profile_screen',
-                      width: double.infinity,
-                      isDisabled: false,
-                      callback: () {
-                        if (context.mounted) {
-                          GoRouter.of(context).pop();
-                        }
-                      },
-                    ),
+                    hSpace(height: 16),
+                    if (dogProfileState.value != null)
+                      CancelButton(
+                        text: l10n.cancel,
+                        screen: 'dog_profile_screen',
+                        width: double.infinity,
+                        isDisabled: false,
+                        callback: () {
+                          if (context.mounted) {
+                            GoRouter.of(context).pop();
+                          }
+                        },
+                      ),
                   ],
                 ),
               ),
             ),
       ),
     );
+  }
+}
+
+// l10nの多言語キーから値を取得するヘルパー（暫定）
+extension _L10nExt on AppLocalizations {
+  String __getValue(String key) {
+    switch (key) {
+      case 'personalityEasygoing':
+        return personalityEasygoing;
+      case 'personalityActive':
+        return personalityActive;
+      case 'personalityTimid':
+        return personalityTimid;
+      case 'personalitySociable':
+        return personalitySociable;
+      case 'personalityAffectionate':
+        return personalityAffectionate;
+      case 'personalityMyPace':
+        return personalityMyPace;
+      default:
+        return key;
+    }
   }
 }

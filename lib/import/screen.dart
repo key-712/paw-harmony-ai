@@ -1,3 +1,4 @@
+export '../screen/auth/email_sent_screen.dart';
 export '../screen/auth/login_screen.dart';
 export '../screen/auth/password_reset_screen.dart';
 export '../screen/auth/sign_up_screen.dart';

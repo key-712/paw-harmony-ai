@@ -8,6 +8,7 @@ class PasswordTextFormField extends HookWidget {
     super.key,
     required this.controller,
     required this.labelText,
+    this.focusNode,
     this.validator,
     this.onChanged,
     this.onFieldSubmitted,
@@ -20,6 +21,9 @@ class PasswordTextFormField extends HookWidget {
 
   /// ラベルテキスト
   final String labelText;
+
+  /// フォーカスノード
+  final FocusNode? focusNode;
 
   /// バリデーション関数
   final String? Function(String?)? validator;
@@ -42,6 +46,7 @@ class PasswordTextFormField extends HookWidget {
 
     return TextFormField(
       controller: controller,
+      focusNode: focusNode,
       decoration: InputDecoration(
         labelText: labelText,
         suffixIcon: IconButton(

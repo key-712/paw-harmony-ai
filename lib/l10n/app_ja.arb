@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "productName": "ProductName",
+  "productName": "Paw Harmony",
   "@productName": {
     "description": "アプリ名"
   },
@@ -657,6 +657,66 @@
   "@sceneCare": {
     "description": "利用シーン：療養/高齢犬ケア"
   },
+  "sceneThunderFireworks": "雷・花火の恐怖",
+  "@sceneThunderFireworks": {
+    "description": "利用シーン：雷・花火の恐怖"
+  },
+  "sceneSeparationAnxiety": "分離不安",
+  "@sceneSeparationAnxiety": {
+    "description": "利用シーン：分離不安"
+  },
+  "sceneNewEnvironment": "新しい環境への適応",
+  "@sceneNewEnvironment": {
+    "description": "利用シーン：新しい環境への適応"
+  },
+  "scenePostExercise": "運動後のクールダウン",
+  "@scenePostExercise": {
+    "description": "利用シーン：運動後のクールダウン"
+  },
+  "sceneGrooming": "グルーミング時",
+  "@sceneGrooming": {
+    "description": "利用シーン：グルーミング時"
+  },
+  "sceneMealTime": "食事時",
+  "@sceneMealTime": {
+    "description": "利用シーン：食事時"
+  },
+  "scenePlayTime": "遊び時間",
+  "@scenePlayTime": {
+    "description": "利用シーン：遊び時間"
+  },
+  "sceneTraining": "トレーニング時",
+  "@sceneTraining": {
+    "description": "利用シーン：トレーニング時"
+  },
+  "sceneGuests": "来客時",
+  "@sceneGuests": {
+    "description": "利用シーン：来客時"
+  },
+  "sceneBadWeather": "天候不良時",
+  "@sceneBadWeather": {
+    "description": "利用シーン：天候不良時"
+  },
+  "sceneSeasonalChange": "季節の変わり目",
+  "@sceneSeasonalChange": {
+    "description": "利用シーン：季節の変わり目"
+  },
+  "scenePuppySocialization": "子犬の社会化",
+  "@scenePuppySocialization": {
+    "description": "利用シーン：子犬の社会化"
+  },
+  "sceneSeniorCare": "シニア犬のケア",
+  "@sceneSeniorCare": {
+    "description": "利用シーン：シニア犬のケア"
+  },
+  "sceneMultipleDogs": "多頭飼いの調和",
+  "@sceneMultipleDogs": {
+    "description": "利用シーン：多頭飼いの調和"
+  },
+  "sceneVetVisit": "獣医訪問前",
+  "@sceneVetVisit": {
+    "description": "利用シーン：獣医訪問前"
+  },
   "conditionCalmDown": "落ち着かせたい",
   "@conditionCalmDown": {
     "description": "犬の状態：落ち着かせたい"
@@ -676,6 +736,70 @@
   "conditionGoodSleep": "安眠させたい",
   "@conditionGoodSleep": {
     "description": "犬の状態：安眠させたい"
+  },
+  "conditionConcentration": "集中力を高めたい",
+  "@conditionConcentration": {
+    "description": "犬の状態：集中力を高めたい"
+  },
+  "conditionSocialization": "社交性を向上させたい",
+  "@conditionSocialization": {
+    "description": "犬の状態：社交性を向上させたい"
+  },
+  "conditionLearning": "学習能力を向上させたい",
+  "@conditionLearning": {
+    "description": "犬の状態：学習能力を向上させたい"
+  },
+  "conditionExercise": "運動意欲を高めたい",
+  "@conditionExercise": {
+    "description": "犬の状態：運動意欲を高めたい"
+  },
+  "conditionAppetite": "食欲を促進させたい",
+  "@conditionAppetite": {
+    "description": "犬の状態：食欲を促進させたい"
+  },
+  "conditionPainRelief": "痛みを軽減させたい",
+  "@conditionPainRelief": {
+    "description": "犬の状態：痛みを軽減させたい"
+  },
+  "conditionAnxietyRelief": "不安を解消させたい",
+  "@conditionAnxietyRelief": {
+    "description": "犬の状態：不安を解消させたい"
+  },
+  "conditionStressRelief": "ストレスを軽減させたい",
+  "@conditionStressRelief": {
+    "description": "犬の状態：ストレスを軽減させたい"
+  },
+  "conditionImmunity": "免疫力を向上させたい",
+  "@conditionImmunity": {
+    "description": "犬の状態：免疫力を向上させたい"
+  },
+  "conditionMemory": "記憶力を向上させたい",
+  "@conditionMemory": {
+    "description": "犬の状態：記憶力を向上させたい"
+  },
+  "conditionEmotionalStability": "感情を安定させたい",
+  "@conditionEmotionalStability": {
+    "description": "犬の状態：感情を安定させたい"
+  },
+  "conditionCuriosity": "好奇心を刺激したい",
+  "@conditionCuriosity": {
+    "description": "犬の状態：好奇心を刺激したい"
+  },
+  "conditionPatience": "忍耐力を向上させたい",
+  "@conditionPatience": {
+    "description": "犬の状態：忍耐力を向上させたい"
+  },
+  "conditionCooperation": "協調性を高めたい",
+  "@conditionCooperation": {
+    "description": "犬の状態：協調性を高めたい"
+  },
+  "conditionIndependence": "自立心を育てたい",
+  "@conditionIndependence": {
+    "description": "犬の状態：自立心を育てたい"
+  },
+  "conditionLove": "愛情を深めたい",
+  "@conditionLove": {
+    "description": "犬の状態：愛情を深めたい"
   },
   "aiMusicGenerateTitle": "PawHarmony AI",
   "@aiMusicGenerateTitle": {
@@ -773,7 +897,7 @@
       }
     }
   },
-  "duration": "再生時間: {duration}秒",
+  "duration": "{duration}秒",
   "@duration": {
     "description": "音楽の再生時間",
     "placeholders": {
@@ -1153,5 +1277,105 @@
   "selectTags": "タグを選択",
   "@selectTags": {
     "description": "タグ選択セクションのタイトル"
-  }
+  },
+  "emailSentTitle": "メール送信完了",
+  "@emailSentTitle": {
+    "description": "メール送信完了画面のタイトル"
+  },
+  "emailSentMessage": "メールを送信しました。\nメールボックスをご確認ください。",
+  "@emailSentMessage": {
+    "description": "メール送信完了画面のメッセージ"
+  },
+  "emailNotVerifiedTitle": "メールアドレスが未確認です",
+  "@emailNotVerifiedTitle": {
+    "description": "メールアドレス未確認ダイアログのタイトル"
+  },
+  "emailNotVerifiedMessage": "メールアドレスの確認が完了していません。\n確認メールを再送信しますか？",
+  "@emailNotVerifiedMessage": {
+    "description": "メールアドレス未確認ダイアログのメッセージ"
+  },
+  "resendEmail": "再送信",
+  "@resendEmail": {
+    "description": "メール再送信ボタンのテキスト"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OKボタンのテキスト"
+  },
+  "emailVerificationRequired": "※アカウント作成後、メール確認が必要です",
+  "@emailVerificationRequired": {
+    "description": "アカウント作成後にメール確認が必要であることを示すメッセージ"
+  },
+  "breedAkita": "秋田犬",
+  "@breedAkita": {"description": "犬種：秋田犬"},
+  "breedMaltese": "マルチーズ",
+  "@breedMaltese": {"description": "犬種：マルチーズ"},
+  "breedSiberianHusky": "シベリアンハスキー",
+  "@breedSiberianHusky": {"description": "犬種：シベリアンハスキー"},
+  "breedAlaskanMalamute": "アラスカンマラミュート",
+  "@breedAlaskanMalamute": {"description": "犬種：アラスカンマラミュート"},
+  "breedBorderCollie": "ボーダーコリー",
+  "@breedBorderCollie": {"description": "犬種：ボーダーコリー"},
+  "breedAustralianShepherd": "オーストラリアンシェパード",
+  "@breedAustralianShepherd": {"description": "犬種：オーストラリアンシェパード"},
+  "breedBulldog": "ブルドッグ",
+  "@breedBulldog": {"description": "犬種：ブルドッグ"},
+  "breedPug": "パグ",
+  "@breedPug": {"description": "犬種：パグ"},
+  "breedGermanShepherd": "ジャーマンシェパード",
+  "@breedGermanShepherd": {"description": "犬種：ジャーマンシェパード"},
+  "breedDoberman": "ドーベルマン",
+  "@breedDoberman": {"description": "犬種：ドーベルマン"},
+  "breedBeagle": "ビーグル",
+  "@breedBeagle": {"description": "犬種：ビーグル"},
+  "breedDachshund": "ダックスフンド",
+  "@breedDachshund": {"description": "犬種：ダックスフンド"},
+  "breedSamoyed": "サモエド",
+  "@breedSamoyed": {"description": "犬種：サモエド"},
+  "breedGreatPyrenees": "グレートピレニーズ",
+  "@breedGreatPyrenees": {"description": "犬種：グレートピレニーズ"},
+  "breedCorgi": "コーギー",
+  "@breedCorgi": {"description": "犬種：コーギー"},
+  "breedWelshCorgi": "ウェルシュコーギー",
+  "@breedWelshCorgi": {"description": "犬種：ウェルシュコーギー"},
+  "breedShihTzu": "シーズー",
+  "@breedShihTzu": {"description": "犬種：シーズー"},
+  "breedPekingese": "ペキニーズ",
+  "@breedPekingese": {"description": "犬種：ペキニーズ"},
+  "breedBerneseMountainDog": "バーニーズマウンテンドッグ",
+  "@breedBerneseMountainDog": {"description": "犬種：バーニーズマウンテンドッグ"},
+  "breedSaintBernard": "セントバーナード",
+  "@breedSaintBernard": {"description": "犬種：セントバーナード"},
+  "breedBostonTerrier": "ボストンテリア",
+  "@breedBostonTerrier": {"description": "犬種：ボストンテリア"},
+  "breedWestHighlandWhiteTerrier": "ウエストハイランドホワイトテリア",
+  "@breedWestHighlandWhiteTerrier": {"description": "犬種：ウエストハイランドホワイトテリア"},
+  "breedYorkshireTerrier": "ヨークシャーテリア",
+  "@breedYorkshireTerrier": {"description": "犬種：ヨークシャーテリア"},
+  "breedNewfoundland": "ニューファンドランド",
+  "@breedNewfoundland": {"description": "犬種：ニューファンドランド"},
+  "breedRetriever": "レトリバー",
+  "@breedRetriever": {"description": "犬種：レトリバー"},
+  "breedShetlandSheepdog": "シェットランドシープドッグ",
+  "@breedShetlandSheepdog": {"description": "犬種：シェットランドシープドッグ"},
+  "breedCollie": "コリー",
+  "@breedCollie": {"description": "犬種：コリー"},
+  "breedBassetHound": "バセットハウンド",
+  "@breedBassetHound": {"description": "犬種：バセットハウンド"},
+  "breedBloodhound": "ブラッドハウンド",
+  "@breedBloodhound": {"description": "犬種：ブラッドハウンド"},
+  "breedGreyhound": "グレイハウンド",
+  "@breedGreyhound": {"description": "犬種：グレイハウンド"},
+  "breedWhippet": "ウィペット",
+  "@breedWhippet": {"description": "犬種：ウィペット"},
+  "sceneTitle": "シーン",
+  "@sceneTitle": { "description": "シーンのタイトル" },
+  "conditionTitle": "状態",
+  "@conditionTitle": { "description": "状態のタイトル" },
+  "breedTitle": "品種",
+  "@breedTitle": { "description": "品種のタイトル" },
+  "durationTitle": "再生時間",
+  "@durationTitle": { "description": "再生時間のタイトル" },
+  "generatedAtTitle": "生成日時",
+  "@generatedAtTitle": { "description": "生成日時のタイトル" }
 }

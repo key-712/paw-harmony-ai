@@ -208,3 +208,17 @@ class CtaButton extends ConsumerWidget {
 （省略）
 )
 ```
+
+## ローディング表示
+
+ローディング表示には`CircularProgressIndicator()`を直接使用せず、`Loading()`コンポーネントを使用してください。
+
+```dart
+// 👎 NG
+Center(
+  child: CircularProgressIndicator(),
+)
+
+// 👍 OK
+const Loading()
+```

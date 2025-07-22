@@ -70,7 +70,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       logger.d('=== オーディオプレイヤー初期化開始 ===');
 
       _audioPlayer.positionStream.listen((position) {
-        logger.d('再生位置更新: $position');
         state = state.copyWith(position: position);
       });
 

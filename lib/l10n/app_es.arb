@@ -658,6 +658,66 @@
   "@sceneCare": {
     "description": "Escena de uso: Cuidados/Cuidado de perros mayores"
   },
+  "sceneThunderFireworks": "Miedo a truenos/fuegos artificiales",
+  "@sceneThunderFireworks": {
+    "description": "Escena de uso: Miedo a truenos/fuegos artificiales"
+  },
+  "sceneSeparationAnxiety": "Ansiedad por separación",
+  "@sceneSeparationAnxiety": {
+    "description": "Escena de uso: Ansiedad por separación"
+  },
+  "sceneNewEnvironment": "Adaptación a nuevo entorno",
+  "@sceneNewEnvironment": {
+    "description": "Escena de uso: Adaptación a nuevo entorno"
+  },
+  "scenePostExercise": "Enfriamiento post-ejercicio",
+  "@scenePostExercise": {
+    "description": "Escena de uso: Enfriamiento post-ejercicio"
+  },
+  "sceneGrooming": "Durante el aseo",
+  "@sceneGrooming": {
+    "description": "Escena de uso: Durante el aseo"
+  },
+  "sceneMealTime": "Hora de comer",
+  "@sceneMealTime": {
+    "description": "Escena de uso: Hora de comer"
+  },
+  "scenePlayTime": "Hora de jugar",
+  "@scenePlayTime": {
+    "description": "Escena de uso: Hora de jugar"
+  },
+  "sceneTraining": "Durante el entrenamiento",
+  "@sceneTraining": {
+    "description": "Escena de uso: Durante el entrenamiento"
+  },
+  "sceneGuests": "Cuando visitan invitados",
+  "@sceneGuests": {
+    "description": "Escena de uso: Cuando visitan invitados"
+  },
+  "sceneBadWeather": "Mal tiempo",
+  "@sceneBadWeather": {
+    "description": "Escena de uso: Mal tiempo"
+  },
+  "sceneSeasonalChange": "Cambios estacionales",
+  "@sceneSeasonalChange": {
+    "description": "Escena de uso: Cambios estacionales"
+  },
+  "scenePuppySocialization": "Socialización del cachorro",
+  "@scenePuppySocialization": {
+    "description": "Escena de uso: Socialización del cachorro"
+  },
+  "sceneSeniorCare": "Cuidado de perros mayores",
+  "@sceneSeniorCare": {
+    "description": "Escena de uso: Cuidado de perros mayores"
+  },
+  "sceneMultipleDogs": "Armonía entre múltiples perros",
+  "@sceneMultipleDogs": {
+    "description": "Escena de uso: Armonía entre múltiples perros"
+  },
+  "sceneVetVisit": "Antes de la visita veterinaria",
+  "@sceneVetVisit": {
+    "description": "Escena de uso: Antes de la visita veterinaria"
+  },
   "conditionCalmDown": "Para calmarlo",
   "@conditionCalmDown": {
     "description": "Estado del perro: Para calmarlo"
@@ -677,6 +737,70 @@
   "conditionGoodSleep": "Para un buen sueño",
   "@conditionGoodSleep": {
     "description": "Estado del perro: Para un buen sueño"
+  },
+  "conditionConcentration": "Para mejorar la concentración",
+  "@conditionConcentration": {
+    "description": "Estado del perro: Para mejorar la concentración"
+  },
+  "conditionSocialization": "Para mejorar la socialización",
+  "@conditionSocialization": {
+    "description": "Estado del perro: Para mejorar la socialización"
+  },
+  "conditionLearning": "Para mejorar la capacidad de aprendizaje",
+  "@conditionLearning": {
+    "description": "Estado del perro: Para mejorar la capacidad de aprendizaje"
+  },
+  "conditionExercise": "Para aumentar la motivación al ejercicio",
+  "@conditionExercise": {
+    "description": "Estado del perro: Para aumentar la motivación al ejercicio"
+  },
+  "conditionAppetite": "Para promover el apetito",
+  "@conditionAppetite": {
+    "description": "Estado del perro: Para promover el apetito"
+  },
+  "conditionPainRelief": "Para reducir el dolor",
+  "@conditionPainRelief": {
+    "description": "Estado del perro: Para reducir el dolor"
+  },
+  "conditionAnxietyRelief": "Para aliviar la ansiedad",
+  "@conditionAnxietyRelief": {
+    "description": "Estado del perro: Para aliviar la ansiedad"
+  },
+  "conditionStressRelief": "Para reducir el estrés",
+  "@conditionStressRelief": {
+    "description": "Estado del perro: Para reducir el estrés"
+  },
+  "conditionImmunity": "Para mejorar la inmunidad",
+  "@conditionImmunity": {
+    "description": "Estado del perro: Para mejorar la inmunidad"
+  },
+  "conditionMemory": "Para mejorar la memoria",
+  "@conditionMemory": {
+    "description": "Estado del perro: Para mejorar la memoria"
+  },
+  "conditionEmotionalStability": "Para estabilizar las emociones",
+  "@conditionEmotionalStability": {
+    "description": "Estado del perro: Para estabilizar las emociones"
+  },
+  "conditionCuriosity": "Para estimular la curiosidad",
+  "@conditionCuriosity": {
+    "description": "Estado del perro: Para estimular la curiosidad"
+  },
+  "conditionPatience": "Para mejorar la paciencia",
+  "@conditionPatience": {
+    "description": "Estado del perro: Para mejorar la paciencia"
+  },
+  "conditionCooperation": "Para mejorar la cooperación",
+  "@conditionCooperation": {
+    "description": "Estado del perro: Para mejorar la cooperación"
+  },
+  "conditionIndependence": "Para desarrollar la independencia",
+  "@conditionIndependence": {
+    "description": "Estado del perro: Para desarrollar la independencia"
+  },
+  "conditionLove": "Para profundizar el amor",
+  "@conditionLove": {
+    "description": "Estado del perro: Para profundizar el amor"
   },
   "aiMusicGenerateTitle": "PawHarmony AI",
   "@aiMusicGenerateTitle": {
@@ -774,7 +898,7 @@
       }
     }
   },
-  "duration": "Duración: {duration} segundos",
+  "duration": "{duration} segundos",
   "@duration": {
     "description": "Duración de la música",
     "placeholders": {
@@ -783,6 +907,10 @@
       }
     }
   },
+  "durationTitle": "Duración",
+  "@durationTitle": { "description": "Título de la sección de duración" },
+  "generatedAtTitle": "Fecha de generación",
+  "@generatedAtTitle": { "description": "Título de la sección de fecha de generación" },
   "registerDogProfileTitle": "Registrar el perfil de su perro",
   "@registerDogProfileTitle": {
     "description": "Título de la pantalla de registro del perfil del perro"
@@ -1158,5 +1286,101 @@
   "selectTags": "Seleccionar etiquetas",
   "@selectTags": {
     "description": "Título de la sección de selección de etiquetas"
-  }
+  },
+  "emailSentTitle": "Correo enviado",
+  "@emailSentTitle": {
+    "description": "Título de la pantalla de correo enviado"
+  },
+  "emailSentMessage": "El correo ha sido enviado.\nPor favor, revise su bandeja de entrada.",
+  "@emailSentMessage": {
+    "description": "Mensaje de la pantalla de correo enviado"
+  },
+  "emailNotVerifiedTitle": "Correo no verificado",
+  "@emailNotVerifiedTitle": {
+    "description": "Título del diálogo de correo no verificado"
+  },
+  "emailNotVerifiedMessage": "La dirección de correo electrónico no está verificada.\n¿Desea reenviar el correo de verificación?",
+  "@emailNotVerifiedMessage": {
+    "description": "Mensaje del diálogo de correo no verificado"
+  },
+  "resendEmail": "Reenviar",
+  "@resendEmail": {
+    "description": "Texto del botón de reenvío de correo"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "Texto del botón OK"
+  },
+  "emailVerificationRequired": "※La verificación por correo electrónico es necesaria después de crear la cuenta",
+  "@emailVerificationRequired": {
+    "description": "Message indicating that email verification is required after sign up"
+  },
+  "breedAkita": "Akita",
+  "@breedAkita": {"description": "Raza: Akita"},
+  "breedMaltese": "Maltés",
+  "@breedMaltese": {"description": "Raza: Maltés"},
+  "breedSiberianHusky": "Husky siberiano",
+  "@breedSiberianHusky": {"description": "Raza: Husky siberiano"},
+  "breedAlaskanMalamute": "Malamute de Alaska",
+  "@breedAlaskanMalamute": {"description": "Raza: Malamute de Alaska"},
+  "breedBorderCollie": "Border Collie",
+  "@breedBorderCollie": {"description": "Raza: Border Collie"},
+  "breedAustralianShepherd": "Pastor australiano",
+  "@breedAustralianShepherd": {"description": "Raza: Pastor australiano"},
+  "breedBulldog": "Bulldog",
+  "@breedBulldog": {"description": "Raza: Bulldog"},
+  "breedPug": "Pug",
+  "@breedPug": {"description": "Raza: Pug"},
+  "breedGermanShepherd": "Pastor alemán",
+  "@breedGermanShepherd": {"description": "Raza: Pastor alemán"},
+  "breedDoberman": "Dóberman",
+  "@breedDoberman": {"description": "Raza: Dóberman"},
+  "breedBeagle": "Beagle",
+  "@breedBeagle": {"description": "Raza: Beagle"},
+  "breedDachshund": "Dachshund",
+  "@breedDachshund": {"description": "Raza: Dachshund"},
+  "breedSamoyed": "Samoyedo",
+  "@breedSamoyed": {"description": "Raza: Samoyedo"},
+  "breedGreatPyrenees": "Gran Pirineo",
+  "@breedGreatPyrenees": {"description": "Raza: Gran Pirineo"},
+  "breedCorgi": "Corgi",
+  "@breedCorgi": {"description": "Raza: Corgi"},
+  "breedWelshCorgi": "Corgi galés",
+  "@breedWelshCorgi": {"description": "Raza: Corgi galés"},
+  "breedShihTzu": "Shih Tzu",
+  "@breedShihTzu": {"description": "Raza: Shih Tzu"},
+  "breedPekingese": "Pekinés",
+  "@breedPekingese": {"description": "Raza: Pekinés"},
+  "breedBerneseMountainDog": "Boyero de Berna",
+  "@breedBerneseMountainDog": {"description": "Raza: Boyero de Berna"},
+  "breedSaintBernard": "San Bernardo",
+  "@breedSaintBernard": {"description": "Raza: San Bernardo"},
+  "breedBostonTerrier": "Boston Terrier",
+  "@breedBostonTerrier": {"description": "Raza: Boston Terrier"},
+  "breedWestHighlandWhiteTerrier": "West Highland White Terrier",
+  "@breedWestHighlandWhiteTerrier": {"description": "Raza: West Highland White Terrier"},
+  "breedYorkshireTerrier": "Yorkshire Terrier",
+  "@breedYorkshireTerrier": {"description": "Raza: Yorkshire Terrier"},
+  "breedNewfoundland": "Terranova",
+  "@breedNewfoundland": {"description": "Raza: Terranova"},
+  "breedRetriever": "Retriever",
+  "@breedRetriever": {"description": "Raza: Retriever"},
+  "breedShetlandSheepdog": "Pastor de Shetland",
+  "@breedShetlandSheepdog": {"description": "Raza: Pastor de Shetland"},
+  "breedCollie": "Collie",
+  "@breedCollie": {"description": "Raza: Collie"},
+  "breedBassetHound": "Basset Hound",
+  "@breedBassetHound": {"description": "Raza: Basset Hound"},
+  "breedBloodhound": "Sabueso",
+  "@breedBloodhound": {"description": "Raza: Sabueso"},
+  "breedGreyhound": "Galgo",
+  "@breedGreyhound": {"description": "Raza: Galgo"},
+  "breedWhippet": "Whippet",
+  "@breedWhippet": {"description": "Raza: Whippet"},
+  "sceneTitle": "Escena",
+  "@sceneTitle": { "description": "Título de la sección de escena" },
+  "conditionTitle": "Condición",
+  "@conditionTitle": { "description": "Título de la sección de condición" },
+  "breedTitle": "Raza",
+  "@breedTitle": { "description": "Título de la sección de raza" }
 }
