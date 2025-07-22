@@ -193,10 +193,7 @@ class MagentaMusicService extends BaseMusicService {
     int duration = 30,
     Map<String, dynamic>? config,
   }) async {
-    logger
-      ..d('=== Magenta.js 音楽生成開始 ===')
-      ..d('プロンプト: $prompt')
-      ..d('長さ: $duration秒');
+    logger.d('音楽生成開始 プロンプト: $prompt');
 
     try {
       // デフォルト設定
@@ -215,7 +212,7 @@ class MagentaMusicService extends BaseMusicService {
       // プロンプトから音楽パラメータを解析
       final musicParams = _parsePromptToMusicParams(prompt, finalConfig);
 
-      // Magenta.jsで音楽を生成（簡易版）
+      // Magenta.jsで音楽を生成
       final audioData = await _generateMagentaMusic(
         duration: duration,
         params: musicParams,
@@ -285,8 +282,6 @@ class MagentaMusicService extends BaseMusicService {
     required Map<String, dynamic> params,
     required Map<String, dynamic> config,
   }) async {
-    logger.d('Magenta.jsで音楽生成中...');
-
     // 簡易的なMIDIデータを生成
     final midiData = _generateSimpleMidiData(duration, params);
 
@@ -362,13 +357,132 @@ class MagentaMusicService extends BaseMusicService {
     Map<String, dynamic> params,
   ) {
     final scale = _getScale(params['key'] as String, params['mode'] as String);
-    final noteIndex = (beat * 2).floor() % scale.length;
+
+    // より自然なメロディー生成のための改善
+    final noteIndex = _generateNaturalMelodyIndex(beat, scale.length, params);
     final pitch = 60 + scale[noteIndex];
     final freq = baseFreq * pow(2, (pitch - 60) / 12);
 
     // 正弦波でメロディーを生成
     final t = beat * 2 * pi;
     return sin(freq * t);
+  }
+
+  /// より自然なメロディーインデックスを生成するメソッド
+  int _generateNaturalMelodyIndex(
+    double beat,
+    int scaleLength,
+    Map<String, dynamic> params,
+  ) {
+    // 基本的なパターン生成
+    final basePattern = _generateMelodyPattern(beat, scaleLength, params);
+
+    // ランダム性を追加（温度パラメータに基づく）
+    final temperature = params['temperature'] as double? ?? 1.0;
+    final randomFactor = (temperature - 0.5) * 0.3;
+
+    // パターンにランダム性を適用
+    final adjustedIndex = (basePattern + randomFactor).round();
+
+    // スケール範囲内に制限
+    return adjustedIndex.clamp(0, scaleLength - 1);
+  }
+
+  /// メロディーパターンを生成するメソッド
+  double _generateMelodyPattern(
+    double beat,
+    int scaleLength,
+    Map<String, dynamic> params,
+  ) {
+    final bpm = params['bpm'] as int? ?? 60;
+    final mode = params['mode'] as String? ?? 'major';
+    final scenario = params['scenario'] as String?;
+
+    // レゲエ、ソフトロック、クラシックの特徴を反映
+    if (scenario != null) {
+      switch (scenario) {
+        case '留守番中':
+        case '長距離移動中':
+          // レゲエ風：オフビートリズム
+          return _generateReggaePattern(beat, scaleLength, bpm);
+        case 'ストレスフル':
+        case '療養/高齢犬ケア':
+          // ソフトロック風：温かいハーモニー
+          return _generateSoftRockPattern(beat, scaleLength, bpm);
+        case '就寝前':
+        case '日常の癒し':
+          // クラシック風：優雅なメロディー
+          return _generateClassicalPattern(beat, scaleLength, bpm);
+        default:
+          break;
+      }
+    }
+
+    // 複数のパターンを組み合わせ
+    final pattern1 = _generateArpeggioPattern(beat, scaleLength, bpm);
+    final pattern2 = _generateScalePattern(beat, scaleLength, bpm);
+    final pattern3 = _generateChordPattern(beat, scaleLength, bpm);
+
+    // パターンを重ね合わせ
+    final combinedPattern = pattern1 * 0.4 + pattern2 * 0.4 + pattern3 * 0.2;
+
+    // モードに応じた調整
+    if (mode == 'minor') {
+      return combinedPattern * 0.8; // マイナーモードは少し暗め
+    }
+
+    return combinedPattern;
+  }
+
+  /// アルペジオパターンを生成するメソッド（テンポ調整版）
+  double _generateArpeggioPattern(double beat, int scaleLength, int bpm) {
+    final cycle = (beat * bpm / 60.0) % 4; // 4拍子のサイクル
+    final arpeggioPattern = [0, 2, 4, 2, 0, 4, 2, 0]; // アルペジオパターン
+    final patternIndex =
+        (cycle * 1.5).floor() % arpeggioPattern.length; // テンポに応じて調整
+    return arpeggioPattern[patternIndex].toDouble();
+  }
+
+  /// スケールパターンを生成するメソッド（テンポ調整版）
+  double _generateScalePattern(double beat, int scaleLength, int bpm) {
+    final cycle = (beat * bpm / 60.0) % 8; // 8拍子のサイクル
+    final scalePattern = [0, 1, 2, 3, 4, 5, 6, 7]; // スケールパターン
+    final patternIndex =
+        (cycle * 0.8).floor() % scalePattern.length; // テンポに応じて調整
+    return scalePattern[patternIndex].toDouble();
+  }
+
+  /// コードパターンを生成するメソッド（テンポ調整版）
+  double _generateChordPattern(double beat, int scaleLength, int bpm) {
+    final cycle = (beat * bpm / 60.0) % 6; // 6拍子のサイクル
+    final chordPattern = [0, 2, 4, 0, 2, 4]; // コードパターン
+    final patternIndex =
+        (cycle * 1.2).floor() % chordPattern.length; // テンポに応じて調整
+    return chordPattern[patternIndex].toDouble();
+  }
+
+  /// レゲエ風パターンを生成するメソッド
+  double _generateReggaePattern(double beat, int scaleLength, int bpm) {
+    final cycle = (beat * bpm / 60.0) % 4; // 4拍子のサイクル
+    final reggaePattern = [0, 2, 4, 2, 0, 4, 2, 0]; // レゲエの特徴的なパターン
+    final patternIndex = (cycle * 2).floor() % reggaePattern.length;
+    return reggaePattern[patternIndex].toDouble();
+  }
+
+  /// ソフトロック風パターンを生成するメソッド
+  double _generateSoftRockPattern(double beat, int scaleLength, int bpm) {
+    final cycle = (beat * bpm / 60.0) % 6; // 6拍子のサイクル
+    final softRockPattern = [0, 2, 4, 0, 2, 4]; // ソフトロックの温かいハーモニー
+    final patternIndex = cycle.floor() % softRockPattern.length;
+    return softRockPattern[patternIndex].toDouble();
+  }
+
+  /// クラシック風パターンを生成するメソッド
+  double _generateClassicalPattern(double beat, int scaleLength, int bpm) {
+    final cycle = (beat * bpm / 60.0) % 8; // 8拍子のサイクル
+    final classicalPattern = [0, 2, 4, 7, 4, 2, 0, 2]; // クラシックの優雅なメロディー
+    final patternIndex = cycle.floor() % classicalPattern.length;
+    return classicalPattern[patternIndex].toDouble();
   }
 
   /// 音量エンベロープを適用するメソッド

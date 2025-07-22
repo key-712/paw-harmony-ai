@@ -653,6 +653,66 @@
   "@sceneCare": {
     "description": "Scene: Medical/Senior care"
   },
+  "sceneThunderFireworks": "Thunder/Fireworks fear",
+  "@sceneThunderFireworks": {
+    "description": "Scene: Thunder/Fireworks fear"
+  },
+  "sceneSeparationAnxiety": "Separation anxiety",
+  "@sceneSeparationAnxiety": {
+    "description": "Scene: Separation anxiety"
+  },
+  "sceneNewEnvironment": "New environment adaptation",
+  "@sceneNewEnvironment": {
+    "description": "Scene: New environment adaptation"
+  },
+  "scenePostExercise": "Post-exercise cooldown",
+  "@scenePostExercise": {
+    "description": "Scene: Post-exercise cooldown"
+  },
+  "sceneGrooming": "During grooming",
+  "@sceneGrooming": {
+    "description": "Scene: During grooming"
+  },
+  "sceneMealTime": "Meal time",
+  "@sceneMealTime": {
+    "description": "Scene: Meal time"
+  },
+  "scenePlayTime": "Play time",
+  "@scenePlayTime": {
+    "description": "Scene: Play time"
+  },
+  "sceneTraining": "During training",
+  "@sceneTraining": {
+    "description": "Scene: During training"
+  },
+  "sceneGuests": "When guests visit",
+  "@sceneGuests": {
+    "description": "Scene: When guests visit"
+  },
+  "sceneBadWeather": "Bad weather",
+  "@sceneBadWeather": {
+    "description": "Scene: Bad weather"
+  },
+  "sceneSeasonalChange": "Seasonal changes",
+  "@sceneSeasonalChange": {
+    "description": "Scene: Seasonal changes"
+  },
+  "scenePuppySocialization": "Puppy socialization",
+  "@scenePuppySocialization": {
+    "description": "Scene: Puppy socialization"
+  },
+  "sceneSeniorCare": "Senior dog care",
+  "@sceneSeniorCare": {
+    "description": "Scene: Senior dog care"
+  },
+  "sceneMultipleDogs": "Multiple dogs harmony",
+  "@sceneMultipleDogs": {
+    "description": "Scene: Multiple dogs harmony"
+  },
+  "sceneVetVisit": "Before vet visit",
+  "@sceneVetVisit": {
+    "description": "Scene: Before vet visit"
+  },
   "conditionCalmDown": "Want to calm down",
   "@conditionCalmDown": {
     "description": "Dog's condition: Want to calm down"
@@ -672,6 +732,70 @@
   "conditionGoodSleep": "Want to sleep well",
   "@conditionGoodSleep": {
     "description": "Dog's condition: Want to sleep well"
+  },
+  "conditionConcentration": "Want to improve concentration",
+  "@conditionConcentration": {
+    "description": "Dog's condition: Want to improve concentration"
+  },
+  "conditionSocialization": "Want to improve socialization",
+  "@conditionSocialization": {
+    "description": "Dog's condition: Want to improve socialization"
+  },
+  "conditionLearning": "Want to improve learning ability",
+  "@conditionLearning": {
+    "description": "Dog's condition: Want to improve learning ability"
+  },
+  "conditionExercise": "Want to increase exercise motivation",
+  "@conditionExercise": {
+    "description": "Dog's condition: Want to increase exercise motivation"
+  },
+  "conditionAppetite": "Want to promote appetite",
+  "@conditionAppetite": {
+    "description": "Dog's condition: Want to promote appetite"
+  },
+  "conditionPainRelief": "Want to reduce pain",
+  "@conditionPainRelief": {
+    "description": "Dog's condition: Want to reduce pain"
+  },
+  "conditionAnxietyRelief": "Want to relieve anxiety",
+  "@conditionAnxietyRelief": {
+    "description": "Dog's condition: Want to relieve anxiety"
+  },
+  "conditionStressRelief": "Want to reduce stress",
+  "@conditionStressRelief": {
+    "description": "Dog's condition: Want to reduce stress"
+  },
+  "conditionImmunity": "Want to improve immunity",
+  "@conditionImmunity": {
+    "description": "Dog's condition: Want to improve immunity"
+  },
+  "conditionMemory": "Want to improve memory",
+  "@conditionMemory": {
+    "description": "Dog's condition: Want to improve memory"
+  },
+  "conditionEmotionalStability": "Want to stabilize emotions",
+  "@conditionEmotionalStability": {
+    "description": "Dog's condition: Want to stabilize emotions"
+  },
+  "conditionCuriosity": "Want to stimulate curiosity",
+  "@conditionCuriosity": {
+    "description": "Dog's condition: Want to stimulate curiosity"
+  },
+  "conditionPatience": "Want to improve patience",
+  "@conditionPatience": {
+    "description": "Dog's condition: Want to improve patience"
+  },
+  "conditionCooperation": "Want to improve cooperation",
+  "@conditionCooperation": {
+    "description": "Dog's condition: Want to improve cooperation"
+  },
+  "conditionIndependence": "Want to develop independence",
+  "@conditionIndependence": {
+    "description": "Dog's condition: Want to develop independence"
+  },
+  "conditionLove": "Want to deepen love",
+  "@conditionLove": {
+    "description": "Dog's condition: Want to deepen love"
   },
   "aiMusicGenerateTitle": "PawHarmony AI",
   "@aiMusicGenerateTitle": {

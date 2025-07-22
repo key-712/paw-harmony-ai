@@ -657,6 +657,66 @@
   "@sceneCare": {
     "description": "利用シーン：療養/高齢犬ケア"
   },
+  "sceneThunderFireworks": "雷・花火の恐怖",
+  "@sceneThunderFireworks": {
+    "description": "利用シーン：雷・花火の恐怖"
+  },
+  "sceneSeparationAnxiety": "分離不安",
+  "@sceneSeparationAnxiety": {
+    "description": "利用シーン：分離不安"
+  },
+  "sceneNewEnvironment": "新しい環境への適応",
+  "@sceneNewEnvironment": {
+    "description": "利用シーン：新しい環境への適応"
+  },
+  "scenePostExercise": "運動後のクールダウン",
+  "@scenePostExercise": {
+    "description": "利用シーン：運動後のクールダウン"
+  },
+  "sceneGrooming": "グルーミング時",
+  "@sceneGrooming": {
+    "description": "利用シーン：グルーミング時"
+  },
+  "sceneMealTime": "食事時",
+  "@sceneMealTime": {
+    "description": "利用シーン：食事時"
+  },
+  "scenePlayTime": "遊び時間",
+  "@scenePlayTime": {
+    "description": "利用シーン：遊び時間"
+  },
+  "sceneTraining": "トレーニング時",
+  "@sceneTraining": {
+    "description": "利用シーン：トレーニング時"
+  },
+  "sceneGuests": "来客時",
+  "@sceneGuests": {
+    "description": "利用シーン：来客時"
+  },
+  "sceneBadWeather": "天候不良時",
+  "@sceneBadWeather": {
+    "description": "利用シーン：天候不良時"
+  },
+  "sceneSeasonalChange": "季節の変わり目",
+  "@sceneSeasonalChange": {
+    "description": "利用シーン：季節の変わり目"
+  },
+  "scenePuppySocialization": "子犬の社会化",
+  "@scenePuppySocialization": {
+    "description": "利用シーン：子犬の社会化"
+  },
+  "sceneSeniorCare": "シニア犬のケア",
+  "@sceneSeniorCare": {
+    "description": "利用シーン：シニア犬のケア"
+  },
+  "sceneMultipleDogs": "多頭飼いの調和",
+  "@sceneMultipleDogs": {
+    "description": "利用シーン：多頭飼いの調和"
+  },
+  "sceneVetVisit": "獣医訪問前",
+  "@sceneVetVisit": {
+    "description": "利用シーン：獣医訪問前"
+  },
   "conditionCalmDown": "落ち着かせたい",
   "@conditionCalmDown": {
     "description": "犬の状態：落ち着かせたい"
@@ -676,6 +736,70 @@
   "conditionGoodSleep": "安眠させたい",
   "@conditionGoodSleep": {
     "description": "犬の状態：安眠させたい"
+  },
+  "conditionConcentration": "集中力を高めたい",
+  "@conditionConcentration": {
+    "description": "犬の状態：集中力を高めたい"
+  },
+  "conditionSocialization": "社交性を向上させたい",
+  "@conditionSocialization": {
+    "description": "犬の状態：社交性を向上させたい"
+  },
+  "conditionLearning": "学習能力を向上させたい",
+  "@conditionLearning": {
+    "description": "犬の状態：学習能力を向上させたい"
+  },
+  "conditionExercise": "運動意欲を高めたい",
+  "@conditionExercise": {
+    "description": "犬の状態：運動意欲を高めたい"
+  },
+  "conditionAppetite": "食欲を促進させたい",
+  "@conditionAppetite": {
+    "description": "犬の状態：食欲を促進させたい"
+  },
+  "conditionPainRelief": "痛みを軽減させたい",
+  "@conditionPainRelief": {
+    "description": "犬の状態：痛みを軽減させたい"
+  },
+  "conditionAnxietyRelief": "不安を解消させたい",
+  "@conditionAnxietyRelief": {
+    "description": "犬の状態：不安を解消させたい"
+  },
+  "conditionStressRelief": "ストレスを軽減させたい",
+  "@conditionStressRelief": {
+    "description": "犬の状態：ストレスを軽減させたい"
+  },
+  "conditionImmunity": "免疫力を向上させたい",
+  "@conditionImmunity": {
+    "description": "犬の状態：免疫力を向上させたい"
+  },
+  "conditionMemory": "記憶力を向上させたい",
+  "@conditionMemory": {
+    "description": "犬の状態：記憶力を向上させたい"
+  },
+  "conditionEmotionalStability": "感情を安定させたい",
+  "@conditionEmotionalStability": {
+    "description": "犬の状態：感情を安定させたい"
+  },
+  "conditionCuriosity": "好奇心を刺激したい",
+  "@conditionCuriosity": {
+    "description": "犬の状態：好奇心を刺激したい"
+  },
+  "conditionPatience": "忍耐力を向上させたい",
+  "@conditionPatience": {
+    "description": "犬の状態：忍耐力を向上させたい"
+  },
+  "conditionCooperation": "協調性を高めたい",
+  "@conditionCooperation": {
+    "description": "犬の状態：協調性を高めたい"
+  },
+  "conditionIndependence": "自立心を育てたい",
+  "@conditionIndependence": {
+    "description": "犬の状態：自立心を育てたい"
+  },
+  "conditionLove": "愛情を深めたい",
+  "@conditionLove": {
+    "description": "犬の状態：愛情を深めたい"
   },
   "aiMusicGenerateTitle": "PawHarmony AI",
   "@aiMusicGenerateTitle": {

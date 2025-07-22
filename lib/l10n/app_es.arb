@@ -658,6 +658,66 @@
   "@sceneCare": {
     "description": "Escena de uso: Cuidados/Cuidado de perros mayores"
   },
+  "sceneThunderFireworks": "Miedo a truenos/fuegos artificiales",
+  "@sceneThunderFireworks": {
+    "description": "Escena de uso: Miedo a truenos/fuegos artificiales"
+  },
+  "sceneSeparationAnxiety": "Ansiedad por separación",
+  "@sceneSeparationAnxiety": {
+    "description": "Escena de uso: Ansiedad por separación"
+  },
+  "sceneNewEnvironment": "Adaptación a nuevo entorno",
+  "@sceneNewEnvironment": {
+    "description": "Escena de uso: Adaptación a nuevo entorno"
+  },
+  "scenePostExercise": "Enfriamiento post-ejercicio",
+  "@scenePostExercise": {
+    "description": "Escena de uso: Enfriamiento post-ejercicio"
+  },
+  "sceneGrooming": "Durante el aseo",
+  "@sceneGrooming": {
+    "description": "Escena de uso: Durante el aseo"
+  },
+  "sceneMealTime": "Hora de comer",
+  "@sceneMealTime": {
+    "description": "Escena de uso: Hora de comer"
+  },
+  "scenePlayTime": "Hora de jugar",
+  "@scenePlayTime": {
+    "description": "Escena de uso: Hora de jugar"
+  },
+  "sceneTraining": "Durante el entrenamiento",
+  "@sceneTraining": {
+    "description": "Escena de uso: Durante el entrenamiento"
+  },
+  "sceneGuests": "Cuando visitan invitados",
+  "@sceneGuests": {
+    "description": "Escena de uso: Cuando visitan invitados"
+  },
+  "sceneBadWeather": "Mal tiempo",
+  "@sceneBadWeather": {
+    "description": "Escena de uso: Mal tiempo"
+  },
+  "sceneSeasonalChange": "Cambios estacionales",
+  "@sceneSeasonalChange": {
+    "description": "Escena de uso: Cambios estacionales"
+  },
+  "scenePuppySocialization": "Socialización del cachorro",
+  "@scenePuppySocialization": {
+    "description": "Escena de uso: Socialización del cachorro"
+  },
+  "sceneSeniorCare": "Cuidado de perros mayores",
+  "@sceneSeniorCare": {
+    "description": "Escena de uso: Cuidado de perros mayores"
+  },
+  "sceneMultipleDogs": "Armonía entre múltiples perros",
+  "@sceneMultipleDogs": {
+    "description": "Escena de uso: Armonía entre múltiples perros"
+  },
+  "sceneVetVisit": "Antes de la visita veterinaria",
+  "@sceneVetVisit": {
+    "description": "Escena de uso: Antes de la visita veterinaria"
+  },
   "conditionCalmDown": "Para calmarlo",
   "@conditionCalmDown": {
     "description": "Estado del perro: Para calmarlo"
@@ -677,6 +737,70 @@
   "conditionGoodSleep": "Para un buen sueño",
   "@conditionGoodSleep": {
     "description": "Estado del perro: Para un buen sueño"
+  },
+  "conditionConcentration": "Para mejorar la concentración",
+  "@conditionConcentration": {
+    "description": "Estado del perro: Para mejorar la concentración"
+  },
+  "conditionSocialization": "Para mejorar la socialización",
+  "@conditionSocialization": {
+    "description": "Estado del perro: Para mejorar la socialización"
+  },
+  "conditionLearning": "Para mejorar la capacidad de aprendizaje",
+  "@conditionLearning": {
+    "description": "Estado del perro: Para mejorar la capacidad de aprendizaje"
+  },
+  "conditionExercise": "Para aumentar la motivación al ejercicio",
+  "@conditionExercise": {
+    "description": "Estado del perro: Para aumentar la motivación al ejercicio"
+  },
+  "conditionAppetite": "Para promover el apetito",
+  "@conditionAppetite": {
+    "description": "Estado del perro: Para promover el apetito"
+  },
+  "conditionPainRelief": "Para reducir el dolor",
+  "@conditionPainRelief": {
+    "description": "Estado del perro: Para reducir el dolor"
+  },
+  "conditionAnxietyRelief": "Para aliviar la ansiedad",
+  "@conditionAnxietyRelief": {
+    "description": "Estado del perro: Para aliviar la ansiedad"
+  },
+  "conditionStressRelief": "Para reducir el estrés",
+  "@conditionStressRelief": {
+    "description": "Estado del perro: Para reducir el estrés"
+  },
+  "conditionImmunity": "Para mejorar la inmunidad",
+  "@conditionImmunity": {
+    "description": "Estado del perro: Para mejorar la inmunidad"
+  },
+  "conditionMemory": "Para mejorar la memoria",
+  "@conditionMemory": {
+    "description": "Estado del perro: Para mejorar la memoria"
+  },
+  "conditionEmotionalStability": "Para estabilizar las emociones",
+  "@conditionEmotionalStability": {
+    "description": "Estado del perro: Para estabilizar las emociones"
+  },
+  "conditionCuriosity": "Para estimular la curiosidad",
+  "@conditionCuriosity": {
+    "description": "Estado del perro: Para estimular la curiosidad"
+  },
+  "conditionPatience": "Para mejorar la paciencia",
+  "@conditionPatience": {
+    "description": "Estado del perro: Para mejorar la paciencia"
+  },
+  "conditionCooperation": "Para mejorar la cooperación",
+  "@conditionCooperation": {
+    "description": "Estado del perro: Para mejorar la cooperación"
+  },
+  "conditionIndependence": "Para desarrollar la independencia",
+  "@conditionIndependence": {
+    "description": "Estado del perro: Para desarrollar la independencia"
+  },
+  "conditionLove": "Para profundizar el amor",
+  "@conditionLove": {
+    "description": "Estado del perro: Para profundizar el amor"
   },
   "aiMusicGenerateTitle": "PawHarmony AI",
   "@aiMusicGenerateTitle": {
