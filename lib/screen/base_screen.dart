@@ -23,7 +23,7 @@ class BaseScreen extends HookConsumerWidget {
     final base = ref.watch(baseStateNotifierProvider);
     final baseStateNotifier = ref.watch(baseStateNotifierProvider.notifier);
     final scrollControllers = useMemoized(
-      () => List.generate(3, (_) => ScrollController()),
+      () => List.generate(4, (_) => ScrollController()),
       const [],
     );
 
@@ -56,7 +56,8 @@ class BaseScreen extends HookConsumerWidget {
                 children: [
                   AudioGenerationScreen(scrollController: scrollControllers[0]),
                   PlayerListScreen(scrollController: scrollControllers[1]),
-                  SettingScreen(scrollController: scrollControllers[2]),
+                  DogProfileScreen(scrollController: scrollControllers[2]),
+                  SettingScreen(scrollController: scrollControllers[3]),
                 ],
               ),
             ),
@@ -92,6 +93,15 @@ class BaseScreen extends HookConsumerWidget {
             label:
                 ThemeText(
                   text: AppLocalizations.of(context)!.playerList,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ).text,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person),
+            label:
+                ThemeText(
+                  text: AppLocalizations.of(context)!.profile,
                   color: Theme.of(context).colorScheme.onSurface,
                   style: Theme.of(context).textTheme.bodyMedium!,
                 ).text,

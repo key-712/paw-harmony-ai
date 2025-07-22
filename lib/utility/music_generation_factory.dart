@@ -82,12 +82,15 @@ class MusicGenerationFactory {
     // 設定から楽器を推測
     final instruments = <String>[];
 
-    // シーンや条件に基づいて楽器を選択（レゲエ、ソフトロック、クラシックを重視）
+    // シーンや条件に基づいて楽器を選択（IDベースで分岐）
     if (config.containsKey('scenario')) {
-      final scenario = config['scenario'] as String?;
-      final scenarioKey = _getScenarioKey(scenario ?? '');
-      switch (scenarioKey) {
-        case 'sceneLeavingHome':
+      final scenarioId = config['scenario'] as String?;
+      switch (scenarioId) {
+        case '1':
+        case '4':
+        case '9':
+        case '13':
+        case '18':
           // レゲエ風：ベース、ギター、パーカッション
           instruments.addAll([
             'bass',
@@ -95,86 +98,36 @@ class MusicGenerationFactory {
             'percussion',
             'strings',
           ]);
-        case 'sceneBedtime':
-          // クラシック風：弦楽器、ピアノ、ハープ
-          instruments.addAll(['strings', 'piano', 'harp', 'cello']);
-        case 'sceneStressful':
-          // ソフトロック風：アコースティックギター、ピアノ、弦楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings', 'bass']);
-        case 'sceneLongDistanceTravel':
-          // レゲエ風：ベース、ギター、パーカッション
+        case '2':
+        case '5':
+        case '10':
+        case '12':
+        case '15':
+        case '17':
+        case '20':
+          // クラシック風
           instruments.addAll([
-            'bass',
-            'acoustic_guitar',
-            'percussion',
             'strings',
+            'piano',
+            'harp',
+            'cello',
+            'woodwinds',
+            'violin',
+            'viola',
           ]);
-        case 'sceneDailyHealing':
-          // クラシック風：弦楽四重奏
-          instruments.addAll(['violin', 'viola', 'cello', 'piano']);
-        case 'sceneCare':
-          // ソフトロック風：癒し系アコースティック
+        case '3':
+        case '6':
+        case '8':
+        case '11':
+        case '14':
+        case '16':
+        case '19':
+        case '21':
+          // ソフトロック風
           instruments.addAll(['acoustic_guitar', 'piano', 'strings', 'bass']);
-        case 'sceneThunderFireworks':
+        case '7':
           // クラシック風：深いベースで音をマスク
           instruments.addAll(['bass', 'cello', 'strings', 'piano']);
-        case 'sceneSeparationAnxiety':
-          // ソフトロック風：安心感を与える楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings', 'bass']);
-        case 'sceneNewEnvironment':
-          // レゲエ風：安定感を与える楽器
-          instruments.addAll([
-            'bass',
-            'acoustic_guitar',
-            'percussion',
-            'strings',
-          ]);
-        case 'scenePostExercise':
-          // クラシック風：心拍数を下げる楽器
-          instruments.addAll(['piano', 'strings', 'harp', 'cello']);
-        case 'sceneGrooming':
-          // ソフトロック風：リラックスした楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings']);
-        case 'sceneMealTime':
-          // クラシック風：食事を楽しむ楽器
-          instruments.addAll(['strings', 'piano', 'woodwinds']);
-        case 'scenePlayTime':
-          // レゲエ風：楽しい楽器
-          instruments.addAll([
-            'bass',
-            'acoustic_guitar',
-            'percussion',
-            'piano',
-          ]);
-        case 'sceneTraining':
-          // ソフトロック風：集中力を高める楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings', 'bass']);
-        case 'sceneGuests':
-          // クラシック風：歓迎の楽器
-          instruments.addAll(['strings', 'piano', 'woodwinds']);
-        case 'sceneBadWeather':
-          // ソフトロック風：慰めの楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings']);
-        case 'sceneSeasonalChange':
-          // クラシック風：季節に適応する楽器
-          instruments.addAll(['strings', 'piano', 'woodwinds']);
-        case 'scenePuppySocialization':
-          // レゲエ風：好奇心を刺激する楽器
-          instruments.addAll([
-            'bass',
-            'acoustic_guitar',
-            'percussion',
-            'piano',
-          ]);
-        case 'sceneSeniorCare':
-          // ソフトロック風：シニア犬に優しい楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings', 'bass']);
-        case 'sceneMultipleDogs':
-          // クラシック風：調和を促進する楽器
-          instruments.addAll(['strings', 'piano', 'woodwinds']);
-        case 'sceneVetVisit':
-          // ソフトロック風：不安を軽減する楽器
-          instruments.addAll(['acoustic_guitar', 'piano', 'strings']);
         default:
           instruments.addAll(defaultInstruments);
       }
@@ -232,23 +185,103 @@ class MusicGenerationFactory {
     if (config.containsKey('breed')) {
       final breed = config['breed'] as String?;
       if (breed != null) {
-        final breedKey = _getBreedKey(breed);
+        final breedKey = getBreedKey(breed);
         switch (breedKey) {
-          case 'breedChihuahua':
           case 'breedToyPoodle':
+          case 'breedChihuahua':
             // 小型犬：クラシックの優しい楽器
             instruments.addAll(['piano', 'harp', 'violin']);
+          case 'breedShiba':
+            // 日本犬：クラシックの平和な楽器
+            instruments.addAll(['strings', 'piano', 'cello']);
+          case 'breedMiniatureDachshund':
+            // 小型犬：クラシックの優しい楽器
+            instruments.addAll(['piano', 'harp', 'violin']);
+          case 'breedPomeranian':
+            // 超小型犬：より繊細な楽器
+            instruments.addAll(['harp', 'violin', 'piano']);
+          case 'breedFrenchBulldog':
+            // 短頭種：穏やかな楽器
+            instruments.addAll(['piano', 'strings', 'cello']);
           case 'breedGoldenRetriever':
+          case 'breedLabradorRetriever':
           case 'breedLabrador':
             // 大型犬：レゲエの温かい楽器
             instruments.addAll(['bass', 'acoustic_guitar', 'strings']);
-          case 'breedShibaInu':
+          case 'breedMix':
+            // 混種犬：汎用的な楽器
+            instruments.addAll(['piano', 'strings', 'acoustic_guitar']);
+          case 'breedOther':
+            // その他の犬種：汎用的な楽器
+            instruments.addAll(['piano', 'strings', 'acoustic_guitar']);
           case 'breedAkita':
             // 日本犬：クラシックの平和な楽器
             instruments.addAll(['strings', 'piano', 'cello']);
+          case 'breedMaltese':
+            // 超小型犬：より繊細な楽器
+            instruments.addAll(['harp', 'violin', 'piano']);
+          case 'breedSiberianHusky':
+          case 'breedAlaskanMalamute':
+            // 北方犬：力強い楽器
+            instruments.addAll(['bass', 'percussion', 'strings']);
+          case 'breedBorderCollie':
+          case 'breedAustralianShepherd':
+            // 作業犬：集中力を高める楽器
+            instruments.addAll(['acoustic_guitar', 'piano', 'strings']);
+          case 'breedBulldog':
+          case 'breedPug':
+            // 短頭種：穏やかな楽器
+            instruments.addAll(['piano', 'strings', 'cello']);
+          case 'breedGermanShepherd':
+          case 'breedDoberman':
+            // 護衛犬：自信を与える楽器
+            instruments.addAll(['bass', 'strings', 'piano']);
+          case 'breedBeagle':
+          case 'breedDachshund':
+            // 猟犬：注意力を高める楽器
+            instruments.addAll(['acoustic_guitar', 'piano', 'strings']);
+          case 'breedSamoyed':
+          case 'breedGreatPyrenees':
+            // 大型犬：威厳のある楽器
+            instruments.addAll(['strings', 'bass', 'piano']);
+          case 'breedCorgi':
+          case 'breedWelshCorgi':
+            // 牧羊犬：活発な楽器
+            instruments.addAll(['acoustic_guitar', 'percussion', 'piano']);
+          case 'breedShihTzu':
+          case 'breedPekingese':
+            // 古代犬：伝統的な楽器
+            instruments.addAll(['strings', 'piano', 'harp']);
+          case 'breedBerneseMountainDog':
+          case 'breedSaintBernard':
+            // 山岳犬：力強い楽器
+            instruments.addAll(['bass', 'strings', 'piano']);
+          case 'breedBostonTerrier':
+            // コンパニオン犬：友好的な楽器
+            instruments.addAll(['acoustic_guitar', 'piano', 'strings']);
+          case 'breedWestHighlandWhiteTerrier':
+          case 'breedYorkshireTerrier':
+            // テリア：活発な楽器
+            instruments.addAll(['acoustic_guitar', 'percussion', 'piano']);
+          case 'breedNewfoundland':
+          case 'breedRetriever':
+            // 水犬：流れるような楽器
+            instruments.addAll(['strings', 'piano', 'harp']);
+          case 'breedShetlandSheepdog':
+          case 'breedCollie':
+            // 知能犬：洗練された楽器
+            instruments.addAll(['strings', 'piano', 'acoustic_guitar']);
+          case 'breedBassetHound':
+          case 'breedBloodhound':
+            // 嗅覚犬：深い楽器
+            instruments.addAll(['cello', 'bass', 'piano']);
+          case 'breedGreyhound':
+          case 'breedWhippet':
+            // 視覚犬：素早い楽器
+            instruments.addAll(['acoustic_guitar', 'percussion', 'piano']);
           default:
             // その他の犬種：汎用的な楽器
-            break;
+            instruments.addAll(['piano', 'strings', 'acoustic_guitar']);
         }
       }
     }
@@ -262,93 +295,6 @@ class MusicGenerationFactory {
     }
 
     return uniqueInstruments;
-  }
-
-  /// シーン文字列から多言語キーを取得するヘルパーメソッド
-  String _getScenarioKey(String scenario) {
-    switch (scenario) {
-      case '留守番中':
-        return 'sceneLeavingHome';
-      case '就寝前':
-        return 'sceneBedtime';
-      case 'ストレスフル':
-        return 'sceneStressful';
-      case '長距離移動中':
-        return 'sceneLongDistanceTravel';
-      case '日常の癒し':
-        return 'sceneDailyHealing';
-      case '療養/高齢犬ケア':
-        return 'sceneCare';
-      case '雷・花火の恐怖':
-        return 'sceneThunderFireworks';
-      case '分離不安':
-        return 'sceneSeparationAnxiety';
-      case '新しい環境への適応':
-        return 'sceneNewEnvironment';
-      case '運動後のクールダウン':
-        return 'scenePostExercise';
-      case 'グルーミング時':
-        return 'sceneGrooming';
-      case '食事時':
-        return 'sceneMealTime';
-      case '遊び時間':
-        return 'scenePlayTime';
-      case 'トレーニング時':
-        return 'sceneTraining';
-      case '来客時':
-        return 'sceneGuests';
-      case '天候不良時':
-        return 'sceneBadWeather';
-      case '季節の変わり目':
-        return 'sceneSeasonalChange';
-      case '子犬の社会化':
-        return 'scenePuppySocialization';
-      case 'シニア犬のケア':
-        return 'sceneSeniorCare';
-      case '多頭飼いの調和':
-        return 'sceneMultipleDogs';
-      case '獣医訪問前':
-        return 'sceneVetVisit';
-      default:
-        return 'sceneLeavingHome';
-    }
-  }
-
-  /// 犬種文字列から多言語キーを取得するヘルパーメソッド
-  String _getBreedKey(String breed) {
-    switch (breed.toLowerCase()) {
-      // 小型犬
-      case 'チワワ':
-      case 'chihuahua':
-        return 'breedChihuahua';
-      case 'トイプードル':
-      case 'toy poodle':
-      case 'toypoodle':
-        return 'breedToyPoodle';
-
-      // 大型犬
-      case 'ゴールデンレトリーバー':
-      case 'golden retriever':
-      case 'goldenretriever':
-        return 'breedGoldenRetriever';
-      case 'ラブラドールレトリーバー':
-      case 'labrador retriever':
-      case 'labrador':
-        return 'breedLabrador';
-
-      // 日本犬
-      case '柴犬':
-      case 'shiba inu':
-      case 'shibainu':
-        return 'breedShibaInu';
-      case '秋田犬':
-      case 'akita inu':
-      case 'akita':
-        return 'breedAkita';
-
-      default:
-        return 'breedGeneric'; // デフォルト値
-    }
   }
 }
 

@@ -1,12 +1,15 @@
 export '../utility/app_tracking_transparency.dart';
 export '../utility/base_music_service.dart';
 export '../utility/color_utility.dart';
+export '../utility/const/breed_ids.dart';
 export '../utility/const/env.dart';
 export '../utility/const/firebase_analytics_event_names.dart';
 export '../utility/const/firebase_analytics_limits.dart';
 export '../utility/const/label/screen_label.dart';
 export '../utility/const/media_type.dart';
+export '../utility/const/personality_ids.dart';
 export '../utility/const/rating.dart';
+export '../utility/const/scene_condition_ids.dart';
 export '../utility/const/shared_preferences_keys.dart';
 export '../utility/const/space.dart';
 export '../utility/const/web_break_point.dart';

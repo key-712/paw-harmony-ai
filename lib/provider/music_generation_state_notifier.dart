@@ -104,7 +104,7 @@ class MusicGenerationStateNotifier
     // 多言語キーから日本語文字列へのマッピング
     final scenarioKey = _getScenarioKey(scenario);
     final conditionKey = _getConditionKey(condition);
-    final breedKey = _getBreedKey(breed);
+    final breedKey = getBreedKey(breed);
 
     // シーンに基づく音楽スタイルの選択（レゲエ、ソフトロック、クラシックを重視）
     var musicStyle = '';
@@ -251,19 +251,38 @@ class MusicGenerationStateNotifier
     // 犬種に基づく調整（レゲエ、ソフトロック、クラシックの要素を組み合わせ）
     var breedModifier = '';
     switch (breedKey) {
-      case 'breedChihuahua':
       case 'breedToyPoodle':
+      case 'breedChihuahua':
         breedModifier =
             'specially designed for small dogs with gentle classical melodies and soft rock harmonies, gentle and comforting';
+      case 'breedShiba':
+        breedModifier =
+            'adapted for Japanese breeds with peaceful classical elements and gentle soft rock melodies, serene and calming';
+      case 'breedMiniatureDachshund':
+        breedModifier =
+            'adapted for hunting breeds with alert classical melodies and focused soft rock rhythms, attentive';
+      case 'breedPomeranian':
+        breedModifier =
+            'designed for tiny breeds with delicate classical melodies and gentle soft rock harmonies, ultra-gentle';
+      case 'breedFrenchBulldog':
+        breedModifier =
+            'designed for brachycephalic breeds with gentle classical melodies and relaxed soft rock harmonies, easy-going';
       case 'breedGoldenRetriever':
+      case 'breedLabradorRetriever':
+        breedModifier =
+            'tailored for large, gentle dogs with warm reggae bass and soft classical strings, comforting and grounding';
+      case 'breedMix':
+        breedModifier =
+            'suitable for mixed breed dogs with universal calming properties using reggae, soft rock and classical elements, gentle';
+      case 'breedOther':
+        breedModifier =
+            'suitable for all dog breeds with universal calming properties using reggae, soft rock and classical elements, gentle';
       case 'breedLabrador':
         breedModifier =
             'tailored for large, gentle dogs with warm reggae bass and soft classical strings, comforting and grounding';
-      case 'breedShibaInu':
       case 'breedAkita':
         breedModifier =
             'adapted for Japanese breeds with peaceful classical elements and gentle soft rock melodies, serene and calming';
-      case 'breedPomeranian':
       case 'breedMaltese':
         breedModifier =
             'designed for tiny breeds with delicate classical melodies and gentle soft rock harmonies, ultra-gentle';
@@ -304,7 +323,6 @@ class MusicGenerationStateNotifier
         breedModifier =
             'designed for mountain breeds with robust classical themes and hearty soft rock harmonies, strong';
       case 'breedBostonTerrier':
-      case 'breedFrenchBulldog':
         breedModifier =
             'tailored for companion breeds with friendly classical melodies and cheerful soft rock harmonies, sociable';
       case 'breedWestHighlandWhiteTerrier':
@@ -377,7 +395,7 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
     // 多言語キーから日本語文字列へのマッピング
     final scenarioKey = _getScenarioKey(scenario);
     final conditionKey = _getConditionKey(condition);
-    final breedKey = _getBreedKey(breed);
+    final breedKey = getBreedKey(breed);
 
     // 基本設定（レゲエ、ソフトロック、クラシックに適したパラメータ）
     final config = <String, dynamic>{
@@ -696,8 +714,8 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
 
     // 犬種に基づく調整（レゲエ、ソフトロック、クラシックの要素を反映）
     switch (breedKey) {
-      case 'breedChihuahua':
       case 'breedToyPoodle':
+      case 'breedChihuahua':
         // 小型犬：クラシックの優しいメロディー（少し速めのテンポ）
         config['bpm'] = (config['bpm'] as int) + 5;
         config['brightness'] = (config['brightness'] as double) + 0.1;
@@ -718,20 +736,66 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
             (config['chord_progression_variety'] as double) + 0.1; // コード進行の多様性
         config['melodic_contour'] =
             (config['melodic_contour'] as double) + 0.1; // メロディーの起伏
+      case 'breedShiba':
+        // 日本犬：クラシックの平和な要素（穏やかなテンポ）
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.05;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        config['delay'] = (config['delay'] as double) + 0.05;
+      case 'breedMiniatureDachshund':
+        // 小型犬：クラシックの優しいメロディー（少し速めのテンポ）
+        config['bpm'] = (config['bpm'] as int) + 5;
+        config['brightness'] = (config['brightness'] as double) + 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+        // 曲感を出すための追加設定
+        config['melody_variation'] =
+            (config['melody_variation'] as double) + 0.1; // 小型犬用のメロディー変化
+        config['harmonic_complexity'] =
+            (config['harmonic_complexity'] as double) + 0.1; // 和声の豊かさ
+        config['rhythm_variation'] =
+            (config['rhythm_variation'] as double) + 0.1; // リズムの変化
+        config['dynamic_range'] =
+            (config['dynamic_range'] as double) + 0.1; // 音量の変化
+        config['phrase_length'] =
+            (config['phrase_length'] as int) - 1; // 短いフレーズ
+        config['chord_progression_variety'] =
+            (config['chord_progression_variety'] as double) + 0.1; // コード進行の多様性
+        config['melodic_contour'] =
+            (config['melodic_contour'] as double) + 0.1; // メロディーの起伏
+      case 'breedPomeranian':
+        // 超小型犬：より繊細な音楽
+        config['bpm'] = (config['bpm'] as int) + 10;
+        config['brightness'] = (config['brightness'] as double) + 0.15;
+        config['density'] = (config['density'] as double) - 0.15;
+        config['reverb'] = (config['reverb'] as double) + 0.15;
+      case 'breedFrenchBulldog':
+        // ブルドッグ：穏やかな音楽
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
       case 'breedGoldenRetriever':
-      case 'breedLabrador':
+      case 'breedLabradorRetriever':
         // 大型犬：レゲエの温かいベース（安定したテンポ）
         config['brightness'] = (config['brightness'] as double) - 0.1;
         config['density'] = (config['density'] as double) + 0.1;
         config['reverb'] = (config['reverb'] as double) + 0.1;
-      case 'breedShibaInu':
+      case 'breedMix':
+        // 混種犬：汎用的な設定
+        config['bpm'] = (config['bpm'] as int) - 5;
+        config['brightness'] = (config['brightness'] as double) - 0.1;
+        config['density'] = (config['density'] as double) - 0.1;
+        config['reverb'] = (config['reverb'] as double) + 0.1;
+      case 'breedOther':
+        // その他の犬種：汎用的な設定
+        break;
       case 'breedAkita':
         // 日本犬：クラシックの平和な要素（穏やかなテンポ）
         config['bpm'] = (config['bpm'] as int) - 5;
         config['brightness'] = (config['brightness'] as double) - 0.05;
         config['reverb'] = (config['reverb'] as double) + 0.1;
         config['delay'] = (config['delay'] as double) + 0.05;
-      case 'breedPomeranian':
       case 'breedMaltese':
         // 超小型犬：より繊細な音楽
         config['bpm'] = (config['bpm'] as int) + 10;
@@ -802,7 +866,6 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
         config['density'] = (config['density'] as double) + 0.1;
         config['reverb'] = (config['reverb'] as double) + 0.1;
       case 'breedBostonTerrier':
-      case 'breedFrenchBulldog':
         // コンパニオン犬：友好的な音楽
         config['bpm'] = (config['bpm'] as int) + 5;
         config['brightness'] = (config['brightness'] as double) + 0.1;
@@ -1004,284 +1067,103 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
     _currentRequest = null;
   }
 
-  /// シーン文字列から多言語キーを取得するヘルパーメソッド
-  String _getScenarioKey(String scenario) {
-    switch (scenario) {
-      case '留守番中':
+  /// シーンIDから多言語キーを取得するヘルパーメソッド
+  String _getScenarioKey(String scenarioId) {
+    switch (scenarioId) {
+      case '1':
         return 'sceneLeavingHome';
-      case '就寝前':
+      case '2':
         return 'sceneBedtime';
-      case 'ストレスフル':
+      case '3':
         return 'sceneStressful';
-      case '長距離移動中':
+      case '4':
         return 'sceneLongDistanceTravel';
-      case '日常の癒し':
+      case '5':
         return 'sceneDailyHealing';
-      case '療養/高齢犬ケア':
+      case '6':
         return 'sceneCare';
-      case '雷・花火の恐怖':
+      case '7':
         return 'sceneThunderFireworks';
-      case '分離不安':
+      case '8':
         return 'sceneSeparationAnxiety';
-      case '新しい環境への適応':
+      case '9':
         return 'sceneNewEnvironment';
-      case '運動後のクールダウン':
+      case '10':
         return 'scenePostExercise';
-      case 'グルーミング時':
+      case '11':
         return 'sceneGrooming';
-      case '食事時':
+      case '12':
         return 'sceneMealTime';
-      case '遊び時間':
+      case '13':
         return 'scenePlayTime';
-      case 'トレーニング時':
+      case '14':
         return 'sceneTraining';
-      case '来客時':
+      case '15':
         return 'sceneGuests';
-      case '天候不良時':
+      case '16':
         return 'sceneBadWeather';
-      case '季節の変わり目':
+      case '17':
         return 'sceneSeasonalChange';
-      case '子犬の社会化':
+      case '18':
         return 'scenePuppySocialization';
-      case 'シニア犬のケア':
+      case '19':
         return 'sceneSeniorCare';
-      case '多頭飼いの調和':
+      case '20':
         return 'sceneMultipleDogs';
-      case '獣医訪問前':
+      case '21':
         return 'sceneVetVisit';
       default:
-        return 'sceneLeavingHome'; // デフォルト値
+        return 'sceneLeavingHome';
     }
   }
 
-  /// 犬の状態文字列から多言語キーを取得するヘルパーメソッド
-  String _getConditionKey(String condition) {
-    switch (condition) {
-      case '落ち着かせたい':
+  /// コンディションIDから多言語キーを取得するヘルパーメソッド
+  String _getConditionKey(String conditionId) {
+    switch (conditionId) {
+      case '1':
         return 'conditionCalmDown';
-      case 'リラックスさせたい':
+      case '2':
         return 'conditionRelax';
-      case '興奮を抑えたい':
+      case '3':
         return 'conditionSuppressExcitement';
-      case '安心させたい':
+      case '4':
         return 'conditionReassure';
-      case '安眠させたい':
+      case '5':
         return 'conditionGoodSleep';
-      case '集中力を高めたい':
+      case '6':
         return 'conditionConcentration';
-      case '社交性を向上させたい':
+      case '7':
         return 'conditionSocialization';
-      case '学習能力を向上させたい':
+      case '8':
         return 'conditionLearning';
-      case '運動意欲を高めたい':
+      case '9':
         return 'conditionExercise';
-      case '食欲を促進させたい':
+      case '10':
         return 'conditionAppetite';
-      case '痛みを軽減させたい':
+      case '11':
         return 'conditionPainRelief';
-      case '不安を解消させたい':
+      case '12':
         return 'conditionAnxietyRelief';
-      case 'ストレスを軽減させたい':
+      case '13':
         return 'conditionStressRelief';
-      case '免疫力を向上させたい':
+      case '14':
         return 'conditionImmunity';
-      case '記憶力を向上させたい':
+      case '15':
         return 'conditionMemory';
-      case '感情を安定させたい':
+      case '16':
         return 'conditionEmotionalStability';
-      case '好奇心を刺激したい':
+      case '17':
         return 'conditionCuriosity';
-      case '忍耐力を向上させたい':
+      case '18':
         return 'conditionPatience';
-      case '協調性を高めたい':
+      case '19':
         return 'conditionCooperation';
-      case '自立心を育てたい':
+      case '20':
         return 'conditionIndependence';
-      case '愛情を深めたい':
+      case '21':
         return 'conditionLove';
       default:
-        return 'conditionCalmDown'; // デフォルト値
-    }
-  }
-
-  /// 犬種文字列から多言語キーを取得するヘルパーメソッド
-  String _getBreedKey(String breed) {
-    switch (breed.toLowerCase()) {
-      // 小型犬
-      case 'チワワ':
-      case 'chihuahua':
-        return 'breedChihuahua';
-      case 'トイプードル':
-      case 'toy poodle':
-      case 'toypoodle':
-        return 'breedToyPoodle';
-
-      // 大型犬
-      case 'ゴールデンレトリーバー':
-      case 'golden retriever':
-      case 'goldenretriever':
-        return 'breedGoldenRetriever';
-      case 'ラブラドールレトリーバー':
-      case 'labrador retriever':
-      case 'labrador':
-        return 'breedLabrador';
-
-      // 日本犬
-      case '柴犬':
-      case 'shiba inu':
-      case 'shibainu':
-        return 'breedShibaInu';
-      case '秋田犬':
-      case 'akita inu':
-      case 'akita':
-        return 'breedAkita';
-
-      // 超小型犬
-      case 'ポメラニアン':
-      case 'pomeranian':
-        return 'breedPomeranian';
-      case 'マルチーズ':
-      case 'maltese':
-        return 'breedMaltese';
-
-      // 北方犬
-      case 'シベリアンハスキー':
-      case 'siberian husky':
-      case 'husky':
-        return 'breedSiberianHusky';
-      case 'アラスカンマラミュート':
-      case 'alaskan malamute':
-      case 'malamute':
-        return 'breedAlaskanMalamute';
-
-      // 作業犬
-      case 'ボーダーコリー':
-      case 'border collie':
-      case 'bordercollie':
-        return 'breedBorderCollie';
-      case 'オーストラリアンシェパード':
-      case 'australian shepherd':
-      case 'aussie':
-        return 'breedAustralianShepherd';
-
-      // 短頭種
-      case 'ブルドッグ':
-      case 'bulldog':
-        return 'breedBulldog';
-      case 'パグ':
-      case 'pug':
-        return 'breedPug';
-
-      // 護衛犬
-      case 'ジャーマンシェパード':
-      case 'german shepherd':
-      case 'germanshepherd':
-        return 'breedGermanShepherd';
-      case 'ドーベルマン':
-      case 'doberman':
-        return 'breedDoberman';
-
-      // 猟犬
-      case 'ビーグル':
-      case 'beagle':
-        return 'breedBeagle';
-      case 'ダックスフンド':
-      case 'dachshund':
-        return 'breedDachshund';
-
-      // 大型犬
-      case 'サモエド':
-      case 'samoyed':
-        return 'breedSamoyed';
-      case 'グレートピレニーズ':
-      case 'great pyrenees':
-      case 'pyrenees':
-        return 'breedGreatPyrenees';
-
-      // 牧羊犬
-      case 'コーギー':
-      case 'corgi':
-        return 'breedCorgi';
-      case 'ウェルシュコーギー':
-      case 'welsh corgi':
-      case 'welshcorgi':
-        return 'breedWelshCorgi';
-
-      // 古代犬
-      case 'シーズー':
-      case 'shih tzu':
-      case 'shihtzu':
-        return 'breedShihTzu';
-      case 'ペキニーズ':
-      case 'pekingese':
-        return 'breedPekingese';
-
-      // 山岳犬
-      case 'バーニーズマウンテンドッグ':
-      case 'berner sennenhund':
-      case 'berner':
-        return 'breedBerneseMountainDog';
-      case 'セントバーナード':
-      case 'saint bernard':
-      case 'saintbernard':
-        return 'breedSaintBernard';
-
-      // コンパニオン犬
-      case 'ボストンテリア':
-      case 'boston terrier':
-      case 'bostonterrier':
-        return 'breedBostonTerrier';
-      case 'フレンチブルドッグ':
-      case 'french bulldog':
-      case 'frenchie':
-        return 'breedFrenchBulldog';
-
-      // テリア
-      case 'ホワイトテリア':
-      case 'west highland white terrier':
-      case 'westie':
-        return 'breedWestHighlandWhiteTerrier';
-      case 'ヨークシャーテリア':
-      case 'yorkshire terrier':
-      case 'yorkie':
-        return 'breedYorkshireTerrier';
-
-      // 水犬
-      case 'ニューファンドランド':
-      case 'newfoundland':
-        return 'breedNewfoundland';
-      case 'レトリーバー':
-      case 'retriever':
-        return 'breedRetriever';
-
-      // 知能犬
-      case 'シェットランドシープドッグ':
-      case 'shetland sheepdog':
-      case 'sheltie':
-        return 'breedShetlandSheepdog';
-      case 'コリー':
-      case 'collie':
-        return 'breedCollie';
-
-      // 嗅覚犬
-      case 'バセットハウンド':
-      case 'basset hound':
-      case 'bassethound':
-        return 'breedBassetHound';
-      case 'ブラッドハウンド':
-      case 'bloodhound':
-        return 'breedBloodhound';
-
-      // 視覚犬
-      case 'グレイハウンド':
-      case 'greyhound':
-        return 'breedGreyhound';
-      case 'ウィペット':
-      case 'whippet':
-        return 'breedWhippet';
-
-      default:
-        return 'breedGeneric'; // デフォルト値
+        return 'conditionCalmDown';
     }
   }
 }
