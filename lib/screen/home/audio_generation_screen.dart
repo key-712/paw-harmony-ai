@@ -8,8 +8,6 @@ import '../../import/provider.dart';
 import '../../import/theme.dart';
 import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
-import '../../provider/ad_provider.dart';
-import '../../provider/generation_count_provider.dart';
 
 /// 音声生成画面のウィジェット
 class AudioGenerationScreen extends HookConsumerWidget {
@@ -67,41 +65,6 @@ class AudioGenerationScreen extends HookConsumerWidget {
 
     final selectedSceneId = useState<String?>(null);
     final selectedConditionId = useState<String?>(null);
-
-    void showGenerationLimitDialog() {
-      showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(l10n.generationLimitTitle),
-            content: Text(l10n.generationLimitMessage),
-            actions: <Widget>[
-              TextButton(
-                child: Text(l10n.watchAd),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  adNotifier.showInterstitialAd();
-                  ref.read(generationCountProvider.notifier).increment();
-                },
-              ),
-              TextButton(
-                child: Text(l10n.subscribe),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  // TODO(user): Navigate to subscription screen
-                },
-              ),
-              TextButton(
-                child: Text(l10n.close),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
 
     return Scaffold(
       appBar: BaseHeader(title: l10n.audioGeneration),
@@ -256,7 +219,10 @@ class AudioGenerationScreen extends HookConsumerWidget {
                         text:
                             purchaseState.isSubscribed
                                 ? l10n.generationsUnlimited
-                                : l10n.generationsLeft(generationCount, l10n.freePlan),
+                                : l10n.generationsLeft(
+                                  generationCount,
+                                  l10n.freePlan,
+                                ),
                         color: theme.appColors.grey,
                         style: theme.textTheme.h30.copyWith(fontSize: 14),
                       ),
@@ -272,34 +238,26 @@ class AudioGenerationScreen extends HookConsumerWidget {
                           musicGenerationState.isLoading,
                       callback: () {
                         if (generationCount > 0) {
-                          ref.read(generationCountProvider.notifier).decrement();
+                          ref
+                              .read(generationCountProvider.notifier)
+                              .decrement();
                           final request = MusicGenerationRequest(
                             userId: profile.userId,
                             dogId: profile.id,
-                            scenario: selectedScene.value!,
-                            dogCondition: selectedCondition.value!,
+                            scenario: selectedSceneId.value!,
+                            dogCondition: selectedConditionId.value!,
                             additionalInfo: additionalInfoController.text,
                             dogBreed: profile.breed,
                             dogPersonalityTraits: profile.personalityTraits,
                           );
                           ref
-                              .read(musicGenerationStateNotifierProvider.notifier)
+                              .read(
+                                musicGenerationStateNotifierProvider.notifier,
+                              )
                               .generateMusic(request);
                         } else {
-                          showGenerationLimitDialog();
+                          showGenerationLimitDialog(context: context);
                         }
-                        final request = MusicGenerationRequest(
-                          userId: profile.userId,
-                          dogId: profile.id,
-                          scenario: selectedSceneId.value!,
-                          dogCondition: selectedConditionId.value!,
-                          additionalInfo: additionalInfoController.text,
-                          dogBreed: profile.breed,
-                          dogPersonalityTraits: profile.personalityTraits,
-                        );
-                        ref
-                            .read(musicGenerationStateNotifierProvider.notifier)
-                            .generateMusic(request);
                       },
                     ),
                   ],

@@ -47,7 +47,6 @@ class MusicGenerationStateNotifier
 
       logger
         ..d('音楽生成APIリクエスト送信')
-        ..d('プロンプト: $prompt')
         ..d('設定: $config');
 
       // ファクトリーを使用して音楽を生成（

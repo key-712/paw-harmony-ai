@@ -8,6 +8,7 @@ export '../provider/dog_profile_state_notifier.dart';
 export '../provider/feedback_state_notifier.dart';
 export '../provider/firebase_analytics_provider.dart';
 export '../provider/firebase_messaging_service.dart';
+export '../provider/generation_count_provider.dart';
 export '../provider/go_router_provider.dart';
 export '../provider/is_initial_home_provider.dart';
 export '../provider/loading_state_notifier.dart';
