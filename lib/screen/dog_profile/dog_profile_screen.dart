@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
@@ -85,11 +84,50 @@ class DogProfileScreen extends HookConsumerWidget {
     final dogBreedIds = getAvailableBreedIds();
 
     return Scaffold(
-      appBar: BaseHeader(
+      appBar: TextActionsHeader(
         title:
             dogProfileState.value == null
-                ? l10n.registerDogProfileTitle
-                : l10n.editDogProfileTitle,
+                ? l10n.registerProfile
+                : l10n.editProfile,
+        text: l10n.save,
+        isLeading: false,
+        onPressed: () async {
+          logger.d('保存時のbreedController.text: ${breedController.text}');
+          if (formKey.currentState!.validate()) {
+            if (gender.value == null) {
+              genderError.value = l10n.genderValidator;
+              return;
+            }
+            if (userId != null) {
+              final currentProfile = dogProfileState.value;
+              final newProfile = DogProfile(
+                id: currentProfile?.id ?? const Uuid().v4(),
+                userId: userId,
+                name: nameController.text,
+                breed: breedController.text,
+                dateOfBirth: dateOfBirth.value,
+                age: int.tryParse(ageController.text),
+                gender: gender.value!,
+                personalityTraits: personalities.value.toList(),
+                profileImageUrl: currentProfile?.profileImageUrl,
+              );
+              await ref
+                  .read(dogProfileStateNotifierProvider.notifier)
+                  .saveDogProfile(newProfile, imageFile: pickedImage.value);
+              if (context.mounted) {
+                showSnackBar(
+                  context: context,
+                  theme: theme,
+                  text: l10n.profileSaved,
+                );
+                // 新規登録の場合はホーム画面へ、編集の場合は前の画面に戻る
+                if (currentProfile == null) {
+                  const BaseScreenRoute().go(context);
+                } else {}
+              }
+            }
+          }
+        },
       ),
       body: dogProfileState.when(
         loading: () => const Center(child: Loading()),
@@ -251,13 +289,14 @@ class DogProfileScreen extends HookConsumerWidget {
                       },
                     ),
                     hSpace(height: 16),
-                    ThemeText(
-                      text: l10n.gender,
-                      color: theme.appColors.black,
-                      style: theme.textTheme.h30,
-                    ),
                     Row(
                       children: [
+                        ThemeText(
+                          text: l10n.gender,
+                          color: theme.appColors.black,
+                          style: theme.textTheme.h30,
+                        ),
+                        wSpace(width: 8),
                         Radio<String>(
                           value: 'male',
                           groupValue: gender.value,
@@ -331,68 +370,6 @@ class DogProfileScreen extends HookConsumerWidget {
                       },
                     ),
                     hSpace(height: 32),
-                    PrimaryButton(
-                      text: profile == null ? l10n.register : l10n.update,
-                      screen: 'dog_profile_screen',
-                      width: double.infinity,
-                      isDisabled: false,
-                      callback: () async {
-                        logger.d(
-                          '保存時のbreedController.text: ${breedController.text}',
-                        );
-                        if (formKey.currentState!.validate()) {
-                          if (gender.value == null) {
-                            genderError.value = l10n.genderValidator;
-                            return;
-                          }
-                          if (userId != null) {
-                            final newProfile = DogProfile(
-                              id: profile?.id ?? const Uuid().v4(),
-                              userId: userId,
-                              name: nameController.text,
-                              breed: breedController.text,
-                              dateOfBirth: dateOfBirth.value,
-                              age: int.tryParse(ageController.text),
-                              gender: gender.value!,
-                              personalityTraits: personalities.value.toList(),
-                              profileImageUrl: profile?.profileImageUrl,
-                            );
-                            await ref
-                                .read(dogProfileStateNotifierProvider.notifier)
-                                .saveDogProfile(
-                                  newProfile,
-                                  imageFile: pickedImage.value,
-                                );
-                            if (context.mounted) {
-                              showSnackBar(
-                                context: context,
-                                theme: theme,
-                                text: l10n.profileSaved,
-                              );
-                              // 新規登録の場合はホーム画面へ、編集の場合は前の画面に戻る
-                              if (profile == null) {
-                                const BaseScreenRoute().go(context);
-                              } else {
-                                GoRouter.of(context).pop();
-                              }
-                            }
-                          }
-                        }
-                      },
-                    ),
-                    hSpace(height: 16),
-                    if (dogProfileState.value != null)
-                      CancelButton(
-                        text: l10n.cancel,
-                        screen: 'dog_profile_screen',
-                        width: double.infinity,
-                        isDisabled: false,
-                        callback: () {
-                          if (context.mounted) {
-                            GoRouter.of(context).pop();
-                          }
-                        },
-                      ),
                   ],
                 ),
               ),

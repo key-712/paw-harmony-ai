@@ -20,7 +20,7 @@ class SettingScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
-    final purchaseState = ref.watch(purchaseStateNotifierProvider);
+    // final purchaseState = ref.watch(purchaseStateNotifierProvider);
 
     return Scaffold(
       appBar: BaseHeader(title: l10n.setting),
@@ -30,36 +30,36 @@ class SettingScreen extends HookConsumerWidget {
         children: [
           // hSpace(height: 16),
           // サブスクリプション情報
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.star),
-              title: ThemeText(
-                text: l10n.currentPlan,
-                color: theme.appColors.black,
-                style: theme.textTheme.h30,
-              ),
-              subtitle: ThemeText(
-                text:
-                    purchaseState.isSubscribed
-                        ? l10n.premiumPlan
-                        : l10n.freePlan,
-                color: theme.appColors.grey,
-                style: theme.textTheme.h30,
-              ),
-              trailing:
-                  purchaseState.isSubscribed
-                      ? null
-                      : SecondaryButton(
-                        text: l10n.upgrade,
-                        screen: 'subscription_screen',
-                        width: 180,
-                        isDisabled: false,
-                        callback:
-                            () => const SubscriptionSettingScreenRoute()
-                                .push<void>(context),
-                      ),
-            ),
-          ),
+          // Card(
+          //   child: ListTile(
+          //     leading: const Icon(Icons.star),
+          //     title: ThemeText(
+          //       text: l10n.currentPlan,
+          //       color: theme.appColors.black,
+          //       style: theme.textTheme.h30,
+          //     ),
+          //     subtitle: ThemeText(
+          //       text:
+          //           purchaseState.isSubscribed
+          //               ? l10n.premiumPlan
+          //               : l10n.freePlan,
+          //       color: theme.appColors.grey,
+          //       style: theme.textTheme.h30,
+          //     ),
+          //     trailing:
+          //         purchaseState.isSubscribed
+          //             ? null
+          //             : SecondaryButton(
+          //               text: l10n.upgrade,
+          //               screen: 'subscription_screen',
+          //               width: 180,
+          //               isDisabled: false,
+          //               callback:
+          //                   () => const SubscriptionSettingScreenRoute()
+          //                       .push<void>(context),
+          //             ),
+          //   ),
+          // ),
           hSpace(height: 16),
           // 設定メニュー
           Card(

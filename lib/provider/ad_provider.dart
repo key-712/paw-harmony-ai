@@ -25,11 +25,25 @@ class AdNotifier extends StateNotifier<AdState> {
 
   /// インタースティシャル広告をロードします
   void loadInterstitialAd() {
+    // 開発環境では広告の読み込みをスキップ
+    if (isNotProduction()) {
+      logger.d('Skipping ad load in development environment');
+      return;
+    }
+
+    final adUnitId =
+        Platform.isIOS
+            ? Env.iOSInterstitialAdUnitId
+            : Env.androidInterstitialAdUnitId;
+
+    // 広告IDが空の場合はスキップ
+    if (adUnitId.isEmpty) {
+      logger.d('Ad unit ID is empty, skipping ad load');
+      return;
+    }
+
     InterstitialAd.load(
-      adUnitId:
-          Platform.isIOS
-              ? Env.iOSInterstitialAdUnitId
-              : Env.androidInterstitialAdUnitId,
+      adUnitId: adUnitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {

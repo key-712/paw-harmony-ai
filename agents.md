@@ -1,4 +1,4 @@
-# Paw Harmony AI - Flutter アプリケーション
+# Paw Harmony - Flutter アプリケーション
 
 ## プロジェクト概要
 - **フレームワーク**: Flutter (Dart)

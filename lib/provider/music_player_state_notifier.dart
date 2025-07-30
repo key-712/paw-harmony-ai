@@ -37,31 +37,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     : _audioPlayer = AudioPlayer(),
       super(const PlayerState()) {
     _initializeAudioPlayer();
-    _setupAudioSession();
-  }
-
-  /// 音声セッションの設定
-  Future<void> _setupAudioSession() async {
-    try {
-      logger.d('=== 音声セッション設定開始 ===');
-
-      // iOSでの音声セッション設定を追加
-      if (Platform.isIOS) {
-        logger.d('iOS detected, setting up audio session...');
-
-        // 音声セッションの設定を試行
-        try {
-          // 音声セッションの設定をスキップ（パッケージの問題のため）
-          logger.d('音声セッション設定をスキップしました');
-        } on Exception catch (e) {
-          logger.e('音声セッション設定中にエラーが発生しました: $e');
-        }
-      } else {
-        logger.d('Android detected, audio session setup not required');
-      }
-    } on Exception catch (e) {
-      logger.e('音声セッション設定中にエラーが発生しました: $e');
-    }
   }
 
   /// オーディオプレイヤーの初期化
@@ -81,21 +56,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       _audioPlayer.playingStream.listen((isPlaying) {
         logger.d('再生状態変更: ${isPlaying ? "再生中" : "停止中"}');
         state = state.copyWith(isPlaying: isPlaying);
-      });
-
-      // プレイヤー状態の監視（自動再生なし）
-      _audioPlayer.playerStateStream.listen((playerState) {
-        logger.d('プレイヤー状態: ${playerState.processingState}');
-        if (playerState.processingState == ProcessingState.idle) {
-          logger.w('プレイヤーがアイドル状態です');
-        }
-      });
-
-      // エラーストリームの監視を追加
-      _audioPlayer.playerStateStream.listen((playerState) {
-        if (playerState.processingState == ProcessingState.idle) {
-          logger.w('プレイヤーがアイドル状態です');
-        }
       });
 
       logger.d('オーディオプレイヤー初期化完了');
@@ -585,7 +545,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
 
     try {
       _audioPlayer.setSpeed(speed);
-      logger.d('setSpeed()メソッドが正常に呼び出されました');
     } on Exception catch (e) {
       logger.e('再生速度設定中にエラーが発生しました: $e');
       rethrow;
@@ -603,7 +562,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
 
     try {
       _audioPlayer.seek(position);
-      logger.d('seek()メソッドが正常に呼び出されました');
     } on Exception catch (e) {
       logger.e('再生位置変更中にエラーが発生しました: $e');
       rethrow;
@@ -631,7 +589,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     logger.d('=== 音声セッション強制初期化開始 ===');
 
     try {
-      // 一度停止してから再初期化
       await _audioPlayer.stop();
       await Future<void>.delayed(const Duration(milliseconds: 200));
 

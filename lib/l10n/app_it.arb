@@ -8,7 +8,7 @@
   "@welcomeMessage": {
     "description": "Messaggio visualizzato nella schermata di benvenuto"
   },
-  "descriptionMessage": "",
+  "descriptionMessage": "App di generazione musicale IA per il tuo cane",
   "@descriptionMessage": {
     "description": "Messaggio di descrizione dell'applicazione"
   },
@@ -911,12 +911,12 @@
   "@durationTitle": { "description": "Titolo della sezione durata" },
   "generatedAtTitle": "Data di generazione",
   "@generatedAtTitle": { "description": "Titolo della sezione data di generazione" },
-  "registerDogProfileTitle": "Registra il profilo del tuo cane",
-  "@registerDogProfileTitle": {
+  "registerProfile": "Registra il profilo del tuo cane",
+  "@registerProfile": {
     "description": "Titolo della schermata di registrazione del profilo del cane"
   },
-  "editDogProfileTitle": "Modifica profilo del cane",
-  "@editDogProfileTitle": {
+  "editProfile": "Modifica profilo del cane",
+  "@editProfile": {
     "description": "Titolo della schermata di modifica del profilo del cane"
   },
   "breedToyPoodle": "Barboncino Toy",
@@ -1120,6 +1120,30 @@
   "@agreeToTerms": {
     "description": "Testo della casella di controllo per accettare i termini e l'informativa sulla privacy"
   },
+  "termsOfService": "Termini di Utilizzo",
+  "@termsOfService": {
+    "description": "Testo del link ai termini di utilizzo"
+  },
+  "privacyPolicy": "Informativa sulla Privacy",
+  "@privacyPolicy": {
+    "description": "Testo del link all'informativa sulla privacy"
+  },
+  "agreeToTermsPrefix": "Accetto i ",
+  "@agreeToTermsPrefix": {
+    "description": "Prefisso del testo di accordo ai termini"
+  },
+  "agreeToTermsMiddle": " e l'",
+  "@agreeToTermsMiddle": {
+    "description": "Parte centrale del testo di accordo ai termini"
+  },
+  "agreeToTermsSuffix": ".",
+  "@agreeToTermsSuffix": {
+    "description": "Suffisso del testo di accordo ai termini"
+  },
+  "termsAgreementRequired": "Si prega di accettare i termini di utilizzo e l'informativa sulla privacy.",
+  "@termsAgreementRequired": {
+    "description": "Messaggio di avviso quando è richiesto l'accordo ai termini"
+  },
   "createAccount": "Crea account",
   "@createAccount": {
     "description": "Testo del pulsante di creazione dell'account"
@@ -1242,6 +1266,10 @@
         "type": "String"
       }
     }
+  },
+  "emailVerificationRequired": "Verifica email richiesta. Controlla la tua email e completa la verifica.",
+  "@emailVerificationRequired": {
+    "description": "Messaggio di errore quando è richiesta la verifica email"
   },
   "musicGenerationInProgress": "Generazione musicale in corso...",
   "@musicGenerationInProgress": {
@@ -1398,5 +1426,9 @@
   "subscribeToPlan": "Abbonati al piano",
   "@subscribeToPlan": {
     "description": "Testo per il pulsante di registrazione abbonamento"
+  },
+  "purchaseCompleted": "Acquisto completato!",
+  "@purchaseCompleted": {
+    "description": "Messaggio di successo per l'acquisto di un abbonamento"
   }
 }

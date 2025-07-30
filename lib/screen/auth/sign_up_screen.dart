@@ -8,6 +8,7 @@ import '../../import/component.dart';
 import '../../import/provider.dart';
 import '../../import/route.dart';
 import '../../import/theme.dart';
+import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 新規登録画面のウィジェット
@@ -121,10 +122,49 @@ class SignUpScreen extends HookConsumerWidget {
                     },
                   ),
                   Flexible(
-                    child: ThemeText(
-                      text: l10n.agreeToTerms,
-                      color: theme.appColors.black,
-                      style: theme.textTheme.h30,
+                    child: RichText(
+                      text: TextSpan(
+                        style: theme.textTheme.h30.copyWith(
+                          color: theme.appColors.black,
+                        ),
+                        children: [
+                          TextSpan(text: l10n.agreeToTermsPrefix),
+                          WidgetSpan(
+                            child: GestureDetector(
+                              onTap: () {
+                                openExternalBrowser(
+                                  url: ExternalPageList.legal,
+                                );
+                              },
+                              child: Text(
+                                l10n.legal,
+                                style: theme.textTheme.h30.copyWith(
+                                  color: theme.appColors.main,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextSpan(text: l10n.agreeToTermsMiddle),
+                          WidgetSpan(
+                            child: GestureDetector(
+                              onTap: () {
+                                openExternalBrowser(
+                                  url: ExternalPageList.privacyPolicy,
+                                );
+                              },
+                              child: Text(
+                                l10n.privacyPolicy,
+                                style: theme.textTheme.h30.copyWith(
+                                  color: theme.appColors.main,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextSpan(text: l10n.agreeToTermsSuffix),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -136,10 +176,21 @@ class SignUpScreen extends HookConsumerWidget {
                 width: double.infinity,
                 isDisabled: false,
                 callback: () {
-                  if (formKey.currentState!.validate() && isAgreed.value) {
-                    ref
-                        .read(authStateNotifierProvider.notifier)
-                        .signUp(emailController.text, passwordController.text);
+                  if (formKey.currentState!.validate()) {
+                    if (isAgreed.value) {
+                      ref
+                          .read(authStateNotifierProvider.notifier)
+                          .signUp(
+                            emailController.text,
+                            passwordController.text,
+                          );
+                    } else {
+                      showAlertSnackBar(
+                        context: context,
+                        theme: theme,
+                        text: l10n.termsAgreementRequired,
+                      );
+                    }
                   }
                 },
               ),

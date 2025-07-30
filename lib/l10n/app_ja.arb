@@ -8,23 +8,23 @@
   "@welcomeMessage": {
     "description": "ウェルカム画面に表示されるメッセージ"
   },
-  "descriptionMessage": "",
+  "descriptionMessage": "愛犬のためのAI音楽生成アプリ",
   "@descriptionMessage": {
     "description": "アプリの説明メッセージ"
   },
-  "mainIntroductionScreen": "",
+  "mainIntroductionScreen": "PawHarmonyへようこそ",
   "@mainIntroductionScreen": {
     "description": "メイン紹介画面のタイトル"
   },
-  "mainIntroductionContent": "",
+  "mainIntroductionContent": "AIがあなたの愛犬の性格や状況に合わせて、心を落ち着かせる音楽を生成します。愛犬のストレス軽減やリラックス効果をサポートします。",
   "@mainIntroductionContent": {
     "description": "メイン紹介画面のコンテンツ"
   },
-  "serviceBeginScreen": "",
+  "serviceBeginScreen": "サービス開始",
   "@serviceBeginScreen": {
     "description": "サービス開始画面のタイトル"
   },
-  "serviceBeginContent": "",
+  "serviceBeginContent": "愛犬のプロフィールを登録して、AI音楽生成を始めましょう。愛犬の性格や状況に合わせた音楽で、より良い生活をサポートします。",
   "@serviceBeginContent": {
     "description": "サービス開始画面のコンテンツ"
   },
@@ -906,12 +906,12 @@
       }
     }
   },
-  "registerDogProfileTitle": "愛犬のプロフィールを登録",
-  "@registerDogProfileTitle": {
+  "registerProfile": "プロフィール登録",
+  "@registerProfile": {
     "description": "犬のプロフィール登録画面のタイトル"
   },
-  "editDogProfileTitle": "愛犬プロフィール編集",
-  "@editDogProfileTitle": {
+  "editProfile": "プロフィール編集",
+  "@editProfile": {
     "description": "犬のプロフィール編集画面のタイトル"
   },
   "breedToyPoodle": "トイプードル",
@@ -1119,6 +1119,30 @@
   "@agreeToTerms": {
     "description": "利用規約とプライバシーポリシー同意チェックボックスのテキスト"
   },
+  "termsOfService": "利用規約",
+  "@termsOfService": {
+    "description": "利用規約リンクのテキスト"
+  },
+  "privacyPolicy": "プライバシーポリシー",
+  "@privacyPolicy": {
+    "description": "プライバシーポリシーリンクのテキスト"
+  },
+  "agreeToTermsPrefix": "",
+  "@agreeToTermsPrefix": {
+    "description": "利用規約同意テキストの前半部分"
+  },
+  "agreeToTermsMiddle": "と",
+  "@agreeToTermsMiddle": {
+    "description": "利用規約同意テキストの中間部分"
+  },
+  "agreeToTermsSuffix": "に同意します。",
+  "@agreeToTermsSuffix": {
+    "description": "利用規約同意テキストの後半部分"
+  },
+  "termsAgreementRequired": "利用規約とプライバシーポリシーに同意してください。",
+  "@termsAgreementRequired": {
+    "description": "利用規約同意が必要な場合のアラートメッセージ"
+  },
   "createAccount": "アカウントを作成",
   "@createAccount": {
     "description": "アカウント作成ボタンのテキスト"
@@ -1241,6 +1265,10 @@
         "type": "String"
       }
     }
+  },
+  "emailVerificationRequired": "メール認証が必要です。メールボックスを確認して認証を完了してください。",
+  "@emailVerificationRequired": {
+    "description": "メール認証が必要な場合のエラーメッセージ"
   },
   "musicGenerationInProgress": "音楽生成中...",
   "@musicGenerationInProgress": {
@@ -1393,5 +1421,9 @@
   "subscribeToPlan": "サブスクに登録する",
   "@subscribeToPlan": {
     "description": "サブスクリプション登録ボタンのテキスト"
+  },
+  "purchaseCompleted": "購入が完了しました！",
+  "@purchaseCompleted": {
+    "description": "購入完了時のメッセージ"
   }
 }

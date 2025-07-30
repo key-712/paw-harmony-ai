@@ -34,7 +34,7 @@ class AdBanner extends HookConsumerWidget {
 
     final adWidget = AdWidget(ad: myBanner);
     return isNotProduction()
-        ? Container(height: 70, color: Colors.transparent)
+        ? Container(height: 70, color: Colors.grey)
         : Column(
           children: [
             Container(height: 32, color: Colors.transparent),

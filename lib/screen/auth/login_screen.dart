@@ -55,6 +55,8 @@ class LoginScreen extends HookConsumerWidget {
               errorMessage = l10n.tooManyLoginAttempts;
             case 'network-request-failed':
               errorMessage = l10n.networkRequestFailed;
+            case 'requires-recent-login':
+              errorMessage = l10n.emailVerificationRequired;
             case 'email-not-verified':
               showDialog<void>(
                 context: context,

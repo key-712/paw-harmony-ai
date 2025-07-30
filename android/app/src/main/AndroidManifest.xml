@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="crelve.paw.harmony.ai.mobile.prod">
+    package="crelve.paw.harmony.mobile.prod">
     <uses-permission
         android:name="android.permission.INTERNET"/>
     <queries>

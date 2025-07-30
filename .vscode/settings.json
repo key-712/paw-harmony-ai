@@ -64,6 +64,7 @@
     "fillrandom",
     "fillseq",
     "fillsync",
+    "firebasestorage",
     "firestore",
     "fixnum",
     "flnp",

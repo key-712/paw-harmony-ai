@@ -49,7 +49,10 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
 
   /// 表示ページの変更完了を通知します
   void updateCurrentPage(int index) {
-    if (state.currentPage == index) return;
+    if (state.currentPage == index) {
+      return;
+    }
+
     _ref
         .read(firebaseAnalyticsServiceProvider)
         .transitPageIndicator(
@@ -63,8 +66,9 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
 
   /// 表示ページを変更します
   Future<void> switchPage(int index, PageController controller) async {
-    if (state.isAnimating) return;
-
+    if (state.isAnimating) {
+      return;
+    }
     state = state.copyWith(isAnimating: true);
     await controller.animateToPage(
       index,
@@ -90,12 +94,19 @@ class WalkThroughStateNotifier extends StateNotifier<WalkThroughState> {
     required PageController controller,
     required BuildContext context,
   }) async {
-    if (state.isAnimating) return;
+    if (state.isAnimating) {
+      return;
+    }
 
     if (isLastStep && context.mounted) {
       // 初回起動フラグを更新
       _updateInitialLaunchFlag();
-      const SignUpScreenRoute().go(context);
+      // フラグの更新が反映されるまで少し待つ
+      await Future<void>.delayed(const Duration(milliseconds: 200));
+      if (context.mounted) {
+        // 強制的に新規登録画面に遷移
+        const SignUpScreenRoute().go(context);
+      }
     } else {
       await switchPage(nextStepIndex, controller);
     }

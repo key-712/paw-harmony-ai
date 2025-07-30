@@ -73,9 +73,6 @@ AuthKey_*.p8
 *.ipr
 *.iws
 
-# Public directory
-public/
-
 # Symbolication related
 app.*.symbols
 
