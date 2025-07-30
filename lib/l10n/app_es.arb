@@ -8,7 +8,7 @@
   "@welcomeMessage": {
     "description": "Mensaje que se muestra en la pantalla de bienvenida"
   },
-  "descriptionMessage": "",
+  "descriptionMessage": "Aplicación de generación musical IA para tu perro",
   "@descriptionMessage": {
     "description": "Mensaje de descripción de la aplicación"
   },
@@ -911,12 +911,12 @@
   "@durationTitle": { "description": "Título de la sección de duración" },
   "generatedAtTitle": "Fecha de generación",
   "@generatedAtTitle": { "description": "Título de la sección de fecha de generación" },
-  "registerDogProfileTitle": "Registrar el perfil de su perro",
-  "@registerDogProfileTitle": {
+  "registerProfile": "Registrar el perfil de su perro",
+  "@registerProfile": {
     "description": "Título de la pantalla de registro del perfil del perro"
   },
-  "editDogProfileTitle": "Editar perfil del perro",
-  "@editDogProfileTitle": {
+  "editProfile": "Editar perfil del perro",
+  "@editProfile": {
     "description": "Título de la pantalla de edición del perfil del perro"
   },
   "breedToyPoodle": "Caniche Toy",
@@ -1120,6 +1120,30 @@
   "@agreeToTerms": {
     "description": "Texto de la casilla de verificación para aceptar los términos y la política de privacidad"
   },
+  "termsOfService": "Términos de Uso",
+  "@termsOfService": {
+    "description": "Texto del enlace a los términos de uso"
+  },
+  "privacyPolicy": "Política de Privacidad",
+  "@privacyPolicy": {
+    "description": "Texto del enlace a la política de privacidad"
+  },
+  "agreeToTermsPrefix": "Acepto los ",
+  "@agreeToTermsPrefix": {
+    "description": "Prefijo del texto de acuerdo a los términos"
+  },
+  "agreeToTermsMiddle": " y la ",
+  "@agreeToTermsMiddle": {
+    "description": "Parte central del texto de acuerdo a los términos"
+  },
+  "agreeToTermsSuffix": ".",
+  "@agreeToTermsSuffix": {
+    "description": "Sufijo del texto de acuerdo a los términos"
+  },
+  "termsAgreementRequired": "Por favor, acepte los términos de uso y la política de privacidad.",
+  "@termsAgreementRequired": {
+    "description": "Mensaje de alerta cuando se requiere el acuerdo a los términos"
+  },
   "createAccount": "Crear cuenta",
   "@createAccount": {
     "description": "Texto del botón de crear cuenta"
@@ -1242,6 +1266,10 @@
         "type": "String"
       }
     }
+  },
+  "emailVerificationRequired": "Se requiere verificación de correo electrónico. Por favor, revise su correo electrónico y complete la verificación.",
+  "@emailVerificationRequired": {
+    "description": "Mensaje de error cuando se requiere verificación de correo electrónico"
   },
   "musicGenerationInProgress": "Generando música...",
   "@musicGenerationInProgress": {
@@ -1398,5 +1426,6 @@
   "subscribeToPlan": "Suscribirse al plan",
   "@subscribeToPlan": {
     "description": "Texto para el botón de registro de suscripción"
-  }
+  },
+  "purchaseCompleted": "¡Compra completada!"
 }

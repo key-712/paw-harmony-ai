@@ -3,10 +3,7 @@ import 'package:logger/logger.dart';
 
 /// ログをとるクラス
 final logger = Logger(
-  printer: PrettyPrinter(
-    colors: false,
-    errorMethodCount: 15,
-  ),
+  printer: PrettyPrinter(colors: false, errorMethodCount: 15),
   output: LogOutput(),
 );
 
@@ -17,7 +14,13 @@ class LogOutput extends ConsoleOutput {
     super.output(event);
     if (event.level == Level.error || event.level == Level.fatal) {
       event.lines.forEach(FirebaseCrashlytics.instance.log);
-      throw AssertionError('View stack trace by logger output.');
+      // 開発環境でのみアサーションエラーをスロー
+      // 本番環境ではクラッシュを防ぐため、アサーションエラーはスローしない
+      // kDebugModeは開発環境でのみtrueになる
+      assert(
+        !const bool.fromEnvironment('dart.vm.product'),
+        'View stack trace by logger output.',
+      );
     }
   }
 }

@@ -33,7 +33,7 @@ class App extends HookConsumerWidget {
       },
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
-      title: AppLocalizations.of(context)?.productName ?? 'Paw Harmony AI',
+      title: AppLocalizations.of(context)?.productName ?? 'Paw Harmony',
       theme: theme.data,
       darkTheme: AppTheme.dark(mediaQuery).data,
       themeMode: themeMode,

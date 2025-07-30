@@ -1,5 +1,5 @@
 name: crelve_paw_harmony_ai
-description: Paw Harmony AI
+description: Paw Harmony
 publish_to: "none"
 version: 1.0.0+1
 
@@ -24,7 +24,6 @@ dependencies:
   firebase_auth: ^5.0.0
   firebase_core: ^3.0.0
   firebase_crashlytics: ^4.3.4
-
   firebase_in_app_messaging: ^0.8.0
   firebase_messaging: ^15.0.0
   firebase_performance: ^0.10.0+2
@@ -106,7 +105,6 @@ flutter:
   assets:
     - assets/image/
     - assets/web/
-    - 7c17ab82-7dd0-43a5-8fd0-d318b7d8f559.wav
   fonts:
     - family: NotoSansJP
       fonts:

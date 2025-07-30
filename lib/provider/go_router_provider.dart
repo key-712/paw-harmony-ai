@@ -11,6 +11,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final isInitialLaunch =
       prefs.getBool(SharedPreferencesKeys.initialLaunchKey) ?? true;
 
+  // 初回起動フラグの変更を監視
+  ref.listen(sharedPreferencesProvider, (_, prefs) {
+    // フラグの変更を検知した場合の処理
+  });
+
   // 初回起動時の初期ロケーションを設定
   final initialLocation =
       isInitialLaunch
@@ -43,14 +48,17 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             currentPath == const WalkThroughRoute().location) {
           return null; // ログイン関連画面やウォークスルー画面への遷移は許可
         }
-        return null; // それ以外の画面へのリダイレクトは一時停止
+        // プロフィールロード中は他の画面へのリダイレクトを一時停止
+        return null;
       }
 
       // 初回起動時の処理
       if (isInitialLaunch) {
         // 初回起動時は、ウォークスルー画面以外の画面にアクセスしようとした場合、
         // ウォークスルー画面にリダイレクト
-        if (currentPath != const WalkThroughRoute().location) {
+        // ただし、ログイン関連画面への遷移は許可する
+        if (currentPath != const WalkThroughRoute().location &&
+            !isGoingToLoginRelated) {
           return const WalkThroughRoute().location;
         }
         // ウォークスルー画面にいる場合は何もしない

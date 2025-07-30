@@ -18,6 +18,7 @@ export '../component/header/back_icon_header.dart';
 export '../component/header/base_header.dart';
 export '../component/header/icon_actions_header.dart';
 export '../component/header/only_back_icon_header.dart';
+export '../component/header/save_header.dart';
 export '../component/header/text_actions_header.dart';
 export '../component/layout/space.dart';
 export '../component/loading/container_with_loading.dart';

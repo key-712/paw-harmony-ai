@@ -8,23 +8,23 @@
   "@welcomeMessage": {
     "description": "Welcome message shown on the welcome screen"
   },
-  "descriptionMessage": "",
+  "descriptionMessage": "AI Music Generation App for Your Dog",
   "@descriptionMessage": {
     "description": "Description message for the app"
   },
-  "mainIntroductionScreen": "",
+  "mainIntroductionScreen": "Welcome to PawHarmony",
   "@mainIntroductionScreen": {
     "description": "Title for the main introduction screen"
   },
-  "mainIntroductionContent": "",
+  "mainIntroductionContent": "AI generates calming music tailored to your dog's personality and situation. Supports stress relief and relaxation effects for your beloved pet.",
   "@mainIntroductionContent": {
     "description": "Content for the main introduction screen"
   },
-  "serviceBeginScreen": "",
+  "serviceBeginScreen": "Start Service",
   "@serviceBeginScreen": {
     "description": "Title for the service begin screen"
   },
-  "serviceBeginContent": "",
+  "serviceBeginContent": "Register your dog's profile and start AI music generation. We support a better life with music tailored to your dog's personality and situation.",
   "@serviceBeginContent": {
     "description": "Content for the service begin screen"
   },
@@ -902,12 +902,12 @@
       }
     }
   },
-  "registerDogProfileTitle": "Register Your Dog's Profile",
-  "@registerDogProfileTitle": {
+  "registerProfile": "Register Profile",
+  "@registerProfile": {
     "description": "Title for the dog profile registration screen"
   },
-  "editDogProfileTitle": "Edit Dog Profile",
-  "@editDogProfileTitle": {
+  "editProfile": "Edit Profile",
+  "@editProfile": {
     "description": "Title for the dog profile editing screen"
   },
   "breedToyPoodle": "Toy Poodle",
@@ -1115,6 +1115,30 @@
   "@agreeToTerms": {
     "description": "Terms and privacy policy agreement checkbox text"
   },
+  "termsOfService": "Terms of Service",
+  "@termsOfService": {
+    "description": "Terms of service link text"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy link text"
+  },
+  "agreeToTermsPrefix": "I agree to the ",
+  "@agreeToTermsPrefix": {
+    "description": "Terms agreement text prefix"
+  },
+  "agreeToTermsMiddle": " and ",
+  "@agreeToTermsMiddle": {
+    "description": "Terms agreement text middle part"
+  },
+  "agreeToTermsSuffix": ".",
+  "@agreeToTermsSuffix": {
+    "description": "Terms agreement text suffix"
+  },
+  "termsAgreementRequired": "Please agree to the Terms of Service and Privacy Policy.",
+  "@termsAgreementRequired": {
+    "description": "Alert message when terms agreement is required"
+  },
   "createAccount": "Create Account",
   "@createAccount": {
     "description": "Create account button text"
@@ -1237,6 +1261,10 @@
         "type": "String"
       }
     }
+  },
+  "emailVerificationRequired": "Email verification required. Please check your email and complete the verification.",
+  "@emailVerificationRequired": {
+    "description": "Error message when email verification is required"
   },
   "musicGenerationInProgress": "Generating Music...",
   "@musicGenerationInProgress": {
@@ -1397,5 +1425,6 @@
   "subscribeToPlan": "Subscribe to Plan",
   "@subscribeToPlan": {
     "description": "Text for subscription registration button"
-  }
+  },
+  "purchaseCompleted": "Purchase completed!"
 }

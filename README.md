@@ -96,14 +96,12 @@ lib/
 ## リリースまでにやること
 
 PROGRESS
-10. 利用規約、プラポリの複製及び更新
-11. APNs 認証キーの追加(Prod のみ)
-12. アイコン/ウォークスルー画像のサイズ変更・置換
+
+13. アイコン/ウォークスルー画像のサイズ変更・置換
     assets/image/
     launcher_icon/image/
 13. make create-native-splash
-14. app-ads.txt を設定する
-    https://qiita.com/masaibar/items/c378b4f01b707ac2506a
+
 15. スクショコンテンツの作成
     https://zenn.dev/futtaro/articles/2357ccbba29678
 16. 審査対応
@@ -129,3 +127,9 @@ DONE
 7. BigQuery 連携(Prod のみ)
 8. AdMob アカウントの作成(Prod のみ)
 9. タスクの実行
+10. 利用規約、プライバシーポリシーの作成
+11. app-ads.txt を設定する
+    https://qiita.com/masaibar/items/c378b4f01b707ac2506a
+12. APNs 認証キーの追加(Firebase Cloud Messaging Prod のみ)
+    https://drive.google.com/file/d/1v4hfDUC0UV1TgBIjSvbdokyvP8wipdja/view?usp=drive_link
+    https://console.firebase.google.com/u/0/project/crelve-paw-harmony-ai-prod/settings/cloudmessaging/ios:crelve.paw.harmony.ai.mobile.prod?hl=ja

@@ -10,8 +10,8 @@
 	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>crelve.paw.harmony.ai.mobile</key>
-		<string>match AppStore crelve.paw.harmony.ai.mobile</string>
+		<key>crelve.paw.harmony.mobile</key>
+		<string>match AppStore crelve.paw.harmony.mobile</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>

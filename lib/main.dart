@@ -68,13 +68,30 @@ Future<void> main() async {
 
 /// RevenueCatの初期化を行う
 Future<void> _initializePurchases() async {
+  // APIキーが設定されているかチェック
+  const appleApiKey = Env.revenueCatAppleApiKey;
+  const googleApiKey = Env.revenueCatGoogleApiKey;
+
   await Purchases.setLogLevel(LogLevel.info);
 
   late PurchasesConfiguration configuration;
   if (Platform.isAndroid) {
-    configuration = PurchasesConfiguration(Env.revenueCatGoogleApiKey);
+    logger.i('Initializing RevenueCat for Android...');
+    configuration = PurchasesConfiguration(googleApiKey);
+    logger.i('Android configuration created with Google API key');
   } else if (Platform.isIOS) {
-    configuration = PurchasesConfiguration(Env.revenueCatAppleApiKey);
+    logger.i('Initializing RevenueCat for iOS...');
+    configuration = PurchasesConfiguration(appleApiKey);
+    logger.i('iOS configuration created with Apple API key');
+  } else {
+    logger.w('Unsupported platform for RevenueCat initialization.');
+    return;
   }
-  await Purchases.configure(configuration);
+
+  try {
+    await Purchases.configure(configuration);
+    logger.i('RevenueCat initialized successfully.');
+  } on Exception catch (e) {
+    logger.e('Failed to initialize RevenueCat: $e');
+  }
 }

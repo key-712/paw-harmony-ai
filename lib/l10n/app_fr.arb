@@ -8,7 +8,7 @@
   "@welcomeMessage": {
     "description": "Message affiché sur l'écran de bienvenue"
   },
-  "descriptionMessage": "",
+  "descriptionMessage": "Application de génération musicale IA pour votre chien",
   "@descriptionMessage": {
     "description": "Message de description de l'application"
   },
@@ -911,12 +911,12 @@
   "@durationTitle": { "description": "Titre de la section durée" },
   "generatedAtTitle": "Date de génération",
   "@generatedAtTitle": { "description": "Titre de la section date de génération" },
-  "registerDogProfileTitle": "Enregistrer le profil de votre chien",
-  "@registerDogProfileTitle": {
+  "registerProfile": "Enregistrer le profil de votre chien",
+  "@registerProfile": {
     "description": "Titre de l'écran d'enregistrement du profil du chien"
   },
-  "editDogProfileTitle": "Modifier le profil du chien",
-  "@editDogProfileTitle": {
+  "editProfile": "Modifier le profil du chien",
+  "@editProfile": {
     "description": "Titre de l'écran de modification du profil du chien"
   },
   "breedToyPoodle": "Caniche Toy",
@@ -1120,6 +1120,30 @@
   "@agreeToTerms": {
     "description": "Texte de la case à cocher pour accepter les conditions et la politique de confidentialité"
   },
+  "termsOfService": "Conditions d'utilisation",
+  "@termsOfService": {
+    "description": "Texte du lien vers les conditions d'utilisation"
+  },
+  "privacyPolicy": "Politique de confidentialité",
+  "@privacyPolicy": {
+    "description": "Texte du lien vers la politique de confidentialité"
+  },
+  "agreeToTermsPrefix": "J'accepte les ",
+  "@agreeToTermsPrefix": {
+    "description": "Préfixe du texte d'accord aux conditions"
+  },
+  "agreeToTermsMiddle": " et la ",
+  "@agreeToTermsMiddle": {
+    "description": "Partie centrale du texte d'accord aux conditions"
+  },
+  "agreeToTermsSuffix": ".",
+  "@agreeToTermsSuffix": {
+    "description": "Suffixe du texte d'accord aux conditions"
+  },
+  "termsAgreementRequired": "Veuillez accepter les conditions d'utilisation et la politique de confidentialité.",
+  "@termsAgreementRequired": {
+    "description": "Message d'alerte lorsque l'accord aux conditions est requis"
+  },
   "createAccount": "Créer un compte",
   "@createAccount": {
     "description": "Texte du bouton de création de compte"
@@ -1242,6 +1266,10 @@
         "type": "String"
       }
     }
+  },
+  "emailVerificationRequired": "Vérification de l'e-mail requise. Veuillez vérifier votre e-mail et compléter la vérification.",
+  "@emailVerificationRequired": {
+    "description": "Message d'erreur lorsque la vérification de l'e-mail est requise"
   },
   "musicGenerationInProgress": "Génération de musique en cours...",
   "@musicGenerationInProgress": {
@@ -1398,5 +1426,9 @@
   "watchAdToAddCount": "Regarder une pub pour ajouter",
   "@watchAdToAddCount": {
     "description": "Texte pour le bouton ajouter en regardant une pub"
+  },
+  "purchaseCompleted": "Achat terminé !",
+  "@purchaseCompleted": {
+    "description": "Message de succès lors de l'achat d'un abonnement"
   }
 }

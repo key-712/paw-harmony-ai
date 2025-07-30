@@ -4,7 +4,6 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../import/component.dart';
 import '../../import/provider.dart';
-import '../../import/route.dart';
 import '../../import/theme.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -53,16 +52,16 @@ class GenerationLimitDialog extends ConsumerWidget {
               adNotifier.showInterstitialAd();
             },
           ),
-          hSpace(height: 12),
-          // サブスクリプションボタン（セカンダリアクション）
-          DialogSecondaryButton(
-            text: l10n.subscribeToPlan,
-            screen: 'generation_limit_dialog',
-            width: double.infinity,
-            callback: () {
-              const SubscriptionSettingScreenRoute().push<void>(context);
-            },
-          ),
+          // hSpace(height: 12),
+          // // サブスクリプションボタン（セカンダリアクション）
+          // DialogSecondaryButton(
+          //   text: l10n.subscribeToPlan,
+          //   screen: 'generation_limit_dialog',
+          //   width: double.infinity,
+          //   callback: () {
+          //     const SubscriptionSettingScreenRoute().push<void>(context);
+          //   },
+          // ),
           hSpace(height: 12),
           // 閉じるボタン（キャンセルアクション）
           CancelButton(
