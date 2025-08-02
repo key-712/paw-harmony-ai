@@ -1430,5 +1430,9 @@
   "purchaseCompleted": "Acquisto completato!",
   "@purchaseCompleted": {
     "description": "Messaggio di successo per l'acquisto di un abbonamento"
+  },
+  "selected": "Selezionato",
+  "@selected": {
+    "description": "Testo che indica lo stato selezionato"
   }
 }

@@ -40,7 +40,7 @@ class TextActionsHeader extends ConsumerWidget implements PreferredSizeWidget {
         style: theme.textTheme.h40.bold(),
       ),
       leading: isLeading ? BackButton(color: theme.appColors.black) : null,
-      backgroundColor: theme.appColors.background,
+      backgroundColor: theme.appColors.headerBackground,
       actions: [
         TextButton(
           onPressed: onPressed,

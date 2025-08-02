@@ -7,18 +7,10 @@ import '../../import/theme.dart';
 /// 戻るアイコンとタイトルがあるヘッダー
 class BackIconHeader extends ConsumerWidget implements PreferredSizeWidget {
   /// 戻るアイコンとタイトルがあるヘッダー
-  const BackIconHeader({
-    super.key,
-    required this.title,
-    this.backgroundColor,
-    this.actions,
-  });
+  const BackIconHeader({super.key, required this.title, this.actions});
 
   /// タイトル
   final String title;
-
-  /// 背景色
-  final Color? backgroundColor;
 
   /// アクション
   final List<Widget>? actions;
@@ -36,7 +28,7 @@ class BackIconHeader extends ConsumerWidget implements PreferredSizeWidget {
         style: theme.textTheme.h40.bold(),
       ),
       leading: BackButton(color: theme.appColors.black),
-      backgroundColor: backgroundColor ?? theme.appColors.background,
+      backgroundColor: theme.appColors.headerBackground,
       actions: actions,
     );
   }

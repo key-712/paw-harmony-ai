@@ -1426,5 +1426,9 @@
   "@subscribeToPlan": {
     "description": "Text for subscription registration button"
   },
-  "purchaseCompleted": "Purchase completed!"
+  "purchaseCompleted": "Purchase completed!",
+  "selected": "Selected",
+  "@selected": {
+    "description": "Text indicating selected state"
+  }
 }

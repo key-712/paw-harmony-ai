@@ -15,6 +15,7 @@ import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 音楽詳細画面のウィジェット
+/// 生成した音楽の詳細情報を表示
 class MusicDetailScreen extends HookConsumerWidget {
   /// MusicDetailScreenのコンストラクタ
   const MusicDetailScreen({super.key, required this.musicId});
@@ -89,7 +90,7 @@ class MusicDetailScreen extends HookConsumerWidget {
                   child: TabBar(
                     controller: tabController,
                     labelColor: theme.appColors.primary,
-                    unselectedLabelColor: theme.appColors.grey,
+                    unselectedLabelColor: theme.appColors.black,
                     indicatorColor: theme.appColors.primary,
                     tabs: [
                       Tab(text: l10n.musicInfo),
@@ -103,24 +104,25 @@ class MusicDetailScreen extends HookConsumerWidget {
                     children: [
                       // 音楽情報タブ
                       _buildMusicInfoTab(
-                        context,
-                        ref,
-                        musicItem,
-                        theme,
-                        l10n,
-                        playerNotifier,
-                        playerState,
-                        playbackSpeed,
+                        context: context,
+                        ref: ref,
+                        musicItem: musicItem,
+                        theme: theme,
+                        l10n: l10n,
+                        playerNotifier: playerNotifier,
+                        playerState: playerState,
+                        playbackSpeed: playbackSpeed,
                       ),
                       // 愛犬の反応タブ
                       _buildDogReactionTab(
-                        context,
-                        ref,
-                        theme,
-                        l10n,
-                        rating,
-                        selectedTags,
-                        commentController,
+                        context: context,
+                        ref: ref,
+                        theme: theme,
+                        l10n: l10n,
+                        rating: rating,
+                        selectedTags: selectedTags,
+                        commentController: commentController,
+                        musicId: musicId,
                       ),
                     ],
                   ),
@@ -144,16 +146,16 @@ class MusicDetailScreen extends HookConsumerWidget {
   }
 
   /// 音楽情報タブを構築するメソッド
-  Widget _buildMusicInfoTab(
-    BuildContext context,
-    WidgetRef ref,
-    MusicGenerationHistory musicItem,
-    AppTheme theme,
-    AppLocalizations l10n,
-    MusicPlayerStateNotifier playerNotifier,
-    PlayerState playerState,
-    ValueNotifier<double> playbackSpeed,
-  ) {
+  Widget _buildMusicInfoTab({
+    required BuildContext context,
+    required WidgetRef ref,
+    required MusicGenerationHistory musicItem,
+    required AppTheme theme,
+    required AppLocalizations l10n,
+    required MusicPlayerStateNotifier playerNotifier,
+    required PlayerState playerState,
+    required ValueNotifier<double> playbackSpeed,
+  }) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -178,7 +180,7 @@ class MusicDetailScreen extends HookConsumerWidget {
               children: [
                 ThemeText(
                   text: l10n.generatedAt(
-                    _formatGeneratedAt(musicItem.createdAt),
+                    _formatGeneratedAt(createdAt: musicItem.createdAt),
                   ),
                   color: theme.appColors.black,
                   style: theme.textTheme.h30.copyWith(
@@ -187,24 +189,32 @@ class MusicDetailScreen extends HookConsumerWidget {
                 ),
                 hSpace(height: 4),
                 ThemeText(
-                  text: l10n.scene(musicItem.scenario),
-                  color: theme.appColors.grey,
-                  style: theme.textTheme.h30.copyWith(fontSize: 14),
+                  text: l10n.scene(
+                    buildSceneIdToLabelMap(l10n)[musicItem.scenario] ??
+                        musicItem.scenario,
+                  ),
+                  color: theme.appColors.black,
+                  style: theme.textTheme.h30,
                 ),
                 ThemeText(
-                  text: l10n.condition(musicItem.dogCondition),
-                  color: theme.appColors.grey,
-                  style: theme.textTheme.h30.copyWith(fontSize: 14),
+                  text: l10n.condition(
+                    buildConditionIdToLabelMap(l10n)[musicItem.dogCondition] ??
+                        musicItem.dogCondition,
+                  ),
+                  color: theme.appColors.black,
+                  style: theme.textTheme.h30,
                 ),
                 ThemeText(
-                  text: l10n.breed(musicItem.dogBreed),
-                  color: theme.appColors.grey,
-                  style: theme.textTheme.h30.copyWith(fontSize: 14),
+                  text: l10n.breed(
+                    getL10nValue(l10n, getBreedKey(musicItem.dogBreed)),
+                  ),
+                  color: theme.appColors.black,
+                  style: theme.textTheme.h30,
                 ),
                 ThemeText(
                   text: l10n.duration(musicItem.duration),
-                  color: theme.appColors.grey,
-                  style: theme.textTheme.h30.copyWith(fontSize: 14),
+                  color: theme.appColors.black,
+                  style: theme.textTheme.h30,
                 ),
               ],
             ),
@@ -248,8 +258,13 @@ class MusicDetailScreen extends HookConsumerWidget {
                       value: playbackSpeed.value,
                       min: 0.5,
                       max: 2,
-                      divisions: 30, // 0.05刻み
+                      divisions: 30,
                       label: '${playbackSpeed.value.toStringAsFixed(2)}x',
+                      activeColor: theme.appColors.main,
+                      inactiveColor: theme.appColors.grey.withValues(
+                        alpha: 0.3,
+                      ),
+                      thumbColor: theme.appColors.main,
                       onChanged: (value) {
                         playbackSpeed.value = value;
                         playerNotifier.setPlaybackSpeed(value);
@@ -263,6 +278,9 @@ class MusicDetailScreen extends HookConsumerWidget {
                 Slider(
                   value: playerState.position.inSeconds.toDouble(),
                   max: playerState.duration?.inSeconds.toDouble() ?? 0.0,
+                  activeColor: theme.appColors.main,
+                  inactiveColor: theme.appColors.grey.withValues(alpha: 0.3),
+                  thumbColor: theme.appColors.main,
                   onChanged: (value) {
                     playerNotifier.seek(Duration(seconds: value.toInt()));
                   },
@@ -273,13 +291,13 @@ class MusicDetailScreen extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ThemeText(
-                        text: _formatDuration(playerState.position),
+                        text: _formatDuration(duration: playerState.position),
                         color: theme.appColors.black,
                         style: theme.textTheme.h30,
                       ),
                       ThemeText(
                         text: _formatDuration(
-                          playerState.duration ?? Duration.zero,
+                          duration: playerState.duration ?? Duration.zero,
                         ),
                         color: theme.appColors.black,
                         style: theme.textTheme.h30,
@@ -332,15 +350,16 @@ class MusicDetailScreen extends HookConsumerWidget {
   }
 
   /// 愛犬の反応タブを構築するメソッド
-  Widget _buildDogReactionTab(
-    BuildContext context,
-    WidgetRef ref,
-    AppTheme theme,
-    AppLocalizations l10n,
-    ValueNotifier<int> rating,
-    ValueNotifier<List<String>> selectedTags,
-    TextEditingController commentController,
-  ) {
+  Widget _buildDogReactionTab({
+    required BuildContext context,
+    required WidgetRef ref,
+    required AppTheme theme,
+    required AppLocalizations l10n,
+    required ValueNotifier<int> rating,
+    required ValueNotifier<List<String>> selectedTags,
+    required TextEditingController commentController,
+    required String musicId,
+  }) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -434,7 +453,6 @@ class MusicDetailScreen extends HookConsumerWidget {
           ),
         ),
         hSpace(height: 16),
-
         // コメント入力
         DecoratedBox(
           decoration: BoxDecoration(
@@ -474,7 +492,6 @@ class MusicDetailScreen extends HookConsumerWidget {
           ),
         ),
         hSpace(height: 16),
-
         // フィードバック送信ボタン
         PrimaryButton(
           text: l10n.sendFeedback,
@@ -523,7 +540,7 @@ class MusicDetailScreen extends HookConsumerWidget {
   ///
   /// [duration] フォーマットする時間
   /// Returns フォーマットされた時間文字列（HH:MM:SS形式）
-  String _formatDuration(Duration duration) {
+  String _formatDuration({required Duration duration}) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
     final hours = twoDigits(duration.inHours);
     final minutes = twoDigits(duration.inMinutes.remainder(60));
@@ -535,7 +552,7 @@ class MusicDetailScreen extends HookConsumerWidget {
   ///
   /// [createdAt] 生成日時
   /// Returns フォーマットされた日時文字列（直近1週間は時間も含む）
-  String _formatGeneratedAt(DateTime createdAt) {
+  String _formatGeneratedAt({required DateTime createdAt}) {
     final now = DateTime.now();
     final localCreatedAt = createdAt.toLocal();
     final difference = now.difference(localCreatedAt);

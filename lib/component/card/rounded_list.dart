@@ -41,47 +41,96 @@ class RoundedList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final theme = ref.watch(appThemeProvider);
-    final actualTextColor = iconColor ?? theme.appColors.grey;
+    final actualTextColor = iconColor ?? theme.appColors.main;
 
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8),
-          decoration: BoxDecoration(
-            color: theme.appColors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.white, Colors.white.withValues(alpha: 0.95)],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.08),
+            offset: const Offset(0, 2),
+            blurRadius: 8,
           ),
-          child: ListTile(
-            title: ThemeText(
-              text: title,
-              color: theme.appColors.black,
-              style: theme.textTheme.h40,
-            ),
-            leading: Icon(icon, color: actualTextColor),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              color: theme.appColors.grey.withValues(alpha: 0.7),
-              size: 16,
-            ),
-            onTap: () async {
-              if (title == l10n.share(l10n.productName)) {
-                final appLink =
-                    Platform.isIOS
-                        ? ExternalPageList.iosAppLink
-                        : ExternalPageList.androidAppLink;
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            offset: const Offset(0, 4),
+            blurRadius: 16,
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () async {
+            if (title == l10n.share(l10n.productName)) {
+              final appLink =
+                  Platform.isIOS
+                      ? ExternalPageList.iosAppLink
+                      : ExternalPageList.androidAppLink;
 
-                final shareMessage = l10n.shareMessage(
-                  appLink,
-                  l10n.productName,
-                );
-                await Share.share(shareMessage);
-              } else {
-                onTap();
-              }
-            },
+              final shareMessage = l10n.shareMessage(appLink, l10n.productName);
+              await Share.share(shareMessage);
+            } else {
+              onTap();
+            }
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        actualTextColor.withValues(alpha: 0.1),
+                        actualTextColor.withValues(alpha: 0.05),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: actualTextColor.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  child: Icon(icon, color: actualTextColor, size: 22),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: ThemeText(
+                    text: title,
+                    color: theme.appColors.secondary,
+                    style: theme.textTheme.h40.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: theme.appColors.main.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: theme.appColors.main,
+                    size: 14,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

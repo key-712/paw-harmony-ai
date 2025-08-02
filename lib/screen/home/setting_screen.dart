@@ -9,6 +9,7 @@ import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 設定画面
+/// アプリの設定・管理機能
 class SettingScreen extends HookConsumerWidget {
   /// 設定画面
   const SettingScreen({super.key, required this.scrollController});
@@ -23,7 +24,7 @@ class SettingScreen extends HookConsumerWidget {
     // final purchaseState = ref.watch(purchaseStateNotifierProvider);
 
     return Scaffold(
-      appBar: BaseHeader(title: l10n.setting),
+      // appBar: BaseHeader(title: l10n.setting),
       backgroundColor: theme.appColors.background,
       body: ListView(
         controller: scrollController,
@@ -62,117 +63,115 @@ class SettingScreen extends HookConsumerWidget {
           // ),
           hSpace(height: 16),
           // 設定メニュー
-          Card(
-            child: Column(
-              children: [
-                RoundedList(
-                  title: l10n.review(l10n.productName),
-                  screen: ScreenLabel.setting,
-                  icon: Icons.star,
-                  iconColor: theme.appColors.yellow,
-                  onTap: openReview,
-                ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.share(l10n.productName),
-                  screen: ScreenLabel.setting,
-                  icon: Icons.share,
-                  iconColor: theme.appColors.green,
-                  onTap: () {},
-                ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.pushNotification,
-                  screen: ScreenLabel.setting,
-                  icon: Icons.notifications,
-                  iconColor: theme.appColors.orange,
-                  onTap: () {
-                    const PushScreenRoute().push<void>(context);
-                  },
-                ),
-                // hSpace(height: 8),
-                // RoundedList(
-                //   title: l10n.recommendApp,
-                //   screen: ScreenLabel.setting,
-                //   icon: Icons.app_registration,
-                //   iconColor: theme.appColors.purple,
-                //   onTap: () {
-                //     const RecommendAppScreenRoute().push<void>(context);
-                //   },
-                // ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.contact,
-                  screen: ScreenLabel.setting,
-                  icon: Icons.mail,
-                  iconColor: theme.appColors.blue,
-                  onTap: () {
-                    const ContactScreenRoute().push<void>(context);
-                  },
-                ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.languageSetting,
-                  screen: ScreenLabel.setting,
-                  icon: Icons.language,
-                  iconColor: theme.appColors.primary,
-                  onTap: () {
-                    const LanguageSettingScreenRoute().push<void>(context);
-                  },
-                ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.legal,
-                  screen: ScreenLabel.setting,
-                  icon: Icons.note,
-                  iconColor: theme.appColors.grey,
-                  onTap: () {
-                    openExternalBrowser(url: ExternalPageList.legal);
-                  },
-                ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.privacyPolicy,
-                  screen: ScreenLabel.setting,
-                  icon: Icons.note,
-                  iconColor: theme.appColors.black,
-                  onTap: () {
-                    openExternalBrowser(url: ExternalPageList.privacyPolicy);
-                  },
-                ),
-                hSpace(height: 8),
-                RoundedList(
-                  title: l10n.logout,
-                  screen: ScreenLabel.setting,
-                  icon: Icons.logout,
-                  iconColor: theme.appColors.red,
-                  onTap: () {
-                    showDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return TwoButtonDialog(
-                          title: l10n.logoutConfirmTitle,
-                          screen: ScreenLabel.setting,
-                          content: l10n.logoutConfirmMessage,
-                          primaryText: l10n.confirm,
-                          secondaryText: l10n.cancel,
-                          primaryCallBack: () {
-                            Navigator.of(context).pop();
-                            ref
-                                .read(authStateNotifierProvider.notifier)
-                                .signOut();
-                            const LoginScreenRoute().go(context);
-                          },
-                          secondaryCallBack: () {
-                            Navigator.of(context).pop();
-                          },
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
+          Column(
+            children: [
+              RoundedList(
+                title: l10n.review(l10n.productName),
+                screen: ScreenLabel.setting,
+                icon: Icons.star,
+                iconColor: theme.appColors.yellow,
+                onTap: openReview,
+              ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.share(l10n.productName),
+                screen: ScreenLabel.setting,
+                icon: Icons.share,
+                iconColor: theme.appColors.green,
+                onTap: () {},
+              ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.pushNotification,
+                screen: ScreenLabel.setting,
+                icon: Icons.notifications,
+                iconColor: theme.appColors.orange,
+                onTap: () {
+                  const PushScreenRoute().push<void>(context);
+                },
+              ),
+              // hSpace(height: 8),
+              // RoundedList(
+              //   title: l10n.recommendApp,
+              //   screen: ScreenLabel.setting,
+              //   icon: Icons.app_registration,
+              //   iconColor: theme.appColors.purple,
+              //   onTap: () {
+              //     const RecommendAppScreenRoute().push<void>(context);
+              //   },
+              // ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.contact,
+                screen: ScreenLabel.setting,
+                icon: Icons.mail,
+                iconColor: theme.appColors.blue,
+                onTap: () {
+                  const ContactScreenRoute().push<void>(context);
+                },
+              ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.languageSetting,
+                screen: ScreenLabel.setting,
+                icon: Icons.language,
+                iconColor: theme.appColors.primary,
+                onTap: () {
+                  const LanguageSettingScreenRoute().push<void>(context);
+                },
+              ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.legal,
+                screen: ScreenLabel.setting,
+                icon: Icons.note,
+                iconColor: theme.appColors.grey,
+                onTap: () {
+                  openExternalBrowser(url: ExternalPageList.legal);
+                },
+              ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.privacyPolicy,
+                screen: ScreenLabel.setting,
+                icon: Icons.note,
+                iconColor: theme.appColors.black,
+                onTap: () {
+                  openExternalBrowser(url: ExternalPageList.privacyPolicy);
+                },
+              ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.logout,
+                screen: ScreenLabel.setting,
+                icon: Icons.logout,
+                iconColor: theme.appColors.red,
+                onTap: () {
+                  showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return TwoButtonDialog(
+                        title: l10n.logoutConfirmTitle,
+                        screen: ScreenLabel.setting,
+                        content: l10n.logoutConfirmMessage,
+                        primaryText: l10n.confirm,
+                        secondaryText: l10n.cancel,
+                        primaryCallBack: () {
+                          Navigator.of(context).pop();
+                          ref
+                              .read(authStateNotifierProvider.notifier)
+                              .signOut();
+                          const LoginScreenRoute().go(context);
+                        },
+                        secondaryCallBack: () {
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
           ),
           hSpace(height: 16),
           const VersionText(),

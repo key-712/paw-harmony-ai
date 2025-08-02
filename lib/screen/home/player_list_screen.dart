@@ -145,9 +145,8 @@ class PlayerListScreen extends HookConsumerWidget {
                                                     l10n,
                                                   )[item.scenario] ??
                                                   item.scenario,
-                                              color: theme.appColors.grey,
-                                              style: theme.textTheme.h30
-                                                  .copyWith(fontSize: 14),
+                                              color: theme.appColors.black,
+                                              style: theme.textTheme.h30,
                                             ),
                                             hSpace(height: 4),
                                             ThemeText(
@@ -165,9 +164,10 @@ class PlayerListScreen extends HookConsumerWidget {
                                                     l10n,
                                                   )[item.dogCondition] ??
                                                   item.dogCondition,
-                                              color: theme.appColors.grey,
-                                              style: theme.textTheme.h30
-                                                  .copyWith(fontSize: 14),
+                                              color: theme.appColors.black,
+                                              style:
+                                                  theme.textTheme.h30
+                                                      .copyWith(),
                                             ),
                                             hSpace(height: 4),
                                             ThemeText(
@@ -180,12 +180,12 @@ class PlayerListScreen extends HookConsumerWidget {
                                                   ),
                                             ),
                                             ThemeText(
-                                              text: l10n.__getValue(
+                                              text: getL10nValue(
+                                                l10n,
                                                 getBreedKey(item.dogBreed),
                                               ),
-                                              color: theme.appColors.grey,
-                                              style: theme.textTheme.h30
-                                                  .copyWith(fontSize: 14),
+                                              color: theme.appColors.black,
+                                              style: theme.textTheme.h30,
                                             ),
                                             hSpace(height: 4),
                                             ThemeText(
@@ -201,9 +201,8 @@ class PlayerListScreen extends HookConsumerWidget {
                                               text: l10n.duration(
                                                 item.duration,
                                               ),
-                                              color: theme.appColors.grey,
-                                              style: theme.textTheme.h30
-                                                  .copyWith(fontSize: 14),
+                                              color: theme.appColors.black,
+                                              style: theme.textTheme.h30,
                                             ),
                                           ],
                                         ),
@@ -244,110 +243,6 @@ class PlayerListScreen extends HookConsumerWidget {
     } else {
       // 1週間以上前の場合は日付のみ
       return localCreatedAt.toString().split(' ')[0];
-    }
-  }
-}
-
-// l10nの多言語キーから値を取得するヘルパー（dog_profile_screen.dartと同じ）
-extension _L10nExt on AppLocalizations {
-  String __getValue(String key) {
-    switch (key) {
-      case 'personalityEasygoing':
-        return personalityEasygoing;
-      case 'personalityActive':
-        return personalityActive;
-      case 'personalityTimid':
-        return personalityTimid;
-      case 'personalitySociable':
-        return personalitySociable;
-      case 'personalityAffectionate':
-        return personalityAffectionate;
-      case 'personalityMyPace':
-        return personalityMyPace;
-      case 'breedToyPoodle':
-        return breedToyPoodle;
-      case 'breedChihuahua':
-        return breedChihuahua;
-      case 'breedShiba':
-        return breedShiba;
-      case 'breedMiniatureDachshund':
-        return breedMiniatureDachshund;
-      case 'breedPomeranian':
-        return breedPomeranian;
-      case 'breedFrenchBulldog':
-        return breedFrenchBulldog;
-      case 'breedGoldenRetriever':
-        return breedGoldenRetriever;
-      case 'breedLabradorRetriever':
-        return breedLabradorRetriever;
-      case 'breedMix':
-        return breedMix;
-      case 'breedOther':
-        return breedOther;
-      case 'breedAkita':
-        return breedAkita;
-      case 'breedMaltese':
-        return breedMaltese;
-      case 'breedSiberianHusky':
-        return breedSiberianHusky;
-      case 'breedAlaskanMalamute':
-        return breedAlaskanMalamute;
-      case 'breedBorderCollie':
-        return breedBorderCollie;
-      case 'breedAustralianShepherd':
-        return breedAustralianShepherd;
-      case 'breedBulldog':
-        return breedBulldog;
-      case 'breedPug':
-        return breedPug;
-      case 'breedGermanShepherd':
-        return breedGermanShepherd;
-      case 'breedDoberman':
-        return breedDoberman;
-      case 'breedBeagle':
-        return breedBeagle;
-      case 'breedDachshund':
-        return breedDachshund;
-      case 'breedSamoyed':
-        return breedSamoyed;
-      case 'breedGreatPyrenees':
-        return breedGreatPyrenees;
-      case 'breedCorgi':
-        return breedCorgi;
-      case 'breedWelshCorgi':
-        return breedWelshCorgi;
-      case 'breedShihTzu':
-        return breedShihTzu;
-      case 'breedPekingese':
-        return breedPekingese;
-      case 'breedBerneseMountainDog':
-        return breedBerneseMountainDog;
-      case 'breedSaintBernard':
-        return breedSaintBernard;
-      case 'breedBostonTerrier':
-        return breedBostonTerrier;
-      case 'breedWestHighlandWhiteTerrier':
-        return breedWestHighlandWhiteTerrier;
-      case 'breedYorkshireTerrier':
-        return breedYorkshireTerrier;
-      case 'breedNewfoundland':
-        return breedNewfoundland;
-      case 'breedRetriever':
-        return breedRetriever;
-      case 'breedShetlandSheepdog':
-        return breedShetlandSheepdog;
-      case 'breedCollie':
-        return breedCollie;
-      case 'breedBassetHound':
-        return breedBassetHound;
-      case 'breedBloodhound':
-        return breedBloodhound;
-      case 'breedGreyhound':
-        return breedGreyhound;
-      case 'breedWhippet':
-        return breedWhippet;
-      default:
-        return key;
     }
   }
 }
