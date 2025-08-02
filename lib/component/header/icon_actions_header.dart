@@ -35,14 +35,11 @@ class IconActionsHeader extends ConsumerWidget implements PreferredSizeWidget {
         color: theme.appColors.black,
         style: theme.textTheme.h40.bold(),
       ),
-      backgroundColor: theme.appColors.background,
+      backgroundColor: theme.appColors.headerBackground,
       actions: [
         IconButton(
           onPressed: onPressed,
-          icon: Icon(
-            icon,
-            color: theme.appColors.black,
-          ),
+          icon: Icon(icon, color: theme.appColors.black),
         ),
       ],
     );

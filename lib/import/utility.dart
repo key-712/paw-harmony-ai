@@ -19,6 +19,7 @@ export '../utility/file_converter.dart';
 export '../utility/format_log_parameters.dart';
 export '../utility/handle_cloud_message.dart';
 export '../utility/is_not_production.dart';
+export '../utility/l10n_helper.dart';
 export '../utility/layout.dart';
 export '../utility/logger/logger.dart';
 export '../utility/logger/provider_logger.dart';

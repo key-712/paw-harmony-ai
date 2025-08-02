@@ -17,7 +17,7 @@ class OnlyBackIconHeader extends ConsumerWidget implements PreferredSizeWidget {
       iconTheme: IconThemeData(
         color: theme.appColors.black,
       ),
-      backgroundColor: theme.appColors.background,
+      backgroundColor: theme.appColors.headerBackground,
       elevation: 0,
     );
   }

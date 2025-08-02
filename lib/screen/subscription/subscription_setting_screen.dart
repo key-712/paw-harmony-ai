@@ -208,7 +208,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
                       ThemeText(
                         text: '現在、プランの情報を取得できません。\nしばらく時間をおいてから再度お試しください。',
                         color: theme.appColors.grey,
-                        style: theme.textTheme.h30.copyWith(fontSize: 14),
+                        style: theme.textTheme.h30,
                         align: TextAlign.center,
                       ),
                     ],
@@ -255,7 +255,7 @@ class SubscriptionSettingScreen extends HookConsumerWidget {
               ThemeText(
                 text: l10n.subscriptionCancellationNote,
                 color: theme.appColors.grey,
-                style: theme.textTheme.h30.copyWith(fontSize: 12),
+                style: theme.textTheme.h30,
               ),
             ],
           ),

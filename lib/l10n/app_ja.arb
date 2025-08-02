@@ -1425,5 +1425,9 @@
   "purchaseCompleted": "購入が完了しました！",
   "@purchaseCompleted": {
     "description": "購入完了時のメッセージ"
+  },
+  "selected": "選択済み",
+  "@selected": {
+    "description": "選択状態を示すテキスト"
   }
 }

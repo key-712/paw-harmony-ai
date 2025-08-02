@@ -10,6 +10,7 @@ import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 音声生成画面のウィジェット
+/// 愛犬の性格と状況に合わせたオリジナル音楽を生成
 class AudioGenerationScreen extends HookConsumerWidget {
   /// AudioGenerationScreenのコンストラクタ
   const AudioGenerationScreen({super.key, required this.scrollController});
@@ -93,6 +94,7 @@ class AudioGenerationScreen extends HookConsumerWidget {
               }
               return SingleChildScrollView(
                 controller: scrollController,
+
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -223,8 +225,8 @@ class AudioGenerationScreen extends HookConsumerWidget {
                                   generationCount,
                                   l10n.freePlan,
                                 ),
-                        color: theme.appColors.grey,
-                        style: theme.textTheme.h30.copyWith(fontSize: 14),
+                        color: theme.appColors.black,
+                        style: theme.textTheme.h30,
                       ),
                     ),
                     hSpace(height: 32),

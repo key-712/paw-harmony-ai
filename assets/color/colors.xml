@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main">#3B5998</color>
-    <color name="primary">#4EADEA</color>
-    <color name="progress">#4EADEA</color>
-    <color name="blueGrey">#E9EEF4</color>
-    <color name="backGround">#EFEFEE</color>
+    <!-- メインカラー: 暖かみのあるコーラルピンク - 愛犬への愛情を表現 -->
+    <color name="main">#FF6B6B</color>
+    
+    <!-- プライマリー: 深みのあるネイビー - 信頼性と落ち着きを表現 -->
+    <color name="primary">#2C3E50</color>
+    
+    <!-- プログレス: メインカラーと同じ -->
+    <color name="progress">#FF6B6B</color>
+    
+    <!-- ブルーグレー: ソフトなライトブルー - 癒しと安心感 -->
+    <color name="blueGrey">#E8F4FD</color>
+    
+    <!-- 背景: 暖かみのあるベージュ - 優しさと落ち着きを表現 -->
+    <color name="backGround">#F8F6F1</color>
+    
+    <!-- ヘッダー背景: 温かみのあるライトベージュ - ヘッダーの区別を明確に -->
+    <color name="headerBackground">#F0EDE6</color>
+    
+    <!-- エラー: ソフトなレッド - 優しい注意色 -->
+    <color name="error">#FF8A80</color>
+    
+    <!-- アクセント: フレッシュなグリーン - 自然と成長を表現 -->
+    <color name="accent">#4CAF50</color>
+    
+    <!-- セカンダリ: 温かみのあるグレー - 落ち着きを表現 -->
+    <color name="secondary">#8E8E93</color>
+    
+    <!-- 成功: アクセントと同じ -->
+    <color name="success">#4CAF50</color>
 </resources>

@@ -245,12 +245,8 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
     try {
       logger.d('Downloading file from: $url');
 
-      // URLを適切にエンコード
-      final encodedUrl = Uri.encodeFull(url);
-      logger.d('Encoded URL: $encodedUrl');
-
-      // URLの妥当性をチェック
-      final uri = Uri.parse(encodedUrl);
+      // Firebase Storage URLは既にエンコードされているので、そのまま使用
+      final uri = Uri.parse(url);
       logger
         ..d('Parsed URI: $uri')
         ..d('URI scheme: ${uri.scheme}')

@@ -96,17 +96,12 @@ lib/
 ## リリースまでにやること
 
 PROGRESS
-
-13. アイコン/ウォークスルー画像のサイズ変更・置換
-    assets/image/
-    launcher_icon/image/
-13. make create-native-splash
-
 15. スクショコンテンツの作成
     https://zenn.dev/futtaro/articles/2357ccbba29678
 16. 審査対応
 17. Push 通知の設定
 18. 審査提出
+=======================================================
 19. AdMob とアプリ紐付け
     公開から約 24 時間後目安
 20. アプリの作成(Android)
@@ -133,3 +128,7 @@ DONE
 12. APNs 認証キーの追加(Firebase Cloud Messaging Prod のみ)
     https://drive.google.com/file/d/1v4hfDUC0UV1TgBIjSvbdokyvP8wipdja/view?usp=drive_link
     https://console.firebase.google.com/u/0/project/crelve-paw-harmony-ai-prod/settings/cloudmessaging/ios:crelve.paw.harmony.ai.mobile.prod?hl=ja
+13. アイコン/ウォークスルー画像のサイズ変更・置換
+    assets/image/
+    launcher_icon/image/
+14. make create-native-splash

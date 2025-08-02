@@ -9,6 +9,7 @@ class AppColors {
     required this.main,
     required this.primary,
     required this.background,
+    required this.headerBackground,
     required this.white,
     required this.black,
     required this.grey,
@@ -23,6 +24,9 @@ class AppColors {
     required this.loading,
     required this.progress,
     required this.error,
+    required this.accent,
+    required this.secondary,
+    required this.success,
   });
 
   /// ライトテーマ用の色情報を管理インスタンスを作成します
@@ -31,6 +35,7 @@ class AppColors {
       main: ColorName.main,
       primary: ColorName.primary,
       background: ColorName.backGround,
+      headerBackground: ColorName.headerBackground,
       white: Colors.white,
       black: Colors.black,
       grey: Colors.grey,
@@ -44,7 +49,10 @@ class AppColors {
       activeDotColor: Colors.white38,
       loading: Colors.white,
       progress: ColorName.progress,
-      error: Colors.red,
+      error: ColorName.error,
+      accent: ColorName.accent,
+      secondary: ColorName.secondary,
+      success: ColorName.success,
     );
   }
 
@@ -54,6 +62,7 @@ class AppColors {
       main: ColorName.main,
       primary: ColorName.primary,
       background: ColorName.backGround,
+      headerBackground: ColorName.headerBackground,
       white: Colors.white,
       black: Colors.black,
       grey: Colors.grey,
@@ -67,7 +76,10 @@ class AppColors {
       activeDotColor: Colors.white38,
       loading: Colors.white,
       progress: ColorName.progress,
-      error: Colors.red,
+      error: ColorName.error,
+      accent: ColorName.accent,
+      secondary: ColorName.secondary,
+      success: ColorName.success,
     );
   }
 
@@ -79,6 +91,9 @@ class AppColors {
 
   /// 背景カラー
   final Color background;
+
+  /// ヘッダー背景カラー
+  final Color headerBackground;
 
   /// 白
   final Color white;
@@ -121,4 +136,13 @@ class AppColors {
 
   /// エラーカラー
   final Color error;
+
+  /// アクセントカラー
+  final Color accent;
+
+  /// セカンダリカラー
+  final Color secondary;
+
+  /// 成功カラー
+  final Color success;
 }

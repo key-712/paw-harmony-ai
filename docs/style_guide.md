@@ -85,13 +85,16 @@ wSpace(16),
 ### Opacity
 
 `withOpacity`は使わず、`ColorUtility`クラスのメソッドを使用してください。
+`ColorUtility`に定義されていない色の場合は`withValues(alpha: 0.1)`を使用してください。
 
 ```dart
 // 👎 NG
 Colors.black.withOpacity(0.5)
+theme.appColors.main.withOpacity(0.1)
 
 // 👍 OK
 ColorUtility.black50,
+theme.appColors.main.withValues(alpha: 0.1)
 ```
 
 ### 基本カラー

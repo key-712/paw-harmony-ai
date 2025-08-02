@@ -7,18 +7,10 @@ import '../../import/theme.dart';
 /// 基本的なヘッダー
 class BaseHeader extends ConsumerWidget implements PreferredSizeWidget {
   /// 基本的なヘッダー
-  const BaseHeader({
-    super.key,
-    required this.title,
-    this.backgroundColor,
-    this.actions,
-  });
+  const BaseHeader({super.key, required this.title, this.actions});
 
   /// タイトル
   final String title;
-
-  /// 背景色
-  final Color? backgroundColor;
 
   /// アクションボタン
   final List<Widget>? actions;
@@ -35,7 +27,7 @@ class BaseHeader extends ConsumerWidget implements PreferredSizeWidget {
         color: theme.appColors.black,
         style: theme.textTheme.h40.bold(),
       ),
-      backgroundColor: backgroundColor ?? theme.appColors.background,
+      backgroundColor: theme.appColors.headerBackground,
       leading: Container(),
       actions: actions,
     );
