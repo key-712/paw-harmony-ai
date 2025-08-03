@@ -568,11 +568,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.paw.harmony.mobile";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.paw.harmony.mobile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AdHoc jp.crelve.paw.harmony.mobile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -593,7 +593,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
 				PROVISIONING_PROFILE_SPECIFIER = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
@@ -614,7 +614,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
 				PROVISIONING_PROFILE_SPECIFIER = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
@@ -633,7 +633,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
 				PROVISIONING_PROFILE_SPECIFIER = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
@@ -760,7 +760,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = "";
@@ -772,11 +771,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.paw.harmony.mobile";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.paw.harmony.mobile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AdHoc jp.crelve.paw.harmony.mobile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -797,7 +796,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = "";
@@ -809,11 +808,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = crelve.paw.harmony.mobile.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d364b11-22f9-4023-ab44-6ec6c7d7ddb1";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore crelve.paw.harmony.mobile";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore crelve.paw.harmony.mobile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AdHoc jp.crelve.paw.harmony.mobile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

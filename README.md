@@ -96,8 +96,6 @@ lib/
 ## リリースまでにやること
 
 PROGRESS
-15. スクショコンテンツの作成
-    https://zenn.dev/futtaro/articles/2357ccbba29678
 16. 審査対応
 17. Push 通知の設定
 18. 審査提出
@@ -132,3 +130,5 @@ DONE
     assets/image/
     launcher_icon/image/
 14. make create-native-splash
+15. スクショコンテンツの作成
+    https://zenn.dev/futtaro/articles/2357ccbba29678
