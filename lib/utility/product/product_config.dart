@@ -19,5 +19,5 @@ class ExternalPageList {
 
   /// プライバシーポリシーのURL
   static const privacyPolicy =
-      'https://www.notion.so/Paw-Harmony-23e0932daea2804cbb27f7bbcd01f8cc?source=copy_link';
+      'https://zircon-knight-7b1.notion.site/Paw-Harmony-23e0932daea2804cbb27f7bbcd01f8cc';
 }
