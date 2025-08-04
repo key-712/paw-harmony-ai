@@ -131,4 +131,4 @@ DONE
     launcher_icon/image/
 14. make create-native-splash
 15. スクショコンテンツの作成
-    https://zenn.dev/futtaro/articles/2357ccbba29678
+    https://zenn.dev/futtaro/articles/2357ccbba29678# flutter-template-fastlane
