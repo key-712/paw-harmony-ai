@@ -613,6 +613,31 @@
   "@logoutConfirmMessage": {
     "description": "Message du dialogue de confirmation de déconnexion"
   },
+  "deleteAccount": "Supprimer le compte",
+  "@deleteAccount": {
+    "description": "Bouton de suppression de compte"
+  },
+  "deleteAccountConfirmTitle": "Confirmation de suppression de compte",
+  "@deleteAccountConfirmTitle": {
+    "description": "Titre du dialogue de confirmation de suppression de compte"
+  },
+  "deleteAccountConfirmMessage": "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action ne peut pas être annulée et toutes vos données seront définitivement supprimées.",
+  "@deleteAccountConfirmMessage": {
+    "description": "Message du dialogue de confirmation de suppression de compte"
+  },
+  "deleteAccountSuccess": "Compte supprimé avec succès",
+  "@deleteAccountSuccess": {
+    "description": "Message affiché lors de la suppression réussie du compte"
+  },
+  "deleteAccountError": "Échec de la suppression du compte : {error}",
+  "@deleteAccountError": {
+    "description": "Message affiché lors de l'échec de la suppression du compte",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
   "confirm": "Confirmer",
   "@confirm": {
     "description": "Bouton de confirmation"
@@ -1335,6 +1360,10 @@
   "@resendEmail": {
     "description": "Texte du bouton de renvoi d'e-mail"
   },
+  "checkEmailVerification": "Vérifier l'Email",
+  "@checkEmailVerification": {
+    "description": "Texte du bouton de vérification d'email"
+  },
   "ok": "OK",
   "@ok": {
     "description": "Texte du bouton OK"
@@ -1426,6 +1455,10 @@
   "watchAdToAddCount": "Regarder une pub pour ajouter",
   "@watchAdToAddCount": {
     "description": "Texte pour le bouton ajouter en regardant une pub"
+  },
+  "adRewardMessage": "Visualisation de publicité terminée ! Le nombre de générations a augmenté de +1",
+  "@adRewardMessage": {
+    "description": "Message de récompense lorsque la visualisation de la publicité est terminée"
   },
   "purchaseCompleted": "Achat terminé !",
   "@purchaseCompleted": {

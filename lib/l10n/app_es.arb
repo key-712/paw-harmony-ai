@@ -613,6 +613,31 @@
   "@logoutConfirmMessage": {
     "description": "Mensaje del diálogo de confirmación de cierre de sesión"
   },
+  "deleteAccount": "Eliminar cuenta",
+  "@deleteAccount": {
+    "description": "Botón de eliminar cuenta"
+  },
+  "deleteAccountConfirmTitle": "Confirmar eliminación de cuenta",
+  "@deleteAccountConfirmTitle": {
+    "description": "Título del diálogo de confirmación de eliminación de cuenta"
+  },
+  "deleteAccountConfirmMessage": "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer y todos tus datos se eliminarán permanentemente.",
+  "@deleteAccountConfirmMessage": {
+    "description": "Mensaje del diálogo de confirmación de eliminación de cuenta"
+  },
+  "deleteAccountSuccess": "Cuenta eliminada exitosamente",
+  "@deleteAccountSuccess": {
+    "description": "Mensaje mostrado cuando la cuenta se elimina exitosamente"
+  },
+  "deleteAccountError": "Error al eliminar la cuenta: {error}",
+  "@deleteAccountError": {
+    "description": "Mensaje mostrado cuando falla la eliminación de la cuenta",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
   "confirm": "Confirmar",
   "@confirm": {
     "description": "Botón de confirmar"
@@ -1335,6 +1360,10 @@
   "@resendEmail": {
     "description": "Texto del botón de reenvío de correo"
   },
+  "checkEmailVerification": "Verificar Correo Electrónico",
+  "@checkEmailVerification": {
+    "description": "Texto del botón para verificar correo electrónico"
+  },
   "ok": "OK",
   "@ok": {
     "description": "Texto del botón OK"
@@ -1422,6 +1451,10 @@
   "watchAdToAddCount": "Ver anuncio para añadir",
   "@watchAdToAddCount": {
     "description": "Texto para el botón añadir viendo un anuncio"
+  },
+  "adRewardMessage": "¡Visualización de anuncio completada! El conteo de generación aumentó en +1",
+  "@adRewardMessage": {
+    "description": "Mensaje de recompensa cuando se completa la visualización del anuncio"
   },
   "subscribeToPlan": "Suscribirse al plan",
   "@subscribeToPlan": {

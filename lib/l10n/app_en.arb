@@ -608,6 +608,31 @@
   "@logoutConfirmMessage": {
     "description": "Logout confirmation dialog message"
   },
+  "deleteAccount": "Delete Account",
+  "@deleteAccount": {
+    "description": "Delete account button"
+  },
+  "deleteAccountConfirmTitle": "Delete Account Confirmation",
+  "@deleteAccountConfirmTitle": {
+    "description": "Delete account confirmation dialog title"
+  },
+  "deleteAccountConfirmMessage": "Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently removed.",
+  "@deleteAccountConfirmMessage": {
+    "description": "Delete account confirmation dialog message"
+  },
+  "deleteAccountSuccess": "Account deleted successfully",
+  "@deleteAccountSuccess": {
+    "description": "Message shown when account is deleted successfully"
+  },
+  "deleteAccountError": "Failed to delete account: {error}",
+  "@deleteAccountError": {
+    "description": "Message shown when account deletion fails",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
   "confirm": "Confirm",
   "@confirm": {
     "description": "Confirm button"
@@ -1330,6 +1355,10 @@
   "@resendEmail": {
     "description": "Text for resend email button"
   },
+  "checkEmailVerification": "Check Email Verification",
+  "@checkEmailVerification": {
+    "description": "Check email verification button text"
+  },
   "ok": "OK",
   "@ok": {
     "description": "Text for OK button"
@@ -1421,6 +1450,10 @@
   "watchAdToAddCount": "Watch ad to add count",
   "@watchAdToAddCount": {
     "description": "Text for button to add count by watching ad"
+  },
+  "adRewardMessage": "Ad viewing completed! Generation count increased by +1",
+  "@adRewardMessage": {
+    "description": "Reward message when ad viewing is completed"
   },
   "subscribeToPlan": "Subscribe to Plan",
   "@subscribeToPlan": {

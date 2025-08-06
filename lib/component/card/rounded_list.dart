@@ -104,7 +104,7 @@ class RoundedList extends ConsumerWidget {
                   ),
                   child: Icon(icon, color: actualTextColor, size: 22),
                 ),
-                const SizedBox(width: 16),
+                wSpace(width: 16),
                 Expanded(
                   child: ThemeText(
                     text: title,

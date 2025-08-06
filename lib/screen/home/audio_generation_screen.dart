@@ -6,6 +6,7 @@ import '../../import/component.dart';
 import '../../import/model.dart';
 import '../../import/provider.dart';
 import '../../import/theme.dart';
+import '../../import/type.dart';
 import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
@@ -40,26 +41,40 @@ class AudioGenerationScreen extends HookConsumerWidget {
       return null;
     }, const []);
 
-    ref.listen<AsyncValue<MusicGenerationHistory?>>(
-      musicGenerationStateNotifierProvider,
-      (_, state) {
-        if (!context.mounted) return;
-
-        if (state is AsyncData && state.value != null) {
-          showSnackBar(
+    // 報酬の状態を監視
+    ref
+      ..listen<AdState>(adStateNotifierProvider, (previous, next) {
+        if (next.hasReward && (previous == null || !previous.hasReward)) {
+          // 報酬が付与された場合、Snackbarを表示
+          showRewardSnackBar(
             context: context,
             theme: theme,
-            text: l10n.musicGenerationSuccess,
+            text: l10n.adRewardMessage,
           );
-        } else if (state is AsyncError) {
-          showAlertSnackBar(
-            context: context,
-            theme: theme,
-            text: l10n.musicGenerationFailed(state.error.toString()),
-          );
+          // 報酬をリセット
+          adNotifier.resetReward();
         }
-      },
-    );
+      })
+      ..listen<AsyncValue<MusicGenerationHistory?>>(
+        musicGenerationStateNotifierProvider,
+        (_, state) {
+          if (!context.mounted) return;
+
+          if (state is AsyncData && state.value != null) {
+            showSnackBar(
+              context: context,
+              theme: theme,
+              text: l10n.musicGenerationSuccess,
+            );
+          } else if (state is AsyncError) {
+            showAlertSnackBar(
+              context: context,
+              theme: theme,
+              text: l10n.musicGenerationFailed(state.error.toString()),
+            );
+          }
+        },
+      );
 
     final sceneIdToLabel = buildSceneIdToLabelMap(l10n);
     final conditionIdToLabel = buildConditionIdToLabelMap(l10n);

@@ -26,11 +26,7 @@ class MusicGenerationStateNotifier
   ///
   /// [request] 音楽生成リクエスト
   Future<void> generateMusic(MusicGenerationRequest request) async {
-    logger
-      ..d('=== 音楽生成リクエスト開始 ===')
-      ..d(
-        'リクエスト情報: userId: ${request.userId} dogId: ${request.dogId} dogBreed: ${request.dogBreed} dogPersonalityTraits: ${request.dogPersonalityTraits} scenario: ${request.scenario} dogCondition: ${request.dogCondition} additionalInfo: ${request.additionalInfo}',
-      );
+    logger.d('=== 音楽生成リクエスト開始 ===');
 
     state = const AsyncValue.loading();
     _currentRequest = request; // Store the request
@@ -44,10 +40,6 @@ class MusicGenerationStateNotifier
 
       // 音楽生成設定
       final config = _generateConfigFromRequest(request);
-
-      logger
-        ..d('音楽生成APIリクエスト送信')
-        ..d('設定: $config');
 
       // ファクトリーを使用して音楽を生成（
       final result = await musicFactory.generateMusic(
@@ -957,45 +949,26 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
       return;
     }
 
-    logger.d(
-      'リクエスト: - userId: ${_currentRequest!.userId} - dogId: ${_currentRequest!.dogId} - scenario: ${_currentRequest!.scenario} - dogCondition: ${_currentRequest!.dogCondition} - dogBreed: ${_currentRequest!.dogBreed}',
-    );
-
     try {
-      // JSONメッセージをパース
       final jsonData = jsonDecode(message) as Map<String, dynamic>;
       final base64MusicData = jsonData['data'] as String;
-
-      // 生成設定情報も取得（オプション）
       final generationConfig =
           jsonData['generation_config'] as Map<String, dynamic>?;
 
-      logger.d('生成設定情報: $generationConfig');
-
       // Base64データをデコードしてFirebase Storageにアップロード
-      final musicBytes = base64Decode(
-        base64MusicData.split(',')[1],
-      ); // "data:audio/wav;base64,..." のヘッダを除去
-
-      logger.d('音楽データをデコードしました。バイト数: ${musicBytes.length}');
-
-      // WAV形式でファイル名を生成（最適化されたサンプリングレート）
+      final musicBytes = base64Decode(base64MusicData.split(',')[1]);
+      // WAV形式でファイル名を生成
       final fileName = 'generated_music/${const Uuid().v4()}.wav';
       final storageRef = ref
           .read(firebaseStorageProvider)
           .ref()
           .child(fileName);
 
-      logger.d('Firebase Storageにアップロード中: $fileName');
-
       // WAVファイルとしてアップロード
       await storageRef.putData(musicBytes);
       final musicUrl = await storageRef.getDownloadURL();
 
-      logger.d('音楽URLを取得しました: $musicUrl');
-
       final historyId = const Uuid().v4();
-      logger.d('生成された履歴ID: $historyId');
 
       final newHistory = MusicGenerationHistory(
         id: historyId,
@@ -1010,28 +983,11 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
         dogPersonalityTraits: _currentRequest!.dogPersonalityTraits,
       );
 
-      logger
-        ..d('作成された履歴オブジェクト:')
-        ..d('  - id: ${newHistory.id}')
-        ..d('  - userId: ${newHistory.userId}')
-        ..d('  - dogId: ${newHistory.dogId}')
-        ..d('  - scenario: ${newHistory.scenario}')
-        ..d('  - generatedMusicUrl: ${newHistory.generatedMusicUrl}')
-        ..d('  - createdAt: ${newHistory.createdAt}')
-        ..d('  - generationConfig: $generationConfig')
-        // Save to history
-        ..d('音楽生成履歴をFirestoreに保存中: ${newHistory.id}')
-        ..d('Firestoreコレクション: musicGenerationHistories')
-        ..d('ドキュメントID: ${newHistory.id}');
-
       final firestore = ref.read(firestoreProvider);
-      logger.d('Firestoreインスタンス取得完了');
 
       final collectionRef = firestore.collection('musicGenerationHistories');
-      logger.d('コレクション参照取得完了');
 
       final docRef = collectionRef.doc(newHistory.id);
-      logger.d('ドキュメント参照取得完了');
 
       // 生成設定情報も含めて履歴データを構築
       final historyData = newHistory.toJson();
@@ -1039,12 +995,7 @@ The music should help the dog feel calm, relaxed, and comfortable in the given s
         historyData['generation_config'] = generationConfig;
       }
 
-      logger
-        ..d('履歴JSON変換完了: ${historyData.keys}')
-        ..d('送信するJSONデータ: $historyData');
-
       await docRef.set(historyData);
-      logger.d('Firestoreへの保存完了');
 
       state = AsyncValue.data(newHistory);
       _currentRequest = null;
@@ -1225,9 +1176,6 @@ musicHistoryStreamProvider =
               return historyList;
             })
             .handleError((Object error, StackTrace stackTrace) {
-              // Firestoreの権限エラーが発生した場合、空のリストを返し、エラーをログに記録します。
-              // これにより、アプリがクラッシュするのを防ぎますが、
-              // 履歴機能はFirestoreのルールが修正されるまで機能しません。
               logger.e(
                 'Failed to fetch music history due to permission error',
                 error: error,

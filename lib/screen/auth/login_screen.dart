@@ -56,7 +56,41 @@ class LoginScreen extends HookConsumerWidget {
             case 'network-request-failed':
               errorMessage = l10n.networkRequestFailed;
             case 'requires-recent-login':
-              errorMessage = l10n.emailVerificationRequired;
+              showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(l10n.emailNotVerifiedTitle),
+                    content: Text(l10n.emailNotVerifiedMessage),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          ref
+                              .read(authStateNotifierProvider.notifier)
+                              .sendEmailVerification();
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(l10n.resendEmail),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          Navigator.of(context).pop();
+                          // メール認証の確認を試行
+                          await ref
+                              .read(authStateNotifierProvider.notifier)
+                              .checkEmailVerificationAndUpdateState();
+                        },
+                        child: Text(l10n.checkEmailVerification),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(l10n.ok),
+                      ),
+                    ],
+                  );
+                },
+              );
+              return;
             case 'email-not-verified':
               showDialog<void>(
                 context: context,
@@ -73,6 +107,16 @@ class LoginScreen extends HookConsumerWidget {
                           Navigator.of(context).pop();
                         },
                         child: Text(l10n.resendEmail),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          Navigator.of(context).pop();
+                          // メール認証の確認を試行
+                          await ref
+                              .read(authStateNotifierProvider.notifier)
+                              .checkEmailVerificationAndUpdateState();
+                        },
+                        child: Text(l10n.checkEmailVerification),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),

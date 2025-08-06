@@ -24,6 +24,7 @@ export '../component/layout/space.dart';
 export '../component/loading/container_with_loading.dart';
 export '../component/loading/loading.dart';
 export '../component/snackbar/alert_snackbar.dart';
+export '../component/snackbar/reward_snackbar.dart';
 export '../component/snackbar/snackbar.dart';
 export '../component/switch/primary_switch.dart';
 export '../component/text/link_text.dart';

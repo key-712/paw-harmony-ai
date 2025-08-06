@@ -5,6 +5,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import '../../import/component.dart';
 import '../../import/provider.dart';
 import '../../import/theme.dart';
+import '../../import/utility.dart';
 import '../../l10n/app_localizations.dart';
 
 /// 生成回数制限ダイアログ
@@ -48,8 +49,18 @@ class GenerationLimitDialog extends ConsumerWidget {
             screen: 'generation_limit_dialog',
             width: double.infinity,
             callback: () {
+              try {
+                if (adNotifier.isAdAvailable()) {
+                  adNotifier.showInterstitialAd();
+                } else {
+                  adNotifier
+                    ..loadInterstitialAd()
+                    ..showInterstitialAd();
+                }
+              } on Exception catch (e) {
+                logger.e('広告表示中にエラーが発生しました: $e');
+              }
               Navigator.of(context).pop();
-              adNotifier.showInterstitialAd();
             },
           ),
           // hSpace(height: 12),

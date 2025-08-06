@@ -42,24 +42,20 @@ class DogProfileStateNotifier extends StateNotifier<AsyncValue<DogProfile?>> {
   Future<void> fetchDogProfile() async {
     if (!mounted) return;
     state = const AsyncValue.loading();
-    logger.d('プロフィール取得開始: userId = $userId');
     try {
-      logger.d('Firestoreクエリ実行開始');
       final snapshot =
           await ref
               .read(firestoreProvider)
               .collection('dogProfiles')
-              .where('user_id', isEqualTo: userId) // 'userId' を 'user_id' に修正
+              .where('user_id', isEqualTo: userId)
               .limit(1)
               .get();
-      logger.d('Firestoreクエリ完了: ${snapshot.docs.length}件のドキュメントを取得');
       if (!mounted) {
         logger.d('StateNotifierがアンマウントされたため、処理を中断');
         return;
       }
       if (snapshot.docs.isNotEmpty) {
         final data = snapshot.docs.first.data();
-        logger.d('プロフィールが見つかりました: $data');
         try {
           // Firestoreのデータをそのまま使用（フィールド名マッピングは自動生成コードで処理）
           final convertedData = Map<String, dynamic>.from(data);
@@ -84,18 +80,14 @@ class DogProfileStateNotifier extends StateNotifier<AsyncValue<DogProfile?>> {
                 traits.map((trait) => trait.toString()).toList();
           }
 
-          logger.d('変換後のデータ: $convertedData');
-
           final profile = DogProfile.fromJson(convertedData);
-          logger.d('DogProfile.fromJson成功: $profile');
           state = AsyncValue.data(profile);
-          logger.d('プロフィールをstateに設定完了');
         } on Exception catch (e, st) {
           logger.e('DogProfile.fromJsonでエラー発生: $e', error: e, stackTrace: st);
           state = AsyncValue.error(e, st);
         }
       } else {
-        logger.d('プロフィールが見つかりませんでした');
+        logger.e('プロフィールが見つかりませんでした');
         state = const AsyncValue.data(null);
       }
     } on FirebaseException catch (e, st) {
@@ -134,7 +126,6 @@ class DogProfileStateNotifier extends StateNotifier<AsyncValue<DogProfile?>> {
     try {
       var imageUrl = profile.profileImageUrl;
       if (imageFile != null) {
-        logger.d('画像をアップロード中...');
         final storageRef = ref.read(firebaseStorageProvider).ref();
         final imageFileName =
             'dog_profiles/${profile.userId}/${profile.id}_${DateTime.now().millisecondsSinceEpoch}.jpg';
@@ -146,7 +137,6 @@ class DogProfileStateNotifier extends StateNotifier<AsyncValue<DogProfile?>> {
 
       if (!mounted) return;
       final updatedProfile = profile.copyWith(profileImageUrl: imageUrl);
-      logger.d('Firestoreにプロフィールを保存中: ${updatedProfile.toJson()}');
       await ref
           .read(firestoreProvider)
           .collection('dogProfiles')

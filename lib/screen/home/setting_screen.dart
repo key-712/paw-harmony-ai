@@ -171,6 +171,54 @@ class SettingScreen extends HookConsumerWidget {
                   );
                 },
               ),
+              hSpace(height: 8),
+              RoundedList(
+                title: l10n.deleteAccount,
+                screen: ScreenLabel.setting,
+                icon: Icons.delete_forever,
+                iconColor: theme.appColors.red,
+                onTap: () {
+                  showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return TwoButtonDialog(
+                        title: l10n.deleteAccountConfirmTitle,
+                        screen: ScreenLabel.setting,
+                        content: l10n.deleteAccountConfirmMessage,
+                        primaryText: l10n.confirm,
+                        secondaryText: l10n.cancel,
+                        primaryCallBack: () async {
+                          Navigator.of(context).pop();
+                          try {
+                            await ref
+                                .read(authStateNotifierProvider.notifier)
+                                .deleteAccount();
+                            // アカウント削除成功後、ログイン画面に遷移
+                            if (context.mounted) {
+                              const LoginScreenRoute().go(context);
+                            }
+                          } on Exception catch (e) {
+                            // エラーが発生した場合はスナックバーで表示
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    l10n.deleteAccountError(e.toString()),
+                                  ),
+                                  backgroundColor: theme.appColors.red,
+                                ),
+                              );
+                            }
+                          }
+                        },
+                        secondaryCallBack: () {
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
           hSpace(height: 16),

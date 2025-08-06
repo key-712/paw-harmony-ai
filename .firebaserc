@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "crelve-paw-harmony-ai-prod"
+    "default": "crelve-paw-harmony-ai-dev",
+    "prod": "crelve-paw-harmony-ai-prod",
+    "dev": "crelve-paw-harmony-ai-dev"
   }
 }

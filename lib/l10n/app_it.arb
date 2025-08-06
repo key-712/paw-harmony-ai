@@ -613,6 +613,31 @@
   "@logoutConfirmMessage": {
     "description": "Messaggio del dialogo di conferma logout"
   },
+  "deleteAccount": "Elimina account",
+  "@deleteAccount": {
+    "description": "Pulsante di eliminazione account"
+  },
+  "deleteAccountConfirmTitle": "Conferma eliminazione account",
+  "@deleteAccountConfirmTitle": {
+    "description": "Titolo del dialogo di conferma eliminazione account"
+  },
+  "deleteAccountConfirmMessage": "Sei sicuro di voler eliminare il tuo account? Questa azione non può essere annullata e tutti i tuoi dati verranno eliminati permanentemente.",
+  "@deleteAccountConfirmMessage": {
+    "description": "Messaggio del dialogo di conferma eliminazione account"
+  },
+  "deleteAccountSuccess": "Account eliminato con successo",
+  "@deleteAccountSuccess": {
+    "description": "Messaggio mostrato quando l'account viene eliminato con successo"
+  },
+  "deleteAccountError": "Errore nell'eliminazione dell'account: {error}",
+  "@deleteAccountError": {
+    "description": "Messaggio mostrato quando fallisce l'eliminazione dell'account",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
   "confirm": "Conferma",
   "@confirm": {
     "description": "Pulsante di conferma"
@@ -1335,6 +1360,10 @@
   "@resendEmail": {
     "description": "Testo del pulsante di rinvio email"
   },
+  "checkEmailVerification": "Verifica Email",
+  "@checkEmailVerification": {
+    "description": "Testo del pulsante per verificare email"
+  },
   "ok": "OK",
   "@ok": {
     "description": "Testo del pulsante OK"
@@ -1422,6 +1451,10 @@
   "watchAdToAddCount": "Guarda un annuncio per aggiungere",
   "@watchAdToAddCount": {
     "description": "Testo per il pulsante aggiungere guardando un annuncio"
+  },
+  "adRewardMessage": "Visualizzazione annuncio completata! Il conteggio delle generazioni è aumentato di +1",
+  "@adRewardMessage": {
+    "description": "Messaggio di ricompensa quando la visualizzazione dell'annuncio è completata"
   },
   "subscribeToPlan": "Abbonati al piano",
   "@subscribeToPlan": {

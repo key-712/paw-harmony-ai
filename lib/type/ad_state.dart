@@ -9,6 +9,9 @@ class AdState with _$AdState {
   /// インスタンスを作成します
   factory AdState({
     required bool isInterstitialAdLoaded,
+    @Default(false) bool shouldShowAdOnLoad,
+    @Default(false) bool hasReward,
+    @Default(0) int rewardCount,
   }) = _AdState;
 
   /// jsonデータを元に、当クラスのインスタンス作成します

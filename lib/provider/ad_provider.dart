@@ -8,9 +8,9 @@ import '../import/type.dart';
 import '../import/utility.dart';
 
 /// 広告の状態を管理するProvider
-final AutoDisposeStateNotifierProvider<AdNotifier, AdState>
-adStateNotifierProvider =
-    StateNotifierProvider.autoDispose<AdNotifier, AdState>(AdNotifier.new);
+final adStateNotifierProvider = StateNotifierProvider<AdNotifier, AdState>(
+  AdNotifier.new,
+);
 
 /// 広告の状態を管理するクラス
 class AdNotifier extends StateNotifier<AdState> {
@@ -31,6 +31,7 @@ class AdNotifier extends StateNotifier<AdState> {
       return;
     }
 
+    // 実際の広告IDを使用
     final adUnitId =
         Platform.isIOS
             ? Env.iOSInterstitialAdUnitId
@@ -47,14 +48,28 @@ class AdNotifier extends StateNotifier<AdState> {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          interstitialAd = ad;
-          logger.d('InterstitialAd loaded: $ad');
-          _ref.read(generationCountProvider.notifier).increment();
-          state = state.copyWith(isInterstitialAdLoaded: true);
+          try {
+            interstitialAd = ad;
+            state = state.copyWith(isInterstitialAdLoaded: true);
+
+            // 広告がロードされたら自動的に表示を試行
+            if (state.shouldShowAdOnLoad) {
+              logger.d('Auto-showing ad after load');
+              showInterstitialAd();
+            }
+          } on Exception catch (e) {
+            logger.e('Error in onAdLoaded callback: $e');
+          }
         },
         onAdFailedToLoad: (error) {
-          logger.d('InterstitialAd failed to load: $error');
-          state = state.copyWith(isInterstitialAdLoaded: false);
+          try {
+            state = state.copyWith(
+              isInterstitialAdLoaded: false,
+              shouldShowAdOnLoad: false,
+            );
+          } on Exception catch (e) {
+            logger.e('Error in onAdFailedToLoad callback: $e');
+          }
         },
       ),
     );
@@ -62,25 +77,72 @@ class AdNotifier extends StateNotifier<AdState> {
 
   /// インタースティシャル広告を表示します
   void showInterstitialAd() {
-    if (isNotProduction()) return;
+    try {
+      if (interstitialAd != null) {
+        interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+          onAdShowedFullScreenContent: (ad) {},
+          onAdDismissedFullScreenContent: (ad) {
+            ad.dispose();
+            interstitialAd = null;
+            // 報酬を付与
+            final newRewardCount = state.rewardCount + 1;
+            state = state.copyWith(
+              isInterstitialAdLoaded: false,
+              shouldShowAdOnLoad: false,
+              hasReward: true,
+              rewardCount: newRewardCount,
+            );
+            _ref.read(generationCountProvider.notifier).increment();
+            loadInterstitialAd();
+          },
+          onAdFailedToShowFullScreenContent: (ad, error) {
+            ad.dispose();
+            interstitialAd = null;
+            state = state.copyWith(
+              isInterstitialAdLoaded: false,
+              shouldShowAdOnLoad: false,
+            );
+            loadInterstitialAd();
+          },
+        );
 
-    if (interstitialAd != null) {
-      interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
-        onAdDismissedFullScreenContent: (ad) {
-          ad.dispose();
-          interstitialAd = null;
-          state = state.copyWith(isInterstitialAdLoaded: false);
-          loadInterstitialAd();
-        },
-        onAdFailedToShowFullScreenContent: (ad, error) {
-          ad.dispose();
-          interstitialAd = null;
-          state = state.copyWith(isInterstitialAdLoaded: false);
-          loadInterstitialAd();
-        },
-      );
-      interstitialAd!.show();
+        logger.d('Calling interstitialAd.show()');
+        interstitialAd!.show();
+      } else {
+        // 広告がロードされたら自動的に表示するようにフラグを設定
+        state = state.copyWith(shouldShowAdOnLoad: true);
+        loadInterstitialAd();
+        // 広告がロードされるまで少し待ってから再試行
+        Future.delayed(const Duration(seconds: 2), () {
+          if (interstitialAd != null) {
+            logger.d('Ad loaded after delay, showing now');
+            showInterstitialAd();
+          }
+        });
+      }
+    } on Exception catch (e) {
+      logger.e('Error in showInterstitialAd: $e');
     }
+  }
+
+  /// 広告が利用可能かどうかをチェックする
+  bool isAdAvailable() {
+    return interstitialAd != null && state.isInterstitialAdLoaded;
+  }
+
+  /// 報酬をリセットする
+  void resetReward() {
+    state = state.copyWith(hasReward: false);
+  }
+
+  /// 報酬があるかどうかをチェックする
+  bool hasReward() {
+    return state.hasReward;
+  }
+
+  /// 報酬数を取得する
+  int getRewardCount() {
+    return state.rewardCount;
   }
 
   @override

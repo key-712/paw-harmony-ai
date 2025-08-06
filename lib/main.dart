@@ -76,13 +76,9 @@ Future<void> _initializePurchases() async {
 
   late PurchasesConfiguration configuration;
   if (Platform.isAndroid) {
-    logger.i('Initializing RevenueCat for Android...');
     configuration = PurchasesConfiguration(googleApiKey);
-    logger.i('Android configuration created with Google API key');
   } else if (Platform.isIOS) {
-    logger.i('Initializing RevenueCat for iOS...');
     configuration = PurchasesConfiguration(appleApiKey);
-    logger.i('iOS configuration created with Apple API key');
   } else {
     logger.w('Unsupported platform for RevenueCat initialization.');
     return;
@@ -90,7 +86,6 @@ Future<void> _initializePurchases() async {
 
   try {
     await Purchases.configure(configuration);
-    logger.i('RevenueCat initialized successfully.');
   } on Exception catch (e) {
     logger.e('Failed to initialize RevenueCat: $e');
   }

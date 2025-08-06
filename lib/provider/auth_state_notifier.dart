@@ -71,8 +71,7 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
         await credential.user!.reload();
 
         if (!credential.user!.emailVerified) {
-          // メール未確認の場合はログアウトしてからエラーを投げる
-          await ref.read(firebaseAuthProvider).signOut();
+          // メール未確認の場合はエラーを投げるが、ログアウトはしない
           throw FirebaseAuthException(
             code: 'requires-recent-login',
             message: 'Email verification required',
@@ -127,6 +126,19 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
     }
   }
 
+  /// メール認証が完了したかチェックして、完了していればログイン状態を更新する
+  Future<void> checkEmailVerificationAndUpdateState() async {
+    try {
+      final isVerified = await isEmailVerified();
+      if (isVerified) {
+        // メール認証が完了している場合はログイン成功として扱う
+        state = const AsyncValue.data(null);
+      }
+    } on FirebaseAuthException catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
+
   /// パスワードリセットメールを送信するメソッド
   ///
   /// [email] リセットメールを送信するメールアドレス
@@ -145,6 +157,29 @@ class AuthStateNotifier extends StateNotifier<AsyncValue<void>> {
     state = const AsyncValue.loading();
     try {
       await ref.read(firebaseAuthProvider).signOut();
+      state = const AsyncValue.data(null);
+    } on FirebaseAuthException catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
+
+  /// アカウント削除を行うメソッド
+  ///
+  /// 現在ログインしているユーザーのアカウントを完全に削除します。
+  /// この操作は取り消すことができません。
+  Future<void> deleteAccount() async {
+    state = const AsyncValue.loading();
+    try {
+      final user = ref.read(firebaseAuthProvider).currentUser;
+      if (user == null) {
+        throw FirebaseAuthException(
+          code: 'user-not-found',
+          message: 'No user is currently signed in',
+        );
+      }
+
+      // ユーザーアカウントを削除
+      await user.delete();
       state = const AsyncValue.data(null);
     } on FirebaseAuthException catch (e, st) {
       state = AsyncValue.error(e, st);

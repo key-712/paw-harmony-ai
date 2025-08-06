@@ -612,6 +612,31 @@
   "@logoutConfirmMessage": {
     "description": "ログアウト確認ダイアログのメッセージ"
   },
+  "deleteAccount": "アカウント削除",
+  "@deleteAccount": {
+    "description": "アカウント削除ボタン"
+  },
+  "deleteAccountConfirmTitle": "アカウント削除確認",
+  "@deleteAccountConfirmTitle": {
+    "description": "アカウント削除確認ダイアログのタイトル"
+  },
+  "deleteAccountConfirmMessage": "アカウントを削除しますか？この操作は取り消すことができず、すべてのデータが永久に削除されます。",
+  "@deleteAccountConfirmMessage": {
+    "description": "アカウント削除確認ダイアログのメッセージ"
+  },
+  "deleteAccountSuccess": "アカウントが正常に削除されました",
+  "@deleteAccountSuccess": {
+    "description": "アカウント削除成功時のメッセージ"
+  },
+  "deleteAccountError": "アカウント削除に失敗しました: {error}",
+  "@deleteAccountError": {
+    "description": "アカウント削除失敗時のメッセージ",
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
   "confirm": "確認",
   "@confirm": {
     "description": "確認ボタン"
@@ -1326,6 +1351,10 @@
   "@resendEmail": {
     "description": "メール再送信ボタンのテキスト"
   },
+  "checkEmailVerification": "メール認証を確認",
+  "@checkEmailVerification": {
+    "description": "メール認証確認ボタンのテキスト"
+  },
   "ok": "OK",
   "@ok": {
     "description": "OKボタンのテキスト"
@@ -1417,6 +1446,10 @@
   "watchAdToAddCount": "広告を見て回数を追加",
   "@watchAdToAddCount": {
     "description": "広告視聴で回数を追加するボタンのテキスト"
+  },
+  "adRewardMessage": "広告視聴完了！生成回数が+1増加しました",
+  "@adRewardMessage": {
+    "description": "広告視聴完了時の報酬メッセージ"
   },
   "subscribeToPlan": "サブスクに登録する",
   "@subscribeToPlan": {
