@@ -179,7 +179,11 @@ class LanguageSettingScreen extends HookConsumerWidget {
                             : ColorUtility.grey10,
                   ),
                   child: Center(
-                    child: Text(flagIcon, style: const TextStyle(fontSize: 24)),
+                    child: ThemeText(
+                      text: flagIcon,
+                      style: const TextStyle(fontSize: 24),
+                      color: theme.appColors.black,
+                    ),
                   ),
                 ),
                 wSpace(width: 16),

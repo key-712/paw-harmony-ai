@@ -136,10 +136,10 @@ class SignUpScreen extends HookConsumerWidget {
                                   url: ExternalPageList.legal,
                                 );
                               },
-                              child: Text(
-                                l10n.legal,
+                              child: ThemeText(
+                                text: l10n.legal,
+                                color: theme.appColors.main,
                                 style: theme.textTheme.h30.copyWith(
-                                  color: theme.appColors.main,
                                   decoration: TextDecoration.underline,
                                 ),
                               ),
@@ -153,10 +153,10 @@ class SignUpScreen extends HookConsumerWidget {
                                   url: ExternalPageList.privacyPolicy,
                                 );
                               },
-                              child: Text(
-                                l10n.privacyPolicy,
+                              child: ThemeText(
+                                text: l10n.privacyPolicy,
+                                color: theme.appColors.main,
                                 style: theme.textTheme.h30.copyWith(
-                                  color: theme.appColors.main,
                                   decoration: TextDecoration.underline,
                                 ),
                               ),

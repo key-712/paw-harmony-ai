@@ -70,7 +70,11 @@ class LoginScreen extends HookConsumerWidget {
                               .sendEmailVerification();
                           Navigator.of(context).pop();
                         },
-                        child: Text(l10n.resendEmail),
+                        child: ThemeText(
+                          text: l10n.resendEmail,
+                          color: theme.appColors.secondary,
+                          style: theme.textTheme.h30,
+                        ),
                       ),
                       TextButton(
                         onPressed: () async {
@@ -80,11 +84,19 @@ class LoginScreen extends HookConsumerWidget {
                               .read(authStateNotifierProvider.notifier)
                               .checkEmailVerificationAndUpdateState();
                         },
-                        child: Text(l10n.checkEmailVerification),
+                        child: ThemeText(
+                          text: l10n.checkEmailVerification,
+                          color: theme.appColors.secondary,
+                          style: theme.textTheme.h30,
+                        ),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: Text(l10n.ok),
+                        child: ThemeText(
+                          text: l10n.ok,
+                          color: theme.appColors.secondary,
+                          style: theme.textTheme.h30,
+                        ),
                       ),
                     ],
                   );
@@ -106,7 +118,11 @@ class LoginScreen extends HookConsumerWidget {
                               .sendEmailVerification();
                           Navigator.of(context).pop();
                         },
-                        child: Text(l10n.resendEmail),
+                        child: ThemeText(
+                          text: l10n.resendEmail,
+                          color: theme.appColors.secondary,
+                          style: theme.textTheme.h30,
+                        ),
                       ),
                       TextButton(
                         onPressed: () async {
@@ -116,11 +132,19 @@ class LoginScreen extends HookConsumerWidget {
                               .read(authStateNotifierProvider.notifier)
                               .checkEmailVerificationAndUpdateState();
                         },
-                        child: Text(l10n.checkEmailVerification),
+                        child: ThemeText(
+                          text: l10n.checkEmailVerification,
+                          color: theme.appColors.secondary,
+                          style: theme.textTheme.h30,
+                        ),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: Text(l10n.ok),
+                        child: ThemeText(
+                          text: l10n.ok,
+                          color: theme.appColors.secondary,
+                          style: theme.textTheme.h30,
+                        ),
                       ),
                     ],
                   );
