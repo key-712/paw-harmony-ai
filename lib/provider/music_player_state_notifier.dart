@@ -53,8 +53,6 @@ class MusicPlayerStateNotifier extends StateNotifier<PlayerState> {
       _audioPlayer.playingStream.listen((isPlaying) {
         state = state.copyWith(isPlaying: isPlaying);
       });
-
-      logger.d('オーディオプレイヤー初期化完了');
     } on PlayerException catch (e) {
       logger.e('Player exception: $e');
     } on Exception catch (e) {

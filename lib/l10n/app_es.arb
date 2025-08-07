@@ -1460,6 +1460,14 @@
   "@subscribeToPlan": {
     "description": "Texto para el botón de registro de suscripción"
   },
+  "generationLimitReachedTitle": "Límite de generación alcanzado",
+  "@generationLimitReachedTitle": {
+    "description": "Título del diálogo de aviso de límite de generación alcanzado"
+  },
+  "generationLimitReachedMessage": "Has alcanzado el límite diario de generación.\nPor favor, inténtalo de nuevo mañana.",
+  "@generationLimitReachedMessage": {
+    "description": "Mensaje del diálogo de aviso de límite de generación alcanzado"
+  },
   "purchaseCompleted": "¡Compra completada!",
   "selected": "Seleccionado",
   "@selected": {

@@ -1455,6 +1455,14 @@
   "@subscribeToPlan": {
     "description": "サブスクリプション登録ボタンのテキスト"
   },
+  "generationLimitReachedTitle": "生成回数の上限に達しました",
+  "@generationLimitReachedTitle": {
+    "description": "生成回数上限到達お知らせダイアログのタイトル"
+  },
+  "generationLimitReachedMessage": "本日の生成回数の上限に達しました。\n明日再度お試しください。",
+  "@generationLimitReachedMessage": {
+    "description": "生成回数上限到達お知らせダイアログのメッセージ"
+  },
   "purchaseCompleted": "購入が完了しました！",
   "@purchaseCompleted": {
     "description": "購入完了時のメッセージ"

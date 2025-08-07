@@ -1456,6 +1456,14 @@
   "@adRewardMessage": {
     "description": "Messaggio di ricompensa quando la visualizzazione dell'annuncio è completata"
   },
+  "generationLimitReachedTitle": "Limite di generazione raggiunta",
+  "@generationLimitReachedTitle": {
+    "description": "Titolo della finestra di dialogo di avviso limite di generazione raggiunta"
+  },
+  "generationLimitReachedMessage": "Hai raggiunto il limite giornaliero di generazione.\nRiprova domani.",
+  "@generationLimitReachedMessage": {
+    "description": "Messaggio della finestra di dialogo di avviso limite di generazione raggiunta"
+  },
   "subscribeToPlan": "Abbonati al piano",
   "@subscribeToPlan": {
     "description": "Testo per il pulsante di registrazione abbonamento"

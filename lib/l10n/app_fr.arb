@@ -1460,6 +1460,14 @@
   "@adRewardMessage": {
     "description": "Message de récompense lorsque la visualisation de la publicité est terminée"
   },
+  "generationLimitReachedTitle": "Limite de génération atteinte",
+  "@generationLimitReachedTitle": {
+    "description": "Titre de la boîte de dialogue d'avis de limite de génération atteinte"
+  },
+  "generationLimitReachedMessage": "Vous avez atteint la limite quotidienne de génération.\nVeuillez réessayer demain.",
+  "@generationLimitReachedMessage": {
+    "description": "Message de la boîte de dialogue d'avis de limite de génération atteinte"
+  },
   "purchaseCompleted": "Achat terminé !",
   "@purchaseCompleted": {
     "description": "Message de succès lors de l'achat d'un abonnement"
