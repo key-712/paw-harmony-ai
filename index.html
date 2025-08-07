@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw Harmony サポート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals with Soft Teal Accent -->
+    <!-- Application Structure Plan: A single-column, linear form layout is used for maximum usability and clarity. The form is divided into two logical sections: 'Contact Information' and 'Inquiry Details'. This guides the user sequentially through the required fields. Upon submission, the form is hidden and a confirmation message is displayed, providing immediate feedback without a page reload. This structure was chosen because it is the most intuitive and standard pattern for form-based applications, minimizing user friction. -->
+    <!-- Visualization & Content Choices: The source report outlined form fields. Goal: Collect user feedback. Presentation: Each field is represented by a modern, styled HTML input element (text, email, select, textarea, file). Interaction: Standard form interactions are enhanced with JS for file input label updates and form submission simulation (hiding the form and showing a success message). This approach creates a more polished and professional user experience than a standard Google Form. No charts are needed. Library/Method: Vanilla JS for interaction, Tailwind CSS for styling. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: #2dd4bf;
+            box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.3);
+            outline: none;
+        }
+
+        .file-input-button {
+            transition: background-color 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-800">
+
+    <div id="app" class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <div id="form-container">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl sm:text-4xl font-bold text-teal-600">Paw Harmony サポート</h1>
+                <p class="mt-4 text-stone-600">
+                    Paw Harmonyをご利用いただきありがとうございます。ご質問、ご意見、ご要望など、お気軽にお知らせください。いただいた内容はすべて拝見し、今後の改善に役立ててまいります。
+                </p>
+            </header>
+
+            <main>
+                <form id="support-form" class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg space-y-6">
+
+                    <section>
+                        <h2 class="text-xl font-semibold border-b border-stone-200 pb-3 mb-4 text-stone-700">1. 連絡先情報
+                        </h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-stone-600 mb-1">メールアドレス<span
+                                        class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required
+                                    class="form-input w-full px-4 py-2 bg-stone-50 border border-stone-300 rounded-lg focus:bg-white"
+                                    placeholder="返信先メールアドレス">
+                            </div>
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-stone-600 mb-1">お名前</label>
+                                <input type="text" id="name" name="name"
+                                    class="form-input w-full px-4 py-2 bg-stone-50 border border-stone-300 rounded-lg focus:bg-white"
+                                    placeholder="山田 太郎">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 class="text-xl font-semibold border-b border-stone-200 pb-3 mb-4 text-stone-700">2. お問い合わせ内容
+                        </h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label for="inquiry-type"
+                                    class="block text-sm font-medium text-stone-600 mb-1">お問い合わせの種類<span
+                                        class="text-red-500">*</span></label>
+                                <select id="inquiry-type" name="inquiry-type" required
+                                    class="form-select w-full px-4 py-2 bg-stone-50 border border-stone-300 rounded-lg appearance-none focus:bg-white">
+                                    <option value="" disabled selected>選択してください</option>
+                                    <option value="bug">バグ報告・技術的な問題</option>
+                                    <option value="feature-question">アプリの機能に関する質問</option>
+                                    <option value="feedback">ご意見・ご要望</option>
+                                    <option value="other">その他</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="device-os"
+                                    class="block text-sm font-medium text-stone-600 mb-1">ご利用の端末とOSのバージョン</label>
+                                <input type="text" id="device-os" name="device-os"
+                                    class="form-input w-full px-4 py-2 bg-stone-50 border border-stone-300 rounded-lg focus:bg-white"
+                                    placeholder="例：iPhone 14, iOS 17.5.1">
+                            </div>
+                            <div>
+                                <label for="app-version" class="block text-sm font-medium text-stone-600 mb-1">Paw
+                                    Harmonyのアプリバージョン</label>
+                                <input type="text" id="app-version" name="app-version"
+                                    class="form-input w-full px-4 py-2 bg-stone-50 border border-stone-300 rounded-lg focus:bg-white"
+                                    placeholder="例：1.0.2">
+                            </div>
+                            <div>
+                                <label for="details" class="block text-sm font-medium text-stone-600 mb-1">詳しい内容<span
+                                        class="text-red-500">*</span></label>
+                                <textarea id="details" name="details" rows="5" required
+                                    class="form-textarea w-full px-4 py-2 bg-stone-50 border border-stone-300 rounded-lg focus:bg-white"
+                                    placeholder="問題やご要望について、できるだけ詳しくご記入ください。"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-stone-600 mb-1">スクリーンショットや関連ファイル</label>
+                                <div
+                                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-stone-300 border-dashed rounded-md">
+                                    <div class="space-y-1 text-center">
+                                        <svg class="mx-auto h-12 w-12 text-stone-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4V12a4 4 0 014-4h12l4-4h12a4 4 0 014 4v4m-8 4l-4-4m0 0l-4 4m4-4v12"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <div class="flex text-sm text-stone-600">
+                                            <label for="file-upload"
+                                                class="file-input-button relative cursor-pointer bg-white rounded-md font-medium text-teal-600 hover:text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-500">
+                                                <span>ファイルをアップロード</span>
+                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                            </label>
+                                            <p class="pl-1">またはドラッグ＆ドロップ</p>
+                                        </div>
+                                        <p id="file-name" class="text-xs text-stone-500">PNG, JPG, GIFなど</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="pt-4">
+                        <button type="submit"
+                            class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-teal-300 transition-all duration-300 ease-in-out transform hover:scale-105">
+                            送信する
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+
+        <div id="success-message" class="hidden text-center bg-white p-8 sm:p-12 rounded-2xl shadow-lg">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-teal-100 mb-6">
+                <svg class="h-8 w-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-teal-600 mb-4">お問い合わせいただき、ありがとうございます！</h2>
+            <p class="text-stone-600">
+                いただいた内容は確認次第、順次ご対応させていただきます。<br>ご返信までにお時間をいただく場合がございますが、ご了承ください。<br>今後とも Paw Harmony をよろしくお願いいたします。
+            </p>
+        </div>
+
+        <footer class="text-center mt-12">
+            <p class="text-sm text-stone-400">&copy; 2025 Paw Harmony. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const supportForm = document.getElementById('support-form');
+        const formContainer = document.getElementById('form-container');
+        const successMessage = document.getElementById('success-message');
+        const fileUploadInput = document.getElementById('file-upload');
+        const fileNameDisplay = document.getElementById('file-name');
+
+        fileUploadInput.addEventListener('change', (event) => {
+            if (event.target.files.length > 0) {
+                fileNameDisplay.textContent = event.target.files[0].name;
+                fileNameDisplay.classList.add('text-teal-700', 'font-semibold');
+            } else {
+                fileNameDisplay.textContent = 'PNG, JPG, GIFなど';
+                fileNameDisplay.classList.remove('text-teal-700', 'font-semibold');
+            }
+        });
+
+        supportForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            let isValid = true;
+            const requiredFields = supportForm.querySelectorAll('[required]');
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ef4444';
+                } else {
+                    field.style.borderColor = '#d6d3d1';
+                }
+            });
+
+            if (isValid) {
+                formContainer.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            } else {
+                alert('必須項目をすべて入力してください。');
+            }
+        });
+    </script>
+</body>
+
+</html>
