@@ -1459,6 +1459,14 @@
   "@subscribeToPlan": {
     "description": "Text for subscription registration button"
   },
+  "generationLimitReachedTitle": "Generation limit reached",
+  "@generationLimitReachedTitle": {
+    "description": "Title for generation limit reached notice dialog"
+  },
+  "generationLimitReachedMessage": "You have reached the daily generation limit.\nPlease try again tomorrow.",
+  "@generationLimitReachedMessage": {
+    "description": "Message for generation limit reached notice dialog"
+  },
   "purchaseCompleted": "Purchase completed!",
   "selected": "Selected",
   "@selected": {

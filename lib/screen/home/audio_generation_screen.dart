@@ -273,7 +273,8 @@ class AudioGenerationScreen extends HookConsumerWidget {
                               )
                               .generateMusic(request);
                         } else {
-                          showGenerationLimitDialog(context: context);
+                          // showGenerationLimitDialog(context: context);
+                          showGenerationLimitNoticeDialog(context: context);
                         }
                       },
                     ),

@@ -1166,13 +1166,9 @@ musicHistoryStreamProvider =
                       .where((history) {
                         final matches = history.userId == userId;
                         return matches;
-                      }) // クライアントサイドでフィルタリング
+                      })
                       .toList()
-                    ..sort(
-                      (a, b) => b.createdAt.compareTo(a.createdAt),
-                    ); // 最新順にソート
-
-              logger.d('=== 音楽履歴取得完了 ===');
+                    ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
               return historyList;
             })
             .handleError((Object error, StackTrace stackTrace) {
@@ -1228,8 +1224,6 @@ musicHistoryByIdStreamProvider = StreamProvider.autoDispose
                   logger.d('ユーザーIDが一致しません: ${history.userId} != $userId');
                   return null;
                 }
-
-                logger.d('=== 特定音楽履歴取得完了 ===');
                 return history;
               } on Exception catch (e) {
                 logger.e('ドキュメントのパースエラー: ${snapshot.id}', error: e);
